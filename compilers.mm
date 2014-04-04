@@ -4,44 +4,44 @@
 <node CREATED="1395732899000" ID="ID_753711553" MODIFIED="1395735580476" TEXT="Compiler">
 <font BOLD="true" NAME="SansSerif" SIZE="14"/>
 <icon BUILTIN="messagebox_warning"/>
-<node CREATED="1395732913379" ID="ID_715608857" MODIFIED="1395741155306" POSITION="right" TEXT="1. Lexical Analysis">
+<node CREATED="1395732913379" FOLDED="true" ID="ID_715608857" MODIFIED="1396517898301" POSITION="right" TEXT="1. Lexical Analysis">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
-<node CREATED="1395733470130" FOLDED="true" ID="ID_1442877164" MODIFIED="1395740067527" TEXT="&#x446;&#x435;&#x43b;&#x44c; - &#x442;&#x43e;&#x43a;&#x435;&#x43d;&#x438;&#x437;&#x430;&#x446;&#x438;&#x44f; &#x438;&#x441;&#x445;&#x43e;&#x434;&#x43d;&#x43e;&#x433;&#x43e; &#x442;&#x435;&#x43a;&#x441;&#x442;&#x430; &#x43f;&#x43e; &#x43a;&#x43b;&#x430;&#x441;&#x441;&#x430;&#x43c;">
+<node CREATED="1395733470130" FOLDED="true" ID="ID_1442877164" MODIFIED="1396517413428" TEXT="&#x446;&#x435;&#x43b;&#x44c; - &#x442;&#x43e;&#x43a;&#x435;&#x43d;&#x438;&#x437;&#x430;&#x446;&#x438;&#x44f; &#x438;&#x441;&#x445;&#x43e;&#x434;&#x43d;&#x43e;&#x433;&#x43e; &#x442;&#x435;&#x43a;&#x441;&#x442;&#x430; &#x43f;&#x43e; &#x43a;&#x43b;&#x430;&#x441;&#x441;&#x430;&#x43c;">
 <font ITALIC="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="idea"/>
-<node CREATED="1395733295001" FOLDED="true" ID="ID_426853348" MODIFIED="1395735679583" TEXT="Identifier">
+<node CREATED="1395733295001" FOLDED="true" ID="ID_426853348" MODIFIED="1396517369044" TEXT="Identifier">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395734712382" ID="ID_123771322" MODIFIED="1395734738746" TEXT="example - variables">
 <icon BUILTIN="info"/>
 </node>
 <node CREATED="1395734731420" ID="ID_763308298" MODIFIED="1395734736146" TEXT="start with the letter"/>
 </node>
-<node CREATED="1395733302068" FOLDED="true" ID="ID_436534699" MODIFIED="1395735680986" TEXT="Integer">
+<node CREATED="1395733302068" FOLDED="true" ID="ID_436534699" MODIFIED="1396517370020" TEXT="Integer">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395734753054" ID="ID_1481430313" MODIFIED="1395734761757" TEXT="example - numbers">
 <icon BUILTIN="info"/>
 </node>
 </node>
-<node CREATED="1395733307038" FOLDED="true" ID="ID_750631142" MODIFIED="1395735682330" TEXT="Keywords">
+<node CREATED="1395733307038" FOLDED="true" ID="ID_750631142" MODIFIED="1396517371108" TEXT="Keywords">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395734778982" ID="ID_716139081" MODIFIED="1395734785017" TEXT="if"/>
 <node CREATED="1395734788140" ID="ID_1520449978" MODIFIED="1395734789881" TEXT="else"/>
 <node CREATED="1395734790492" ID="ID_945292627" MODIFIED="1395734792185" TEXT="..."/>
 </node>
-<node CREATED="1395733314869" FOLDED="true" ID="ID_637901189" MODIFIED="1395735683828" TEXT="Whitespaces">
+<node CREATED="1395733314869" FOLDED="true" ID="ID_637901189" MODIFIED="1396517372228" TEXT="Whitespaces">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395734818349" ID="ID_1408981803" MODIFIED="1395734849811" TEXT="&apos; &apos;"/>
 <node CREATED="1395734823940" ID="ID_1777958541" MODIFIED="1395734849458" TEXT="&apos;   &apos;"/>
 <node CREATED="1395734829516" ID="ID_250397758" MODIFIED="1395734849068" TEXT="&apos;\t\t&apos;"/>
 <node CREATED="1395734834388" ID="ID_1878805343" MODIFIED="1395734835849" TEXT="..."/>
 </node>
-<node CREATED="1395733318782" FOLDED="true" ID="ID_427720600" MODIFIED="1395735685092" TEXT="Operators">
+<node CREATED="1395733318782" FOLDED="true" ID="ID_427720600" MODIFIED="1396517373492" TEXT="Operators">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395734865054" ID="ID_1290785159" MODIFIED="1395734870209" TEXT="&apos;==&apos;"/>
 <node CREATED="1395734870644" ID="ID_1843072718" MODIFIED="1395734873513" TEXT="..."/>
 </node>
-<node CREATED="1395733571880" FOLDED="true" ID="ID_1843405624" MODIFIED="1395735686487" TEXT="Others">
+<node CREATED="1395733571880" FOLDED="true" ID="ID_1843405624" MODIFIED="1396517374932" TEXT="Others">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395734896472" ID="ID_1290712340" MODIFIED="1395734910337" TEXT="&apos;(&apos;"/>
 <node CREATED="1395734910788" ID="ID_975290839" MODIFIED="1395734913970" TEXT="&apos;)&apos;"/>
@@ -55,7 +55,7 @@
 <node CREATED="1395733552238" ID="ID_208208382" MODIFIED="1395734261466" TEXT="token ~ &lt;class, substring&gt;">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
-<node CREATED="1395733767948" FOLDED="true" ID="ID_770917127" MODIFIED="1395743185408" TEXT="substring ~ lexem">
+<node CREATED="1395733767948" FOLDED="true" ID="ID_770917127" MODIFIED="1396517378868" TEXT="substring ~ lexem">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395734985927" ID="ID_1527187316" MODIFIED="1395735408701" TEXT="&#x43f;&#x440;&#x435;&#x43e;&#x431;&#x440;&#x430;&#x437;&#x43e;&#x432;&#x430;&#x43d;&#x438;&#x44f; &#x442;&#x438;&#x43f;&#x43e;&#x432; &#x435;&#x449;&#x435; &#x43d;&#x435;&#x442;, &#x438;&#x441;&#x43f;&#x43e;&#x43b;&#x44c;&#x437;&#x443;&#x435;&#x442;&#x441;&#x44f; &#x438;&#x43c;&#x435;&#x43d;&#x43d;&#x43e; &#x43f;&#x43e;&#x434;&#x441;&#x442;&#x440;&#x43e;&#x43a;&#x430;">
 <icon BUILTIN="info"/>
@@ -86,7 +86,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1395735729877" FOLDED="true" ID="ID_667121816" MODIFIED="1395743810504" TEXT="Regular languages">
+<node CREATED="1395735729877" FOLDED="true" ID="ID_667121816" MODIFIED="1396517384198" TEXT="Regular languages">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395735976733" ID="ID_1578933450" MODIFIED="1395735990898" TEXT="&#x3b5; - language empty string"/>
 <node CREATED="1395736443636" ID="ID_1672058834" MODIFIED="1395736466457" TEXT="&#x2211;* - all symbols of alphabet"/>
@@ -99,16 +99,16 @@
 <node CREATED="1395736314740" ID="ID_713601961" MODIFIED="1395736399319" TEXT="concatenation AB = {ab | a&#x20ac;A, b&#x20ac;B}"/>
 <node CREATED="1395736308459" ID="ID_123154210" MODIFIED="1395736425762" TEXT="iteration A* = UA^i (i &gt;=0)"/>
 </node>
-<node CREATED="1395736527620" FOLDED="true" ID="ID_92724056" MODIFIED="1395743809664" TEXT="some rules for regular expressions">
+<node CREATED="1395736527620" FOLDED="true" ID="ID_92724056" MODIFIED="1396517383436" TEXT="some rules for regular expressions">
 <icon BUILTIN="info"/>
 <node CREATED="1395736560677" ID="ID_1911105913" MODIFIED="1395736572594" TEXT="(a+b)a = aa + ba"/>
 <node CREATED="1395736572908" ID="ID_386852844" MODIFIED="1395736583218" TEXT="1* = 1* + 1"/>
 <node CREATED="1395736583459" ID="ID_257219354" MODIFIED="1395736623690" TEXT="0* ~ 0 + 0* ~ &#x3b5; + 00* ~ &#x3b5; + 0 + 0*"/>
 </node>
 </node>
-<node CREATED="1395735760604" FOLDED="true" ID="ID_349259012" MODIFIED="1395748937889" TEXT="Formal languages">
+<node CREATED="1395735760604" FOLDED="true" ID="ID_349259012" MODIFIED="1396517392420" TEXT="Formal languages">
 <font NAME="SansSerif" SIZE="12"/>
-<node CREATED="1395736677974" FOLDED="true" ID="ID_1950882458" MODIFIED="1395736804913" TEXT="Meaning function">
+<node CREATED="1395736677974" FOLDED="true" ID="ID_1950882458" MODIFIED="1396517390172" TEXT="Meaning function">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395736700638" ID="ID_788524825" MODIFIED="1395736703873" TEXT="L(e) = M"/>
 <node CREATED="1395736704108" ID="ID_1809310108" MODIFIED="1395736714026" TEXT="regexp ~ set of strings"/>
@@ -118,22 +118,22 @@
 <node CREATED="1395736774180" ID="ID_1115571314" MODIFIED="1395736784865" TEXT="L(A+B) = L(A) + L(B)"/>
 <node CREATED="1395736785076" ID="ID_455888937" MODIFIED="1395736833650" TEXT="L(AB) = {ab | a&#x20ac;L(A), b&#x20ac;L(B)}"/>
 <node CREATED="1395736834228" ID="ID_93971489" MODIFIED="1395736863034" TEXT="L(A*) = UL(A)^i (i&gt;=0)"/>
-<node CREATED="1395736866524" FOLDED="true" ID="ID_80457407" MODIFIED="1395737462274" TEXT="(Syntax -&gt; Semantics) is &apos;many to one&apos; relation">
+<node CREATED="1395736866524" FOLDED="true" ID="ID_80457407" MODIFIED="1396517391556" TEXT="(Syntax -&gt; Semantics) is &apos;many to one&apos; relation">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="info"/>
 <node CREATED="1395736925033" ID="ID_1527093788" MODIFIED="1395737460885" TEXT="so there`s possible optimization"/>
 </node>
 </node>
-<node CREATED="1395735805955" FOLDED="true" ID="ID_1282552180" MODIFIED="1395748917010" TEXT="Lexical specification">
+<node CREATED="1395735805955" FOLDED="true" ID="ID_1282552180" MODIFIED="1396517412132" TEXT="Lexical specification">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
-<node CREATED="1395736998693" FOLDED="true" ID="ID_887275241" MODIFIED="1395748916273" TEXT="Integers">
+<node CREATED="1395736998693" FOLDED="true" ID="ID_887275241" MODIFIED="1396517395500" TEXT="Integers">
 <node CREATED="1395737062242" ID="ID_135600944" MODIFIED="1395737113977" TEXT="digit = &apos;0&apos; + &apos;1&apos; + &apos;2&apos; + &apos;3&apos; + &apos;4&apos; + &apos;5&apos; + &apos;6&apos; + &apos;7&apos; + &apos;8&apos; + &apos;9&apos;"/>
 <node CREATED="1395737114732" ID="ID_1968050662" MODIFIED="1395737199496" TEXT="integers = digit digit* (should not be empty)"/>
 <node CREATED="1395737199940" ID="ID_1044525424" MODIFIED="1395737214268" TEXT="integers = digit^+">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 </node>
-<node CREATED="1395737023876" FOLDED="true" ID="ID_114849561" MODIFIED="1395748915193" TEXT="Identifiers">
+<node CREATED="1395737023876" FOLDED="true" ID="ID_114849561" MODIFIED="1396517397212" TEXT="Identifiers">
 <node CREATED="1395737218264" ID="ID_1678140557" MODIFIED="1395737317690" TEXT="letter = &apos;a&apos; + &apos;b&apos; + ... + &apos;z&apos; + &apos;A&apos; + &apos;B&apos; + ... + &apos;Z&apos;"/>
 <node CREATED="1395737318212" ID="ID_1663258422" MODIFIED="1395737360006" TEXT="letter = [a-zA-Z] - character range">
 <font NAME="SansSerif" SIZE="12"/>
@@ -147,13 +147,13 @@
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 </node>
-<node CREATED="1395737036796" FOLDED="true" ID="ID_931831765" MODIFIED="1395738005215" TEXT="Keywords">
+<node CREATED="1395737036796" FOLDED="true" ID="ID_931831765" MODIFIED="1396517399540" TEXT="Keywords">
 <node CREATED="1395737230421" ID="ID_1685558497" MODIFIED="1395737269962" TEXT="&apos;i&apos;&apos;f&apos; + &apos;e&apos;&apos;l&apos;&apos;s&apos;&apos;e&apos; + ..."/>
 <node CREATED="1395737246331" ID="ID_578531618" MODIFIED="1395737282542" TEXT="&apos;if&apos; +&apos;else&apos; + &apos;then&apos; + ...">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 </node>
-<node CREATED="1395737422940" FOLDED="true" ID="ID_1270336309" MODIFIED="1395748911985" TEXT="Pascal lexical specification">
+<node CREATED="1395737422940" FOLDED="true" ID="ID_1270336309" MODIFIED="1396517345156" TEXT="Pascal lexical specification">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="info"/>
 <node CREATED="1395737439801" ID="ID_1098736850" MODIFIED="1395737494994" TEXT="num = digits opt_fraction opt_exponent">
@@ -170,8 +170,8 @@
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 </node>
-<node CREATED="1395739444351" FOLDED="true" ID="ID_845030415" MODIFIED="1395741142458" TEXT="Lexical Specification">
-<node CREATED="1395739768450" FOLDED="true" ID="ID_1111799606" MODIFIED="1395740618621" TEXT="&#x437;&#x430;&#x434;&#x430;&#x447;&#x430; &#x43f;&#x43e;&#x441;&#x442;&#x440;&#x43e;&#x435;&#x43d;&#x438;&#x44f; Lexical Specification (s &#x20ac; L(R))">
+<node CREATED="1395739444351" FOLDED="true" ID="ID_845030415" MODIFIED="1396517411084" TEXT="Lexical Specification">
+<node CREATED="1395739768450" FOLDED="true" ID="ID_1111799606" MODIFIED="1396517405412" TEXT="&#x437;&#x430;&#x434;&#x430;&#x447;&#x430; &#x43f;&#x43e;&#x441;&#x442;&#x440;&#x43e;&#x435;&#x43d;&#x438;&#x44f; Lexical Specification (s &#x20ac; L(R))">
 <node CREATED="1395739806120" ID="ID_1657789588" MODIFIED="1395739953348" TEXT="1. &#x43e;&#x43f;&#x440;&#x435;&#x434;&#x435;&#x43b;&#x438;&#x442;&#x44c; regexp &#x434;&#x43b;&#x44f; &#x43b;&#x435;&#x43a;&#x441;&#x435;&#x43c; &#x43a;&#x430;&#x436;&#x434;&#x43e;&#x433;&#x43e; token class (keywords, identifiers,...)"/>
 <node CREATED="1395739959587" ID="ID_787861246" MODIFIED="1395740008662" TEXT="2. &#x43f;&#x43e;&#x441;&#x442;&#x440;&#x43e;&#x438;&#x442;&#x44c; R = Keywords + Identifiers + Numbers + ... (all lexemes for all tokens)"/>
 <node CREATED="1395740009069" ID="ID_464831395" MODIFIED="1395740121460" TEXT="3. &#x435;&#x441;&#x43b;&#x438; &#x432;&#x445;&#x43e;&#x434; X1X2...Xn - &#x43f;&#x440;&#x43e;&#x432;&#x435;&#x440;&#x438;&#x442;&#x44c; &#x447;&#x442;&#x43e; X1...Xi &#x20ac; L(R), 1&lt;=i&lt;=n"/>
@@ -200,9 +200,9 @@
 </node>
 </node>
 </node>
-<node CREATED="1395741157321" FOLDED="true" ID="ID_1798661640" MODIFIED="1395749086290" TEXT="Finite automata (&#x43a;&#x43e;&#x43d;&#x435;&#x447;&#x43d;&#x44b;&#x435; &#x430;&#x432;&#x442;&#x43e;&#x43c;&#x430;&#x442;&#x44b;)">
+<node CREATED="1395741157321" FOLDED="true" ID="ID_1798661640" MODIFIED="1396517896126" TEXT="Finite automata (&#x43a;&#x43e;&#x43d;&#x435;&#x447;&#x43d;&#x44b;&#x435; &#x430;&#x432;&#x442;&#x43e;&#x43c;&#x430;&#x442;&#x44b;)">
 <font NAME="SansSerif" SIZE="12"/>
-<node CREATED="1395743128990" FOLDED="true" ID="ID_1110644140" MODIFIED="1395748938905" TEXT="&#x43e;&#x43f;&#x440;&#x435;&#x434;&#x435;&#x43b;&#x435;&#x43d;&#x438;&#x435;">
+<node CREATED="1395743128990" FOLDED="true" ID="ID_1110644140" MODIFIED="1396517504044" TEXT="&#x43e;&#x43f;&#x440;&#x435;&#x434;&#x435;&#x43b;&#x435;&#x43d;&#x438;&#x435;">
 <icon BUILTIN="info"/>
 <node CREATED="1395743188383" ID="ID_1432960605" MODIFIED="1395743190504" TEXT="alphabet &#x2211;"/>
 <node CREATED="1395743191327" ID="ID_1504338510" MODIFIED="1395743199883" TEXT="&#x43a;&#x43e;&#x43d;&#x435;&#x447;&#x43d;&#x43e;&#x435; &#x43c;&#x43d;&#x43e;&#x436;&#x435;&#x441;&#x442;&#x432;&#x43e; &#x441;&#x43e;&#x441;&#x442;&#x43e;&#x44f;&#x43d;&#x438;&#x439; S"/>
@@ -216,7 +216,7 @@
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 <node CREATED="1395743381349" ID="ID_418003340" MODIFIED="1395743424602" TEXT="&#x3b5;-move - &#x43f;&#x435;&#x440;&#x435;&#x445;&#x43e;&#x434; &#x432; &#x434;&#x440;&#x443;&#x433;&#x43e;&#x435; &#x441;&#x43e;&#x441;&#x442;&#x43e;&#x44f;&#x43d;&#x438;&#x44f; &#x431;&#x435;&#x437; &#x43e;&#x431;&#x440;&#x430;&#x431;&#x43e;&#x442;&#x43a;&#x438; input (&#x443;&#x43a;&#x430;&#x437;&#x430;&#x442;&#x435;&#x43b;&#x44c; &#x43e;&#x441;&#x442;&#x430;&#x435;&#x442;&#x441;&#x44f; &#x43d;&#x430; &#x43c;&#x435;&#x441;&#x442;&#x435;)"/>
-<node CREATED="1395743428335" FOLDED="true" ID="ID_1275577704" MODIFIED="1395743684720" TEXT="Deterministic Finite Automata (DFA)">
+<node CREATED="1395743428335" FOLDED="true" ID="ID_1275577704" MODIFIED="1396517513996" TEXT="Deterministic Finite Automata (DFA)">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395743478744" ID="ID_414420208" MODIFIED="1395743486677" TEXT="no &#x3b5;-moves"/>
 <node CREATED="1395743487287" ID="ID_1504894067" MODIFIED="1395743504679" TEXT="one transition per input per state"/>
@@ -227,7 +227,7 @@
 <icon BUILTIN="info"/>
 </node>
 </node>
-<node CREATED="1395743449041" FOLDED="true" ID="ID_1579657184" MODIFIED="1395743683392" TEXT="Nondeterministic Finite Automata (NFA)">
+<node CREATED="1395743449041" FOLDED="true" ID="ID_1579657184" MODIFIED="1396517515836" TEXT="Nondeterministic Finite Automata (NFA)">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395743508665" ID="ID_400789328" MODIFIED="1395743516133" TEXT="can have &#x3b5;-moves"/>
 <node CREATED="1395743517174" ID="ID_1972489949" MODIFIED="1395743545743" TEXT="can have multiple transitions for one input in a given state (optional)"/>
@@ -239,13 +239,13 @@
 </node>
 </node>
 </node>
-<node CREATED="1395743778173" FOLDED="true" ID="ID_703966998" MODIFIED="1395751212513" TEXT="Regexp to NFA">
+<node CREATED="1395743778173" FOLDED="true" ID="ID_703966998" MODIFIED="1396517525172" TEXT="Regexp to NFA">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395746201106" ID="ID_888561678" MODIFIED="1395746226373" TEXT="for each kind of regexp define an equivalent NFA">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
 <node CREATED="1395746231846" ID="ID_1558285181" MODIFIED="1395746280562" TEXT="&#x3b5; &#x438; c - &#x43f;&#x440;&#x43e;&#x441;&#x442;&#x44b;&#x435; &#x43f;&#x440;&#x435;&#x43e;&#x431;&#x440;&#x430;&#x437;&#x43e;&#x432;&#x430;&#x43d;&#x438;&#x44f;"/>
-<node CREATED="1395746292348" FOLDED="true" ID="ID_1419910472" MODIFIED="1395747035704" TEXT="AB">
+<node CREATED="1395746292348" FOLDED="true" ID="ID_1419910472" MODIFIED="1396517519676" TEXT="AB">
 <node CREATED="1395746984209" ID="ID_217445082" MODIFIED="1395747007872">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -257,7 +257,7 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1395746297424" FOLDED="true" ID="ID_46824314" MODIFIED="1395747035080" TEXT="A+B">
+<node CREATED="1395746297424" FOLDED="true" ID="ID_46824314" MODIFIED="1396517520652" TEXT="A+B">
 <node CREATED="1395747010375" ID="ID_1153550444" MODIFIED="1395747021230">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -269,7 +269,7 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1395746300556" FOLDED="true" ID="ID_962832847" MODIFIED="1395747033808" TEXT="A*">
+<node CREATED="1395746300556" FOLDED="true" ID="ID_962832847" MODIFIED="1396517521684" TEXT="A*">
 <node CREATED="1395747023677" ID="ID_800613389" MODIFIED="1395747027663">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -282,7 +282,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1395747113210" FOLDED="true" ID="ID_1150862619" MODIFIED="1395749114329" TEXT="NFA to DFA">
+<node CREATED="1395747113210" FOLDED="true" ID="ID_1150862619" MODIFIED="1396517893573" TEXT="NFA to DFA">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395748719162" ID="ID_575002601" MODIFIED="1395748734693" TEXT="&#x43e;&#x43f;&#x435;&#x440;&#x430;&#x446;&#x438;&#x44f; &#x3b5;-closure"/>
 <node CREATED="1395748736343" ID="ID_839376081" MODIFIED="1395748807481" TEXT="&#x412; &#x43e;&#x434;&#x438;&#x43d; &#x43c;&#x43e;&#x43c;&#x435;&#x43d;&#x442; &#x443; NFA &#x43c;&#x43e;&#x436;&#x435;&#x442; &#x431;&#x44b;&#x442;&#x44c; 2^N-1 &#x43d;&#x435;&#x43f;&#x443;&#x441;&#x442;&#x44b;&#x445; &#x441;&#x43e;&#x441;&#x442;&#x43e;&#x44f;&#x43d;&#x438;&#x439; (N &#x441;&#x43e;&#x441;&#x442;&#x43e;&#x44f;&#x43d;&#x438;&#x439; &#x432;&#x441;&#x435;&#x433;&#x43e;)">
@@ -292,7 +292,7 @@
 <icon BUILTIN="info"/>
 <icon BUILTIN="messagebox_warning"/>
 </node>
-<node CREATED="1395748843437" FOLDED="true" ID="ID_1719985870" MODIFIED="1395749081993" TEXT="NFA">
+<node CREATED="1395748843437" FOLDED="true" ID="ID_1719985870" MODIFIED="1396517532060" TEXT="NFA">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395748859784" ID="ID_83428221" MODIFIED="1395748864740" TEXT="S - states"/>
 <node CREATED="1395748865208" ID="ID_1567944566" MODIFIED="1395748871974" TEXT="s - start state"/>
@@ -351,9 +351,180 @@
 </node>
 </node>
 </node>
-<node CREATED="1395732972612" ID="ID_483700993" MODIFIED="1395735569922" POSITION="right" TEXT="2. Parsing">
+<node CREATED="1395732972612" ID="ID_483700993" MODIFIED="1396601747229" POSITION="right" TEXT="2. Parsing">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
+<node CREATED="1396516156766" ID="ID_664981131" MODIFIED="1396516912054" TEXT="Parsec &#x434;&#x43e;&#x43b;&#x436;&#x435;&#x43d; &#x43f;&#x43e;&#x441;&#x442;&#x440;&#x43e;&#x438;&#x442;&#x44c; parse tree &#x434;&#x43b;&#x44f; &#x43f;&#x440;&#x43e;&#x433;&#x440;&#x430;&#x43c;&#x43c;&#x44b; &#x438;&#x437; &#x43d;&#x430;&#x431;&#x43e;&#x440;&#x430; tokens">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1396516504536" ID="ID_1082136797" MODIFIED="1396516928600" TEXT="Parser &#x438; Lexer-&#x444;&#x430;&#x437;&#x44b; &#x43c;&#x43e;&#x433;&#x443;&#x442; &#x431;&#x44b;&#x442;&#x44c; &#x440;&#x435;&#x430;&#x43b;&#x438;&#x437;&#x43e;&#x432;&#x430;&#x43d;&#x44b; &#x441;&#x440;&#x430;&#x437;&#x443; &#x432; Parser-&#x435;">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1396516533936" FOLDED="true" ID="ID_1188387822" MODIFIED="1396601034081" TEXT="Context Free Grammar">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1396516945874" ID="ID_1108717632" MODIFIED="1396517010169" TEXT="&#x43d;&#x435;&#x43e;&#x431;&#x445;&#x43e;&#x434;&#x438;&#x43c; &#x44f;&#x437;&#x44b;&#x43a;, &#x43e;&#x43f;&#x438;&#x441;&#x44b;&#x432;&#x430;&#x44e;&#x449;&#x438;&#x439; &#x43f;&#x440;&#x430;&#x432;&#x438;&#x43b;&#x44c;&#x43d;&#x44b;&#x439; &#x43d;&#x430;&#x431;&#x43e;&#x440; tokens"/>
+<node CREATED="1396517010685" ID="ID_1412990205" MODIFIED="1396517057255" TEXT="&#x43d;&#x435;&#x43e;&#x431;&#x445;&#x43e;&#x434;&#x438;&#x43c; &#x43c;&#x435;&#x442;&#x43e;&#x434; &#x434;&#x43b;&#x44f; &#x43e;&#x442;&#x43b;&#x438;&#x447;&#x438;&#x44f; &#x43d;&#x435;&#x43f;&#x440;&#x430;&#x432;&#x438;&#x43b;&#x44c;&#x43d;&#x44b;&#x435; token-&#x44b;"/>
+<node CREATED="1396517132293" ID="ID_848196797" MODIFIED="1396517168527" TEXT="Programming languages &#x438;&#x43c;&#x435;&#x44e;&#x442; &#x440;&#x435;&#x43a;&#x443;&#x440;&#x441;&#x438;&#x432;&#x43d;&#x443;&#x44e; &#x441;&#x442;&#x440;&#x443;&#x43a;&#x442;&#x443;&#x440;&#x443; (if EXPR then EXPR else EXPR fi)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1396517188925" FOLDED="true" ID="ID_1728370102" MODIFIED="1396601033089" TEXT="CFG - &#x435;&#x441;&#x442;&#x435;&#x441;&#x442;&#x432;&#x435;&#x43d;&#x43d;&#x43e;&#x435; &#x43e;&#x431;&#x43e;&#x437;&#x43d;&#x430;&#x447;&#x435;&#x43d;&#x438;&#x435; &#x442;&#x430;&#x43a;&#x43e;&#x439; &#x441;&#x442;&#x440;&#x443;&#x43a;&#x442;&#x443;&#x440;&#x44b;">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1396517262237" ID="ID_487464287" MODIFIED="1396517287225" TEXT="set of terminals (T)"/>
+<node CREATED="1396517288676" ID="ID_1794719364" MODIFIED="1396517296973" TEXT="set of non-terminals (N)"/>
+<node CREATED="1396517299614" ID="ID_425157912" MODIFIED="1396517426836" TEXT="start symbol (S &#x20ac; N)"/>
+<node CREATED="1396517433960" ID="ID_1710248387" MODIFIED="1396517576772" TEXT="set of productions: X -&gt; Y1...YN (X &#x20ac; N, Yi &#x20ac; N v T v {&#x3b5;})"/>
+</node>
+<node CREATED="1396517630474" FOLDED="true" ID="ID_616785081" MODIFIED="1396527651142" TEXT="&#x43f;&#x440;&#x438;&#x43c;&#x435;&#x440; &#x43e;&#x43f;&#x440;&#x435;&#x434;&#x435;&#x43b;&#x435;&#x43d;&#x438;&#x44f; CFG">
+<icon BUILTIN="yes"/>
+<node CREATED="1396517651273" ID="ID_1228755146" MODIFIED="1396517860249" TEXT="Language ~ { (^i)^i | i &gt;=0 }"/>
+<node CREATED="1396517658459" ID="ID_1391933272" MODIFIED="1396517845525" TEXT="&#x43d;&#x430;&#x431;&#x43e;&#x440; production: {S -&gt; (S), S -&gt; &#x3b5; }"/>
+<node CREATED="1396517683645" ID="ID_1270757512" MODIFIED="1396517712725" TEXT="&#x43f;&#x440;&#x438; &#x44d;&#x442;&#x43e;&#x43c; N = {S}, T={ ( , ) }"/>
+</node>
+<node CREATED="1396517916751" ID="ID_369678201" MODIFIED="1396518066430" TEXT="production &#x43c;&#x43e;&#x436;&#x43d;&#x43e; &#x441;&#x447;&#x438;&#x442;&#x430;&#x442;&#x44c; &#x43f;&#x440;&#x430;&#x432;&#x438;&#x43b;&#x430;&#x43c;&#x438; &#x437;&#x430;&#x43c;&#x435;&#x43d;&#x44b; (&#x432;&#x441;&#x435; non-terminal &#x437;&#x430;&#x43c;&#x435;&#x43d;&#x44f;&#x44e;&#x442;&#x441;&#x44f; &#x432; &#x441;&#x43e;&#x43e;&#x442;&#x432;&#x435;&#x442;&#x441;&#x442;&#x432;&#x438;&#x438; &#x441; production)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1396518191155" ID="ID_395967244" MODIFIED="1396518229972" TEXT="multy-step production - a0 -&gt;* aN (production in &gt;= 0 steps)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1396518263695" FOLDED="true" ID="ID_903475670" MODIFIED="1396527677118" TEXT="Language of CFG">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1396518271349" ID="ID_306137771" MODIFIED="1396518406282" TEXT="S - start symbol"/>
+<node CREATED="1396518378679" ID="ID_975590799" MODIFIED="1396518394284" TEXT="L(G) = {a1...an | &#x434;&#x43b;&#x44f; &#x43b;&#x44e;&#x431;&#x43e;&#x433;&#x43e; ai &#x20ac; T ^ S -&gt;* a1...an }"/>
+<node CREATED="1396518446864" ID="ID_560212750" MODIFIED="1396518493236" TEXT="&#x442;&#x430;&#x43a;&#x438;&#x43c; &#x43e;&#x431;&#x440;&#x430;&#x437;&#x43e;&#x43c; terminals &#x434;&#x43e;&#x43b;&#x436;&#x43d;&#x44b; &#x431;&#x44b;&#x442;&#x44c; token-&#x430;&#x43c;&#x438; (&#x442;.&#x43a;. &#x438;&#x445; &#x43d;&#x435;&#x43b;&#x44c;&#x437;&#x44f; &#x437;&#x430;&#x43c;&#x435;&#x43d;&#x438;&#x442;&#x44c;)">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1396519210654" ID="ID_217936154" MODIFIED="1396519225490" TEXT="many CFG generates the same language">
+<icon BUILTIN="yes"/>
+</node>
+</node>
+<node CREATED="1396519659611" FOLDED="true" ID="ID_2736454" MODIFIED="1396597111712" TEXT="Derivation (&#x432;&#x44b;&#x432;&#x43e;&#x434;)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1396519666223" ID="ID_1323433003" MODIFIED="1396519685275" TEXT="Derivation - &#x43f;&#x43e;&#x441;&#x43b;&#x435;&#x434;&#x43e;&#x432;&#x430;&#x442;&#x435;&#x43b;&#x44c;&#x43d;&#x43e;&#x441;&#x442;&#x44c; production"/>
+<node CREATED="1396519685742" ID="ID_234383912" MODIFIED="1396519713876" TEXT="Derivation can be drawn as a tree (Start symbol = root)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1396519887001" FOLDED="true" ID="ID_947351698" MODIFIED="1396528767910" TEXT="Parse tree">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1396519894287" ID="ID_486432475" MODIFIED="1396520754677" TEXT="leaves = Terminals">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1396519908088" ID="ID_722771682" MODIFIED="1396520805100" TEXT="interior nodes = Non-Terminals">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1396519923735" ID="ID_1082073502" MODIFIED="1396520039568" TEXT="&#x432; &#x43f;&#x43e;&#x440;&#x44f;&#x434;&#x43a;&#x435; &#x43e;&#x431;&#x445;&#x43e;&#x434;&#x430; &#x43b;&#x438;&#x441;&#x442;&#x44c;&#x435;&#x432; - original input"/>
+<node CREATED="1396520811098" ID="ID_1384431045" MODIFIED="1396520820523" TEXT="&#x442;&#x43e;&#x43b;&#x44c;&#x43a;&#x43e; &#x43e;&#x434;&#x438;&#x43d; prediction &#x437;&#x430; &#x440;&#x430;&#x437;">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1396520014417" ID="ID_120058835" MODIFIED="1396520251470" TEXT="left-most &#x438; right-most derivation have same parse tree">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="yes"/>
+</node>
+</node>
+<node CREATED="1396521234672" FOLDED="true" ID="ID_1529479247" MODIFIED="1396527622926" TEXT="&#x414;&#x432;&#x443;&#x441;&#x43c;&#x44b;&#x441;&#x43b;&#x435;&#x43d;&#x43d;&#x43e;&#x441;&#x442;&#x44c;">
+<font NAME="SansSerif" SIZE="12"/>
+<node CREATED="1396521278191" ID="ID_849216181" MODIFIED="1396521316751" TEXT="CFG &#x434;&#x432;&#x443;&#x441;&#x43c;&#x44b;&#x441;&#x43b;&#x435;&#x43d;&#x43d;&#x430; &#x435;&#x441;&#x43b;&#x438; &#x441;&#x443;&#x449;&#x435;&#x441;&#x442;&#x432;&#x443;&#x435;&#x442; &#x431;&#x43e;&#x43b;&#x435;&#x435; &#x43e;&#x434;&#x43d;&#x43e;&#x433;&#x43e; parse tree"/>
+<node CREATED="1396521339829" ID="ID_643840720" MODIFIED="1396521377377" TEXT="CFG &#x434;&#x432;&#x443;&#x441;&#x43c;&#x44b;&#x441;&#x43b;&#x435;&#x43d;&#x43d;&#x430; &#x435;&#x441;&#x43b;&#x438; &#x431;&#x43e;&#x43b;&#x435;&#x435; &#x43e;&#x434;&#x43d;&#x43e;&#x433;&#x43e; right-most &#x438;&#x43b;&#x438; left-most &#x432;&#x44b;&#x432;&#x43e;&#x434;&#x430; &#x434;&#x43b;&#x44f; &#x43d;&#x435;&#x43a;&#x43e;&#x442;&#x43e;&#x440;&#x43e;&#x439; &#x441;&#x442;&#x440;&#x43e;&#x43a;&#x438;"/>
+<node CREATED="1396521422956" ID="ID_1758237569" MODIFIED="1396521429452" TEXT="&#x434;&#x432;&#x443;&#x441;&#x43c;&#x44b;&#x441;&#x43b;&#x435;&#x43d;&#x43d;&#x43e;&#x441;&#x442;&#x44c; - &#x43f;&#x43b;&#x43e;&#x445;&#x43e;">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1396524474238" ID="ID_460209349" MODIFIED="1396524521492" TEXT="&#x434;&#x432;&#x443;&#x441;&#x43c;&#x44b;&#x441;&#x43b;&#x435;&#x43d;&#x43d;&#x43e;&#x441;&#x442;&#x44c; &#x43c;&#x43e;&#x436;&#x43d;&#x43e; &#x443;&#x441;&#x442;&#x440;&#x430;&#x43d;&#x438;&#x442;&#x44c; &#x43f;&#x435;&#x440;&#x435;&#x43f;&#x438;&#x441;&#x430;&#x432; CFG &#x438;&#x43b;&#x438; &#x438;&#x441;&#x43f;&#x43e;&#x43b;&#x44c;&#x437;&#x443;&#x44f; * &#x432;&#x43c;&#x435;&#x441;&#x442;&#x43e; +"/>
+<node CREATED="1396525136617" ID="ID_1135160138" MODIFIED="1396525172405" TEXT="&#x44d;&#x442;&#x43e; &#x43d;&#x435;&#x432;&#x43e;&#x437;&#x43c;&#x43e;&#x436;&#x43d;&#x43e; &#x441;&#x434;&#x435;&#x43b;&#x430;&#x442;&#x44c; &#x430;&#x432;&#x442;&#x43e;&#x43c;&#x430;&#x442;&#x438;&#x447;&#x435;&#x441;&#x43a;&#x438;">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1396525283582" ID="ID_1833620024" MODIFIED="1396525348519" TEXT="left-associativity declaration - %left + precedence (+ and then *)"/>
+</node>
+</node>
+<node CREATED="1396595643174" FOLDED="true" ID="ID_1412477161" MODIFIED="1396596747721" TEXT="Error handling by compiler">
+<font NAME="SansSerif" SIZE="12"/>
+<node CREATED="1396595673340" FOLDED="true" ID="ID_704987120" MODIFIED="1396596219529" TEXT="Panic mode">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1396595802529" ID="ID_66246442" MODIFIED="1396595905953" TEXT="1. discard token until the one with clear role appear"/>
+<node CREATED="1396595840661" ID="ID_656203713" MODIFIED="1396595908066" TEXT="2. continue with that token"/>
+<node CREATED="1396595918482" ID="ID_1618235539" MODIFIED="1396596176305" TEXT="bison have normal and error productions (E -&gt; ...| error int | ( error ), means - throw all input till first integer value or just skip {}-expression)">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1396595702111" FOLDED="true" ID="ID_985735088" MODIFIED="1396596331800" TEXT="Error production">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1396596221666" ID="ID_729033337" MODIFIED="1396596249682" TEXT="specify known common mistakes in the grammar (5x ~ 5 * x)"/>
+<node CREATED="1396596250277" ID="ID_1560742366" MODIFIED="1396596274103" TEXT="add the production (E -&gt; ... | E E)"/>
+</node>
+<node CREATED="1396595707754" FOLDED="true" ID="ID_933786980" MODIFIED="1396596739834" TEXT="Automatic local or global correction (error correction)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1396596345565" ID="ID_930360609" MODIFIED="1396596364072" TEXT="idea - find a correct &quot;nearby&quot; program">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1396596365656" ID="ID_1859215498" MODIFIED="1396596423110" TEXT="try token insertion and deletion (edit distance)"/>
+<node CREATED="1396596396893" ID="ID_530320115" MODIFIED="1396596400668" TEXT="&#x43f;&#x435;&#x440;&#x435;&#x431;&#x43e;&#x440;"/>
+<node CREATED="1396596469143" ID="ID_375935525" MODIFIED="1396596576600" TEXT="&#x43f;&#x440;&#x438;&#x43c;&#x435;&#x440; - PL/C ALWAYS produces correct program (even with text input)">
+<icon BUILTIN="info"/>
+</node>
+</node>
+</node>
+<node CREATED="1396596751973" FOLDED="true" ID="ID_550721119" MODIFIED="1396597184752" TEXT="Abstract syntax tree (AST)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1396596824555" ID="ID_215096709" MODIFIED="1396596883850" TEXT="like parse tree but ignore some details">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1396596884739" ID="ID_470650715" MODIFIED="1396597182291" TEXT="more simple, no parenthesis (&apos;(&apos;, &apos;)&apos;) or not used details"/>
+</node>
+<node CREATED="1396597185945" FOLDED="true" ID="ID_1171609208" MODIFIED="1396598154217" TEXT="Recursive Descent (&#x440;&#x435;&#x43a;&#x443;&#x440;&#x441;&#x438;&#x432;&#x43d;&#x43e;&#x435; &#x43d;&#x438;&#x441;&#x445;&#x43e;&#x436;&#x434;&#x435;&#x43d;&#x438;&#x435;)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1396597261841" ID="ID_1332242652" MODIFIED="1396598151451" TEXT="top-down parsing algorithm (from top and left to right)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1396597277892" ID="ID_1386751774" MODIFIED="1396597515504" TEXT="try rules in order (even if it`s not correct)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1396597630225" ID="ID_407419512" MODIFIED="1396597659654" TEXT="backtrack means we don`t include the step in the tree">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1396597715654" ID="ID_1647304238" MODIFIED="1396597739227" TEXT="when first match - go to next unput symbol"/>
+<node CREATED="1396597759452" ID="ID_142420939" MODIFIED="1396597768082" TEXT="continue till end of input"/>
+</node>
+<node CREATED="1396598092372" FOLDED="true" ID="ID_1380996376" MODIFIED="1396600647506" TEXT="RD Algorithm (RDA)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1396598156356" ID="ID_181954998" MODIFIED="1396598232648" TEXT="check for match - bool term(TOKEN tok) { return *next++ == tok; }"/>
+<node CREATED="1396598211088" ID="ID_1456372896" MODIFIED="1396598249617" TEXT="n`th production - bool Sn() {...}"/>
+<node CREATED="1396598250161" ID="ID_884043370" MODIFIED="1396598270790" TEXT="try all productions - bool S() {...}"/>
+<node CREATED="1396598398560" ID="ID_16640667" MODIFIED="1396598417192" TEXT="E -&gt; T: bool E1() { return T(); }">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1396598417756" ID="ID_1417813262" MODIFIED="1396598866888" TEXT="E -&gt; T+E: bool E2() { return T() &amp;&amp; term(PLUS) &amp;&amp; E(); }">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1396598449591" ID="ID_757715314" MODIFIED="1396600090167" TEXT="bool E() { TOKEN *save = next; return (next = save, E1()) || (next = save, E2()); }">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1396599007274" ID="ID_885752429" MODIFIED="1396599050064" TEXT="to start parser we need to initialize next (point to first token) and invoke E()">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1396599716279" ID="ID_1974909716" MODIFIED="1396600492157" TEXT="RDA limitation - we have to use backtracking even if we found production that at first succeed (&quot;full&quot; backtracking, more complex but can implement any grammar)">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1396598125705" FOLDED="true" ID="ID_1298049921" MODIFIED="1396601740345" TEXT="Left Recursion">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1396600659297" ID="ID_129599650" MODIFIED="1396600665524" TEXT="S -&gt; S a"/>
+<node CREATED="1396600666091" ID="ID_480181584" MODIFIED="1396600678323" TEXT="bool S1() { return S() &amp;&amp; term(a); }"/>
+<node CREATED="1396600679040" ID="ID_1195720842" MODIFIED="1396600689843" TEXT="bool S() { return S1(); }"/>
+<node CREATED="1396600719014" ID="ID_840949542" MODIFIED="1396600728511" TEXT="S() goes into an infinite loop">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1396600733231" ID="ID_1908016651" MODIFIED="1396600780657" TEXT="left-recursive grammar has non-terminal S -&gt;+ Sa for some a">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1396600781498" ID="ID_1237519949" MODIFIED="1396600833747" TEXT="RD doesn`t work with left-recursive grammars">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1396600820159" ID="ID_343855472" MODIFIED="1396601038754" TEXT="we can rewrite it with right-recursion (S-&gt;bS`, S`-&gt;aS` | &#x3b5;)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1396601098710" ID="ID_325014633" MODIFIED="1396601142753" TEXT="general form S-&gt;b1S` | ... | bmS` and S`-&gt;a1S`|...|anS`|&#x3b5;">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
 </node>
 <node CREATED="1395732992924" ID="ID_1937702208" MODIFIED="1395735572410" POSITION="right" TEXT="3. Semantic Analysis">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
