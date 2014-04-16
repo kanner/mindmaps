@@ -4,7 +4,7 @@
 <node CREATED="1395732899000" ID="ID_753711553" MODIFIED="1395735580476" TEXT="Compiler">
 <font BOLD="true" NAME="SansSerif" SIZE="14"/>
 <icon BUILTIN="messagebox_warning"/>
-<node CREATED="1395732913379" FOLDED="true" ID="ID_715608857" MODIFIED="1396517898301" POSITION="right" TEXT="1. Lexical Analysis">
+<node CREATED="1395732913379" FOLDED="true" ID="ID_715608857" MODIFIED="1397475328042" POSITION="right" TEXT="1. Lexical Analysis">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
 <node CREATED="1395733470130" FOLDED="true" ID="ID_1442877164" MODIFIED="1396517413428" TEXT="&#x446;&#x435;&#x43b;&#x44c; - &#x442;&#x43e;&#x43a;&#x435;&#x43d;&#x438;&#x437;&#x430;&#x446;&#x438;&#x44f; &#x438;&#x441;&#x445;&#x43e;&#x434;&#x43d;&#x43e;&#x433;&#x43e; &#x442;&#x435;&#x43a;&#x441;&#x442;&#x430; &#x43f;&#x43e; &#x43a;&#x43b;&#x430;&#x441;&#x441;&#x430;&#x43c;">
@@ -86,11 +86,11 @@
 </node>
 </node>
 </node>
-<node CREATED="1395735729877" FOLDED="true" ID="ID_667121816" MODIFIED="1396517384198" TEXT="Regular languages">
+<node CREATED="1395735729877" FOLDED="true" ID="ID_667121816" MODIFIED="1397475327041" TEXT="Regular languages">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1395735976733" ID="ID_1578933450" MODIFIED="1395735990898" TEXT="&#x3b5; - language empty string"/>
 <node CREATED="1395736443636" ID="ID_1672058834" MODIFIED="1395736466457" TEXT="&#x2211;* - all symbols of alphabet"/>
-<node CREATED="1395735992964" FOLDED="true" ID="ID_704916855" MODIFIED="1395741115640" TEXT="Regular expression is the smallest set of expressions including">
+<node CREATED="1395735992964" FOLDED="true" ID="ID_704916855" MODIFIED="1397475326369" TEXT="Regular expression is the smallest set of expressions including">
 <node CREATED="1395736033056" ID="ID_871423656" MODIFIED="1395736285293" TEXT="&#x3b5; | &apos;c&apos; c&#x20ac;&#x2211; | R+R | RR | R*"/>
 <node CREATED="1395736496100" ID="ID_1205758985" MODIFIED="1395736510469" TEXT="all this calls grammar">
 <icon BUILTIN="info"/>
@@ -351,30 +351,30 @@
 </node>
 </node>
 </node>
-<node CREATED="1395732972612" ID="ID_483700993" MODIFIED="1396601747229" POSITION="right" TEXT="2. Parsing">
+<node CREATED="1395732972612" FOLDED="true" ID="ID_483700993" MODIFIED="1397641546525" POSITION="right" TEXT="2. Parsing">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
-<node CREATED="1396516156766" ID="ID_664981131" MODIFIED="1396516912054" TEXT="Parsec &#x434;&#x43e;&#x43b;&#x436;&#x435;&#x43d; &#x43f;&#x43e;&#x441;&#x442;&#x440;&#x43e;&#x438;&#x442;&#x44c; parse tree &#x434;&#x43b;&#x44f; &#x43f;&#x440;&#x43e;&#x433;&#x440;&#x430;&#x43c;&#x43c;&#x44b; &#x438;&#x437; &#x43d;&#x430;&#x431;&#x43e;&#x440;&#x430; tokens">
+<node CREATED="1396516156766" ID="ID_664981131" MODIFIED="1397640486455" TEXT="Parser &#x434;&#x43e;&#x43b;&#x436;&#x435;&#x43d; &#x43f;&#x43e;&#x441;&#x442;&#x440;&#x43e;&#x438;&#x442;&#x44c; parse tree &#x434;&#x43b;&#x44f; &#x43f;&#x440;&#x43e;&#x433;&#x440;&#x430;&#x43c;&#x43c;&#x44b; &#x438;&#x437; &#x43d;&#x430;&#x431;&#x43e;&#x440;&#x430; tokens">
 <icon BUILTIN="info"/>
 </node>
 <node CREATED="1396516504536" ID="ID_1082136797" MODIFIED="1396516928600" TEXT="Parser &#x438; Lexer-&#x444;&#x430;&#x437;&#x44b; &#x43c;&#x43e;&#x433;&#x443;&#x442; &#x431;&#x44b;&#x442;&#x44c; &#x440;&#x435;&#x430;&#x43b;&#x438;&#x437;&#x43e;&#x432;&#x430;&#x43d;&#x44b; &#x441;&#x440;&#x430;&#x437;&#x443; &#x432; Parser-&#x435;">
 <icon BUILTIN="info"/>
 </node>
-<node CREATED="1396516533936" FOLDED="true" ID="ID_1188387822" MODIFIED="1396601034081" TEXT="Context Free Grammar">
+<node CREATED="1396516533936" FOLDED="true" ID="ID_1188387822" MODIFIED="1397640761061" TEXT="Context Free Grammar">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1396516945874" ID="ID_1108717632" MODIFIED="1396517010169" TEXT="&#x43d;&#x435;&#x43e;&#x431;&#x445;&#x43e;&#x434;&#x438;&#x43c; &#x44f;&#x437;&#x44b;&#x43a;, &#x43e;&#x43f;&#x438;&#x441;&#x44b;&#x432;&#x430;&#x44e;&#x449;&#x438;&#x439; &#x43f;&#x440;&#x430;&#x432;&#x438;&#x43b;&#x44c;&#x43d;&#x44b;&#x439; &#x43d;&#x430;&#x431;&#x43e;&#x440; tokens"/>
 <node CREATED="1396517010685" ID="ID_1412990205" MODIFIED="1396517057255" TEXT="&#x43d;&#x435;&#x43e;&#x431;&#x445;&#x43e;&#x434;&#x438;&#x43c; &#x43c;&#x435;&#x442;&#x43e;&#x434; &#x434;&#x43b;&#x44f; &#x43e;&#x442;&#x43b;&#x438;&#x447;&#x438;&#x44f; &#x43d;&#x435;&#x43f;&#x440;&#x430;&#x432;&#x438;&#x43b;&#x44c;&#x43d;&#x44b;&#x435; token-&#x44b;"/>
 <node CREATED="1396517132293" ID="ID_848196797" MODIFIED="1396517168527" TEXT="Programming languages &#x438;&#x43c;&#x435;&#x44e;&#x442; &#x440;&#x435;&#x43a;&#x443;&#x440;&#x441;&#x438;&#x432;&#x43d;&#x443;&#x44e; &#x441;&#x442;&#x440;&#x443;&#x43a;&#x442;&#x443;&#x440;&#x443; (if EXPR then EXPR else EXPR fi)">
 <icon BUILTIN="info"/>
 </node>
-<node CREATED="1396517188925" FOLDED="true" ID="ID_1728370102" MODIFIED="1396601033089" TEXT="CFG - &#x435;&#x441;&#x442;&#x435;&#x441;&#x442;&#x432;&#x435;&#x43d;&#x43d;&#x43e;&#x435; &#x43e;&#x431;&#x43e;&#x437;&#x43d;&#x430;&#x447;&#x435;&#x43d;&#x438;&#x435; &#x442;&#x430;&#x43a;&#x43e;&#x439; &#x441;&#x442;&#x440;&#x443;&#x43a;&#x442;&#x443;&#x440;&#x44b;">
+<node CREATED="1396517188925" FOLDED="true" ID="ID_1728370102" MODIFIED="1397640705253" TEXT="CFG - &#x435;&#x441;&#x442;&#x435;&#x441;&#x442;&#x432;&#x435;&#x43d;&#x43d;&#x43e;&#x435; &#x43e;&#x431;&#x43e;&#x437;&#x43d;&#x430;&#x447;&#x435;&#x43d;&#x438;&#x435; &#x442;&#x430;&#x43a;&#x43e;&#x439; &#x441;&#x442;&#x440;&#x443;&#x43a;&#x442;&#x443;&#x440;&#x44b;">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1396517262237" ID="ID_487464287" MODIFIED="1396517287225" TEXT="set of terminals (T)"/>
 <node CREATED="1396517288676" ID="ID_1794719364" MODIFIED="1396517296973" TEXT="set of non-terminals (N)"/>
 <node CREATED="1396517299614" ID="ID_425157912" MODIFIED="1396517426836" TEXT="start symbol (S &#x20ac; N)"/>
 <node CREATED="1396517433960" ID="ID_1710248387" MODIFIED="1396517576772" TEXT="set of productions: X -&gt; Y1...YN (X &#x20ac; N, Yi &#x20ac; N v T v {&#x3b5;})"/>
 </node>
-<node CREATED="1396517630474" FOLDED="true" ID="ID_616785081" MODIFIED="1396527651142" TEXT="&#x43f;&#x440;&#x438;&#x43c;&#x435;&#x440; &#x43e;&#x43f;&#x440;&#x435;&#x434;&#x435;&#x43b;&#x435;&#x43d;&#x438;&#x44f; CFG">
+<node CREATED="1396517630474" FOLDED="true" ID="ID_616785081" MODIFIED="1397640714925" TEXT="&#x43f;&#x440;&#x438;&#x43c;&#x435;&#x440; &#x43e;&#x43f;&#x440;&#x435;&#x434;&#x435;&#x43b;&#x435;&#x43d;&#x438;&#x44f; CFG">
 <icon BUILTIN="yes"/>
 <node CREATED="1396517651273" ID="ID_1228755146" MODIFIED="1396517860249" TEXT="Language ~ { (^i)^i | i &gt;=0 }"/>
 <node CREATED="1396517658459" ID="ID_1391933272" MODIFIED="1396517845525" TEXT="&#x43d;&#x430;&#x431;&#x43e;&#x440; production: {S -&gt; (S), S -&gt; &#x3b5; }"/>
@@ -386,7 +386,7 @@
 <node CREATED="1396518191155" ID="ID_395967244" MODIFIED="1396518229972" TEXT="multy-step production - a0 -&gt;* aN (production in &gt;= 0 steps)">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
-<node CREATED="1396518263695" FOLDED="true" ID="ID_903475670" MODIFIED="1396527677118" TEXT="Language of CFG">
+<node CREATED="1396518263695" FOLDED="true" ID="ID_903475670" MODIFIED="1397640756029" TEXT="Language of CFG">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1396518271349" ID="ID_306137771" MODIFIED="1396518406282" TEXT="S - start symbol"/>
 <node CREATED="1396518378679" ID="ID_975590799" MODIFIED="1396518394284" TEXT="L(G) = {a1...an | &#x434;&#x43b;&#x44f; &#x43b;&#x44e;&#x431;&#x43e;&#x433;&#x43e; ai &#x20ac; T ^ S -&gt;* a1...an }"/>
@@ -398,13 +398,13 @@
 <icon BUILTIN="yes"/>
 </node>
 </node>
-<node CREATED="1396519659611" FOLDED="true" ID="ID_2736454" MODIFIED="1396597111712" TEXT="Derivation (&#x432;&#x44b;&#x432;&#x43e;&#x434;)">
+<node CREATED="1396519659611" FOLDED="true" ID="ID_2736454" MODIFIED="1397640819941" TEXT="Derivation (&#x432;&#x44b;&#x432;&#x43e;&#x434;)">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1396519666223" ID="ID_1323433003" MODIFIED="1396519685275" TEXT="Derivation - &#x43f;&#x43e;&#x441;&#x43b;&#x435;&#x434;&#x43e;&#x432;&#x430;&#x442;&#x435;&#x43b;&#x44c;&#x43d;&#x43e;&#x441;&#x442;&#x44c; production"/>
 <node CREATED="1396519685742" ID="ID_234383912" MODIFIED="1396519713876" TEXT="Derivation can be drawn as a tree (Start symbol = root)">
 <icon BUILTIN="info"/>
 </node>
-<node CREATED="1396519887001" FOLDED="true" ID="ID_947351698" MODIFIED="1396528767910" TEXT="Parse tree">
+<node CREATED="1396519887001" FOLDED="true" ID="ID_947351698" MODIFIED="1397640781469" TEXT="Parse tree">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1396519894287" ID="ID_486432475" MODIFIED="1396520754677" TEXT="leaves = Terminals">
 <icon BUILTIN="yes"/>
@@ -421,23 +421,23 @@
 <icon BUILTIN="yes"/>
 </node>
 </node>
-<node CREATED="1396521234672" FOLDED="true" ID="ID_1529479247" MODIFIED="1396527622926" TEXT="&#x414;&#x432;&#x443;&#x441;&#x43c;&#x44b;&#x441;&#x43b;&#x435;&#x43d;&#x43d;&#x43e;&#x441;&#x442;&#x44c;">
+<node CREATED="1396521234672" FOLDED="true" ID="ID_1529479247" MODIFIED="1397640818421" TEXT="&#x414;&#x432;&#x443;&#x441;&#x43c;&#x44b;&#x441;&#x43b;&#x435;&#x43d;&#x43d;&#x43e;&#x441;&#x442;&#x44c;">
 <font NAME="SansSerif" SIZE="12"/>
 <node CREATED="1396521278191" ID="ID_849216181" MODIFIED="1396521316751" TEXT="CFG &#x434;&#x432;&#x443;&#x441;&#x43c;&#x44b;&#x441;&#x43b;&#x435;&#x43d;&#x43d;&#x430; &#x435;&#x441;&#x43b;&#x438; &#x441;&#x443;&#x449;&#x435;&#x441;&#x442;&#x432;&#x443;&#x435;&#x442; &#x431;&#x43e;&#x43b;&#x435;&#x435; &#x43e;&#x434;&#x43d;&#x43e;&#x433;&#x43e; parse tree"/>
 <node CREATED="1396521339829" ID="ID_643840720" MODIFIED="1396521377377" TEXT="CFG &#x434;&#x432;&#x443;&#x441;&#x43c;&#x44b;&#x441;&#x43b;&#x435;&#x43d;&#x43d;&#x430; &#x435;&#x441;&#x43b;&#x438; &#x431;&#x43e;&#x43b;&#x435;&#x435; &#x43e;&#x434;&#x43d;&#x43e;&#x433;&#x43e; right-most &#x438;&#x43b;&#x438; left-most &#x432;&#x44b;&#x432;&#x43e;&#x434;&#x430; &#x434;&#x43b;&#x44f; &#x43d;&#x435;&#x43a;&#x43e;&#x442;&#x43e;&#x440;&#x43e;&#x439; &#x441;&#x442;&#x440;&#x43e;&#x43a;&#x438;"/>
 <node CREATED="1396521422956" ID="ID_1758237569" MODIFIED="1396521429452" TEXT="&#x434;&#x432;&#x443;&#x441;&#x43c;&#x44b;&#x441;&#x43b;&#x435;&#x43d;&#x43d;&#x43e;&#x441;&#x442;&#x44c; - &#x43f;&#x43b;&#x43e;&#x445;&#x43e;">
 <icon BUILTIN="info"/>
 </node>
-<node CREATED="1396524474238" ID="ID_460209349" MODIFIED="1396524521492" TEXT="&#x434;&#x432;&#x443;&#x441;&#x43c;&#x44b;&#x441;&#x43b;&#x435;&#x43d;&#x43d;&#x43e;&#x441;&#x442;&#x44c; &#x43c;&#x43e;&#x436;&#x43d;&#x43e; &#x443;&#x441;&#x442;&#x440;&#x430;&#x43d;&#x438;&#x442;&#x44c; &#x43f;&#x435;&#x440;&#x435;&#x43f;&#x438;&#x441;&#x430;&#x432; CFG &#x438;&#x43b;&#x438; &#x438;&#x441;&#x43f;&#x43e;&#x43b;&#x44c;&#x437;&#x443;&#x44f; * &#x432;&#x43c;&#x435;&#x441;&#x442;&#x43e; +"/>
+<node CREATED="1396524474238" ID="ID_460209349" MODIFIED="1397640808597" TEXT="&#x434;&#x432;&#x443;&#x441;&#x43c;&#x44b;&#x441;&#x43b;&#x435;&#x43d;&#x43d;&#x43e;&#x441;&#x442;&#x44c; &#x43c;&#x43e;&#x436;&#x43d;&#x43e; &#x443;&#x441;&#x442;&#x440;&#x430;&#x43d;&#x438;&#x442;&#x44c; &#x43f;&#x435;&#x440;&#x435;&#x43f;&#x438;&#x441;&#x430;&#x432; CFG &#x438;&#x43b;&#x438; &#x438;&#x441;&#x43f;&#x43e;&#x43b;&#x44c;&#x437;&#x443;&#x44f; * &#x432;&#x43c;&#x435;&#x441;&#x442;&#x43e; + (&#x43f;&#x440;&#x438;&#x43e;&#x440;&#x438;&#x442;&#x435;&#x442; &#x43e;&#x43f;&#x435;&#x440;&#x430;&#x446;&#x438;&#x439;)"/>
 <node CREATED="1396525136617" ID="ID_1135160138" MODIFIED="1396525172405" TEXT="&#x44d;&#x442;&#x43e; &#x43d;&#x435;&#x432;&#x43e;&#x437;&#x43c;&#x43e;&#x436;&#x43d;&#x43e; &#x441;&#x434;&#x435;&#x43b;&#x430;&#x442;&#x44c; &#x430;&#x432;&#x442;&#x43e;&#x43c;&#x430;&#x442;&#x438;&#x447;&#x435;&#x441;&#x43a;&#x438;">
 <icon BUILTIN="yes"/>
 </node>
 <node CREATED="1396525283582" ID="ID_1833620024" MODIFIED="1396525348519" TEXT="left-associativity declaration - %left + precedence (+ and then *)"/>
 </node>
 </node>
-<node CREATED="1396595643174" FOLDED="true" ID="ID_1412477161" MODIFIED="1396596747721" TEXT="Error handling by compiler">
+<node CREATED="1396595643174" FOLDED="true" ID="ID_1412477161" MODIFIED="1397640853925" TEXT="Error handling by compiler">
 <font NAME="SansSerif" SIZE="12"/>
-<node CREATED="1396595673340" FOLDED="true" ID="ID_704987120" MODIFIED="1396596219529" TEXT="Panic mode">
+<node CREATED="1396595673340" FOLDED="true" ID="ID_704987120" MODIFIED="1397640836509" TEXT="Panic mode">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1396595802529" ID="ID_66246442" MODIFIED="1396595905953" TEXT="1. discard token until the one with clear role appear"/>
 <node CREATED="1396595840661" ID="ID_656203713" MODIFIED="1396595908066" TEXT="2. continue with that token"/>
@@ -445,12 +445,12 @@
 <icon BUILTIN="info"/>
 </node>
 </node>
-<node CREATED="1396595702111" FOLDED="true" ID="ID_985735088" MODIFIED="1396596331800" TEXT="Error production">
+<node CREATED="1396595702111" FOLDED="true" ID="ID_985735088" MODIFIED="1397640841988" TEXT="Error production">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1396596221666" ID="ID_729033337" MODIFIED="1396596249682" TEXT="specify known common mistakes in the grammar (5x ~ 5 * x)"/>
 <node CREATED="1396596250277" ID="ID_1560742366" MODIFIED="1396596274103" TEXT="add the production (E -&gt; ... | E E)"/>
 </node>
-<node CREATED="1396595707754" FOLDED="true" ID="ID_933786980" MODIFIED="1396596739834" TEXT="Automatic local or global correction (error correction)">
+<node CREATED="1396595707754" FOLDED="true" ID="ID_933786980" MODIFIED="1397640852597" TEXT="Automatic local or global correction (error correction)">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1396596345565" ID="ID_930360609" MODIFIED="1396596364072" TEXT="idea - find a correct &quot;nearby&quot; program">
 <icon BUILTIN="idea"/>
@@ -462,14 +462,14 @@
 </node>
 </node>
 </node>
-<node CREATED="1396596751973" FOLDED="true" ID="ID_550721119" MODIFIED="1396597184752" TEXT="Abstract syntax tree (AST)">
+<node CREATED="1396596751973" FOLDED="true" ID="ID_550721119" MODIFIED="1397640868836" TEXT="Abstract syntax tree (AST)">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1396596824555" ID="ID_215096709" MODIFIED="1396596883850" TEXT="like parse tree but ignore some details">
 <icon BUILTIN="info"/>
 </node>
 <node CREATED="1396596884739" ID="ID_470650715" MODIFIED="1396597182291" TEXT="more simple, no parenthesis (&apos;(&apos;, &apos;)&apos;) or not used details"/>
 </node>
-<node CREATED="1396597185945" FOLDED="true" ID="ID_1171609208" MODIFIED="1396598154217" TEXT="Recursive Descent (&#x440;&#x435;&#x43a;&#x443;&#x440;&#x441;&#x438;&#x432;&#x43d;&#x43e;&#x435; &#x43d;&#x438;&#x441;&#x445;&#x43e;&#x436;&#x434;&#x435;&#x43d;&#x438;&#x435;)">
+<node CREATED="1396597185945" FOLDED="true" ID="ID_1171609208" MODIFIED="1397640889341" TEXT="Recursive Descent (&#x440;&#x435;&#x43a;&#x443;&#x440;&#x441;&#x438;&#x432;&#x43d;&#x43e;&#x435; &#x43d;&#x438;&#x441;&#x445;&#x43e;&#x436;&#x434;&#x435;&#x43d;&#x438;&#x435;)">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1396597261841" ID="ID_1332242652" MODIFIED="1396598151451" TEXT="top-down parsing algorithm (from top and left to right)">
 <icon BUILTIN="info"/>
@@ -483,7 +483,7 @@
 <node CREATED="1396597715654" ID="ID_1647304238" MODIFIED="1396597739227" TEXT="when first match - go to next unput symbol"/>
 <node CREATED="1396597759452" ID="ID_142420939" MODIFIED="1396597768082" TEXT="continue till end of input"/>
 </node>
-<node CREATED="1396598092372" FOLDED="true" ID="ID_1380996376" MODIFIED="1396600647506" TEXT="RD Algorithm (RDA)">
+<node CREATED="1396598092372" FOLDED="true" ID="ID_1380996376" MODIFIED="1397640926461" TEXT="RD Algorithm (RDA)">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1396598156356" ID="ID_181954998" MODIFIED="1396598232648" TEXT="check for match - bool term(TOKEN tok) { return *next++ == tok; }"/>
 <node CREATED="1396598211088" ID="ID_1456372896" MODIFIED="1396598249617" TEXT="n`th production - bool Sn() {...}"/>
@@ -504,7 +504,7 @@
 <icon BUILTIN="messagebox_warning"/>
 </node>
 </node>
-<node CREATED="1396598125705" FOLDED="true" ID="ID_1298049921" MODIFIED="1396601740345" TEXT="Left Recursion">
+<node CREATED="1396598125705" FOLDED="true" ID="ID_1298049921" MODIFIED="1397641005021" TEXT="Left Recursion">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1396600659297" ID="ID_129599650" MODIFIED="1396600665524" TEXT="S -&gt; S a"/>
 <node CREATED="1396600666091" ID="ID_480181584" MODIFIED="1396600678323" TEXT="bool S1() { return S() &amp;&amp; term(a); }"/>
@@ -523,6 +523,209 @@
 </node>
 <node CREATED="1396601098710" ID="ID_325014633" MODIFIED="1396601142753" TEXT="general form S-&gt;b1S` | ... | bmS` and S`-&gt;a1S`|...|anS`|&#x3b5;">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1397465222102" FOLDED="true" ID="ID_1848292070" MODIFIED="1397641545877" TEXT="Predictive Parsing">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1397465232489" FOLDED="true" ID="ID_801471218" MODIFIED="1397641032109" TEXT="parser &#x43c;&#x43e;&#x436;&#x435;&#x442; &#x43f;&#x440;&#x435;&#x434;&#x443;&#x433;&#x430;&#x434;&#x430;&#x442;&#x44c; &#x43a;&#x430;&#x43a;&#x43e;&#x435; &#x43f;&#x440;&#x435;&#x43e;&#x431;&#x440;&#x430;&#x437;&#x43e;&#x432;&#x430;&#x43d;&#x438;&#x435; &#x432;&#x44b;&#x43f;&#x43e;&#x43b;&#x43d;&#x438;&#x442;&#x44c;">
+<icon BUILTIN="info"/>
+<node CREATED="1397468502054" ID="ID_1520935482" MODIFIED="1397468503512" TEXT="lookahead (&#x434;&#x43b;&#x44f; &#x43e;&#x433;&#x440;&#x430;&#x43d;&#x438;&#x447;&#x435;&#x43d;&#x43d;&#x43e;&#x433;&#x43e; &#x43a;&#x43e;&#x43b;&#x438;&#x447;&#x435;&#x441;&#x442;&#x432;&#x430; grammar)"/>
+<node CREATED="1397468503963" ID="ID_596409572" MODIFIED="1397468517849" TEXT="no backtracking"/>
+</node>
+<node CREATED="1397468460453" FOLDED="true" ID="ID_1741223200" MODIFIED="1397641039549" TEXT="Predictive parsers accepts LL(k) grammars">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1397468583682" ID="ID_1224702033" MODIFIED="1397468588554" TEXT="left-to-right"/>
+<node CREATED="1397468589295" ID="ID_475170536" MODIFIED="1397468599266" TEXT="left-most derivation"/>
+<node CREATED="1397468599732" ID="ID_1277100846" MODIFIED="1397468619933" TEXT="k tokens lookahead (in practice = 1)"/>
+</node>
+<node CREATED="1397468675116" ID="ID_1734417627" MODIFIED="1397468755048" TEXT="at each step - at most one choise of production">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1397468777786" FOLDED="true" ID="ID_986768096" MODIFIED="1397641057917" TEXT="we may need left-factoring">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="yes"/>
+<node CREATED="1397469112296" ID="ID_62807386" MODIFIED="1397469165036" TEXT="...cause grammar can`t be used for predictive parsing"/>
+<node CREATED="1397469147471" ID="ID_259515469" MODIFIED="1397469157361" TEXT="&#x446;&#x435;&#x43b;&#x44c; - &#x438;&#x437;&#x431;&#x430;&#x432;&#x438;&#x442;&#x44c;&#x441;&#x44f; &#x43e;&#x442; &#x43e;&#x434;&#x438;&#x43d;&#x430;&#x43a;&#x43e;&#x432;&#x44b;&#x445; &#x43b;&#x435;&#x432;&#x44b;&#x445; &#x441;&#x43e;&#x441;&#x442;&#x430;&#x432;&#x43b;&#x44f;&#x44e;&#x449;&#x438;&#x445; &#x432; production"/>
+</node>
+<node CREATED="1397469109823" FOLDED="true" ID="ID_1149345643" MODIFIED="1397641065582" TEXT="we can construct production table">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1397469689952" ID="ID_1557788540" MODIFIED="1397469710783" TEXT="initialize stack = &lt;S $&gt; and next"/>
+<node CREATED="1397469711246" ID="ID_445102714" MODIFIED="1397469799586" TEXT="    repeat"/>
+<node CREATED="1397469714044" ID="ID_1310672363" MODIFIED="1397469804958" TEXT="        case stack of"/>
+<node CREATED="1397469721942" ID="ID_1088984131" MODIFIED="1397469830424" TEXT="             &lt;X, rest&gt; : if T[X,*next] = Y1...Yn"/>
+<node CREATED="1397469831062" ID="ID_1811603552" MODIFIED="1397469850922" TEXT="                  then stack &lt;- &lt;Y1...Yn rest&gt;;"/>
+<node CREATED="1397469851608" ID="ID_782760308" MODIFIED="1397469865143" TEXT="                  else error();"/>
+<node CREATED="1397469736563" ID="ID_1735758121" MODIFIED="1397469881566" TEXT="              &lt;t, rest&gt; : if t == *next ++"/>
+<node CREATED="1397469756413" ID="ID_970004321" MODIFIED="1397469900259" TEXT="                   then stask &lt;- &lt;rest&gt;;"/>
+<node CREATED="1397469765641" ID="ID_768373861" MODIFIED="1397469912617" TEXT="                   else error();"/>
+<node CREATED="1397469773337" ID="ID_951830976" MODIFIED="1397469778635" TEXT="until stack == &lt;&gt;"/>
+</node>
+<node CREATED="1397471672132" FOLDED="true" ID="ID_23533651" MODIFIED="1397641073157" TEXT="First sets">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+<node CREATED="1397472091515" ID="ID_675638861" MODIFIED="1397475265393" TEXT="if a can derive t in the first position ~ t &#x20ac; First(a)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1397475261923" ID="ID_6627167" MODIFIED="1397475387145" TEXT="Firsts(X) = {t | X -&gt;* ta} U {&#x3b5; | X -&gt;* &#x3b5;}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1397475400127" ID="ID_94626635" MODIFIED="1397476071089" TEXT="First(t) = {t}, t - terminal">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1397475418413" ID="ID_531916698" MODIFIED="1397476087001" TEXT="&#x3b5; &#x20ac; First(X) if X-&gt; &#x3b5;, if X-&gt;A1...An and &#x3b5;&#x20ac;First(Aj)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1397475502542" ID="ID_1693520423" MODIFIED="1397476088953" TEXT="First(a) &#x20ac; First(X) if X-&gt;A1...Ana and &#x3b5;&#x20ac;First(Aj)">
+<icon BUILTIN="yes"/>
+</node>
+</node>
+<node CREATED="1397471677187" FOLDED="true" ID="ID_1626650929" MODIFIED="1397641076253" TEXT="Follow sets">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+<node CREATED="1397472108127" ID="ID_552769154" MODIFIED="1397476061217" TEXT="if A-&gt;a, a-&gt;*&#x3b5;, S-&gt;* bAtd ~ t &#x20ac; Follow(a)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1397476052293" ID="ID_1561706297" MODIFIED="1397476234849" TEXT="Follow(X) = {t | S -&gt;* bXtd}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1397476232047" ID="ID_1921566982" MODIFIED="1397476292361" TEXT="if X-&gt;AB then First(B) &#x20ac; Follow(A)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1397476313111" ID="ID_1588196599" MODIFIED="1397476329585" TEXT="... then Follow(X) &#x20ac; Follow(B)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1397476350995" ID="ID_140881782" MODIFIED="1397476389909" TEXT="if B-&gt;*&#x3b5; then Follow(X) &#x20ac; Follow(A)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1397476402757" ID="ID_384791736" MODIFIED="1397476424067" TEXT="if S - start symbol then $ &#x20ac; Follow(S)">
+<icon BUILTIN="yes"/>
+</node>
+</node>
+<node CREATED="1397476848749" FOLDED="true" ID="ID_1006522335" MODIFIED="1397641200589" TEXT="Construct table T for CFG G">
+<icon BUILTIN="idea"/>
+<node CREATED="1397477530978" ID="ID_874930645" MODIFIED="1397477554893" TEXT="for each production A-&gt;a do:"/>
+<node CREATED="1397477555289" ID="ID_311018999" MODIFIED="1397477587181" TEXT="for each terminal t &#x20ac; First(a) do T[A,t] = a"/>
+<node CREATED="1397553042981" ID="ID_1778633380" MODIFIED="1397553219010" TEXT="if &#x3b5; &#x20ac; First(a) for each t &#x20ac; Follow(A) do T[A,t] = a"/>
+<node CREATED="1397553219410" ID="ID_825617173" MODIFIED="1397553236650" TEXT="if &#x3b5; &#x20ac; First(a) and $ &#x20ac; Follow(A) do T[A,$] = a"/>
+</node>
+<node CREATED="1397554506234" FOLDED="true" ID="ID_506452674" MODIFIED="1397641149997" TEXT="if table have multiple values - G is not LL(1)">
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1397554636293" ID="ID_799630400" MODIFIED="1397554642139" TEXT="not left factored"/>
+<node CREATED="1397554642402" ID="ID_661372693" MODIFIED="1397554646367" TEXT="left recursive"/>
+<node CREATED="1397554646610" ID="ID_734952722" MODIFIED="1397554650605" TEXT="ambigous"/>
+<node CREATED="1397554651181" ID="ID_1332125643" MODIFIED="1397554654982" TEXT="others"/>
+</node>
+<node CREATED="1397554543845" ID="ID_1361708846" MODIFIED="1397554559550" TEXT="most programming languages CFGs are not LL(1)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1397554758527" FOLDED="true" ID="ID_1740357118" MODIFIED="1397641545061" TEXT="Bottom-Up parsing">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1397554767024" ID="ID_1976535981" MODIFIED="1397641499347" TEXT="don`t need left-factored grammars (no problem with left-recursive)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1397554861057" ID="ID_38678557" MODIFIED="1397554999944" TEXT="reduces a string to the start symbols by inverting productions (reductions)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1397555088371" ID="ID_811706824" MODIFIED="1397555179100" TEXT="Bottom-up parsing traces a right-most derivation in reverse">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1397556189383" FOLDED="true" ID="ID_1524891391" MODIFIED="1397641255613" TEXT="Shift-Reduce parsing">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1397556338954" ID="ID_1786008722" MODIFIED="1397556400446" TEXT="aBw - if next production is with B - then w should contain only terminals">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1397556401417" ID="ID_1817094418" MODIFIED="1397556444046" TEXT="shift terminal to the left sting (ABC|xyz -&gt; ABCx|yz)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1397556450374" ID="ID_1533821874" MODIFIED="1397556516382" TEXT="reduce: Cbxy|ijk -&gt; CbA|ijk (if A-&gt;xy is a production)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1397556954669" ID="ID_65504290" MODIFIED="1397556988584" TEXT="shift-reduce conflict | reduce-reduce conflict (bad!)">
+<icon BUILTIN="yes"/>
+</node>
+</node>
+<node CREATED="1397558005976" FOLDED="true" ID="ID_1757240585" MODIFIED="1397641314013" TEXT="Handles">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1397560809398" ID="ID_1178489107" MODIFIED="1397560861118" TEXT="S-&gt;*aXw-&gt;abw then ab ~ handle of abw"/>
+<node CREATED="1397560861593" ID="ID_890387452" MODIFIED="1397560890086" TEXT="&#x438;&#x434;&#x435;&#x44f; - &#x438;&#x441;&#x43f;&#x43e;&#x43b;&#x44c;&#x437;&#x43e;&#x432;&#x430;&#x442;&#x44c; shift-reduce &#x442;&#x430;&#x43a; &#x447;&#x442;&#x43e;&#x431;&#x44b; &#x43d;&#x430;&#x447;&#x430;&#x43b;&#x44c;&#x43d;&#x43e;&#x433;&#x43e; &#x441;&#x43e;&#x441;&#x442;&#x43e;&#x44f;&#x43d;&#x438;&#x44f; &#x43c;&#x43e;&#x436;&#x43d;&#x43e; &#x431;&#x44b;&#x43b;&#x43e; &#x434;&#x43e;&#x441;&#x442;&#x438;&#x447;&#x44c;">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1397560928211" ID="ID_901640815" MODIFIED="1397560947063" TEXT="&#x442;.&#x435;. &#x43d;&#x443;&#x436;&#x43d;&#x43e; &#x438;&#x441;&#x43f;&#x43e;&#x43b;&#x44c;&#x437;&#x43e;&#x432;&#x430;&#x442;&#x44c; reduce &#x442;&#x43e;&#x43b;&#x44c;&#x43a;&#x43e; &#x434;&#x43b;&#x44f; handle-&#x43e;&#x432;">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1397561105415" ID="ID_349100885" MODIFIED="1397561137287" TEXT="in shift-reduce parsing handles appear only at the top of the stack">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1397561373996" ID="ID_963343584" MODIFIED="1397561413300" TEXT="there`s no algorithm to recognize handles (only heuristic guessing)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1397561415286" ID="ID_526983805" MODIFIED="1397561774151" TEXT="for any grammar the set of viable prefixes is a regular language">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1397562003361" ID="ID_1836372154" MODIFIED="1397562231571" TEXT="item (prefix/LR(0)-item) T-&gt;(E.) says that so far we have seen &apos;(E&apos; of this production and hope to see &apos;)&apos;">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1397562475928" FOLDED="true" ID="ID_1006421497" MODIFIED="1397641306373" TEXT="recognizing viable prefixes">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1397562490610" ID="ID_1060266722" MODIFIED="1397562575679" TEXT="we should construct NFA that recognize viable prefixes">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1397562577032" ID="ID_277475600" MODIFIED="1397562609096" TEXT="NFA reads stack, states = items of G">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1397562610239" ID="ID_850203005" MODIFIED="1397562845627" TEXT="item E-&gt;a.Xb =X&gt; E-&gt;aX.b"/>
+<node CREATED="1397562846173" ID="ID_1071520329" MODIFIED="1397562947738" TEXT="item E-&gt;a.Xb (X-non-terminal) and X-&gt;y =&#x3b5;&gt; X-&gt;.y"/>
+<node CREATED="1397562981868" ID="ID_1996764861" MODIFIED="1397562995343" TEXT="every state of NFA = accepting state">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1397562996274" ID="ID_202365952" MODIFIED="1397563071596" TEXT="Start state = S`-&gt;.S">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1397564504453" ID="ID_1613669374" MODIFIED="1397564527743" TEXT="states if DFA = &quot;canonical collection of items (LR(0) items)&quot;">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1397560807016" FOLDED="true" ID="ID_1579475132" MODIFIED="1397641544405" TEXT="SLR Parsing">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1397565295599" ID="ID_1090935506" MODIFIED="1397565574061" TEXT="improves LR(0) shift-reduce heuristics (fewer conflicts)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1397565637094" ID="ID_1565224338" MODIFIED="1397565732608" TEXT="reduce only if next input &#x20ac; Follow(X)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1397565805792" ID="ID_1369470465" MODIFIED="1397565816192" TEXT="if conflicts - not SLR">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1397569269748" FOLDED="true" ID="ID_172836284" MODIFIED="1397641362325" TEXT="SLR-improvement">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1397569291974" ID="ID_1877230595" MODIFIED="1397569319120" TEXT="stack should contain pairs &lt;Symbol, DFA State&gt;">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1397569434340" ID="ID_1691610354" MODIFIED="1397569473800" TEXT="goto[i,A]=j if statei -&gt;A statej (transition function of DFA)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1397569554996" ID="ID_1825618254" MODIFIED="1397569565873" TEXT="action table">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1397570085559" ID="ID_897859455" MODIFIED="1397570155507" TEXT="only DFA states and the input are used in the algorithm (symbols needed later in semantics, etc)">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1397640369887" FOLDED="true" ID="ID_1430556954" MODIFIED="1397641363741" TEXT="examples">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="help"/>
+<node CREATED="1397640441786" ID="ID_1008919183" MODIFIED="1397640448425" TEXT="S-&gt;Sa|b - SLR(1);"/>
+<node CREATED="1397640449180" ID="ID_1668190617" MODIFIED="1397640452217" TEXT="S-&gt;SaS|b - not SLR(1)"/>
+</node>
+</node>
 </node>
 </node>
 </node>
