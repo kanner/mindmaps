@@ -729,9 +729,293 @@
 </node>
 </node>
 </node>
-<node CREATED="1395732992924" ID="ID_1937702208" MODIFIED="1395735572410" POSITION="right" TEXT="3. Semantic Analysis">
+<node CREATED="1395732992924" FOLDED="true" ID="ID_1937702208" MODIFIED="1398775874619" POSITION="right" TEXT="3. Semantic Analysis">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
+<node CREATED="1398671728708" FOLDED="true" ID="ID_1626010210" MODIFIED="1398672498186" TEXT="after Lexical analysis and parsing - implement other checks">
+<icon BUILTIN="info"/>
+<node CREATED="1398672134996" ID="ID_80770265" MODIFIED="1398672164439" TEXT="all identifier are declared"/>
+<node CREATED="1398672164694" ID="ID_19760836" MODIFIED="1398672171601" TEXT="type checking"/>
+<node CREATED="1398672171815" ID="ID_926818360" MODIFIED="1398672181710" TEXT="inheritance relationship"/>
+<node CREATED="1398672181903" ID="ID_558676332" MODIFIED="1398672191995" TEXT="classes defined only once"/>
+<node CREATED="1398672192187" ID="ID_554716216" MODIFIED="1398672211006" TEXT="methods (in class) defined only once"/>
+<node CREATED="1398672211220" ID="ID_290709047" MODIFIED="1398672229430" TEXT="reserved identifiers are not misused"/>
+<node CREATED="1398672230328" ID="ID_172544379" MODIFIED="1398672497145" TEXT="... [list depends on the language]">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1398672499399" FOLDED="true" ID="ID_1309197881" MODIFIED="1398687654777" TEXT="scope">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398686265121" ID="ID_646232075" MODIFIED="1398686276923" TEXT="match identifier declarations with uses">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1398686374366" ID="ID_619121546" MODIFIED="1398686603406" TEXT="different scopes for same name can`t overlap">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1398686604648" FOLDED="true" ID="ID_892365898" MODIFIED="1398686688597" TEXT="static/dynamic scope">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398686644260" ID="ID_846501554" MODIFIED="1398686679277" TEXT="static scope depends only on program text (not run-time behavior)"/>
+</node>
+<node CREATED="1398686631312" FOLDED="true" ID="ID_490612923" MODIFIED="1398687652586" TEXT="identifier binding in COOL">
+<icon BUILTIN="info"/>
+<node CREATED="1398686864917" ID="ID_1398063007" MODIFIED="1398686870648" TEXT="class declarations"/>
+<node CREATED="1398686871216" ID="ID_270011139" MODIFIED="1398686876145" TEXT="method definitions"/>
+<node CREATED="1398686876573" ID="ID_122174910" MODIFIED="1398686880796" TEXT="let expressions"/>
+<node CREATED="1398686881021" ID="ID_1207839252" MODIFIED="1398686885978" TEXT="formal parameters"/>
+<node CREATED="1398686886212" ID="ID_1565072611" MODIFIED="1398686894358" TEXT="attribute definitions"/>
+<node CREATED="1398686894595" ID="ID_1864692801" MODIFIED="1398686898524" TEXT="case expressions"/>
+<node CREATED="1398687180607" ID="ID_1802581979" MODIFIED="1398687207824" TEXT="rule of most-closely nested rule (not always)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1398687655727" FOLDED="true" ID="ID_307872292" MODIFIED="1398689847514" TEXT="symbol tables">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398687664738" ID="ID_1593637597" MODIFIED="1398687748066" TEXT="recursive descent in AST (in subtrees we need to know which identifiers are defined)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1398687688778" FOLDED="true" ID="ID_368215024" MODIFIED="1398689412938" TEXT="symbol table tracks the current binding of identifiers in each point of AST (could be stack of scopes)">
+<icon BUILTIN="info"/>
+<node CREATED="1398688643292" ID="ID_1240633587" MODIFIED="1398688648887" TEXT="enter_scope"/>
+<node CREATED="1398688649139" ID="ID_759994770" MODIFIED="1398688652530" TEXT="find_symbol"/>
+<node CREATED="1398688653189" ID="ID_147969628" MODIFIED="1398688664313" TEXT="add_symbol"/>
+<node CREATED="1398688664539" ID="ID_999834972" MODIFIED="1398688668390" TEXT="check_scope"/>
+<node CREATED="1398688668616" ID="ID_810092221" MODIFIED="1398688673867" TEXT="exit_scope"/>
+</node>
+<node CREATED="1398689357786" ID="ID_1840860655" MODIFIED="1398689436587" TEXT="for Classes names can be used BEFORE being defined">
+<icon BUILTIN="idea"/>
+<node CREATED="1398689385375" ID="ID_1903658680" MODIFIED="1398689409204" TEXT="solution - use 2 passes - get all class names and then do checking"/>
+</node>
+<node CREATED="1398689437241" ID="ID_1953249012" MODIFIED="1398689454761" TEXT="semantic analysis may require more than 2 passes">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1398689849188" FOLDED="true" ID="ID_213160700" MODIFIED="1398773823835" TEXT="types checking">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398689856376" ID="ID_755732817" MODIFIED="1398690225604" TEXT="the goal - to ensure that operations are used only with the correct types">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1398690279293" ID="ID_43420761" MODIFIED="1398690303781" TEXT="statically/dynamically/no-type checking">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1398690756493" ID="ID_35935652" MODIFIED="1398690776927" TEXT="RL, CFL -&gt; logical rules of inference">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1398690871499" ID="ID_968636126" MODIFIED="1398691127241" TEXT="(e1 : Int ^ e2 : Int) =&gt; e1+e2 : Int">
+<font NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1398691095979" ID="ID_1669120063" MODIFIED="1398691131289" TEXT="&#x251c; e:T means &quot;it is provable that...&quot;">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1398691743112" ID="ID_325199186" MODIFIED="1398761020165" TEXT="a type system is SOUND if whenever &#x251c;e:T then e evaluates to a value of type T">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1398691907829" ID="ID_839791163" MODIFIED="1398691928809" TEXT="types are computed in a BOTTOM-UP pass over the AST">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1398761262275" FOLDED="true" ID="ID_1521003101" MODIFIED="1398769786066" TEXT="type environment">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398761269202" ID="ID_36186435" MODIFIED="1398761328840" TEXT="variable is free in an expression if it`s not defined within the expression">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1398761310028" ID="ID_607071336" MODIFIED="1398761331480" TEXT="type environment gives types for free variables">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1398761456496" ID="ID_188501040" MODIFIED="1398761481637" TEXT="type environment is a function from ObjectIdentifiers to Types">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1398761785659" ID="ID_1998913128" MODIFIED="1398761812336" TEXT="O[T/x] (x) = T and O[T/x] (y) = O(y)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1398762206704" ID="ID_788343830" MODIFIED="1398762258456" TEXT="O&#x251c;e0:T0, O(T0/x)&#x251c;e1:T1 =&gt; O &#x251c; let x:T0 &lt;- e0 in e1:T1">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1398761483940" ID="ID_1655118026" MODIFIED="1398761543032" TEXT="O &#x251c; e:T - under the assumption that free variables have types given by O, it`s provable that expression e has type T">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1398765419583" FOLDED="true" ID="ID_441555234" MODIFIED="1398772840786" TEXT="subtypes">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398765428374" FOLDED="true" ID="ID_561728279" MODIFIED="1398766157825" TEXT="subtype relation &lt;=">
+<icon BUILTIN="info"/>
+<node CREATED="1398765437384" ID="ID_175327771" MODIFIED="1398765482217" TEXT="X&lt;=X (reflexive)"/>
+<node CREATED="1398765445085" ID="ID_1199507578" MODIFIED="1398765455287" TEXT="X&lt;=Y if X inherits from Y"/>
+<node CREATED="1398765455705" ID="ID_1121711002" MODIFIED="1398765515697" TEXT="X&lt;=Z if X&lt;=Y and Y&lt;=Z (transitive)"/>
+</node>
+<node CREATED="1398765909254" ID="ID_1039494109" MODIFIED="1398765943742" TEXT="for &quot;if then else&quot; we can`t understand the result type at compile time">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1398765944494" ID="ID_1659426742" MODIFIED="1398766005766" TEXT="so the result = smallest supertype larger then e1 and e2 (both expressions)"/>
+<node CREATED="1398766050691" FOLDED="true" ID="ID_1068928360" MODIFIED="1398772830658" TEXT="lub(X,Y) - least upper bound of X and Y.">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398766095902" ID="ID_1547267807" MODIFIED="1398766119203" TEXT="X&lt;=Z ^ Y&lt;=Z (Z is upper bound)"/>
+<node CREATED="1398766119450" ID="ID_1017119482" MODIFIED="1398766145965" TEXT="X&lt;=Z` ^ Y&lt;=Z` =&gt; Z&lt;=Z` (Z is least among upper bounds)"/>
+</node>
+</node>
+<node CREATED="1398768512162" FOLDED="true" ID="ID_424111100" MODIFIED="1398772821931" TEXT="typing methods">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398768519020" ID="ID_362693077" MODIFIED="1398768564033" TEXT="in COOL method and object identifiers live in different name spaces">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1398768601940" ID="ID_563782057" MODIFIED="1398769551693" TEXT="-&gt; mapping M for method signatures (input and output types)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1398768633561" ID="ID_1877083950" MODIFIED="1398768676637" TEXT="M(C,f)=(T1,...,Tn,Tn+1) - in class C there`s method f, f(x1:T1,...,xn:Tn):Tn+1"/>
+<node CREATED="1398769502406" ID="ID_983991052" MODIFIED="1398769557409" TEXT="O - giving types to object id`s">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1398769514373" ID="ID_1481525141" MODIFIED="1398769555889" TEXT="M - giving types to methods">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1398769525789" ID="ID_1147884796" MODIFIED="1398769554297" TEXT="the current class C (to understand SELF_TYPE)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1398769573320" ID="ID_1944741230" MODIFIED="1398769640433" TEXT="O,M,C - mappings should be passed down for all type checkings">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+</node>
+<node CREATED="1398770401533" FOLDED="true" ID="ID_1913886119" MODIFIED="1398775632201" TEXT="static vs dynamic typing">
+<node CREATED="1398770590015" ID="ID_690244898" MODIFIED="1398770613609" TEXT="theorem: for all expression E dynamic_type(E)=static_type(E)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1398770853418" ID="ID_1940421494" MODIFIED="1398770890262" TEXT="for COOL: for for all expression E dynamic_type(E)&lt;=static_type(E)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1398770982368" ID="ID_645819648" MODIFIED="1398771003737" TEXT="subclasses only add attributes or methods">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1398771014219" ID="ID_367155738" MODIFIED="1398771034882" TEXT="method can be redefined but with the same type">
+<icon BUILTIN="yes"/>
+</node>
+</node>
+<node CREATED="1398772326950" FOLDED="true" ID="ID_735821418" MODIFIED="1398773816395" TEXT="SELF_TYPE">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398771257915" ID="ID_1110060090" MODIFIED="1398771561124" TEXT="SELF_TYPE is a static type (and not a class name)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1398771800582" ID="ID_1930985371" MODIFIED="1398771883794" TEXT="SELF_TYPEc &lt;= C, so it`s safe to replace SELF_TYPEc by C!">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1398772243284" ID="ID_758441463" MODIFIED="1398772262578" TEXT="SELF_TYPEc can`t be compared with SELF_TYPEd">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1398772379776" ID="ID_1198764281" MODIFIED="1398772435038" TEXT="1. SELF_TYPEc&lt;=SELF_TYPEc"/>
+<node CREATED="1398772385319" ID="ID_968886353" MODIFIED="1398772446806" TEXT="2. SELF_TYPEc&lt;=T if C&lt;=T"/>
+<node CREATED="1398772387008" ID="ID_204534564" MODIFIED="1398772402535" TEXT="3. T&lt;=SELF_TYPEc always false"/>
+<node CREATED="1398772402802" ID="ID_994615688" MODIFIED="1398772698285" TEXT="4. T&lt;=T` (T and T` - any types but SELF_TYPE)"/>
+<node CREATED="1398772718254" ID="ID_1555853573" MODIFIED="1398772733599" TEXT="lub(SELF_TYPEc, SELF_TYPEc)=SELF_TYPEc"/>
+<node CREATED="1398772737764" ID="ID_290957644" MODIFIED="1398772749439" TEXT="lub(SELF_TYPEc,T)=lub(C,T)"/>
+<node CREATED="1398772749716" ID="ID_1125160903" MODIFIED="1398772782083" TEXT="lub(T,SELF_TYPEc)=lub(C,T)"/>
+<node CREATED="1398772782429" ID="ID_1010928725" MODIFIED="1398772850304" TEXT="lub(T,T`) - least upper bound of X and Y (as before)"/>
+<node CREATED="1398772944398" ID="ID_1396223145" MODIFIED="1398772973409" TEXT="SELF_TYPE can`t be declared for class or attribute">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1398773304048" FOLDED="true" ID="ID_404881634" MODIFIED="1398773778995" TEXT="Usage">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398773307711" ID="ID_971056136" MODIFIED="1398773433295" TEXT="1. T inherits T` {...} - T and T` cannot be SELF_TYPE"/>
+<node CREATED="1398773331536" ID="ID_649984504" MODIFIED="1398773436454" TEXT="2. x:T - attribute x, T can be SELF_TYPE"/>
+<node CREATED="1398773362155" ID="ID_1536667317" MODIFIED="1398773439617" TEXT="3. let x:T in E - T can be SELF_TYPE"/>
+<node CREATED="1398773380274" ID="ID_1969144069" MODIFIED="1398773443073" TEXT="4. new T - T can be SELF_TYPE"/>
+<node CREATED="1398773398225" ID="ID_950804099" MODIFIED="1398773446650" TEXT="5. m@T(E1,...,En) - T cannot be SELF_TYPE"/>
+<node CREATED="1398773447822" ID="ID_1779306256" MODIFIED="1398773465439" TEXT="m(x:T):T` {...} - only T` can be SELF_TYPE"/>
+</node>
+</node>
+<node CREATED="1398773781023" FOLDED="true" ID="ID_1808135825" MODIFIED="1398775301781" TEXT="type rules [extended]">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+<node CREATED="1398773793029" FOLDED="true" ID="ID_282552606" MODIFIED="1398774508931" TEXT="Assignment">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398773799760" ID="ID_209220696" MODIFIED="1398773862135" TEXT="O(Id) = T0"/>
+<node CREATED="1398773847115" ID="ID_246192344" MODIFIED="1398773859576" TEXT="O,M,C&#x251c;e1:T0"/>
+<node CREATED="1398773870534" ID="ID_1473866517" MODIFIED="1398773938152" TEXT="T1&lt;=T0 [extended definition]"/>
+<node CREATED="1398773872315" ID="ID_793753216" MODIFIED="1398773877770" TEXT="---------------------"/>
+<node CREATED="1398773878289" ID="ID_1186307041" MODIFIED="1398773899500" TEXT="O,M,C &#x251c; Id &lt;- e1:T1"/>
+</node>
+<node CREATED="1398773904056" FOLDED="true" ID="ID_1286381111" MODIFIED="1398774680060" TEXT="Dispatch">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398773949811" ID="ID_1516336808" MODIFIED="1398773967489" TEXT="O,M,C &#x251c; e0:T0"/>
+<node CREATED="1398773967705" ID="ID_1973074510" MODIFIED="1398773968702" TEXT="..."/>
+<node CREATED="1398773968968" ID="ID_342333915" MODIFIED="1398773979067" TEXT="O,M,C &#x251c; en:Tn"/>
+<node CREATED="1398774003572" ID="ID_927190339" MODIFIED="1398774022441" TEXT="M(T0,f) = (T1`,...,Tn`,Tn+1`)"/>
+<node CREATED="1398774023120" ID="ID_167142252" MODIFIED="1398774036220" TEXT="Tn+1` != SELF_TYPE">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1398774036886" ID="ID_615127385" MODIFIED="1398774049827" TEXT="Ti&lt;=Ti`, 1&lt;=i&lt;=n"/>
+<node CREATED="1398774050042" ID="ID_1384950271" MODIFIED="1398774061999" TEXT="---------------------"/>
+<node CREATED="1398774062263" ID="ID_1521869240" MODIFIED="1398774090361" TEXT="O,M,C &#x251c; e0.f(e1,...,en) : Tn+1`"/>
+</node>
+<node CREATED="1398774157185" FOLDED="true" ID="ID_1737504798" MODIFIED="1398774675178" TEXT="Dispatch when return type is SELF_TYPE">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398773949811" ID="ID_1418492949" MODIFIED="1398773967489" TEXT="O,M,C &#x251c; e0:T0"/>
+<node CREATED="1398773967705" ID="ID_1737493441" MODIFIED="1398773968702" TEXT="..."/>
+<node CREATED="1398773968968" ID="ID_785858363" MODIFIED="1398773979067" TEXT="O,M,C &#x251c; en:Tn"/>
+<node CREATED="1398774003572" ID="ID_1175968108" MODIFIED="1398774211534" TEXT="M(T0,f) = (T1`,...,Tn`,SELF_TYPE)"/>
+<node CREATED="1398774036886" ID="ID_359421443" MODIFIED="1398774049827" TEXT="Ti&lt;=Ti`, 1&lt;=i&lt;=n"/>
+<node CREATED="1398774050042" ID="ID_1077319992" MODIFIED="1398774061999" TEXT="---------------------"/>
+<node CREATED="1398774062263" ID="ID_940036503" MODIFIED="1398774242258" TEXT="O,M,C &#x251c; e0.f(e1,...,en) : T0">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1398774345829" ID="ID_339306903" MODIFIED="1398774355550" TEXT="Formal parameters cannot be SELF_TYPE">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1398774358687" ID="ID_1588922981" MODIFIED="1398774405034" TEXT="Actual argument can be SELF_TYPE">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1398774376314" ID="ID_1293911562" MODIFIED="1398774402994" TEXT="T0 in dispatch could be SELF_TYPE">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1398774492091" FOLDED="true" ID="ID_1417237753" MODIFIED="1398774613835" TEXT="Static dispatch">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398773949811" ID="ID_1223094294" MODIFIED="1398773967489" TEXT="O,M,C &#x251c; e0:T0"/>
+<node CREATED="1398773967705" ID="ID_684893164" MODIFIED="1398773968702" TEXT="..."/>
+<node CREATED="1398773968968" ID="ID_1580952070" MODIFIED="1398773979067" TEXT="O,M,C &#x251c; en:Tn"/>
+<node CREATED="1398774555868" ID="ID_47642400" MODIFIED="1398774562298" TEXT="T0&lt;=T"/>
+<node CREATED="1398774003572" ID="ID_139113527" MODIFIED="1398774577777" TEXT="M(T,f) = (T1`,...,Tn`,Tn+1`)"/>
+<node CREATED="1398774023120" ID="ID_1164537750" MODIFIED="1398774036220" TEXT="Tn+1` != SELF_TYPE">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1398774036886" ID="ID_558347600" MODIFIED="1398774049827" TEXT="Ti&lt;=Ti`, 1&lt;=i&lt;=n"/>
+<node CREATED="1398774050042" ID="ID_813673766" MODIFIED="1398774061999" TEXT="---------------------"/>
+<node CREATED="1398774062263" ID="ID_875591461" MODIFIED="1398774592502" TEXT="O,M,C &#x251c; e0@T.f(e1,...,en) : Tn+1`"/>
+</node>
+<node CREATED="1398774635338" FOLDED="true" ID="ID_389870298" MODIFIED="1398775089475" TEXT="Static dispatch when return type is SELF_TYPE">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1398773949811" ID="ID_773236077" MODIFIED="1398773967489" TEXT="O,M,C &#x251c; e0:T0"/>
+<node CREATED="1398773967705" ID="ID_1043598964" MODIFIED="1398773968702" TEXT="..."/>
+<node CREATED="1398773968968" ID="ID_1410773889" MODIFIED="1398773979067" TEXT="O,M,C &#x251c; en:Tn"/>
+<node CREATED="1398774688298" ID="ID_1605098858" MODIFIED="1398774693706" TEXT="T0&lt;=T"/>
+<node CREATED="1398774003572" ID="ID_284380050" MODIFIED="1398774703658" TEXT="M(T,f) = (T1`,...,Tn`,SELF_TYPE)"/>
+<node CREATED="1398774036886" ID="ID_1540711201" MODIFIED="1398774049827" TEXT="Ti&lt;=Ti`, 1&lt;=i&lt;=n"/>
+<node CREATED="1398774050042" ID="ID_128364170" MODIFIED="1398774061999" TEXT="---------------------"/>
+<node CREATED="1398774062263" ID="ID_611894957" MODIFIED="1398774711884" TEXT="O,M,C &#x251c; e0@T.f(e1,...,en) : T0">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1398774838007" ID="ID_1135423300" MODIFIED="1398774892778" TEXT="[new] O,M,C&#x251c; self:SELF_TYPEc">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1398774869715" ID="ID_462275946" MODIFIED="1398774894458" TEXT="[new] O,M,C &#x251c; new SELF_TYPE:SELF_TYPEc">
+<icon BUILTIN="yes"/>
+</node>
+</node>
+<node CREATED="1398775304186" FOLDED="true" ID="ID_1156836305" MODIFIED="1398775873571" TEXT="Error recovery">
+<node CREATED="1398775374027" ID="ID_1233111419" MODIFIED="1398775551338" TEXT="to skip type errors - we can assign type Object to ill-typed expressions (could be cascading errors)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1398775568833" ID="ID_387725226" MODIFIED="1398775674748" TEXT="or introduce No_type (compiler-only type) for use with ill-typed expressions. No_type &lt;=C for all types C and every operation is defined for No_type (with No_type result)">
+<icon BUILTIN="idea"/>
+</node>
+</node>
 </node>
 <node CREATED="1395733026258" ID="ID_1181544390" MODIFIED="1395735574073" POSITION="right" TEXT="4. Optimization">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
