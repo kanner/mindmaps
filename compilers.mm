@@ -4,7 +4,7 @@
 <node CREATED="1395732899000" ID="ID_753711553" MODIFIED="1395735580476" TEXT="Compiler">
 <font BOLD="true" NAME="SansSerif" SIZE="14"/>
 <icon BUILTIN="messagebox_warning"/>
-<node CREATED="1395732913379" FOLDED="true" ID="ID_715608857" MODIFIED="1397475328042" POSITION="right" TEXT="1. Lexical Analysis">
+<node CREATED="1395732913379" FOLDED="true" ID="ID_715608857" MODIFIED="1399101897352" POSITION="right" TEXT="1. Lexical Analysis">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
 <node CREATED="1395733470130" FOLDED="true" ID="ID_1442877164" MODIFIED="1396517413428" TEXT="&#x446;&#x435;&#x43b;&#x44c; - &#x442;&#x43e;&#x43a;&#x435;&#x43d;&#x438;&#x437;&#x430;&#x446;&#x438;&#x44f; &#x438;&#x441;&#x445;&#x43e;&#x434;&#x43d;&#x43e;&#x433;&#x43e; &#x442;&#x435;&#x43a;&#x441;&#x442;&#x430; &#x43f;&#x43e; &#x43a;&#x43b;&#x430;&#x441;&#x441;&#x430;&#x43c;">
@@ -729,7 +729,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1395732992924" FOLDED="true" ID="ID_1937702208" MODIFIED="1398775874619" POSITION="right" TEXT="3. Semantic Analysis">
+<node CREATED="1395732992924" FOLDED="true" ID="ID_1937702208" MODIFIED="1399101909328" POSITION="right" TEXT="3. Semantic Analysis">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
 <node CREATED="1398671728708" FOLDED="true" ID="ID_1626010210" MODIFIED="1398672498186" TEXT="after Lexical analysis and parsing - implement other checks">
@@ -1021,9 +1021,108 @@
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1395733115642" ID="ID_1572053387" MODIFIED="1395735576347" POSITION="right" TEXT="5. Code generation">
+<node CREATED="1395733115642" FOLDED="true" ID="ID_1572053387" MODIFIED="1399101913708" POSITION="right" TEXT="5. Code generation">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
+<node CREATED="1399101882114" FOLDED="true" ID="ID_451149115" MODIFIED="1399101911609" TEXT="prerequirements">
+<icon BUILTIN="idea"/>
+<node CREATED="1399035766716" FOLDED="true" ID="ID_64488099" MODIFIED="1399099497763" TEXT="Activation">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399035933449" ID="ID_1214635229" MODIFIED="1399036147498" TEXT="concurency (execution is sequential), exceptions (control return)"/>
+<node CREATED="1399035791334" ID="ID_241230854" MODIFIED="1399035807339" TEXT="invocation of procedure P is invocation">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399036085623" ID="ID_1290772058" MODIFIED="1399036199614" TEXT="lifetime of an activation of P = all steps to execute P + all steps in procedures P calls">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399036209350" ID="ID_913069380" MODIFIED="1399036253494" TEXT="lifetime of variable x is the portion of execution in which x is defined (it`s a dynamic|run-time concept)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399036254239" ID="ID_412935857" MODIFIED="1399036271202" TEXT="scope is a static concept">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399036272981" ID="ID_854383066" MODIFIED="1399036408045" TEXT="lifetimes of procedure activations are properly nested (can be depicted as a tree)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1399036897649" ID="ID_1933248977" MODIFIED="1399036913433" TEXT="activation tree may be different for every program input">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1399036918969" ID="ID_437038077" MODIFIED="1399036932839" TEXT="stack can track currently active procedures">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1399099199368" FOLDED="true" ID="ID_842491611" MODIFIED="1399101873652" TEXT="Activation Record">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399099218525" ID="ID_1739487185" MODIFIED="1399099430294" TEXT="AR (frame) - information needed to manage one procedure activation">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399099315508" ID="ID_737061810" MODIFIED="1399099353018" TEXT="AR for nested procedures contain mix of info"/>
+<node CREATED="1399099353842" FOLDED="true" ID="ID_910005026" MODIFIED="1399099595993" TEXT="AR contain information needed to 1. complete procedure 2. resume execution of previous procedure">
+<icon BUILTIN="idea"/>
+<icon BUILTIN="yes"/>
+<node CREATED="1399099393912" ID="ID_101954077" MODIFIED="1399099397444" TEXT="result"/>
+<node CREATED="1399099397667" ID="ID_1055847040" MODIFIED="1399099401467" TEXT="argument"/>
+<node CREATED="1399099401855" ID="ID_1586063683" MODIFIED="1399099405417" TEXT="control link"/>
+<node CREATED="1399099405660" ID="ID_921054356" MODIFIED="1399099410616" TEXT="return address"/>
+</node>
+<node CREATED="1399099515047" ID="ID_1989694688" MODIFIED="1399099541061" TEXT="Advantage of placing the result value first - it can be found at fixed offset">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399099541730" ID="ID_1119269066" MODIFIED="1399099564288" TEXT="real compilers keep as much of a frame in registers">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399099564890" ID="ID_1848138000" MODIFIED="1399099590518" TEXT="AR layout and code generation must be designed together!">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1399099609952" FOLDED="true" ID="ID_465052597" MODIFIED="1399101871559" TEXT="Globals &amp; heap">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399099618860" ID="ID_1041333681" MODIFIED="1399099684066" TEXT="global variable can`t be stored in AR (should have fixed address - must be stored in static data segment)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1399099659792" ID="ID_749688264" MODIFIED="1399099686854" TEXT="other global objects can be stored in heap">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399099687718" ID="ID_913407861" MODIFIED="1399099738150" TEXT="heap and stack could start at the opposite ends of memory and grows towards each other (to detect if they`re seperated)"/>
+</node>
+<node CREATED="1399099745968" FOLDED="true" ID="ID_531197240" MODIFIED="1399101870211" TEXT="Alignment">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399099754034" ID="ID_1288403540" MODIFIED="1399099765071" TEXT="most machines are 32 or 64 bit"/>
+<node CREATED="1399099765293" ID="ID_1507313182" MODIFIED="1399099825269" TEXT="8 bits per byte">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399099774164" ID="ID_43415307" MODIFIED="1399099827482" TEXT="4/8 bytes per word">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399099781735" ID="ID_598812291" MODIFIED="1399100011742" TEXT="are either byte- or word-addressable">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399099803842" ID="ID_1576074662" MODIFIED="1399099820013" TEXT="there should be padding till the end of the word">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1399099833060" FOLDED="true" ID="ID_790969894" MODIFIED="1399101868573" TEXT="Stack machines">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399099838435" ID="ID_482703614" MODIFIED="1399099883616" TEXT="procedure r=F(a1,...,an) pops n operands from stack, computes operation F and push result on stack">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399099884270" ID="ID_475610355" MODIFIED="1399099920845" TEXT="stack machines in contrast to register machines (where &apos;add r1,r2,r3&apos; used)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1399099921458" ID="ID_408467843" MODIFIED="1399099951101" TEXT="1-register stack machine keeps 1 stack element in register (accumulator)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399100958823" FOLDED="true" ID="ID_197604275" MODIFIED="1399101417680" TEXT="stack machine sequence">
+<node CREATED="1399100850958" ID="ID_112547503" MODIFIED="1399100893227" TEXT="expression op(e1,...,en), e1,...,en - subexpressions"/>
+<node CREATED="1399100896117" ID="ID_1097746525" MODIFIED="1399101166236" TEXT="for each ei - compute ei (result is in the accumulator) and push result on the stack"/>
+<node CREATED="1399100923691" ID="ID_1367040043" MODIFIED="1399100944807" TEXT="pop n-1 from the stack and compute op"/>
+<node CREATED="1399100945127" ID="ID_639929855" MODIFIED="1399100955523" TEXT="store result in the accumulator"/>
+</node>
+<node CREATED="1399101418245" ID="ID_379755852" MODIFIED="1399101451282" TEXT="expression evaluation preserves the stack (the result is in accumulator - stack is unchanged)">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+</node>
 </node>
 </node>
 </map>
