@@ -729,7 +729,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1395732992924" FOLDED="true" ID="ID_1937702208" MODIFIED="1399101909328" POSITION="right" TEXT="3. Semantic Analysis">
+<node CREATED="1395732992924" FOLDED="true" ID="ID_1937702208" MODIFIED="1399751852376" POSITION="right" TEXT="3. Semantic Analysis">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
 <node CREATED="1398671728708" FOLDED="true" ID="ID_1626010210" MODIFIED="1398672498186" TEXT="after Lexical analysis and parsing - implement other checks">
@@ -791,7 +791,7 @@
 <icon BUILTIN="info"/>
 </node>
 </node>
-<node CREATED="1398689849188" FOLDED="true" ID="ID_213160700" MODIFIED="1398773823835" TEXT="types checking">
+<node CREATED="1398689849188" FOLDED="true" ID="ID_213160700" MODIFIED="1399751850776" TEXT="types checking">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1398689856376" ID="ID_755732817" MODIFIED="1398690225604" TEXT="the goal - to ensure that operations are used only with the correct types">
 <icon BUILTIN="info"/>
@@ -1021,12 +1021,12 @@
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1395733115642" FOLDED="true" ID="ID_1572053387" MODIFIED="1399101913708" POSITION="right" TEXT="5. Code generation">
+<node CREATED="1395733115642" FOLDED="true" ID="ID_1572053387" MODIFIED="1399895790949" POSITION="right" TEXT="5. Code generation">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
-<node CREATED="1399101882114" FOLDED="true" ID="ID_451149115" MODIFIED="1399101911609" TEXT="prerequirements">
+<node CREATED="1399101882114" FOLDED="true" ID="ID_451149115" MODIFIED="1399751780600" TEXT="runtime organization">
 <icon BUILTIN="idea"/>
-<node CREATED="1399035766716" FOLDED="true" ID="ID_64488099" MODIFIED="1399099497763" TEXT="Activation">
+<node CREATED="1399035766716" FOLDED="true" ID="ID_64488099" MODIFIED="1399707179734" TEXT="Activation">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1399035933449" ID="ID_1214635229" MODIFIED="1399036147498" TEXT="concurency (execution is sequential), exceptions (control return)"/>
 <node CREATED="1399035791334" ID="ID_241230854" MODIFIED="1399035807339" TEXT="invocation of procedure P is invocation">
@@ -1051,7 +1051,7 @@
 <icon BUILTIN="idea"/>
 </node>
 </node>
-<node CREATED="1399099199368" FOLDED="true" ID="ID_842491611" MODIFIED="1399101873652" TEXT="Activation Record">
+<node CREATED="1399099199368" FOLDED="true" ID="ID_842491611" MODIFIED="1399707167688" TEXT="Activation Record">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1399099218525" ID="ID_1739487185" MODIFIED="1399099430294" TEXT="AR (frame) - information needed to manage one procedure activation">
 <icon BUILTIN="info"/>
@@ -1122,6 +1122,529 @@
 <icon BUILTIN="idea"/>
 </node>
 </node>
+</node>
+<node CREATED="1399536484540" FOLDED="true" ID="ID_1814943054" MODIFIED="1399895790181" TEXT="code generation basics">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399540596490" FOLDED="true" ID="ID_170511698" MODIFIED="1399541127561" TEXT="we should simulate stack machine instructions using MIPS instructions and registers">
+<icon BUILTIN="idea"/>
+<node CREATED="1399540830547" ID="ID_121557985" MODIFIED="1399540836493" TEXT="accumulator ~ MIPS register $a0"/>
+<node CREATED="1399540837228" ID="ID_1508780480" MODIFIED="1399540851484" TEXT="stack is in memory (grows toward lower addresses)"/>
+<node CREATED="1399540852256" ID="ID_446326349" MODIFIED="1399540872853" TEXT="address of next location on stack in $sp (stack pointer)"/>
+<node CREATED="1399540888528" ID="ID_617868500" MODIFIED="1399540900408" TEXT="the top of the stack is at $sp+4"/>
+</node>
+<node CREATED="1399540941815" FOLDED="true" ID="ID_775088593" MODIFIED="1399894492134" TEXT="MIPS architecture">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399540949520" ID="ID_1026223128" MODIFIED="1399541053011" TEXT="RISK machine">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399541054107" ID="ID_1431163874" MODIFIED="1399541069176" TEXT="most operations use registers for operands &amp; results"/>
+<node CREATED="1399541069519" ID="ID_456972480" MODIFIED="1399541136091" TEXT="use load&amp;store instructions to use values in memory"/>
+<node CREATED="1399541087610" ID="ID_1985951309" MODIFIED="1399541099916" TEXT="32 general purpose registers (32-bit each)"/>
+<node CREATED="1399541100593" ID="ID_1500990868" MODIFIED="1399541142430" TEXT="we will use $sp, $a0, $t1 (temporary register)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399541247876" ID="ID_291196072" MODIFIED="1399541352085" TEXT="&apos;lw reg1 offset(reg2)&apos; - load 32-bit word to reg1">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1399541290405" ID="ID_499265474" MODIFIED="1399541354189" TEXT="&apos;add reg1 reg2 reg3&apos; - reg1 equals reg2+reg3">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1399541354799" ID="ID_1324226192" MODIFIED="1399541390487" TEXT="&apos;sw reg1 offset(reg2)&apos; - store 32-bit word in reg1 at address reg2+offset">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1399541383847" ID="ID_1679533073" MODIFIED="1399542784434" TEXT="&apos;addiu reg1 reg2 imm&apos; - reg1 equals reg2+imm (overflow is not checked)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1399542784999" ID="ID_935200034" MODIFIED="1399542830319" TEXT="li reg imm - reg equals imm">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1399542949226" FOLDED="true" ID="ID_991364506" MODIFIED="1399543324009" TEXT="7+5 in stack machine">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399542968685" ID="ID_869047442" MODIFIED="1399543089445" TEXT="1. li $a0 7 [acc &lt;- 7]"/>
+<node CREATED="1399542977304" ID="ID_1294673775" MODIFIED="1399543020196" TEXT="2. sw $a0 0($sp)"/>
+<node CREATED="1399543006890" ID="ID_412309314" MODIFIED="1399543295453" TEXT="addiu $sp $sp -4 [push acc]"/>
+<node CREATED="1399543031597" ID="ID_1743215248" MODIFIED="1399543099269" TEXT="3. li $a0 5 [acc &lt;- 5]"/>
+<node CREATED="1399543038910" ID="ID_225613021" MODIFIED="1399543049736" TEXT="4. lw $t1 4($sp)"/>
+<node CREATED="1399543050523" ID="ID_1020710116" MODIFIED="1399543110624" TEXT="add $a0 $a0 $t1 [acc &lt;- acc+top_of_stack]"/>
+<node CREATED="1399543110980" ID="ID_851978354" MODIFIED="1399543129246" TEXT="5. addiu $sp $sp 4 [pop]"/>
+</node>
+<node CREATED="1399704824948" ID="ID_1393944221" MODIFIED="1399704856767" TEXT="sub reg1 reg2 reg3 means reg1&lt;-reg2-reg3">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1399704970880" ID="ID_1598936186" MODIFIED="1399705027715" TEXT="branch equal: beq reg1 reg2 label">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1399705004808" ID="ID_1327075784" MODIFIED="1399705033872" TEXT="unconditional jump: b label">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1399707075733" ID="ID_626450825" MODIFIED="1399707112938" TEXT="jump to label, save address of next instruction in $ra: jal label">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1399707716840" ID="ID_1396963184" MODIFIED="1399707736029" TEXT="jump to address in register: jr reg">
+<icon BUILTIN="yes"/>
+</node>
+</node>
+<node CREATED="1399542942321" FOLDED="true" ID="ID_128575819" MODIFIED="1399895789098" TEXT="code generation example">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399702412282" FOLDED="true" ID="ID_951807427" MODIFIED="1399703956766" TEXT="given language with integers and integer operations">
+<icon BUILTIN="info"/>
+<node CREATED="1399702441190" ID="ID_1247762821" MODIFIED="1399702460170" TEXT="P-&gt;D;P | D"/>
+<node CREATED="1399702460481" ID="ID_1328266191" MODIFIED="1399702479451" TEXT="D-&gt;def id(ARGS)=E"/>
+<node CREATED="1399702479761" ID="ID_1666803364" MODIFIED="1399702489622" TEXT="ARGS-&gt;id,ARGS | id"/>
+<node CREATED="1399702490161" ID="ID_745009276" MODIFIED="1399702542836" TEXT="E-&gt;int | id | if E1=E2 then E3 else E4 | E1+E2 | E1-E2 | id(E1,...,En)"/>
+</node>
+<node CREATED="1399702574178" FOLDED="true" ID="ID_316691872" MODIFIED="1399703947219" TEXT="program for computing Fibonacci numbers">
+<font NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+<node CREATED="1399702611064" ID="ID_1745576857" MODIFIED="1399702710694" TEXT="def fib(x) = if x=1 then 0 else if x=2 then 1 else fib(x-1)+fib(x-2)"/>
+</node>
+<node CREATED="1399702714995" FOLDED="true" ID="ID_1908369989" MODIFIED="1399702840095" TEXT="for each expression e we generate MIPS code">
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1399702755985" ID="ID_463672194" MODIFIED="1399702776220" TEXT="1. that computes the value of e in $s0"/>
+<node CREATED="1399702776713" ID="ID_423778238" MODIFIED="1399702793137" TEXT="2. preserves $sp and the contents of the stack"/>
+</node>
+<node CREATED="1399702841073" ID="ID_104927385" MODIFIED="1399702858485" TEXT="cgen(e) produces code">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399702861201" FOLDED="true" ID="ID_341632936" MODIFIED="1399703853838" TEXT="1. constant: cgen(i)= li $a0 i">
+<node COLOR="#ff0000" CREATED="1399702896651" ID="ID_1202192059" MODIFIED="1399703739641" TEXT="&apos;cgen(i)&apos; - compile time"/>
+<node COLOR="#0000ff" CREATED="1399702908625" ID="ID_1880476076" MODIFIED="1399703729406" TEXT="&apos;li $a0 i&apos; - run time"/>
+</node>
+<node CREATED="1399702887760" FOLDED="true" ID="ID_612761594" MODIFIED="1399705609344" TEXT="2. addition: cgen(e1+e2) =">
+<node COLOR="#ff0000" CREATED="1399703008784" ID="ID_12186994" MODIFIED="1399703769580" TEXT="cgen(e1)"/>
+<node COLOR="#0000ff" CREATED="1399703349611" ID="ID_124484269" MODIFIED="1399704054094" TEXT="print &quot;sw $a0 0($sp)&quot; - print at compile time, content at run time"/>
+<node COLOR="#0000ff" CREATED="1399703400051" ID="ID_456180090" MODIFIED="1399703891595" TEXT="print &quot;addiu $sp $sp -4&quot;"/>
+<node COLOR="#ff0000" CREATED="1399703410838" ID="ID_315574071" MODIFIED="1399703777284" TEXT="cgen(e2)"/>
+<node COLOR="#0000ff" CREATED="1399703437087" ID="ID_995922004" MODIFIED="1399703909581" TEXT="print &quot;lw $t1 4($sp)&quot;"/>
+<node COLOR="#0000ff" CREATED="1399703455675" ID="ID_1315256299" MODIFIED="1399703916144" TEXT="print &quot;add $a0 $t1 $a0&quot;">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node COLOR="#0000ff" CREATED="1399703467662" ID="ID_1978184115" MODIFIED="1399703924988" TEXT="print &quot;addiu $sp $sp 4&quot;">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1399704124822" FOLDED="true" ID="ID_1320456592" MODIFIED="1399704620985" TEXT="optimization?">
+<icon BUILTIN="idea"/>
+<node COLOR="#ff0000" CREATED="1399703008784" ID="ID_1477154339" MODIFIED="1399703769580" TEXT="cgen(e1)"/>
+<node COLOR="#0000ff" CREATED="1399703349611" ID="ID_1694617193" MODIFIED="1399704203015" TEXT="move $t1 $a0"/>
+<node COLOR="#ff0000" CREATED="1399703410838" ID="ID_69513723" MODIFIED="1399703777284" TEXT="cgen(e2)"/>
+<node COLOR="#0000ff" CREATED="1399703455675" ID="ID_1172750566" MODIFIED="1399704475218" TEXT="add $a0 $t1 $a0">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399704303621" ID="ID_1980666569" MODIFIED="1399704436854" TEXT="wrong! temporary register could be overwritten in nested expressions">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1399704694241" ID="ID_1697499206" MODIFIED="1399704749071" TEXT="code for + is a template with &quot;holes&quot; for code evaluating e1 and e2">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1399704621473" FOLDED="true" ID="ID_1317114578" MODIFIED="1399704786141" TEXT="stack machine code generation is recursive">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+<node CREATED="1399704762736" ID="ID_241482558" MODIFIED="1399704784548" TEXT="code for e1+e2 is code for e1 and e2 glued together"/>
+</node>
+<node CREATED="1399704637224" ID="ID_382678009" MODIFIED="1399704743352" TEXT="code generation can be written as RD of the AST (at least for expressions)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1399705046131" FOLDED="true" ID="ID_1079690658" MODIFIED="1399895782222" TEXT="3. cgen(if e1=e2 then e3 else e4) =">
+<node COLOR="#ff0000" CREATED="1399703008784" ID="ID_1325087271" MODIFIED="1399703769580" TEXT="cgen(e1)"/>
+<node COLOR="#0000ff" CREATED="1399703349611" ID="ID_1828533935" MODIFIED="1399705272980" TEXT="sw $a0 0($sp)"/>
+<node COLOR="#0000ff" CREATED="1399703400051" ID="ID_243369842" MODIFIED="1399705281340" TEXT="addiu $sp $sp -4"/>
+<node COLOR="#ff0000" CREATED="1399703410838" ID="ID_1011464148" MODIFIED="1399703777284" TEXT="cgen(e2)"/>
+<node COLOR="#0000ff" CREATED="1399703437087" ID="ID_1390378815" MODIFIED="1399705289669" TEXT="lw $t1 4($sp)"/>
+<node COLOR="#0000ff" CREATED="1399703467662" ID="ID_1571152585" MODIFIED="1399705333563" TEXT="addiu $sp $sp 4">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node COLOR="#0000ff" CREATED="1399705334776" ID="ID_1531973256" MODIFIED="1399705370547" TEXT="beq $a0 $t1 true_branch">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node COLOR="#0000ff" CREATED="1399705358080" ID="ID_306138955" MODIFIED="1399705601313" TEXT="false_branch:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node COLOR="#ff0000" CREATED="1399705383115" ID="ID_1828390201" MODIFIED="1399705459332" TEXT="cgen(e4)"/>
+<node COLOR="#0000ff" CREATED="1399705389587" ID="ID_343108217" MODIFIED="1399705525767" TEXT="b end_if">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node COLOR="#0000ff" CREATED="1399705398108" ID="ID_1601734950" MODIFIED="1399705597781" TEXT="true_branch:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node COLOR="#ff0000" CREATED="1399705406547" ID="ID_346510050" MODIFIED="1399705459332" TEXT="cgen(e3)"/>
+<node COLOR="#0000ff" CREATED="1399705413892" ID="ID_741062796" MODIFIED="1399705519111" TEXT="end_if:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1399706413469" ID="ID_1249086517" MODIFIED="1399706455424" TEXT="code for function calls and function definitions depends on the layout of the Activation record">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399706513983" ID="ID_1593846335" MODIFIED="1399706736812" TEXT="parameters should be pushed on to the stack in reverse order">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399706776980" ID="ID_1530378346" MODIFIED="1399706792986" TEXT="no need for control link">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399706801407" ID="ID_676531690" MODIFIED="1399706845457" TEXT="we need the return address">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399706846046" ID="ID_924843215" MODIFIED="1399706874688" TEXT="a pointer to the current activation is useful (frame pointer - $fp)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399706996097" ID="ID_938659808" MODIFIED="1399707031943" TEXT="For f(x,y) the AR is RA(return address), x, y, old fp">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399707217192" ID="ID_992643131" MODIFIED="1399707263800" TEXT="calling sequence is the instructions of both caller and callee to set up a function invocation">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1399705714098" FOLDED="true" ID="ID_609149039" MODIFIED="1399895496661" TEXT="4. cgen(f(e1,...,en)) = [caller side]">
+<node COLOR="#0000ff" CREATED="1399703349611" ID="ID_1126962968" MODIFIED="1399707557925" TEXT="sw $fp 0($sp)"/>
+<node COLOR="#0000ff" CREATED="1399703400051" ID="ID_1025726395" MODIFIED="1399705281340" TEXT="addiu $sp $sp -4"/>
+<node COLOR="#ff0000" CREATED="1399703410838" ID="ID_1264243060" MODIFIED="1399707568535" TEXT="cgen(en)"/>
+<node COLOR="#0000ff" CREATED="1399703349611" ID="ID_396092438" MODIFIED="1399707584961" TEXT="sw $a0 0($sp)"/>
+<node COLOR="#0000ff" CREATED="1399703400051" ID="ID_1682615526" MODIFIED="1399705281340" TEXT="addiu $sp $sp -4"/>
+<node CREATED="1399707586468" ID="ID_1978323031" MODIFIED="1399707587546" TEXT="..."/>
+<node COLOR="#ff0000" CREATED="1399707622431" ID="ID_1286768339" MODIFIED="1399707631088" TEXT="cgen(e1)"/>
+<node COLOR="#0000ff" CREATED="1399703349611" ID="ID_64878864" MODIFIED="1399707557925" TEXT="sw $fp 0($sp)"/>
+<node COLOR="#0000ff" CREATED="1399703400051" ID="ID_1785305333" MODIFIED="1399705281340" TEXT="addiu $sp $sp -4"/>
+<node COLOR="#0000ff" CREATED="1399707642606" ID="ID_1283013954" MODIFIED="1399707659594" TEXT="jal f_entry">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1399707766476" FOLDED="true" ID="ID_1276852242" MODIFIED="1399895493725" TEXT="5. cgen(def f(x1,...,xn)=e) = [callee side]">
+<node COLOR="#0000ff" CREATED="1399708475384" ID="ID_148552944" MODIFIED="1399708490260" TEXT="f_entry:"/>
+<node COLOR="#0000ff" CREATED="1399707806936" ID="ID_1111143695" MODIFIED="1399708585140" TEXT="move $fp $sp - copy current value of stack pointer"/>
+<node COLOR="#0000ff" CREATED="1399708313313" ID="ID_688639784" MODIFIED="1399708557703" TEXT="sw $ra 0($sp) - save the return address on stack"/>
+<node COLOR="#0000ff" CREATED="1399708323844" ID="ID_281418526" MODIFIED="1399708403844" TEXT="addiu $sp $sp -4"/>
+<node COLOR="#ff0000" CREATED="1399708332701" ID="ID_1498335057" MODIFIED="1399708413360" TEXT="cgen(e)"/>
+<node COLOR="#0000ff" CREATED="1399708337254" ID="ID_1749930302" MODIFIED="1399708652655" TEXT="lw $ra 4($sp) - load return address back"/>
+<node COLOR="#0000ff" CREATED="1399708348342" ID="ID_522160918" MODIFIED="1399708403844" TEXT="addiu $sp $sp z">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node COLOR="#0000ff" CREATED="1399708360261" ID="ID_1115392042" MODIFIED="1399708679250" TEXT="lw $fp 0($sp) - load old frame pointer"/>
+<node COLOR="#0000ff" CREATED="1399708373054" ID="ID_746305189" MODIFIED="1399708717375" TEXT="jr $ra - resume execution of calling function">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399708743158" ID="ID_578154146" MODIFIED="1399708750656" TEXT="z = 4*n+8"/>
+</node>
+<node CREATED="1399708891161" ID="ID_1085010721" MODIFIED="1399709191966" TEXT="xi can be found at 4*i address in the frame pointer">
+<icon BUILTIN="messagebox_warning"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1399729536019" FOLDED="true" ID="ID_889590757" MODIFIED="1399895786265" TEXT="def sumto(x) = if x=0 then 0 else x+sumto(x-1)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+<icon BUILTIN="info"/>
+<node CREATED="1399729690846" ID="ID_1047805476" MODIFIED="1399894708836" TEXT="sumto_entry:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399729705805" ID="ID_775286515" MODIFIED="1399894472477" TEXT="move $fp $sp"/>
+<node CREATED="1399894507234" ID="ID_740039593" MODIFIED="1399894516272" TEXT="sw $ra 0($sp)"/>
+<node CREATED="1399894516478" ID="ID_708196020" MODIFIED="1399895644237" TEXT="addiu $sp $sp -4 - push RA"/>
+<node CREATED="1399894524050" ID="ID_12996346" MODIFIED="1399894553689" TEXT="lw $a0 4($fp) - load x"/>
+<node CREATED="1399894554627" ID="ID_869145877" MODIFIED="1399894567721" TEXT="sw $a0 0($sp)"/>
+<node CREATED="1399894567933" ID="ID_968822966" MODIFIED="1399895624961" TEXT="addiu $sp $sp -4 - push x on to the stack"/>
+<node CREATED="1399894590408" ID="ID_935987263" MODIFIED="1399894604761" TEXT="li $a0 0"/>
+<node CREATED="1399894604992" ID="ID_438430320" MODIFIED="1399894616686" TEXT="lw $t1 4($sp)"/>
+<node CREATED="1399894616950" ID="ID_1275868880" MODIFIED="1399895654027" TEXT="addiu $sp $sp 4 - pop x"/>
+<node CREATED="1399894633039" ID="ID_1417601322" MODIFIED="1399894662696" TEXT="beq $a0 $t1 true_branch1"/>
+<node CREATED="1399894668636" ID="ID_340951213" MODIFIED="1399894706924" TEXT="false_branch1:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399894854119" ID="ID_1016627147" MODIFIED="1399894889412" TEXT="lw $a0 4($fp) - load x"/>
+<node CREATED="1399894889716" ID="ID_1525843379" MODIFIED="1399894899150" TEXT="sw $a0 0($sp)"/>
+<node CREATED="1399894899353" ID="ID_1992694072" MODIFIED="1399894912332" TEXT="addiu $sp $sp -4 - push x"/>
+<node COLOR="#3333ff" CREATED="1399894912545" ID="ID_1050360849" MODIFIED="1399895367589" TEXT="sw $fp 0($sp) - begin of caller side sumto()"/>
+<node COLOR="#3333ff" CREATED="1399895148249" ID="ID_51757069" MODIFIED="1399895367589" TEXT="addiu $sp $sp -4"/>
+<node COLOR="#3333ff" CREATED="1399895133658" ID="ID_1859211501" MODIFIED="1399895367589" TEXT="lw $a0 4($fp) - load x to calculate (x-1)"/>
+<node COLOR="#3333ff" CREATED="1399895197537" ID="ID_1334852777" MODIFIED="1399895367589" TEXT="sw $a0 0($sp)"/>
+<node COLOR="#3333ff" CREATED="1399895212460" ID="ID_649361354" MODIFIED="1399895367589" TEXT="addiu $sp $sp -4 - push x on to the stack"/>
+<node COLOR="#3333ff" CREATED="1399894927599" ID="ID_528999057" MODIFIED="1399895367590" TEXT="li $a0 1"/>
+<node COLOR="#3333ff" CREATED="1399895251329" ID="ID_656481582" MODIFIED="1399895367590" TEXT="lw $t1 4($sp)"/>
+<node COLOR="#3333ff" CREATED="1399895264007" ID="ID_878873011" MODIFIED="1399895367590" TEXT="sub $a0 $t1 $a0"/>
+<node COLOR="#3333ff" CREATED="1399895230988" ID="ID_1750252215" MODIFIED="1399895367590" TEXT="addiu $sp $sp 4 - pop x from stack"/>
+<node COLOR="#3333ff" CREATED="1399895371789" ID="ID_1778396322" MODIFIED="1399895446405" TEXT="sw $a0 0($sp)"/>
+<node COLOR="#3333ff" CREATED="1399895400286" ID="ID_1734538146" MODIFIED="1399895446405" TEXT="addiu $sp $sp -4"/>
+<node COLOR="#3333ff" CREATED="1399895421892" ID="ID_24814234" MODIFIED="1399895446405" TEXT="jal sumtp_entry"/>
+<node CREATED="1399895460368" ID="ID_832442729" MODIFIED="1399895478197" TEXT="lw $t1 4($sp)"/>
+<node CREATED="1399895514023" ID="ID_1493752194" MODIFIED="1399895547526" TEXT="add $a0 $t1 $a0"/>
+<node CREATED="1399895547760" ID="ID_512739281" MODIFIED="1399895581749" TEXT="addiu $sp $sp 4 - pop x"/>
+<node CREATED="1399895480944" ID="ID_639771879" MODIFIED="1399895562665" TEXT="b endif1"/>
+<node CREATED="1399894751940" ID="ID_1897523565" MODIFIED="1399894766244" TEXT="true_branch1:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399894757510" ID="ID_1431361376" MODIFIED="1399894765131" TEXT="li $a0 0"/>
+<node CREATED="1399894671758" ID="ID_1818670935" MODIFIED="1399894705228" TEXT="endif1:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399894712339" ID="ID_1662395864" MODIFIED="1399895675470" TEXT="lw $ra 4($sp)"/>
+<node CREATED="1399894732319" ID="ID_858524141" MODIFIED="1399895680440" TEXT="addiu $sp $sp 12 - pop RA"/>
+<node CREATED="1399894800903" ID="ID_203368421" MODIFIED="1399894813370" TEXT="lw $fp 0($sp) - load old frame pointer"/>
+<node CREATED="1399894819433" ID="ID_935261219" MODIFIED="1399894829141" TEXT="jr $ra - resume calling function"/>
+</node>
+</node>
+<node CREATED="1399743446435" FOLDED="true" ID="ID_451763381" MODIFIED="1399793481500" TEXT="temporaries">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399743484937" ID="ID_1230862721" MODIFIED="1399743508673" TEXT="idea: keep temporaries in the AR">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1399743510573" ID="ID_1682344795" MODIFIED="1399743587595" TEXT="cgen must assign a fixed location for each temporary in AR">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399743930355" ID="ID_1102611758" MODIFIED="1399743990484" TEXT="NT(e) - number of temporaries needed to evaluate e">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399744031844" ID="ID_1196315076" MODIFIED="1399744148384" TEXT="NT(e1+e2) = max(NT(e1), NT(e2)+1) = NT(e1-e2)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1399744130570" ID="ID_221922776" MODIFIED="1399744466875" TEXT="NT(if e1=e2 then e3 else e4) = max(NT(e1), NT(e2)+1, NT(e3), NT(e4))">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399744231538" ID="ID_1663773394" MODIFIED="1399744475391" TEXT="NT(id(e1,...,en))=max(NT(e1),...,NT(en))">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399744284596" ID="ID_1179552169" MODIFIED="1399744475391" TEXT="NT(int)=0">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399744290456" ID="ID_879506501" MODIFIED="1399744475391" TEXT="NT(id)=0">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399744547338" FOLDED="true" ID="ID_1322911424" MODIFIED="1399744669474" TEXT="for a function definition f(x1,...,xn)=e the AR has 2+n+NT(e) elements">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399744627997" ID="ID_609482401" MODIFIED="1399744637154" TEXT="RA"/>
+<node CREATED="1399744637436" ID="ID_1888887254" MODIFIED="1399744644233" TEXT="FP"/>
+<node CREATED="1399744644497" ID="ID_1270982257" MODIFIED="1399744654778" TEXT="n arguments"/>
+<node CREATED="1399744655177" ID="ID_449968653" MODIFIED="1399744668005" TEXT="NT(e) for intermidiate results"/>
+</node>
+<node CREATED="1399744731462" ID="ID_1192927982" MODIFIED="1399744956204" TEXT="new argument to cgen - position of the next available temporary">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1399744803022" FOLDED="true" ID="ID_1400094898" MODIFIED="1399793476085" TEXT="cgen(e1+e2)=cgen(e1+e2, nt)">
+<node COLOR="#ff3333" CREATED="1399744817313" ID="ID_679100175" MODIFIED="1399744927937" TEXT="cgen(e1, nt)">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node COLOR="#3333ff" CREATED="1399744855941" ID="ID_1233822908" MODIFIED="1399744938047" TEXT="sw $a0 nt($fp)"/>
+<node COLOR="#ff3333" CREATED="1399744869030" ID="ID_80818348" MODIFIED="1399744927937" TEXT="cgen(e2, nt+4)">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node COLOR="#3333ff" CREATED="1399744878029" ID="ID_1057552377" MODIFIED="1399744938047" TEXT="lw $t1 nt($fp)"/>
+<node COLOR="#3333ff" CREATED="1399744887558" ID="ID_1903047322" MODIFIED="1399744938047" TEXT="add $a0 $t1 $a0"/>
+</node>
+</node>
+<node CREATED="1399745128212" FOLDED="true" ID="ID_422650159" MODIFIED="1399793460735" TEXT="object layout">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399745141969" ID="ID_1518721420" MODIFIED="1399745208297" TEXT="OO implementation = basic cgen + more stuff">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1399745209334" ID="ID_277899838" MODIFIED="1399745260195" TEXT="OO slogan: if B is a subclass of A than an object of class B can be used wherever an object of class A is expected">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399745935754" ID="ID_1588751261" MODIFIED="1399745986000" TEXT="each attribute stored at a fixed offset in the object">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1399745987860" ID="ID_1266163725" MODIFIED="1399746727019" TEXT="COOL: each object contain header information: class tag (int), object size (int), dispartch ptr (ptr to table of methods), attributes (subsequent slots)"/>
+<node CREATED="1399746728116" ID="ID_1798834126" MODIFIED="1399747672878" TEXT="subclasses are the extensions (have addition attributes)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1399748277133" ID="ID_1609412942" MODIFIED="1399748299907" TEXT="every class has a fixed set of methods">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399748301229" ID="ID_611864656" MODIFIED="1399748379843" TEXT="dispatch table indexes these methods (array of method entry points)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399748380916" ID="ID_577375143" MODIFIED="1399748436294" TEXT="every method lives at a fixed offset in the dispatch table for a class and all of its subclasses">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399748614104" ID="ID_1723106882" MODIFIED="1399748700423" TEXT="methods can be overriden - so methods in dispatch table are not equal for different subclasses">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1399749216311" FOLDED="true" ID="ID_593527038" MODIFIED="1399793441187" TEXT="operational semantics">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399751788225" ID="ID_1984053056" MODIFIED="1399751897044" TEXT="Context &#x251c; e:C - in the given context expression e has type C (we use - evaluates to value v)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399751977687" ID="ID_1286067645" MODIFIED="1399752127629" TEXT="environment - mapping var-&gt;memory location">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399752086830" ID="ID_382976487" MODIFIED="1399752124301" TEXT="store - mapping memory location -&gt; values">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1399752150826" ID="ID_1458620570" MODIFIED="1399752195943" TEXT="E=[a:l1, b:l2], locations"/>
+<node CREATED="1399752178130" FOLDED="true" ID="ID_1714691524" MODIFIED="1399752331101" TEXT="S=[l1-&gt;5, l2-&gt;7], store">
+<node CREATED="1399752262789" ID="ID_1628125785" MODIFIED="1399752282353" TEXT="S`=S[12/i] defines store such that:"/>
+<node CREATED="1399752282710" ID="ID_469135404" MODIFIED="1399752291664" TEXT="S`(l1)=12"/>
+<node CREATED="1399752291990" ID="ID_1349702425" MODIFIED="1399752321069" TEXT="S`(l)=S(l) if l!=l1"/>
+</node>
+<node CREATED="1399752334997" FOLDED="true" ID="ID_972720859" MODIFIED="1399752526842" TEXT="COOL values are objects">
+<icon BUILTIN="idea"/>
+<node CREATED="1399752402611" ID="ID_314886008" MODIFIED="1399752438438" TEXT="X(a1=l1,...,an=ln) is a Cool object where:"/>
+<node CREATED="1399752422797" ID="ID_487958273" MODIFIED="1399752443782" TEXT="X - class"/>
+<node CREATED="1399752444261" ID="ID_747850939" MODIFIED="1399752464762" TEXT="ai - attributes (including inherited ones)"/>
+<node CREATED="1399752465636" ID="ID_1167029956" MODIFIED="1399752481902" TEXT="li - locations where ai value stored"/>
+</node>
+<node CREATED="1399752527864" FOLDED="true" ID="ID_1164670844" MODIFIED="1399752667468" TEXT="special Cool classes without objects">
+<icon BUILTIN="info"/>
+<node CREATED="1399752545474" ID="ID_491297583" MODIFIED="1399752594853" TEXT="Int(5)"/>
+<node CREATED="1399752552783" ID="ID_1264181562" MODIFIED="1399752561643" TEXT="Bool(true)"/>
+<node CREATED="1399752562023" ID="ID_1130521672" MODIFIED="1399752587228" TEXT="String(4, &quot;Cool&quot;)"/>
+<node CREATED="1399752604387" ID="ID_1436055385" MODIFIED="1399752661608" TEXT="void of type Object: no operations can be performed on it except isvoid(), might use NULL"/>
+</node>
+<node CREATED="1399752668496" FOLDED="true" ID="ID_121863155" MODIFIED="1399752971507" TEXT="judgement">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399752711388" ID="ID_980169042" MODIFIED="1399752831562" TEXT="so,E,S &#x251c; e:v,S`">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399752730175" ID="ID_1607780061" MODIFIED="1399752742081" TEXT="so - current value of self"/>
+<node CREATED="1399752742790" ID="ID_1910559257" MODIFIED="1399752755869" TEXT="E - current variable environment"/>
+<node CREATED="1399752756170" ID="ID_649526200" MODIFIED="1399752782998" TEXT="S - current store"/>
+<node CREATED="1399752783310" ID="ID_185424625" MODIFIED="1399752813749" TEXT="if the evaluation of e termintates then the value of e is v and the new store is S`"/>
+</node>
+<node CREATED="1399752976401" ID="ID_1667007590" MODIFIED="1399753021071" TEXT="Environment, self object don`t change">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1399753101698" FOLDED="true" ID="ID_458764647" MODIFIED="1399793418844" TEXT="COOL operational semantics">
+<node CREATED="1399788738081" ID="ID_1752987862" MODIFIED="1399788777252" TEXT="so,E,S &#x251c; true : Bool(true), S"/>
+<node CREATED="1399788845964" ID="ID_684506391" MODIFIED="1399788857574" TEXT="so,E,S &#x251c; false : Bool(false), S"/>
+<node CREATED="1399788857963" FOLDED="true" ID="ID_1470262346" MODIFIED="1399789008502" TEXT="integers">
+<node CREATED="1399788866780" ID="ID_1054038989" MODIFIED="1399788878609" TEXT="i is a integer literal"/>
+<node CREATED="1399788879103" ID="ID_1100353487" MODIFIED="1399788886166" TEXT="_______________"/>
+<node CREATED="1399788887474" ID="ID_1433369249" MODIFIED="1399788929187" TEXT="so,E,S &#x251c; i:Int(i),S"/>
+</node>
+<node CREATED="1399788861811" FOLDED="true" ID="ID_1559333947" MODIFIED="1399789007580" TEXT="strings">
+<node CREATED="1399788936750" ID="ID_1554343026" MODIFIED="1399788942704" TEXT="s is a string literal"/>
+<node CREATED="1399788942982" ID="ID_699424247" MODIFIED="1399788950623" TEXT="n is the length of s"/>
+<node CREATED="1399788950923" ID="ID_1467655314" MODIFIED="1399788953095" TEXT="________________"/>
+<node CREATED="1399788954275" ID="ID_723902865" MODIFIED="1399788970401" TEXT="so,E,S &#x251c; s:String(n,s), S"/>
+</node>
+<node CREATED="1399789016038" FOLDED="true" ID="ID_104918390" MODIFIED="1399789110119" TEXT="identifiers">
+<node CREATED="1399789023148" ID="ID_1528064674" MODIFIED="1399789030148" TEXT="E(id)=lid"/>
+<node CREATED="1399789030753" ID="ID_507890997" MODIFIED="1399789036004" TEXT="S(lid)=v"/>
+<node CREATED="1399789042646" ID="ID_429963418" MODIFIED="1399789047459" TEXT="_________________"/>
+<node CREATED="1399789051459" ID="ID_1996606715" MODIFIED="1399789062100" TEXT="so,E,S &#x251c; id:v, S"/>
+</node>
+<node CREATED="1399789111249" ID="ID_182927120" MODIFIED="1399789124547" TEXT="so,E,S &#x251c; self: so, S"/>
+<node CREATED="1399789132640" FOLDED="true" ID="ID_981411322" MODIFIED="1399789335389" TEXT="assignment">
+<node CREATED="1399789147407" ID="ID_1131795034" MODIFIED="1399789163548" TEXT="so,E,S &#x251c; e:v,S1"/>
+<node CREATED="1399789163876" ID="ID_1078972499" MODIFIED="1399789170095" TEXT="E(id)=Iid"/>
+<node CREATED="1399789171204" ID="ID_379764935" MODIFIED="1399789183845" TEXT="S2=S1[v/lid]"/>
+<node CREATED="1399789184376" ID="ID_1426370840" MODIFIED="1399789187939" TEXT="___________________"/>
+<node CREATED="1399789188835" ID="ID_717180345" MODIFIED="1399789204196" TEXT="so,E,S &#x251c; id&lt;-e:v, S2"/>
+</node>
+<node CREATED="1399789335930" FOLDED="true" ID="ID_8632615" MODIFIED="1399789537495" TEXT="addition">
+<node CREATED="1399789343821" ID="ID_1770115406" MODIFIED="1399789355697" TEXT="so,E,S &#x251c; e1:v1, S1"/>
+<node CREATED="1399789355977" ID="ID_1936774710" MODIFIED="1399789417277" TEXT="so,E,S1 &#x251c; e2:v2, S2"/>
+<node CREATED="1399789371453" ID="ID_160861718" MODIFIED="1399789379282" TEXT="_________________"/>
+<node CREATED="1399789379962" ID="ID_1234953318" MODIFIED="1399789394526" TEXT="so,E,S &#x251c; e1+e2:v1+v2, S2"/>
+</node>
+<node CREATED="1399789538048" FOLDED="true" ID="ID_51679102" MODIFIED="1399790192423" TEXT="statement block">
+<node CREATED="1399789543890" ID="ID_79240841" MODIFIED="1399789554844" TEXT="so,E,S &#x251c; e1:v1,S1"/>
+<node CREATED="1399789555124" ID="ID_1231003170" MODIFIED="1399789565624" TEXT="so,E,S1 &#x251c; e2:v2,S2"/>
+<node CREATED="1399789565923" ID="ID_168901486" MODIFIED="1399789567502" TEXT="..."/>
+<node CREATED="1399789567764" ID="ID_607890046" MODIFIED="1399789584251" TEXT="so,E,Sn-1 &#x251c; en:vn, Sn"/>
+<node CREATED="1399789584824" ID="ID_108034979" MODIFIED="1399789597293" TEXT="___________________"/>
+<node CREATED="1399789597833" ID="ID_1591987680" MODIFIED="1399789628225" TEXT="so,E,S &#x251c; {e1;...en;}:vn, Sn"/>
+</node>
+<node CREATED="1399790193074" FOLDED="true" ID="ID_1670580263" MODIFIED="1399790336614" TEXT="if-then-else expression">
+<node CREATED="1399790205653" ID="ID_199017018" MODIFIED="1399790224560" TEXT="so,E,S&#x251c; e1:Bool(true), S1"/>
+<node CREATED="1399790224802" ID="ID_254372231" MODIFIED="1399790235521" TEXT="so,E,S1 &#x251c; e2:v, S2"/>
+<node CREATED="1399790235750" ID="ID_528168467" MODIFIED="1399790237516" TEXT="_______________"/>
+<node CREATED="1399790238329" ID="ID_726324101" MODIFIED="1399790279441" TEXT="so,E,S &#x251c; if e1 then e2 else e3 fi:v, S2"/>
+</node>
+<node CREATED="1399790337199" FOLDED="true" ID="ID_922855323" MODIFIED="1399790586063" TEXT="while-loop">
+<node CREATED="1399790348563" ID="ID_389046257" MODIFIED="1399790367768" TEXT="so,E,S &#x251c; e1:Bool(false), S1"/>
+<node CREATED="1399790368111" ID="ID_1046234215" MODIFIED="1399790369611" TEXT="__________________"/>
+<node CREATED="1399790370171" ID="ID_815979306" MODIFIED="1399790389922" TEXT="so,E,S &#x251c; while e1 loop e2 pool: void,S1"/>
+<node CREATED="1399790432137" ID="ID_1435159128" MODIFIED="1399790432137" TEXT=""/>
+<node CREATED="1399790433058" ID="ID_793158979" MODIFIED="1399790452548" TEXT="so, E,S &#x251c; e1:Bool(true),S1"/>
+<node CREATED="1399790453905" ID="ID_748997217" MODIFIED="1399790473923" TEXT="so,E,S1 &#x251c; e2:v,S2"/>
+<node CREATED="1399790474994" ID="ID_423398522" MODIFIED="1399790499979" TEXT="so,E,S2 &#x251c; while e1 loop e2 pool : void,S3"/>
+<node CREATED="1399790500265" ID="ID_1823670033" MODIFIED="1399790502031" TEXT="___________________"/>
+<node CREATED="1399790502764" ID="ID_1263128622" MODIFIED="1399790519015" TEXT="so,E,S &#x251c; while e2 loop e2 pool : void,S3"/>
+</node>
+<node CREATED="1399790594607" FOLDED="true" ID="ID_1440935614" MODIFIED="1399790975646" TEXT="let expression">
+<node CREATED="1399790602749" ID="ID_846550874" MODIFIED="1399790616390" TEXT="so,E,S &#x251c; e1:v1,S1"/>
+<node CREATED="1399790616648" ID="ID_1902662778" MODIFIED="1399790891799" TEXT="so,E[Inew/id],S1[v1/lnew] &#x251c; e2:v,S2">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399790630555" ID="ID_799635961" MODIFIED="1399790639353" TEXT="_________________"/>
+<node CREATED="1399790640036" ID="ID_26776311" MODIFIED="1399790665647" TEXT="so,E,S &#x251c; let id:T &lt;- e1 in e2:v2,S2"/>
+<node CREATED="1399790773703" ID="ID_1399042698" MODIFIED="1399790811427" TEXT="lnew=newloc(S) - location not already used in S">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1399790976266" FOLDED="true" ID="ID_1847167857" MODIFIED="1399792336247" TEXT="allocation of new object">
+<node CREATED="1399791152466" ID="ID_1878544102" MODIFIED="1399791222789" TEXT="1. allocate locations to hold all attributes of an object of class T"/>
+<node CREATED="1399791223818" FOLDED="true" ID="ID_1488571292" MODIFIED="1399791343151" TEXT="2. set attributes with their default values">
+<node CREATED="1399791287969" ID="ID_1907049602" MODIFIED="1399791302392" TEXT="Dint = Int(0)"/>
+<node CREATED="1399791302698" ID="ID_1931017361" MODIFIED="1399791313793" TEXT="Dbool = Bool(false)"/>
+<node CREATED="1399791314093" ID="ID_694345708" MODIFIED="1399791325250" TEXT="Dstring = String(0,&quot;&quot;)"/>
+<node CREATED="1399791325526" ID="ID_971312637" MODIFIED="1399791336120" TEXT="Da = void (any other class)"/>
+</node>
+<node CREATED="1399791239258" FOLDED="true" ID="ID_903141303" MODIFIED="1399791652359" TEXT="3. evaluate the initializers and set the resulting attribute values">
+<node CREATED="1399791384165" ID="ID_532201743" MODIFIED="1399791431911" TEXT="class(A)=(a1:T1&lt;-e1,...,an:Tn&lt;-en)"/>
+<node CREATED="1399791432500" ID="ID_763899695" MODIFIED="1399791457408" TEXT="ai - all the attributes including inherited one`s"/>
+<node CREATED="1399791602413" ID="ID_559949489" MODIFIED="1399791622851" TEXT="greatest ancestor first">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1399791257218" ID="ID_1445736046" MODIFIED="1399791677234" TEXT="4. return the newly allocated object"/>
+<node CREATED="1399791678003" FOLDED="true" ID="ID_1014334784" MODIFIED="1399792311356" TEXT="new T">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399791688675" ID="ID_797002877" MODIFIED="1399791737003" TEXT="T0 = if (T==SELF_TYPE and so=X(...)) then X else T"/>
+<node CREATED="1399791737315" ID="ID_1004524902" MODIFIED="1399791757769" TEXT="class(T0)=(a1:T1&lt;-e1,...,an:Tn&lt;-en)"/>
+<node CREATED="1399791759496" ID="ID_1057441865" MODIFIED="1399791777810" TEXT="li = newloc(S) i=1,...,n"/>
+<node CREATED="1399791778623" ID="ID_1203080085" MODIFIED="1399791795046" TEXT="v=T0(a1=l1,...,an=ln)"/>
+<node CREATED="1399791795539" ID="ID_635780566" MODIFIED="1399792246766" TEXT="S1=S[DT1/l1,...,DTn/ln] - default initializers">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399791822243" ID="ID_382972531" MODIFIED="1399792254298" TEXT="E`=[a1:l1,...,an:ln] - inner scope">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1399791842070" ID="ID_1223011429" MODIFIED="1399791871338" TEXT="v,E`,S1 &#x251c; {a1&lt;-e1;...;an&lt;-en;}:vn,S2"/>
+<node CREATED="1399791871699" ID="ID_1096652616" MODIFIED="1399791873652" TEXT="___________________"/>
+<node CREATED="1399791874347" ID="ID_1977527966" MODIFIED="1399791883863" TEXT="so,E,S &#x251c; new T:v,S2"/>
+</node>
+</node>
+<node CREATED="1399792337051" FOLDED="true" ID="ID_1047790811" MODIFIED="1399793404674" TEXT="dynamic (method) dispatch">
+<node CREATED="1399792353653" ID="ID_1239894086" MODIFIED="1399792364594" TEXT="e0.f(e1,...,en)"/>
+<node CREATED="1399792370318" ID="ID_788772924" MODIFIED="1399792381132" TEXT="1. evaluate in order e1,...,en"/>
+<node CREATED="1399792381471" ID="ID_205447208" MODIFIED="1399792393331" TEXT="2. evaluate e0 to the target object"/>
+<node CREATED="1399792393579" ID="ID_1705587429" MODIFIED="1399792413767" TEXT="3. let X be the dynamic type of the target object"/>
+<node CREATED="1399792419811" ID="ID_995075484" MODIFIED="1399792437484" TEXT="4. fetch from X the definition of f (with n args)"/>
+<node CREATED="1399792438871" ID="ID_1629405739" MODIFIED="1399792466138" TEXT="5. create n new locations and environments that maps f`s formal arguments to those locations"/>
+<node CREATED="1399792467446" ID="ID_1312660314" MODIFIED="1399792487069" TEXT="6. initialize the locations with the actual arguments"/>
+<node CREATED="1399792487594" ID="ID_1642506504" MODIFIED="1399792506548" TEXT="7. set self to the target object and evaluate f`s body"/>
+<node CREATED="1399792552058" ID="ID_174581740" MODIFIED="1399792596488" TEXT="impl(A,f)=(x1,...,xn,ebody) - implementation of method in class"/>
+<node CREATED="1399792611604" FOLDED="true" ID="ID_1394478655" MODIFIED="1399792892923" TEXT="e0.f(e1,...,en)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1399792644236" ID="ID_1523404361" MODIFIED="1399792658909" TEXT="so,E,S&#x251c; e1:v1,S1"/>
+<node CREATED="1399792662579" ID="ID_1058916579" MODIFIED="1399792676627" TEXT="so,E,S1&#x251c; e2:v2,S2"/>
+<node CREATED="1399792677419" ID="ID_1404476746" MODIFIED="1399792678919" TEXT="..."/>
+<node CREATED="1399792679300" ID="ID_1335334147" MODIFIED="1399792692785" TEXT="so,E,Sn-1&#x251c; en:vn,Sn"/>
+<node CREATED="1399792693432" ID="ID_910961453" MODIFIED="1399792719464" TEXT="so,E,Sn&#x251c; e0:v0, Sn+1"/>
+<node CREATED="1399792719764" ID="ID_1537771774" MODIFIED="1399792732155" TEXT="v0=X(a1=l1,...,am=lm)"/>
+<node CREATED="1399792734023" ID="ID_622773940" MODIFIED="1399792752571" TEXT="impl(X,f)=(x1,...,xn,ebody)"/>
+<node CREATED="1399792753555" ID="ID_275676517" MODIFIED="1399792770486" TEXT="lxi=newloc(Sn+1) n=1...n"/>
+<node CREATED="1399792770807" ID="ID_785593405" MODIFIED="1399792808294" TEXT="E`=[a1:l1,...,am:lm][x1/lx1,...,xn/lxn]"/>
+<node CREATED="1399792808559" ID="ID_1348749299" MODIFIED="1399792831091" TEXT="Sn+2 = Sn+1[v1/lx1,...,vn/lxn"/>
+<node CREATED="1399792831654" ID="ID_1352276379" MODIFIED="1399792848077" TEXT="v0,E`,Sn+2&#x251c; ebody:v, Sn+3"/>
+<node CREATED="1399792848335" ID="ID_225963674" MODIFIED="1399792855336" TEXT="________________________"/>
+<node CREATED="1399792855963" ID="ID_338881099" MODIFIED="1399792876277" TEXT="so,E,S&#x251c; e0.f(e1,...,en):v,Sn+3"/>
+</node>
+</node>
+</node>
+<node CREATED="1399793504955" FOLDED="true" ID="ID_191510973" MODIFIED="1399793812439" TEXT="operational semantics errors">
+<node CREATED="1399793780109" ID="ID_1397000334" MODIFIED="1399793807486" TEXT="type checking guarantee that impl() always works!">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1399793524253" ID="ID_455536148" MODIFIED="1399793545594" TEXT="dispatch on void"/>
+<node CREATED="1399793545865" ID="ID_107859504" MODIFIED="1399793551678" TEXT="division by zero"/>
+<node CREATED="1399793551946" ID="ID_918489046" MODIFIED="1399793558868" TEXT="substring out of range"/>
+<node CREATED="1399793559121" ID="ID_1091756615" MODIFIED="1399793566403" TEXT="heap overflow"/>
 </node>
 </node>
 </node>
