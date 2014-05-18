@@ -1017,11 +1017,374 @@
 </node>
 </node>
 </node>
-<node CREATED="1395733026258" ID="ID_1181544390" MODIFIED="1395735574073" POSITION="right" TEXT="4. Optimization">
+<node CREATED="1395733026258" FOLDED="true" ID="ID_1181544390" MODIFIED="1400395672620" POSITION="right" TEXT="4. Optimization">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
+<node CREATED="1400306630386" FOLDED="true" ID="ID_517036807" MODIFIED="1400308190792" TEXT="intermediate code (language)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400306902839" ID="ID_154310352" MODIFIED="1400306968312" TEXT="a language between the source and the target - intermidiate level of abstraction"/>
+<node CREATED="1400306921868" ID="ID_841954197" MODIFIED="1400306950641" TEXT="more details than the source">
+<icon BUILTIN="info"/>
 </node>
-<node CREATED="1395733115642" FOLDED="true" ID="ID_1572053387" MODIFIED="1399895790949" POSITION="right" TEXT="5. Code generation">
+<node CREATED="1400306933879" ID="ID_1311086148" MODIFIED="1400306946381" TEXT="fewer details than the target">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400307061878" ID="ID_656606170" MODIFIED="1400307888086" TEXT="IL = high-level assembly">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400307094427" ID="ID_913374508" MODIFIED="1400307216801" TEXT="uses register names, unlimited number">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400307108769" ID="ID_1322776843" MODIFIED="1400307124084" TEXT="uses control structures like assembly language"/>
+<node CREATED="1400307124464" ID="ID_1987851806" MODIFIED="1400307156949" TEXT="uses opcodes but some are higher level (push-&gt;several assembly instructions)"/>
+<node CREATED="1400307219903" ID="ID_260610191" MODIFIED="1400307278773" TEXT="each instruction is either &apos;x:=y op z&apos; or &apos;x:=op y&apos; (y and z are registers or constants)"/>
+<node CREATED="1400307298818" ID="ID_1780373837" MODIFIED="1400307333510" TEXT="three-address code (common form of intermediate code)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400307211831" FOLDED="true" ID="ID_34784852" MODIFIED="1400307457338" TEXT="expression x+y*z is translated in...">
+<icon BUILTIN="info"/>
+<node CREATED="1400307358151" ID="ID_1046618449" MODIFIED="1400307384392" TEXT="t1:=y*z"/>
+<node CREATED="1400307363481" ID="ID_1675079333" MODIFIED="1400307371406" TEXT="t2:=x+t1"/>
+<node CREATED="1400307387333" ID="ID_644100289" MODIFIED="1400307396799" TEXT="each subexpression has a &quot;name&quot;"/>
+</node>
+<node CREATED="1400307460914" ID="ID_1463857089" MODIFIED="1400307612978" TEXT="similar to assembly code generation (but we use any number of IL-registers to hold intermediate results)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400307646011" FOLDED="true" ID="ID_1564110387" MODIFIED="1400307755775" TEXT="igen(e,t) - code to compute value of e in register t">
+<node CREATED="1400307668302" ID="ID_1314782973" MODIFIED="1400307675282" TEXT="igen(e1+e2,t)="/>
+<node CREATED="1400307675505" ID="ID_1248350097" MODIFIED="1400307684682" TEXT="igen(e1,t1) - fresh register"/>
+<node CREATED="1400307685022" ID="ID_1231588151" MODIFIED="1400307695996" TEXT="igen(e2,t2) - fresh register"/>
+<node CREATED="1400307696454" ID="ID_1652862735" MODIFIED="1400307705147" TEXT="t:=t1+t2">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1400307891093" FOLDED="true" ID="ID_135553182" MODIFIED="1400309616797" TEXT="optimization overview">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400308101365" ID="ID_723072371" MODIFIED="1400308171855" TEXT="good idea is to use optimization in IL (not in AST or assembly)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400308208002" FOLDED="true" ID="ID_686927217" MODIFIED="1400308441601" TEXT="grammar">
+<node CREATED="1400308228143" ID="ID_1237437739" MODIFIED="1400308229143" TEXT="P-&gt;SP | S"/>
+<node CREATED="1400308229432" ID="ID_266129983" MODIFIED="1400308245413" TEXT="S -&gt; id := id op id (binary operations)"/>
+<node CREATED="1400308245847" ID="ID_1852076140" MODIFIED="1400308257948" TEXT="| id := op id (unary operations)"/>
+<node CREATED="1400308258240" ID="ID_280556081" MODIFIED="1400308306492" TEXT="| id := id (copy assignment)"/>
+<node CREATED="1400308289651" ID="ID_1710570704" MODIFIED="1400308293151" TEXT="| push id"/>
+<node CREATED="1400308293391" ID="ID_1978154889" MODIFIED="1400308301362" TEXT="| id := pop"/>
+<node CREATED="1400308308223" ID="ID_1244982140" MODIFIED="1400308316064" TEXT="| if id relop id goto L"/>
+<node CREATED="1400308316395" ID="ID_350671999" MODIFIED="1400308318937" TEXT="| L:"/>
+<node CREATED="1400308319223" ID="ID_798674264" MODIFIED="1400308323173" TEXT="| jump L"/>
+<node CREATED="1400308361165" ID="ID_370633576" MODIFIED="1400308397729" TEXT="id`s are register names, constants can replace id`s, operations +,-,*">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1400308436521" FOLDED="true" ID="ID_1813457276" MODIFIED="1400308864403" TEXT="basic block">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+<node CREATED="1400308447551" ID="ID_804157013" MODIFIED="1400308535185" TEXT="basic block - is a maximal sequence of instructions with:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400308500444" ID="ID_300116644" MODIFIED="1400308539996" TEXT="1. no labels (except at the first instruction)"/>
+<node CREATED="1400308520437" ID="ID_1016042166" MODIFIED="1400308543985" TEXT="2. no jumps (except in the last instruction)"/>
+<node CREATED="1400308577293" ID="ID_1117485991" MODIFIED="1400308617975" TEXT="idea: cannot jump into or out of a basic block (except at beginning or at end)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400308618972" ID="ID_47167003" MODIFIED="1400308648163" TEXT="idea: basic block is a single-entry, single-exit, straight-line code segment">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1400308815772" FOLDED="true" ID="ID_860006897" MODIFIED="1400309161510" TEXT="control-flow graph">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+<node CREATED="1400308830582" ID="ID_555150584" MODIFIED="1400308866423" TEXT="CF-graph is a directed graph with:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400308867832" ID="ID_1440306151" MODIFIED="1400308875773" TEXT="1. basic blocks as nodes"/>
+<node CREATED="1400308876259" ID="ID_1822717347" MODIFIED="1400308952397" TEXT="2. an edge from block A to block B if the execution can pass from the last instruction in A to the first instruction in B (e.g. by jump Lb)"/>
+<node CREATED="1400309105187" ID="ID_202369791" MODIFIED="1400309122978" TEXT="there`s one initial node">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400309123767" ID="ID_1032821455" MODIFIED="1400309137399" TEXT="all &quot;return&quot; nodes are terminal">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1400309208288" ID="ID_710311651" MODIFIED="1400309258915" TEXT="optimization seeks to improve a program`s resource utilization (exec-time, code size, memory...)"/>
+<node CREATED="1400309262326" ID="ID_618004157" MODIFIED="1400309281649" TEXT="optimization should not alter what the program computes">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400309383113" FOLDED="true" ID="ID_256195449" MODIFIED="1400309494491" TEXT="three granularities of optimizations">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400309407518" ID="ID_1832010277" MODIFIED="1400309443504" TEXT="1. local optimization (basic block in isolation)"/>
+<node CREATED="1400309422752" ID="ID_273032473" MODIFIED="1400309440404" TEXT="2. global optimization (CF-graph in isolation)"/>
+<node CREATED="1400309447077" ID="ID_352713892" MODIFIED="1400309468395" TEXT="3. inter-procedural optimizations (method boundaries)"/>
+</node>
+</node>
+<node CREATED="1400309721078" FOLDED="true" ID="ID_1084905115" MODIFIED="1400316796394" TEXT="local optimization">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400309735824" FOLDED="true" ID="ID_1041341886" MODIFIED="1400315972435" TEXT="algebraic simplifications">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+<node CREATED="1400313169645" ID="ID_956672399" MODIFIED="1400313179059" TEXT="some statements can be deleted or simplified">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400309918873" ID="ID_23898142" MODIFIED="1400309972555" TEXT="x:x+0, x:=x*1 - value not changed, could be deleted"/>
+<node CREATED="1400309950522" ID="ID_787702089" MODIFIED="1400309986184" TEXT="x:=x*0 ~ x:=0"/>
+<node CREATED="1400309986801" ID="ID_296676815" MODIFIED="1400309998481" TEXT="y:=y**2 ~ y:=y*y"/>
+<node CREATED="1400309998849" ID="ID_835707385" MODIFIED="1400310060858" TEXT="x:=x*8 ~ x:=x&lt;&lt;3 (&apos;&lt;&lt;&apos;`s faster on some machines)"/>
+<node CREATED="1400310024393" ID="ID_1187716569" MODIFIED="1400310079929" TEXT="x:=x*15 ~ t:=x&lt;&lt;4; x:=t-x"/>
+</node>
+<node CREATED="1400310150424" FOLDED="true" ID="ID_1829331412" MODIFIED="1400313539244" TEXT="constant folding">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+<node CREATED="1400313130027" ID="ID_1371170318" MODIFIED="1400313192532" TEXT="compute some statements at compile time">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400310200514" ID="ID_1392725810" MODIFIED="1400310207901" TEXT="x:=2+2 ~ x:=4"/>
+<node CREATED="1400310210400" ID="ID_505767428" MODIFIED="1400310226542" TEXT="if 2&lt;0 jump L - can be deleted"/>
+<node CREATED="1400310239476" ID="ID_768541933" MODIFIED="1400310248786" TEXT="if 2&gt;0 jump L ~ jump L"/>
+<node CREATED="1400311960887" ID="ID_1885729324" MODIFIED="1400312228342" TEXT="constant folding can be dangerous (float-point operations on different architectures)">
+<icon BUILTIN="yes"/>
+</node>
+</node>
+<node CREATED="1400309834950" FOLDED="true" ID="ID_863103302" MODIFIED="1400313198105" TEXT="eliminate unreachable basic blocks">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+<node CREATED="1400312546729" ID="ID_1967785856" MODIFIED="1400312560452" TEXT="code unreachable from the initial block"/>
+<node CREATED="1400312560896" ID="ID_1677666353" MODIFIED="1400312569913" TEXT="DEBUG"/>
+<node CREATED="1400312570292" ID="ID_1229557613" MODIFIED="1400312581744" TEXT="libraries"/>
+<node CREATED="1400312582132" ID="ID_1138574986" MODIFIED="1400312583493" TEXT="result of optimizations"/>
+<node CREATED="1400312584472" ID="ID_1423659927" MODIFIED="1400312585513" TEXT="etc"/>
+</node>
+<node CREATED="1400312451603" ID="ID_315031761" MODIFIED="1400312649150" TEXT="some optimizations are simplified if each register occurs only once on the left-hand side of an assignment">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400312651944" FOLDED="true" ID="ID_1048158960" MODIFIED="1400313053717" TEXT="rewrite IC in single assignment form">
+<font NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+<node CREATED="1400312671301" ID="ID_980111984" MODIFIED="1400312677102" TEXT="x:=z+y"/>
+<node CREATED="1400312677336" ID="ID_1701192993" MODIFIED="1400312681631" TEXT="a:=x"/>
+<node CREATED="1400312682024" ID="ID_270527434" MODIFIED="1400312685063" TEXT="x:=2*x"/>
+<node CREATED="1400312687624" ID="ID_1006304603" MODIFIED="1400312708947" TEXT="goes to:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400312690831" ID="ID_1285356700" MODIFIED="1400312695626" TEXT="b:=z+y"/>
+<node CREATED="1400312696071" ID="ID_1350822406" MODIFIED="1400312698702" TEXT="a:=b"/>
+<node CREATED="1400312698963" ID="ID_1823860184" MODIFIED="1400312723117" TEXT="x:=2*b (b - fresh register)"/>
+</node>
+<node CREATED="1400312829537" FOLDED="true" ID="ID_1899804376" MODIFIED="1400313200846" TEXT="common subexpression ellimination">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+<node CREATED="1400313064678" ID="ID_137390904" MODIFIED="1400313066309" TEXT="if basic block is in single assignment form and &apos;x:=&apos; - first use of x in a block"/>
+<node CREATED="1400312895416" ID="ID_477234225" MODIFIED="1400312925295" TEXT="then when two assignments have the same rhs =&gt; they compute the same value"/>
+<node CREATED="1400312925582" ID="ID_1318637955" MODIFIED="1400312930415" TEXT="x:=y+z"/>
+<node CREATED="1400312930662" ID="ID_55584929" MODIFIED="1400312931833" TEXT="..."/>
+<node CREATED="1400312932122" ID="ID_434095349" MODIFIED="1400312936165" TEXT="w:=y+z"/>
+<node CREATED="1400312942534" ID="ID_1629267007" MODIFIED="1400312947256" TEXT="goes to:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400312947954" ID="ID_1743221511" MODIFIED="1400312952385" TEXT="x:=y+z"/>
+<node CREATED="1400312952633" ID="ID_1064617403" MODIFIED="1400312953604" TEXT="..."/>
+<node CREATED="1400312953821" ID="ID_997653684" MODIFIED="1400312958126" TEXT="w:=x">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1400313219709" FOLDED="true" ID="ID_1382417503" MODIFIED="1400313869173" TEXT="copy propagation">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+<node CREATED="1400313228699" ID="ID_1298335543" MODIFIED="1400313273241" TEXT="if w:=x appears in a block, replace subsequent uses of w with uses of x">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400313289232" ID="ID_724592064" MODIFIED="1400313294421" TEXT="b:=z+y"/>
+<node CREATED="1400313294652" ID="ID_1683630526" MODIFIED="1400313297313" TEXT="a:=b"/>
+<node CREATED="1400313298080" ID="ID_1062321371" MODIFIED="1400313301764" TEXT="x:=2*a"/>
+<node CREATED="1400313307428" ID="ID_1792741840" MODIFIED="1400313313100" TEXT="goes to:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400313313680" ID="ID_1556161022" MODIFIED="1400313317480" TEXT="b:=z+y"/>
+<node CREATED="1400313317700" ID="ID_163457640" MODIFIED="1400313319642" TEXT="a:=b"/>
+<node CREATED="1400313319881" ID="ID_1967988529" MODIFIED="1400313325881" TEXT="x:=2*b"/>
+<node CREATED="1400313409195" ID="ID_884740363" MODIFIED="1400313438342" TEXT="only useful for enabling other optimizations (const folding, dead code elimination)">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1400313656871" FOLDED="true" ID="ID_1701114011" MODIFIED="1400315974943" TEXT="dead statements">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+<node CREATED="1400313661426" ID="ID_711882190" MODIFIED="1400313686212" TEXT="if w:=rhs appears in a basic block and doesn`t appear anywhere else in the program"/>
+<node CREATED="1400313686479" ID="ID_495612257" MODIFIED="1400313708654" TEXT="then statement w:=rhs is dead and can be eliminated"/>
+<node CREATED="1400313713626" ID="ID_1146206635" MODIFIED="1400313729623" TEXT="dead = does not contribute to the program`s result">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400313740975" ID="ID_1747444068" MODIFIED="1400313745532" TEXT="x:=z+y"/>
+<node CREATED="1400313745834" ID="ID_1607414787" MODIFIED="1400313749005" TEXT="a:=x"/>
+<node CREATED="1400313749347" ID="ID_1160439382" MODIFIED="1400313764204" TEXT="x:=2*a (a is not used anywhere else)"/>
+<node CREATED="1400313766026" ID="ID_1319589020" MODIFIED="1400313774721" TEXT="goes to:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400313775522" ID="ID_536770539" MODIFIED="1400313781137" TEXT="b:=z+y"/>
+<node CREATED="1400313781615" ID="ID_24590475" MODIFIED="1400313885297" TEXT="a:=b">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400313784582" ID="ID_1518129656" MODIFIED="1400313799697" TEXT="x:=2*b"/>
+<node CREATED="1400313799820" ID="ID_557455084" MODIFIED="1400313824048" TEXT="goes to:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400313804334" ID="ID_1938778566" MODIFIED="1400313816698" TEXT="b:=z+y"/>
+<node CREATED="1400313817274" ID="ID_1576246183" MODIFIED="1400313821237" TEXT="x:=2*b"/>
+</node>
+</node>
+<node CREATED="1400315982163" FOLDED="true" ID="ID_150816507" MODIFIED="1400317482666" TEXT="peephole optimization">
+<node CREATED="1400316809745" ID="ID_862013295" MODIFIED="1400316828800" TEXT="optimizations can be directly applied to assembly code">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400316829355" ID="ID_190129410" MODIFIED="1400317022021" TEXT="peephole - short sequence of (usually contiguous) instructions"/>
+<node CREATED="1400317070408" ID="ID_1563454846" MODIFIED="1400317128972" TEXT="peephole optimizations = replacement rules (faster implementation) i1,...,in -&gt; j1,...,jm">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400317169554" ID="ID_1690350231" MODIFIED="1400317170374" TEXT="where rhs is the impoved version of lhs"/>
+<node CREATED="1400317238484" ID="ID_78828135" MODIFIED="1400317265746" TEXT="many (not all!) of basic block optimizations can be cast as peephole optimizations">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1400389214694" FOLDED="true" ID="ID_611873097" MODIFIED="1400393321022" TEXT="dataflow analysis and global optimization">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400389286224" ID="ID_1869365442" MODIFIED="1400389372027" TEXT="to replace a use of x by a constant we must know on every path to the use of x the last assignment to x">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400389471698" ID="ID_1571168032" MODIFIED="1400389515123" TEXT="not trivial check - &quot;all paths&quot; includes loops and condition branches">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1400389517166" ID="ID_1729728363" MODIFIED="1400389628057" TEXT="global dataflow analysis">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400389786300" ID="ID_1564238683" MODIFIED="1400389818502" TEXT="consider check for a single variable X at all program points"/>
+<node CREATED="1400389868086" ID="ID_1716612216" MODIFIED="1400389882458" TEXT="T - top (X is not a constant)"/>
+<node CREATED="1400389882974" ID="ID_174209524" MODIFIED="1400389896355" TEXT="C - X=constant c"/>
+<node CREATED="1400389897850" ID="ID_291286920" MODIFIED="1400390412802" TEXT="&#x197; - bottom (this statement never executes)"/>
+<node CREATED="1400390697054" ID="ID_387552319" MODIFIED="1400390734999" TEXT="inspect x=? and if x is constant at that point - replace that use of x by the constant">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400390864100" ID="ID_1452234515" MODIFIED="1400390905998" TEXT="we can check for changings in local states to process all the vaules">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400390907624" FOLDED="true" ID="ID_1589676795" MODIFIED="1400391065757" TEXT="for each statement s we compute information about value of x immediately before and after s">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400390959361" ID="ID_1029744102" MODIFIED="1400390988021" TEXT="C(x,s,in) value of x before s"/>
+<node CREATED="1400390966847" ID="ID_534989376" MODIFIED="1400390974901" TEXT="C(x,s,out) - after s"/>
+</node>
+<node CREATED="1400391066853" ID="ID_1568379940" MODIFIED="1400391074054" TEXT="transfer function"/>
+<node CREATED="1400391074341" ID="ID_1982123139" MODIFIED="1400391094964" TEXT="immediate predecessor statements p1,...,pn"/>
+<node CREATED="1400392565462" FOLDED="true" ID="ID_1641816867" MODIFIED="1400393236840" TEXT="dataflow analysis rules">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400391134970" ID="ID_1659070531" MODIFIED="1400391195925" TEXT="1. if C(pi,x,out)=T for any i =&gt; C(s,x,in)=T">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400391226994" ID="ID_1893173910" MODIFIED="1400391264010" TEXT="2. if C(pi,x,out)=c and C(pj,x,out)=d, d&lt;&gt;c =&gt; C(s,x,in)=T">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400391340364" ID="ID_8189670" MODIFIED="1400391472143" TEXT="3. if C(pi,x,out)=c or &#x197; for all i =&gt; C(s,x,in)=c">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400391475915" ID="ID_876961023" MODIFIED="1400391503605" TEXT="4. if C(pi,x,out)=&#x197; for all i =&gt; C(s,x,in)=&#x197;">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400391560204" ID="ID_988940411" MODIFIED="1400391872234" TEXT="5. if C(s,x,in)=&#x197; =&gt; C(s,x,out)=&#x197;">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400391628356" ID="ID_840242155" MODIFIED="1400391872234" TEXT="6. c-constant =&gt; C(x:=c,x,out)=c (lower priority - if it`s not rule5)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400391735353" ID="ID_679550837" MODIFIED="1400391872234" TEXT="7. C(x:=f(...),x,out)=T (rule5 can be instead)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400391826525" ID="ID_89883080" MODIFIED="1400391872234" TEXT="8. C(y:=..., x, out)=C(y:=...,x,in) if x&lt;&gt;y">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400391932259" ID="ID_1904779403" MODIFIED="1400392019495" TEXT="1. entry to the program - C(s,x,in)=T"/>
+<node CREATED="1400391971616" ID="ID_814499499" MODIFIED="1400392024495" TEXT="2. C(s,x,in)=C(s,x,out)=&#x197; everywhere else"/>
+<node CREATED="1400391995024" ID="ID_686789391" MODIFIED="1400392028795" TEXT="3. use rules"/>
+</node>
+<node CREATED="1400392637509" ID="ID_1082740097" MODIFIED="1400393256961" TEXT="loop analysis idea: break the cycle with initial guess (&#x197;)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1400393312846" FOLDED="true" ID="ID_283755514" MODIFIED="1400394229704" TEXT="ordering">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400393400760" ID="ID_1354045016" MODIFIED="1400393553661" TEXT="abstract values &#x197;&lt;c&lt;T"/>
+<node CREATED="1400393539417" ID="ID_1740684653" MODIFIED="1400393572702" TEXT="constants are incomparable with each other">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400393598612" FOLDED="true" ID="ID_462131980" MODIFIED="1400393954731" TEXT="lub - least-upper bound">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400393717366" ID="ID_345758171" MODIFIED="1400393726756" TEXT="lub(&#x197;,1)=1"/>
+<node CREATED="1400393726982" ID="ID_1071653991" MODIFIED="1400393733726" TEXT="lub(T,&#x197;)=T"/>
+<node CREATED="1400393739022" ID="ID_1724493797" MODIFIED="1400393780718" TEXT="lub(1,2)=T">
+<icon BUILTIN="yes"/>
+</node>
+</node>
+<node CREATED="1400393615865" ID="ID_377110795" MODIFIED="1400394005573" TEXT="rules1-4 using lub: C(s,x,in)=lub{C(p,x,out)| p is a predecessor of s}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400393956783" ID="ID_1846409263" MODIFIED="1400394013643" TEXT="values start at &#x197; and only increase">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400393970230" ID="ID_686583721" MODIFIED="1400394013643" TEXT="&#x197; can change to a constant, a constant - to T">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400393985390" ID="ID_1609676359" MODIFIED="1400394013643" TEXT="thus, C(s,x,_) can change at most twice">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400394070715" ID="ID_1347565522" MODIFIED="1400394219684" TEXT="number of steps &lt;= C()`s * 2 = number of program statements*4"/>
+</node>
+<node CREATED="1400394235603" FOLDED="true" ID="ID_284964727" MODIFIED="1400395669011" TEXT="liveness analysis">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400394377642" ID="ID_1536456098" MODIFIED="1400394398114" TEXT="live value - may be used in the future">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400394437427" ID="ID_808954412" MODIFIED="1400394449046" TEXT="dead value - never used">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400394466123" FOLDED="true" ID="ID_1835263121" MODIFIED="1400394609075" TEXT="variable x is live at statement s if...">
+<node CREATED="1400394491138" ID="ID_1897621012" MODIFIED="1400394507560" TEXT="1.there exist a statement s` that uses x"/>
+<node CREATED="1400394507818" ID="ID_1428472183" MODIFIED="1400394517769" TEXT="2. there`s a path from s to s`"/>
+<node CREATED="1400394518010" ID="ID_1892791369" MODIFIED="1400394575923" TEXT="3. that path has no intervening assignment to x"/>
+</node>
+<node CREATED="1400394614909" ID="ID_306598171" MODIFIED="1400394698198" TEXT="statement x:=... is dead code if x is dead variable after the assignment"/>
+<node CREATED="1400394698456" ID="ID_556082902" MODIFIED="1400394724346" TEXT="dead statements can be deleted but we need liveness information">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400394807731" FOLDED="true" ID="ID_508430528" MODIFIED="1400395374519" TEXT="rules for liveness analysis">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400394820481" ID="ID_1506606903" MODIFIED="1400395104181" TEXT="1. L(p,x,out)=v{L(s,x,in) | s - successor of p} - value should be used somewhere">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400394911448" ID="ID_518963942" MODIFIED="1400395104181" TEXT="2. L(s,x,in)=true if s refers to x on the rhs">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400394966100" ID="ID_1063023926" MODIFIED="1400395104181" TEXT="3. L(x:=e,x,in)=false if e doesn`t refer to x">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400395022879" ID="ID_1182642660" MODIFIED="1400395104181" TEXT="4. L(s,x,in)=L(s,x,out) if s doesn`t refer to x">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400395108686" ID="ID_1874779955" MODIFIED="1400395123416" TEXT="1. let all L(...)=false initially"/>
+<node CREATED="1400395123624" ID="ID_1381929165" MODIFIED="1400395160178" TEXT="2. repeat untill all statements satisfy rules 1-4..."/>
+</node>
+<node CREATED="1400395371996" ID="ID_631127830" MODIFIED="1400395406783" TEXT="value can change from false to true but not other way (false &lt; true)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400395412352" ID="ID_1607945980" MODIFIED="1400395441107" TEXT="each value can change only once">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400395468737" ID="ID_1085694765" MODIFIED="1400395661330" TEXT="it`s backward analysis (constant propagation is forwards analysis)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+</node>
+</node>
+<node CREATED="1395733115642" FOLDED="true" ID="ID_1572053387" MODIFIED="1400306625136" POSITION="right" TEXT="5. Code generation">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
 <node CREATED="1399101882114" FOLDED="true" ID="ID_451149115" MODIFIED="1399751780600" TEXT="runtime organization">
