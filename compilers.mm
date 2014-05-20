@@ -1017,7 +1017,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1395733026258" FOLDED="true" ID="ID_1181544390" MODIFIED="1400395672620" POSITION="right" TEXT="4. Optimization">
+<node CREATED="1395733026258" FOLDED="true" ID="ID_1181544390" MODIFIED="1400582406912" POSITION="right" TEXT="4. Optimization">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="button_ok"/>
 <node CREATED="1400306630386" FOLDED="true" ID="ID_517036807" MODIFIED="1400308190792" TEXT="intermediate code (language)">
@@ -1380,6 +1380,101 @@
 </node>
 <node CREATED="1400395468737" ID="ID_1085694765" MODIFIED="1400395661330" TEXT="it`s backward analysis (constant propagation is forwards analysis)">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1400566014749" FOLDED="true" ID="ID_691244413" MODIFIED="1400582401936" TEXT="register allocation">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400566023431" ID="ID_902315204" MODIFIED="1400566092117" TEXT="intermidiate code could use too many registers">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400566097759" ID="ID_1444413246" MODIFIED="1400566207276" TEXT="rewrite the IC to use no more temporaries than there are machine registers">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400566180855" ID="ID_1297087009" MODIFIED="1400566207276" TEXT="assign multiple temporaries to each register without changing program behavior">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400566211419" ID="ID_1070394030" MODIFIED="1400566351947" TEXT="assume variable is dead after use and can be reused (such mapping is &apos;many -&gt; 1&apos;)">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1400566404950" ID="ID_945440302" MODIFIED="1400566673864" TEXT="base: graph coloring">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400566805579" ID="ID_730994797" MODIFIED="1400566844508" TEXT="temporaries t1 and t2 can share same register if at any point in the program at most one of t1 or t2 is live">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400567428224" FOLDED="true" ID="ID_432193033" MODIFIED="1400582398455" TEXT="construct undirected graph = register interference graph (RIG)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+<node CREATED="1400567439669" ID="ID_1689147230" MODIFIED="1400567448080" TEXT="node for each temporary"/>
+<node CREATED="1400567448280" ID="ID_190311535" MODIFIED="1400567476120" TEXT="edge between t1 and t2 if they are live simultaneously at some point in the program"/>
+</node>
+<node CREATED="1400567923391" ID="ID_1711438185" MODIFIED="1400567948284" TEXT="after RIG construction the register allocation algorithm is arch-independent">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1400568065674" FOLDED="true" ID="ID_379353428" MODIFIED="1400570426158" TEXT="graph coloring">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400568069659" ID="ID_1879913033" MODIFIED="1400568108149" TEXT="coloring of a graph - assignment of colors to nodes such that nodes connected by an edge have different colors"/>
+<node CREATED="1400568108375" ID="ID_1504373771" MODIFIED="1400568124485" TEXT="a graph is k-colorable if it has a coloring with k colors"/>
+<node CREATED="1400568132785" ID="ID_726250525" MODIFIED="1400568143756" TEXT="colors = registers">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400568148445" ID="ID_532400509" MODIFIED="1400568157684" TEXT="k - number of machine registers">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400568476973" ID="ID_1294579857" MODIFIED="1400568521205" TEXT="compute graph coloring - NP-hard (no efficient algorithms, heuristics should be used)"/>
+<node CREATED="1400569200673" FOLDED="true" ID="ID_424433830" MODIFIED="1400570423182" TEXT="heuristic">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400569214986" ID="ID_45932531" MODIFIED="1400569793158" TEXT="1. pick a node t with fewer than k neighbours in RIG">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400569242161" ID="ID_1268243975" MODIFIED="1400569251390" TEXT="2. eliminate t and its edges"/>
+<node CREATED="1400569251625" ID="ID_1710973340" MODIFIED="1400569279090" TEXT="3. if resulting graph is k-colorable =&gt; so is the original graph"/>
+<node CREATED="1400569643779" ID="ID_1038792790" MODIFIED="1400569665834" TEXT="2` = 2 + put t on a stack">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400569667060" ID="ID_489622154" MODIFIED="1400569686885" TEXT="3` = repeat 1+2` until the graph is empty">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400569754346" ID="ID_171051353" MODIFIED="1400569790787" TEXT="4` - pop the node from stack and pick different color then colored neighbors">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1400570427318" FOLDED="true" ID="ID_42116234" MODIFIED="1400572217735" TEXT="spilling">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400570475068" ID="ID_75269578" MODIFIED="1400570577654" TEXT="some values are spilled to memory (of all the nodes have k or more neighbors)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400570498493" ID="ID_482881374" MODIFIED="1400570689255" TEXT="remove spilling candidate and continue">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400570733728" ID="ID_642792609" MODIFIED="1400570759717" TEXT="optimistic coloring (neighbors don`t use all the colors)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400570875311" ID="ID_66367020" MODIFIED="1400570952039" TEXT="1. if optimistic coloring fails - spill f (allocate memory location - current stack frame, address fa)"/>
+<node CREATED="1400570952476" ID="ID_29050389" MODIFIED="1400571011639" TEXT="2. modify control-flow graph - insert &apos;f:=load fa&apos; and &apos;store f,fa&apos;"/>
+<node CREATED="1400571107229" ID="ID_1171899106" MODIFIED="1400571220993" TEXT="3. recompute the liveness (delete f and got new values like f1,f2,f3)"/>
+<node CREATED="1400571466125" ID="ID_1570417080" MODIFIED="1400571570742" TEXT="fi is live only 1. between load and next instruction, 2. only preceding store fi">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400571503556" ID="ID_1098497682" MODIFIED="1400571585501" TEXT="spilling reduces the live range of f and its interference =&gt; fewer-colorable RIG">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400571724955" ID="ID_339349423" MODIFIED="1400571752157" TEXT="every temporary spilling will lead to correct program">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400571613177" ID="ID_244049258" MODIFIED="1400571660765" TEXT="possible heuristic - spill temporaries with most conflicts or with few definitions and uses">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400571642983" ID="ID_1645663986" MODIFIED="1400571826017" TEXT="avoid spilling in inner loops">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1400572218406" ID="ID_1050704839" MODIFIED="1400572238077" TEXT="register allocation is more complicated for CISC machines">
 <icon BUILTIN="idea"/>
 </node>
 </node>
@@ -2008,6 +2103,359 @@
 <node CREATED="1399793545865" ID="ID_107859504" MODIFIED="1399793551678" TEXT="division by zero"/>
 <node CREATED="1399793551946" ID="ID_918489046" MODIFIED="1399793558868" TEXT="substring out of range"/>
 <node CREATED="1399793559121" ID="ID_1091756615" MODIFIED="1399793566403" TEXT="heap overflow"/>
+</node>
+</node>
+<node CREATED="1400572415087" FOLDED="true" ID="ID_1593280963" MODIFIED="1400582403615" POSITION="right" TEXT="managing cahes">
+<node CREATED="1400573456689" ID="ID_144248528" MODIFIED="1400573475844" TEXT="compilers are very good at managing registers">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400572420812" ID="ID_68378994" MODIFIED="1400573475844" TEXT="compilers are not goot at managing caches">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400573479303" FOLDED="true" ID="ID_1189190821" MODIFIED="1400574090390" TEXT="cache miss">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400574001381" ID="ID_1087776270" MODIFIED="1400574013079" TEXT="for(j:=1;j&lt;10;j++)"/>
+<node CREATED="1400574013570" ID="ID_1131401437" MODIFIED="1400574026042" TEXT="for(i=1;i&lt;1000000;i++)"/>
+<node CREATED="1400574026316" ID="ID_1222766990" MODIFIED="1400574032848" TEXT="a[i]*=b[i]"/>
+</node>
+<node CREATED="1400573647464" FOLDED="true" ID="ID_169565283" MODIFIED="1400574089694" TEXT="loop interchange optimization">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400574053260" ID="ID_1915803214" MODIFIED="1400574053260" TEXT="">
+<node CREATED="1400574013570" ID="ID_1544048686" MODIFIED="1400574026042" TEXT="for(i=1;i&lt;1000000;i++)"/>
+<node CREATED="1400574073345" ID="ID_154693127" MODIFIED="1400574082197" TEXT="for(j:=1;j&lt;10;j++)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400574026316" ID="ID_1334536954" MODIFIED="1400574032848" TEXT="a[i]*=b[i]"/>
+</node>
+</node>
+</node>
+<node CREATED="1400574093650" FOLDED="true" ID="ID_1539865977" MODIFIED="1400582405544" POSITION="right" TEXT="garbage collection">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400574130024" ID="ID_355491649" MODIFIED="1400575024253" TEXT="a program can use only the object that it can find (reachable)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400575072440" FOLDED="true" ID="ID_1261800021" MODIFIED="1400575131077" TEXT="object x is reachable if and only if...">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400575087415" ID="ID_481382834" MODIFIED="1400575118578" TEXT="1. a register contains a pointer to x or"/>
+<node CREATED="1400575099351" ID="ID_1824062397" MODIFIED="1400575115637" TEXT="2. another reachable object y contains a pointer to x"/>
+</node>
+<node CREATED="1400575131937" ID="ID_1226587739" MODIFIED="1400575161022" TEXT="unreachable object can never be used (garbage)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400575399074" ID="ID_414238597" MODIFIED="1400575451490" TEXT="reachability is an approximation (reachable object can be unused later)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400575499412" ID="ID_369581880" MODIFIED="1400575595611" TEXT="COOL - accumulator and stack pointer (roots)"/>
+<node CREATED="1400575720585" FOLDED="true" ID="ID_103047697" MODIFIED="1400575816334" TEXT="GC scheme">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400575726489" ID="ID_952147899" MODIFIED="1400575736709" TEXT="1. allocate space as needed for new objects"/>
+<node CREATED="1400575736933" ID="ID_750613858" MODIFIED="1400575744844" TEXT="2. when space runs out"/>
+<node CREATED="1400575745069" ID="ID_1653019614" MODIFIED="1400575787918" TEXT="a) compute what objects might be used again (tracing objects reachable from a set of root registers)"/>
+<node CREATED="1400575788878" ID="ID_1990328966" MODIFIED="1400575802290" TEXT="b) free the space used by objects not found in (a)"/>
+</node>
+<node CREATED="1400575938780" FOLDED="true" ID="ID_561714547" MODIFIED="1400577538183" TEXT="1. mark and sweep">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400575948679" ID="ID_1049491269" MODIFIED="1400576118007" TEXT="1. mark - traces reachable objects">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400575965201" FOLDED="true" ID="ID_802139955" MODIFIED="1400576229710" TEXT="2. sweep - collect garbage objects">
+<icon BUILTIN="idea"/>
+<node CREATED="1400576203850" ID="ID_194647363" MODIFIED="1400576225400" TEXT="scans the heap"/>
+<node CREATED="1400576215544" ID="ID_1980661211" MODIFIED="1400576228028" TEXT="mark=0 =&gt; free_list">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400576208395" ID="ID_1359925745" MODIFIED="1400576228732" TEXT="mark=1 -&gt; mark=0">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1400575984220" ID="ID_1573237455" MODIFIED="1400576025392" TEXT="every object has an extra bit: mark bit (initially 0, 1 - for reachable objects)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400576629775" ID="ID_1843666971" MODIFIED="1400576829959" TEXT="serious problem - mark phase invoke when we are out of space and need some space (unbounded)">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1400576778642" ID="ID_1115774967" MODIFIED="1400576785013" TEXT="pointer reversal">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400576800861" ID="ID_638295362" MODIFIED="1400576816189" TEXT="free list is stored in the free objects">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400577355859" ID="ID_1373849769" MODIFIED="1400577438463" TEXT="unnecessary left-over area of memory goes back in free list (fragmentation =&gt; merge free blocks)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400577458690" ID="ID_879220957" MODIFIED="1400577468942" TEXT="objects are not moved during GC">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1400577523625" FOLDED="true" ID="ID_1624659229" MODIFIED="1400579904216" TEXT="2. stop and copy">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400577528508" FOLDED="true" ID="ID_371326787" MODIFIED="1400577604486" TEXT="memory organized into two ares">
+<icon BUILTIN="idea"/>
+<node CREATED="1400577573406" ID="ID_522683932" MODIFIED="1400577584778" TEXT="old space: used for allocation"/>
+<node CREATED="1400577585063" ID="ID_744302829" MODIFIED="1400577594391" TEXT="new space: used as a reserve for GC"/>
+</node>
+<node CREATED="1400577605022" ID="ID_1571751527" MODIFIED="1400577622270" TEXT="heap pointer points to the next free word in the old space">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400577626386" ID="ID_71587276" MODIFIED="1400577637907" TEXT="allocation just advances the heap pointer">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400577728171" ID="ID_192817973" MODIFIED="1400577819976" TEXT="1. GC starts when the old space is full">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400577747189" ID="ID_403883843" MODIFIED="1400577823355" TEXT="2. copies all reachable objects from old into new space (garbage is behind)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400577793411" ID="ID_430118425" MODIFIED="1400577828132" TEXT="3. the roles of old and new spaces reversed">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400577835885" ID="ID_1320951045" MODIFIED="1400577998645" TEXT="need to fix ALL pointers pointing to copied objects">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400578078536" ID="ID_1236598133" MODIFIED="1400578103782" TEXT="copy object and store in the old copy a forwarding pointer to the new copy">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400578261408" FOLDED="true" ID="ID_1769038192" MODIFIED="1400578660303" TEXT="extra space solving: partition new space in three regions (copied and scanned, copied, empty)">
+<icon BUILTIN="idea"/>
+<node CREATED="1400578651922" ID="ID_648339822" MODIFIED="1400578653135" TEXT="start"/>
+<node CREATED="1400578653449" ID="ID_1234335406" MODIFIED="1400578656821" TEXT="scan"/>
+<node CREATED="1400578657024" ID="ID_341366229" MODIFIED="1400578658752" TEXT="alloc"/>
+</node>
+<node CREATED="1400578664119" FOLDED="true" ID="ID_1724416045" MODIFIED="1400579432391" TEXT="algorithm">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400579149280" ID="ID_333972814" MODIFIED="1400579227349" TEXT="1. copy object in new region (scan pointer)"/>
+<node CREATED="1400579184987" ID="ID_1749222953" MODIFIED="1400579261979" TEXT="2. for each pointer p in object (scan pointer find objects that points to)"/>
+<node CREATED="1400579262446" ID="ID_1958134348" MODIFIED="1400579387861" TEXT="3. if these objects are without a forwarding pointer - copy to new space (update alloc pointer), set some word of old object to point to new copy and change pointer in first object"/>
+<node CREATED="1400579349308" ID="ID_191922776" MODIFIED="1400579361536" TEXT="4. else - set pointer equal forwarding pointer"/>
+<node CREATED="1400579138285" ID="ID_1185317425" MODIFIED="1400579366678" TEXT="5. repeat if scan != alloc"/>
+</node>
+<node CREATED="1400579845229" ID="ID_667039452" MODIFIED="1400579874584" TEXT="O(|live objects|) - doesn`t touch garbage!!!">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1400579906138" FOLDED="true" ID="ID_539255190" MODIFIED="1400580180652" TEXT="2`. conservative collection">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400579917822" ID="ID_832220590" MODIFIED="1400579954535" TEXT="C/C++ it`s impossible to identify the contents of objects in memory">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400580002862" FOLDED="true" ID="ID_237098751" MODIFIED="1400580088191" TEXT="if a memory word looks like a pointer - it`s considered a pointer">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+<node CREATED="1400580064077" ID="ID_1594697815" MODIFIED="1400580070976" TEXT="must be aligned"/>
+<node CREATED="1400580071177" ID="ID_1156345761" MODIFIED="1400580081585" TEXT="must point to a valid address in data segment"/>
+</node>
+<node CREATED="1400580134474" ID="ID_622718214" MODIFIED="1400580150614" TEXT="cannot move objects! =&gt; only mark and sweep">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1400580152917" FOLDED="true" ID="ID_973567184" MODIFIED="1400581864485" TEXT="3. reference counting">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400580191028" ID="ID_848540227" MODIFIED="1400580890781" TEXT="collect an object when there are no more pointers to it (store reference count)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400580962136" ID="ID_1682557772" MODIFIED="1400580971770" TEXT="rc(x) - reference count of x"/>
+<node CREATED="1400580978348" FOLDED="true" ID="ID_984859571" MODIFIED="1400581106063" TEXT="x,y points to objects o,p then x&lt;-y becomes:">
+<node CREATED="1400581013749" ID="ID_1538488561" MODIFIED="1400581023397" TEXT="1. rc(p)&lt;-rc(p)+1"/>
+<node CREATED="1400581023620" ID="ID_1872044961" MODIFIED="1400581035576" TEXT="2. rc(o)&lt;-rc(o)-1"/>
+<node CREATED="1400581035811" ID="ID_1336556766" MODIFIED="1400581048629" TEXT="3. if (rc(o)==0) then free o"/>
+<node CREATED="1400581048861" ID="ID_515853006" MODIFIED="1400581052752" TEXT="4. x&lt;-y"/>
+</node>
+<node CREATED="1400581150242" ID="ID_193072963" MODIFIED="1400581172679" TEXT="collects the garbage incrementally without large pauses in the execution">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400581179922" ID="ID_1421236794" MODIFIED="1400581196961" TEXT="cannot collect circular structures">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1400581865070" ID="ID_1427978226" MODIFIED="1400581896887" TEXT="automatic memory management prevent serious storage bugs">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400581897606" ID="ID_27685747" MODIFIED="1400581909695" TEXT="but reduces programmer control">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400581924330" ID="ID_1573381886" MODIFIED="1400581944239" TEXT="pauses problematic in real-time applications">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400581937998" ID="ID_1227855640" MODIFIED="1400581953391" TEXT="memory leaks possible (even likely)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400582161602" FOLDED="true" ID="ID_824867885" MODIFIED="1400582250615" TEXT="more advanced garbage collection algorithms">
+<font NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="button_ok"/>
+<node CREATED="1400582178541" ID="ID_259720981" MODIFIED="1400582197288" TEXT="concurent: allow the program to run while GC is happening"/>
+<node CREATED="1400582197493" ID="ID_1551570361" MODIFIED="1400582217061" TEXT="generational: don`t scan long-lived objects at every collection"/>
+<node CREATED="1400582217398" ID="ID_878010627" MODIFIED="1400582228701" TEXT="real-time: bound the length of pauses"/>
+<node CREATED="1400582228945" ID="ID_364398834" MODIFIED="1400582240959" TEXT="parallel: several collectors working at once"/>
+</node>
+</node>
+<node CREATED="1400582418774" FOLDED="true" ID="ID_1436365513" MODIFIED="1400592037706" POSITION="right" TEXT="Java">
+<node CREATED="1400582468366" ID="ID_1812374225" MODIFIED="1400582485127" TEXT="Jave = COOL on steroids (COOL+more features)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400582497295" ID="ID_915377569" MODIFIED="1400582526666" TEXT="both typed, OO and garbage-collector languages"/>
+<node CREATED="1400582543193" FOLDED="true" ID="ID_5998677" MODIFIED="1400585229601" TEXT="arrays">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400584638551" ID="ID_11915647" MODIFIED="1400584655072" TEXT="B&lt;A - if B inherits from A (as in COOL)"/>
+<node CREATED="1400584655477" ID="ID_435731731" MODIFIED="1400584669179" TEXT="C&lt;A if C&lt;B and B&lt;A (as in COOL)"/>
+<node CREATED="1400584669978" ID="ID_601471442" MODIFIED="1400585045720" TEXT="B[]&lt;A[] if B&lt;A (not as in COOL)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1400584742452" FOLDED="true" ID="ID_1328311737" MODIFIED="1400584953904" TEXT="example">
+<icon BUILTIN="idea"/>
+<node CREATED="1400584941196" ID="ID_1597070554" MODIFIED="1400584951911" TEXT="assume B&lt;A:">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400584747120" ID="ID_816221600" MODIFIED="1400584771328" TEXT="B[] b = new B[10];"/>
+<node CREATED="1400584762285" ID="ID_1503150867" MODIFIED="1400584769667" TEXT="A[] a = b;"/>
+<node CREATED="1400584773368" ID="ID_164993709" MODIFIED="1400584798477" TEXT="a[0] = new A();"/>
+<node CREATED="1400584798934" ID="ID_1280016600" MODIFIED="1400584819060" TEXT="b[0].aMethodNotDeclaredInA(); - runtime error">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1400584825544" ID="ID_193606003" MODIFIED="1400584878435" TEXT="aliasing (same point of memory)">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400584878917" ID="ID_1735417532" MODIFIED="1400584903677" TEXT="having multiple aliases to updateable locations with different types is unsound!">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400585067071" ID="ID_1521406345" MODIFIED="1400585086655" TEXT="standart solution: B[] &lt; A[] if B=A">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400585193980" ID="ID_1738718364" MODIFIED="1400585218261" TEXT="arrays of primitive types unaffected (they`re not classes)">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1400582545200" FOLDED="true" ID="ID_687796361" MODIFIED="1400586474088" TEXT="exceptions">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400585333294" ID="ID_237339960" MODIFIED="1400585414908" TEXT="- try{something} catch(x) {cleanup}"/>
+<node CREATED="1400585348903" ID="ID_954086220" MODIFIED="1400585418536" TEXT="- throw exception">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400585460593" ID="ID_1994074575" MODIFIED="1400585488319" TEXT="public void X() throws MyException { throw new MyException(); }"/>
+<node CREATED="1400586015764" ID="ID_1604086620" MODIFIED="1400586046784" TEXT="if exception caught in e1+e2 executing e1 - e2 will not executed">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400585405259" ID="ID_67355009" MODIFIED="1400586264382" TEXT="uncaught exception thrown during object finalization (no one handles it!)">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1400586364952" ID="ID_258761401" MODIFIED="1400586406624" TEXT="methods must declare types of exceptions they may raise (except some general exceptions - dereferencing null, etc)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1400586454296" ID="ID_1770170722" MODIFIED="1400586472888" TEXT="throw must be applied to an object of type Exception">
+<icon BUILTIN="yes"/>
+</node>
+</node>
+<node CREATED="1400582548086" FOLDED="true" ID="ID_381172400" MODIFIED="1400587234520" TEXT="interfaces">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400586488301" ID="ID_908949568" MODIFIED="1400586516000" TEXT="specify relationships between classes without inheritance">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400586517533" ID="ID_1954377122" MODIFIED="1400586536842" TEXT="interface PointInterface { void move(int dx, int dy); }"/>
+<node CREATED="1400586537337" ID="ID_1375777319" MODIFIED="1400586569140" TEXT="class Point implements PointInterface { void move(int dx, int dy) {...} }">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400586658978" ID="ID_1037803866" MODIFIED="1400586680072" TEXT="java interfaces ~ multiple inheritance in C++">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400586913033" ID="ID_989638170" MODIFIED="1400586939584" TEXT="methods in classes implementing interfaces need not be at fixed offsets">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1400582550743" FOLDED="true" ID="ID_1652356991" MODIFIED="1400588041561" TEXT="coercions">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400587236405" ID="ID_1215102409" MODIFIED="1400587261200" TEXT="java allows primitive types to be coerced in certain contexts">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400587266410" ID="ID_1684022603" MODIFIED="1400587278330" TEXT="1+2.0 - int 1 is widened to float 1.0"/>
+<node CREATED="1400587442913" FOLDED="true" ID="ID_1559855021" MODIFIED="1400587551545" TEXT="kinds of coercions and casts">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400587457089" ID="ID_1650483683" MODIFIED="1400587471946" TEXT="widening - always succeed (int-&gt;float)"/>
+<node CREATED="1400587516331" ID="ID_15036407" MODIFIED="1400587530704" TEXT="widening can be implicit">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400587472344" ID="ID_215897599" MODIFIED="1400587488755" TEXT="narrowing - may fail (float -&gt; int)"/>
+<node CREATED="1400587532138" ID="ID_178213477" MODIFIED="1400587541400" TEXT="narrowing must be explicit">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1400587701525" ID="ID_1000992234" MODIFIED="1400587721134" TEXT="for Bool no coercions/casts defined">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1400587874331" FOLDED="true" ID="ID_1734179981" MODIFIED="1400588040216" TEXT="surprising behavior example">
+<icon BUILTIN="idea"/>
+<node CREATED="1400587889623" ID="ID_727758502" MODIFIED="1400587911432" TEXT="assume PL/1 and A,B,C - strings of 3 characters"/>
+<node CREATED="1400587911667" ID="ID_60827486" MODIFIED="1400587991423" TEXT="if B=&apos;123&apos;, C=&apos;456&apos; then A=123+456=579=&apos;___579&apos;=&apos;___&apos; - three blanks">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1400582553783" FOLDED="true" ID="ID_247657895" MODIFIED="1400590562546" TEXT="threads">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400588042990" ID="ID_389992654" MODIFIED="1400588058240" TEXT="concurency built in through threads">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400588064160" ID="ID_1487342594" MODIFIED="1400588081617" TEXT="each thread has its own program counter and stack">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400588082228" ID="ID_1659597199" MODIFIED="1400588099999" TEXT="thread object have class Thread, start and stop methods"/>
+<node CREATED="1400588102898" ID="ID_134506181" MODIFIED="1400588132731" TEXT="sunchronization obtains a lock on the object: synchronized(x){e}"/>
+<node CREATED="1400588133107" ID="ID_1482973550" MODIFIED="1400589540800" TEXT="in synchronized methods, this is locked (synchronized f(...) {})">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400589277022" ID="ID_947156165" MODIFIED="1400589293871" TEXT="scheduler (pick a thread, execute statement)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400589879358" ID="ID_1694974390" MODIFIED="1400589915074" TEXT="if there`s a lock on object (when one synchonized thread runs) - other method can execute ignoring that lock">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1400590129853" ID="ID_1967564267" MODIFIED="1400590209760" TEXT="even without synchronization a variable should only hold values written by some thread (write is atomic), except - doubles">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400590307692" ID="ID_680520530" MODIFIED="1400590329627" TEXT="&quot;out of thin air value&quot;">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400590410032" ID="ID_1254218201" MODIFIED="1400590426817" TEXT="volatile variable - atomic write for doubles">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1400590566755" FOLDED="true" ID="ID_244849659" MODIFIED="1400592036169" TEXT="other topics">
+<node CREATED="1400582555681" FOLDED="true" ID="ID_1271820310" MODIFIED="1400590980986" TEXT="dynamic loading">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400590578652" FOLDED="true" ID="ID_1269350340" MODIFIED="1400590627177" TEXT="java allows classes to be loaded at run time">
+<icon BUILTIN="idea"/>
+<node CREATED="1400590598624" ID="ID_309920784" MODIFIED="1400590610508" TEXT="type checking source - at compile time"/>
+<node CREATED="1400590610713" ID="ID_1769016113" MODIFIED="1400590622950" TEXT="bytecode verification - at run time"/>
+</node>
+<node CREATED="1400590628416" ID="ID_600220780" MODIFIED="1400590646746" TEXT="loading policies handle by a ClassLoader"/>
+<node CREATED="1400590647142" ID="ID_146823997" MODIFIED="1400590663785" TEXT="classes may also be unloaded">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1400590808991" FOLDED="true" ID="ID_295313813" MODIFIED="1400592035242" TEXT="initialization">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400590837097" ID="ID_1967800054" MODIFIED="1400591002323" TEXT="a class is initialized when a symbol in the class is first used">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400591003756" ID="ID_173894952" MODIFIED="1400591010641" TEXT="not when class is loaded">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1400591058541" ID="ID_1099565896" MODIFIED="1400591131123" TEXT="1. lock the class object for the class (or wait for lock release)"/>
+<node CREATED="1400591098035" ID="ID_212558956" MODIFIED="1400591124000" TEXT="2. if the same thread is already initializing this class, release lock and return"/>
+<node CREATED="1400591133105" ID="ID_1257973823" MODIFIED="1400591145631" TEXT="3. if class already initialized, return normally"/>
+<node CREATED="1400591146227" ID="ID_200156266" MODIFIED="1400591174630" TEXT="4. otherwise, mark initialization as in progrss by this thread and unlock class"/>
+<node CREATED="1400591384878" ID="ID_73168218" MODIFIED="1400591403986" TEXT="5. initialize superclass, fields (in textual order)"/>
+<node CREATED="1400591406904" ID="ID_1161582266" MODIFIED="1400591444289" TEXT="initialize static, final fields first">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1400591418988" ID="ID_297666017" MODIFIED="1400591444289" TEXT="give every field a default value before initialization">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1400591436536" ID="ID_1328773877" MODIFIED="1400591483091" TEXT="6. any errors result in an incorrectly initialized class, mark class as erroneous"/>
+<node CREATED="1400591615125" ID="ID_215798848" MODIFIED="1400591618323" TEXT="7. if no errors, lock class, label class as initialized, notify threads waiting on class object, unlock class"/>
+</node>
 </node>
 </node>
 </node>
