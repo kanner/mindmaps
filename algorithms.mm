@@ -222,5 +222,267 @@
 </node>
 </node>
 </node>
+<node CREATED="1400738311436" FOLDED="true" ID="ID_1173012646" MODIFIED="1400750648588" POSITION="right" TEXT="4. Master method">
+<node CREATED="1400738488565" FOLDED="true" ID="ID_554528377" MODIFIED="1400738827482" TEXT="recursive algorithm example">
+<icon BUILTIN="idea"/>
+<node CREATED="1400738315751" ID="ID_1115755179" MODIFIED="1400738486327" TEXT="T(n) - maximum number of operations this algorithm needs to multiply two n-digit numbers"/>
+<node CREATED="1400738510285" ID="ID_312293841" MODIFIED="1400738531650" TEXT="express T(n) in terms of running time of recursive calls"/>
+<node CREATED="1400738532765" ID="ID_1888333188" MODIFIED="1400738552177" TEXT="base case: T(1) &lt;= a constant">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400738544083" ID="ID_945107053" MODIFIED="1400738662339" TEXT="general case (for all n&gt;1): T(n)&lt;= 4*T(n/2)+O(n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1400738665461" FOLDED="true" ID="ID_1456873212" MODIFIED="1400744827019" TEXT="gauss example">
+<icon BUILTIN="idea"/>
+<node CREATED="1400738673375" ID="ID_507720643" MODIFIED="1400738778899" TEXT="recursively compute ac(1), ab(2), (a+b)(c+d) (3)"/>
+<node CREATED="1400738728131" ID="ID_1938591296" MODIFIED="1400738745154" TEXT="ad+bc = (3) - (1) - (2)"/>
+<node CREATED="1400738766515" ID="ID_785953682" MODIFIED="1400738803433" TEXT="base case: T(1)&lt;= a constant">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400738810687" ID="ID_173556609" MODIFIED="1400738920531" TEXT="general case: T(n)&lt;= 3*T(n/2) + O(n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400739149497" ID="ID_990780434" MODIFIED="1400739182753" TEXT="we have no idea how better or worse it is in compare with merge sort">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1400739230552" ID="ID_264095691" MODIFIED="1400739250369" TEXT="master method: a &quot;black box&quot; for solving recurrences">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400739261746" ID="ID_1328320330" MODIFIED="1400739300765" TEXT="assumption: all subproblems have equal size">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400743381806" FOLDED="true" ID="ID_1814462557" MODIFIED="1400746898947" TEXT="recurrence format">
+<node CREATED="1400743388999" ID="ID_1161745353" MODIFIED="1400743406156" TEXT="base case: T(n) &lt;= a constant for all sufficiently small n"/>
+<node CREATED="1400743406603" ID="ID_954519806" MODIFIED="1400743565403" TEXT="general case: for all larger n - T(n)&lt;=a*T(n/b) + O(n^d)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400743469038" ID="ID_1603342702" MODIFIED="1400743509804" TEXT="a - number of recursive calls (&gt;=1)"/>
+<node CREATED="1400743476982" ID="ID_1604247647" MODIFIED="1400743505404" TEXT="b - input size shrinkage factor (&gt;1)"/>
+<node CREATED="1400743514886" ID="ID_74938931" MODIFIED="1400743539961" TEXT="d - exponent in running time of &quot;combine step&quot; (&gt;=0)"/>
+<node CREATED="1400743545058" ID="ID_670262341" MODIFIED="1400743554326" TEXT="a,b,d are independent of n">
+<icon BUILTIN="yes"/>
+</node>
+</node>
+<node CREATED="1400743613892" FOLDED="true" ID="ID_1459516949" MODIFIED="1400750647052" TEXT="master method (theorem)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1400744067608" ID="ID_1586571328" MODIFIED="1400744072857" TEXT="T(n)&lt;=a*T(n/b) + O(n^d)">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400743620695" ID="ID_814522459" MODIFIED="1400744077536" TEXT="T(n) = {">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400743631706" ID="ID_306115394" MODIFIED="1400744077535" TEXT="1. O(n^d * log n), if a=b^d">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400743655961" ID="ID_999968371" MODIFIED="1400744077535" TEXT="2, O(n^d), if a&lt;b^d">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400743666775" ID="ID_624510723" MODIFIED="1400744077535" TEXT="3, O(n^(log_b a)), if a&gt;b^d">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1400744087635" FOLDED="true" ID="ID_24711053" MODIFIED="1400745287907" TEXT="master method examples">
+<icon BUILTIN="idea"/>
+<node CREATED="1400744103934" FOLDED="true" ID="ID_1931329697" MODIFIED="1400744657123" TEXT="1. merge sort">
+<node CREATED="1400744190642" ID="ID_1973250971" MODIFIED="1400744204241" TEXT="a=2"/>
+<node CREATED="1400744204456" ID="ID_1663061258" MODIFIED="1400744208851" TEXT="b=2"/>
+<node CREATED="1400744209580" ID="ID_1246487282" MODIFIED="1400744225313" TEXT="d=1 (~O(n))"/>
+<node CREATED="1400744242360" ID="ID_426679476" MODIFIED="1400744256298" TEXT="case(1)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1400744257379" ID="ID_1008710324" MODIFIED="1400744300290" TEXT="T(n)&lt;=O(n*logn)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1400744311636" FOLDED="true" ID="ID_956467754" MODIFIED="1400744872467" TEXT="2. binary search">
+<node CREATED="1400744481004" ID="ID_1976151617" MODIFIED="1400744482915" TEXT="a=1"/>
+<node CREATED="1400744483141" ID="ID_480425700" MODIFIED="1400744486309" TEXT="b=2"/>
+<node CREATED="1400744486536" ID="ID_1605324894" MODIFIED="1400744512039" TEXT="d=0"/>
+<node CREATED="1400744514343" ID="ID_25768291" MODIFIED="1400744518421" TEXT="case(1)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1400744519500" ID="ID_1788509929" MODIFIED="1400744540463" TEXT="T(n)&lt;=O(logn)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1400744658483" FOLDED="true" ID="ID_1334375835" MODIFIED="1400744873651" TEXT="3. integer multiplication (recursive)">
+<node CREATED="1400744690665" ID="ID_1920049268" MODIFIED="1400744693156" TEXT="a=4"/>
+<node CREATED="1400744693393" ID="ID_54945755" MODIFIED="1400744697030" TEXT="b=2"/>
+<node CREATED="1400744697367" ID="ID_388304212" MODIFIED="1400744712485" TEXT="d=1"/>
+<node CREATED="1400744715742" ID="ID_1032463952" MODIFIED="1400744732202" TEXT="case(3)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1400744728896" ID="ID_1316646861" MODIFIED="1400744870776" TEXT="T(n)=O(n^(log_2 4))=O(n^2)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1400744773797" FOLDED="true" ID="ID_1439059805" MODIFIED="1400744963141" TEXT="4. integer multiplication (gause trick)">
+<node CREATED="1400744791949" ID="ID_1584569246" MODIFIED="1400744800675" TEXT="a=3"/>
+<node CREATED="1400744807673" ID="ID_1929594387" MODIFIED="1400744815013" TEXT="b=2"/>
+<node CREATED="1400744815237" ID="ID_137861726" MODIFIED="1400744832429" TEXT="d=1"/>
+<node CREATED="1400744832641" ID="ID_1966575470" MODIFIED="1400744864747" TEXT="case(3)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1400744867584" ID="ID_1069002815" MODIFIED="1400744955415" TEXT="T(n)=O(n^(log_2 3))~O(n^1.59)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1400744973496" FOLDED="true" ID="ID_1489290929" MODIFIED="1400745158547" TEXT="5. strassen`s matrix multiplication">
+<node CREATED="1400744985631" ID="ID_1124601994" MODIFIED="1400745008253" TEXT="a=7"/>
+<node CREATED="1400744991838" ID="ID_1334375122" MODIFIED="1400745020576" TEXT="b=2"/>
+<node CREATED="1400745009333" ID="ID_1136363125" MODIFIED="1400745039282" TEXT="d=2"/>
+<node CREATED="1400745047875" ID="ID_537343425" MODIFIED="1400745052476" TEXT="case(3)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1400745053042" ID="ID_1149519930" MODIFIED="1400745143219" TEXT="T(n)=O(n^(log_2 7))~O(n^2.81)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1400745159125" FOLDED="true" ID="ID_999700665" MODIFIED="1400745235955" TEXT="6. fiction recurrence">
+<icon BUILTIN="info"/>
+<node CREATED="1400745196369" ID="ID_1753239640" MODIFIED="1400745214147" TEXT="T(n)&lt;= 2T(n/2)+O(n^2)"/>
+<node CREATED="1400745214637" ID="ID_918271100" MODIFIED="1400745229450" TEXT="T(n)=O(n^2)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1400745289976" FOLDED="true" ID="ID_627342351" MODIFIED="1400750645709" TEXT="proof of master method">
+<icon BUILTIN="info"/>
+<node CREATED="1400745303898" ID="ID_1175447824" MODIFIED="1400745603623" TEXT="assume: recurrence is 1. T(1)&lt;=c and 2. T(n)&lt;=aT(n/b)+cn^d (for some constant c)"/>
+<node CREATED="1400745605674" ID="ID_149624411" MODIFIED="1400745623434" TEXT="assume: n is a power of b (general case is similar)"/>
+<node CREATED="1400745626846" ID="ID_78442001" MODIFIED="1400745649320" TEXT="idea: generalize merge sort analysis (recursive tree)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400745651512" ID="ID_483814319" MODIFIED="1400746428448" TEXT="a^j subproblems, n/(b^j) size of each"/>
+<node CREATED="1400746430440" ID="ID_929031011" MODIFIED="1400746444425" TEXT="log_b n - depth of recursion"/>
+<node CREATED="1400746652552" ID="ID_1664273649" MODIFIED="1400747051596" TEXT="at each step j: &lt;= a^j * c * (n/(b^j))^d = cn^d * [a / b^d]^j">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400747068269" ID="ID_1670568357" MODIFIED="1400747496662" TEXT="(*) total work &lt;= c*n^d * &#x2211; [a / b^d]^j where j=0,...,log_b n">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1400747604502" ID="ID_521646701" MODIFIED="1400747619546" TEXT="a = rate of subproblem proliferation (RSP)"/>
+<node CREATED="1400747619812" ID="ID_1159717452" MODIFIED="1400747648651" TEXT="b^d = rate of work shrinkage per subproblem (RWS)"/>
+<node CREATED="1400748024709" ID="ID_1922420723" MODIFIED="1400748288715" TEXT="case(1): RSP=RWS - same amount of work at each level [expect O(n^d &amp; * log n)]">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400748080240" ID="ID_150752830" MODIFIED="1400748288715" TEXT="case(2): RSP&lt;RWS - less work at each level =&gt; most work at the root [might expect O(n^d)]">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400748251220" ID="ID_490186304" MODIFIED="1400748288715" TEXT="case(3): RSP&gt;RWS - more work at each level =&gt; most work at the leaves [might expect O(#leaves)]">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400748549365" ID="ID_1278848091" MODIFIED="1400749927706" TEXT="case(1): (*) &lt;= c*n^d * &#x2211; 1 = c*n^d * (log_bn + 1) = O(n^d * log n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400748631686" FOLDED="true" ID="ID_67106744" MODIFIED="1400749916132" TEXT="case(2):">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400748655666" ID="ID_1158911751" MODIFIED="1400749018315" TEXT="for r!=1 we have 1+r+r^2+...+r^k = [r^(k+1) - 1] / (r-1) (geometric progression)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400748957463" ID="ID_587402822" MODIFIED="1400749272627" TEXT="if r&lt;1 =&gt; 1/(1-r) - is a constant (independent of k)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400749175242" ID="ID_1626036753" MODIFIED="1400749274819" TEXT="if r&gt;1 =&gt; r^k (1+ 1/(r-1))">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400749476549" ID="ID_1564486160" MODIFIED="1400749611411" TEXT="case(2): O(n^d)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1400749571398" FOLDED="true" ID="ID_835875461" MODIFIED="1400750641212" TEXT="case(3):">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400749693830" ID="ID_1691776925" MODIFIED="1400749698222" TEXT=" &#x2211; &lt;= constant * largest term">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400749698690" ID="ID_240565317" MODIFIED="1400749761698" TEXT="(*) = O(n^d * [a/(b^d)]^log_b n"/>
+<node CREATED="1400749765125" ID="ID_1811535871" MODIFIED="1400749801820" TEXT="(b^log_bn)^-d = n^(-d)"/>
+<node CREATED="1400749803776" ID="ID_441390600" MODIFIED="1400749883004" TEXT="(*) = O(a^(log_b n)) - number of leaves!">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400749997070" ID="ID_1575523939" MODIFIED="1400750036993" TEXT="a^(log_b n) = n^(log_b a) - we can take log of both sides"/>
+</node>
+</node>
+</node>
+<node CREATED="1400750649627" FOLDED="true" ID="ID_1119469855" MODIFIED="1400849578545" POSITION="right" TEXT="5. Quick sort">
+<node CREATED="1400750654825" ID="ID_13215519" MODIFIED="1400751728076" TEXT="assume: no duplicates"/>
+<node CREATED="1400751734931" ID="ID_551385538" MODIFIED="1400751780460" TEXT="key idea: partition array around a pivot element">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400751783914" FOLDED="true" ID="ID_1017096135" MODIFIED="1400834019253" TEXT="rearrange array so that...">
+<icon BUILTIN="idea"/>
+<node CREATED="1400751862503" ID="ID_1704105181" MODIFIED="1400751871483" TEXT="left of pivot - less then pivot"/>
+<node CREATED="1400751871709" ID="ID_1899616022" MODIFIED="1400751882595" TEXT="right of pivot - greater then pivot"/>
+</node>
+<node CREATED="1400752320231" ID="ID_1217406611" MODIFIED="1400752338892" TEXT="recursively sort 1st and 2nd part">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400751898742" ID="ID_594730639" MODIFIED="1400751954700" TEXT="puts pivot in it`s &quot;rightful position&quot;">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400752036578" ID="ID_471067612" MODIFIED="1400752083001" TEXT="1. partitioning - O(n), no extra memory"/>
+<node CREATED="1400752084325" ID="ID_442436873" MODIFIED="1400752112139" TEXT="2. reduces problem size"/>
+<node CREATED="1400752348609" ID="ID_1383690433" MODIFIED="1400752354634" TEXT="3. no merge step">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1400752487972" FOLDED="true" ID="ID_659803645" MODIFIED="1400849572905" TEXT="partition subroutine">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400752493980" ID="ID_624100958" MODIFIED="1400829436444" TEXT="note: even using O(n) extra memory it`s easy to partition around pivot in O(n) time">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400829613726" ID="ID_766985135" MODIFIED="1400829657028" TEXT="assume: pivot = 1st element of array [if not - swap pivot and 1st element as preprocessing step]"/>
+<node CREATED="1400829658513" ID="ID_1578409620" MODIFIED="1400830512817" TEXT="high-level idea: through single scan we have two parts: elements we`ve already looked through (2 groups - smaller and bigger then pivot) and not looked through elements"/>
+<node CREATED="1400830521460" ID="ID_449804292" MODIFIED="1400830597606" TEXT="invariant: everything looked at so far is partitioned">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400830580333" FOLDED="true" ID="ID_1886662803" MODIFIED="1400849572706" TEXT="example">
+<icon BUILTIN="idea"/>
+<node CREATED="1400830667166" ID="ID_1969904971" MODIFIED="1400830793154" TEXT="j - track of partitioned elements"/>
+<node CREATED="1400830736547" ID="ID_1444097196" MODIFIED="1400830795737" TEXT="i - track of &quot;less pivot&quot; elements"/>
+<node CREATED="1400830772362" ID="ID_939245787" MODIFIED="1400830816170" TEXT="1. at first i, j point to the element after pivot"/>
+<node CREATED="1400830833383" ID="ID_632392400" MODIFIED="1400830843000" TEXT="2. increase j (get new element)"/>
+<node CREATED="1400830887799" ID="ID_998320113" MODIFIED="1400830918069" TEXT="3. if a[i]&gt;pivot =&gt; i is not increasing (partitioned)"/>
+<node CREATED="1400830950737" ID="ID_256052343" MODIFIED="1400831198763" TEXT="4. if a[i]&lt;pivot =&gt; swap current element and first &quot;above pivot&quot;, increase i"/>
+<node CREATED="1400831102461" ID="ID_887662264" MODIFIED="1400831103320" TEXT="..."/>
+<node CREATED="1400831383242" ID="ID_1854170313" MODIFIED="1400831402620" TEXT="n: at the end - swap pivot and right-most of &quot;less pivot&quot; element"/>
+<node CREATED="1400832644834" ID="ID_1723763120" MODIFIED="1400832695010" TEXT="running time = O(n), where n=r-l+1 - length of the input (sub)array">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1400838635024" FOLDED="true" ID="ID_1063158910" MODIFIED="1400849577217" TEXT="choosing a pivot">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1400834229176" ID="ID_147573599" MODIFIED="1400834247628" TEXT="running time of quick sort depends on the quality of the pivot">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400834865393" ID="ID_710217363" MODIFIED="1400834889382" TEXT="if we use first element as a pivot =&gt; O(n^2)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400834886418" ID="ID_975482451" MODIFIED="1400837099331" TEXT="if we choose middle element =&gt; O(n*log n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400837204508" ID="ID_1123352441" MODIFIED="1400838313301" TEXT="if we choose random pivots ~ &quot;pretty good&quot;, &quot;often enough&quot;">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400838273514" ID="ID_1708886227" MODIFIED="1400838316364" TEXT="1. if we always get a 25-75 split =&gt; good enough for O(n*log n)"/>
+<node CREATED="1400838316699" ID="ID_16593960" MODIFIED="1400838389241" TEXT="2. half of elements give such split or better">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1400838466299" ID="ID_1822307243" MODIFIED="1400838555941" TEXT="quicksort theorem: for every input array of length n, the average running time of quick sort (with random pivots) is O(n*log n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400838584648" ID="ID_930969691" MODIFIED="1400838616125" TEXT="note: no assumptions on the data">
+<icon BUILTIN="info"/>
+</node>
+</node>
+</node>
 </node>
 </map>
