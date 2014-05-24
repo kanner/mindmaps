@@ -68,7 +68,7 @@
 <icon BUILTIN="idea"/>
 </node>
 </node>
-<node CREATED="1400491531165" FOLDED="true" ID="ID_1636377005" MODIFIED="1400502676410" POSITION="right" TEXT="2. Math in LaTeX">
+<node CREATED="1400491531165" FOLDED="true" ID="ID_1636377005" MODIFIED="1400909042219" POSITION="right" TEXT="2. Math in LaTeX">
 <node CREATED="1400495150176" ID="ID_694055282" MODIFIED="1400495178999" TEXT="\usepackage{mathtext} - russian symboles in formulas">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
@@ -217,6 +217,147 @@
 <icon BUILTIN="idea"/>
 </node>
 <node CREATED="1400498939801" ID="ID_1351840080" MODIFIED="1400498987932" TEXT="[a4paper, 12pt, leqno] - left-enumeration">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1400909018011" FOLDED="true" ID="ID_409272930" MODIFIED="1400912936801" POSITION="right" TEXT="3. Pictures">
+<node CREATED="1400909035767" FOLDED="true" ID="ID_360324811" MODIFIED="1400909890682" TEXT="dimensions">
+<icon BUILTIN="info"/>
+<node CREATED="1400909096537" ID="ID_1962232486" MODIFIED="1400909099087" TEXT="mm"/>
+<node CREATED="1400909099352" ID="ID_485158641" MODIFIED="1400909100322" TEXT="cm"/>
+<node CREATED="1400909100593" ID="ID_1662374238" MODIFIED="1400909101573" TEXT="in"/>
+<node CREATED="1400909104680" ID="ID_188019664" MODIFIED="1400909202581" TEXT="em - width of M (in current font)"/>
+<node CREATED="1400909122164" ID="ID_1434168588" MODIFIED="1400909208881" TEXT="ex - hight of X (in current font)"/>
+<node CREATED="1400909226476" ID="ID_1690950729" MODIFIED="1400909248377" TEXT="\pagewidth"/>
+<node CREATED="1400909249188" ID="ID_1585287854" MODIFIED="1400909268410" TEXT="\textheight"/>
+<node CREATED="1400909268796" ID="ID_236762836" MODIFIED="1400909269686" TEXT="..."/>
+<node CREATED="1400909276350" ID="ID_1766285514" MODIFIED="1400909301113" TEXT="0.5\textwidth"/>
+</node>
+<node CREATED="1400909348243" ID="ID_221580827" MODIFIED="1400909904813" TEXT="raster (jpeg, png, gif, bmp) - jpeg and png are supported"/>
+<node CREATED="1400909384483" ID="ID_105647007" MODIFIED="1400909914164" TEXT="vector (pdf, eps, ai) - pdf and eps are supported"/>
+<node CREATED="1400909487879" ID="ID_1561288244" MODIFIED="1400909621517" TEXT="\includegraphics(filename)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400910791065" ID="ID_555634325" MODIFIED="1400910822470" TEXT="epstopdf-tool for converting to pdf">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400910824923" ID="ID_1188170516" MODIFIED="1400911093486" TEXT="\includegraphics[scale=2]{} - decrease all dimensions in 2 times">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400911043258" ID="ID_730811240" MODIFIED="1400911116684" TEXT="[width=10cm,height=7cm,keepaspectratio] - to save propotions">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400911168767" ID="ID_248998268" MODIFIED="1400911214739" TEXT="[draft] - unprintable picture (blank picture)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400911233218" ID="ID_1823984331" MODIFIED="1400911237178" TEXT="[width=\textwidth]">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1400909025621" FOLDED="true" ID="ID_883763740" MODIFIED="1400920561568" POSITION="right" TEXT="4. Tables">
+<node CREATED="1400909739228" ID="ID_955089179" MODIFIED="1400909944539" TEXT="\begin{tabular} {vertival argument1|cc} ... \end{tabular}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400909776239" ID="ID_734931645" MODIFIED="1400919906951" TEXT="columns`re separated by &amp;">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400909828797" ID="ID_1656201516" MODIFIED="1400919913498" TEXT="lines/rows`re separated by \\">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400909872052" ID="ID_614666549" MODIFIED="1400911589787" TEXT="\hline - horizontal line">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400911369578" ID="ID_1683924366" MODIFIED="1400911982598" TEXT="l c r - alignment (left, centered, right)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400911816620" ID="ID_624213642" MODIFIED="1400911980098" TEXT="\begin{tabular}{p{4cm}|...} - paragraph length">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400912128815" ID="ID_709933656" MODIFIED="1400912142263" TEXT="can`t make standalone formula in cell">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400911974906" ID="ID_400522196" MODIFIED="1400912119305" TEXT="$\displaystyle...$ - to make formula like standalone-formula">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400912206274" ID="ID_1737368357" MODIFIED="1400919878237" TEXT="\\[6mm] - increase row height (\setlength\{extrarowheight}{6mm} - before beginning of table)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400912416105" ID="ID_1000105481" MODIFIED="1400912443683" TEXT="\begin{tabularx}{\textwidth}{X|c|X}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400912492120" ID="ID_488941202" MODIFIED="1400912558397" TEXT="X - new type of row (equal width with other X-rows)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400912607740" ID="ID_615624916" MODIFIED="1400912706450" TEXT="\begin{tabulary}{\textwidth}{C|J|R} - adopt width to have equal height">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400912637107" ID="ID_407520804" MODIFIED="1400912659817" TEXT="C,R - centered, right alignment"/>
+<node CREATED="1400912660425" ID="ID_1014657343" MODIFIED="1400912738974" TEXT="J - justify"/>
+<node CREATED="1400920130810" FOLDED="true" ID="ID_214129570" MODIFIED="1400920558578" TEXT="multipage tables">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1400920143360" ID="ID_1798302373" MODIFIED="1400920524350" TEXT="\begin{longtable}{|c|c|c|c|}">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400920268480" ID="ID_1204797848" MODIFIED="1400920413181" TEXT="...\endfirsthead - end of first head">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400920428454" ID="ID_1094833946" MODIFIED="1400920436649" TEXT="...\endhead - end of head on each table">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400920463417" ID="ID_158015741" MODIFIED="1400920518970" TEXT="...\endfoot - end of each footer">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1400920488723" ID="ID_890677110" MODIFIED="1400920517830" TEXT="...\endlastfoot - end of table">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1400912808285" FOLDED="true" ID="ID_1170164519" MODIFIED="1400920620034" POSITION="right" TEXT="5. Floating objects">
+<node CREATED="1400912942511" ID="ID_59588604" MODIFIED="1400919429583" TEXT="\begin{table}[!h]...\begin{center}...\begin{tabular} - standalone table with number, centered">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400913245551" ID="ID_1926249225" MODIFIED="1400913372155" TEXT="h - make table HERE, !h - here I said!">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400913399953" ID="ID_744869784" MODIFIED="1400913633959" TEXT="\caption[shortcut caption]{real caption}\label{tab:mytab} - before \begin{tabular}">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400913634753" ID="ID_40914645" MODIFIED="1400919587531" TEXT="\multicolumn{num_col}{|c|}{text} - column merge">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400919646292" ID="ID_1920184190" MODIFIED="1400919667862" TEXT="\cline{1-7} - horizontal line through column numbers">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400919672306" ID="ID_1322079622" MODIFIED="1400919924569" TEXT="\multirow{num_row}{*}{text} - lines merge">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400919927545" ID="ID_619587428" MODIFIED="1400919970192" TEXT="* - natural width"/>
+</node>
+<node CREATED="1400920620563" FOLDED="true" ID="ID_144523326" MODIFIED="1400921431977" POSITION="right" TEXT="6. Figure wrapping">
+<node CREATED="1400920644816" ID="ID_1050297117" MODIFIED="1400921175854" TEXT="\begin{wrapfigure}{l}{0.3333\linewidth}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400920684818" ID="ID_1010193456" MODIFIED="1400920698137" TEXT="l - where the figure should be (text is on opposite)"/>
+<node CREATED="1400920825410" ID="ID_503615583" MODIFIED="1400920926807" TEXT="width of inner image [linewidth] will be less = 0.3333 of linewidth">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1400921168938" ID="ID_937591618" MODIFIED="1400921173525" TEXT="\begin{wraptable}{r}{0.5\linewidth}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1400921433593" FOLDED="true" ID="ID_1140686930" MODIFIED="1400921466312" POSITION="right" TEXT="7. List of tables / figures">
+<node CREATED="1400921445987" ID="ID_164012765" MODIFIED="1400921463857" TEXT="\listoffigures">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1400921447661" ID="ID_99506713" MODIFIED="1400921463857" TEXT="\listoftables">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="idea"/>
 </node>
 </node>
