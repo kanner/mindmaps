@@ -484,5 +484,252 @@
 </node>
 </node>
 </node>
+<node CREATED="1401182384378" FOLDED="true" ID="ID_1079121985" MODIFIED="1401198163774" POSITION="right" TEXT="6. Linear-time selection">
+<node CREATED="1401182510035" ID="ID_1885219473" MODIFIED="1401182658301" TEXT="the goal: number i=1,...,n - i`th order statistic (i`th smallest element)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401182697573" ID="ID_920950923" MODIFIED="1401182752384" TEXT="example: median ((n+1)/2 for odd n and n/2 for )"/>
+<node CREATED="1401191049358" ID="ID_417003629" MODIFIED="1401191061059" TEXT="idea: pivot = &quot;median of medians&quot;">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401191373239" ID="ID_342924480" MODIFIED="1401191419044" TEXT="randomized selection - RSelect(array A, length n, order statistic i)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401193969363" ID="ID_774747895" MODIFIED="1401193978464" TEXT="0. if n==1 return array[0]"/>
+<node CREATED="1401191435178" ID="ID_779872225" MODIFIED="1401191450472" TEXT="1. use quick sort with random pivot"/>
+<node CREATED="1401191451722" ID="ID_507750204" MODIFIED="1401193843944" TEXT="2. after partitioning - let j be order statistic of pivot"/>
+<node CREATED="1401193837569" ID="ID_1365012072" MODIFIED="1401193928425" TEXT="3. if j == i - then success and return pivot">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1401193899141" ID="ID_735975571" MODIFIED="1401194153057" TEXT="4. if j&gt;i - return RSelect(array_to_the_left, j-1, i)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401194185953" ID="ID_357242093" MODIFIED="1401194221657" TEXT="5. if j&lt;i - return RSelect(array_to_the_right, n-j, i-j)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401195003557" ID="ID_1270828928" MODIFIED="1401195030956" TEXT="idea: running time depends on pivot choice (the worst is O(n^2))">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401195263686" ID="ID_1080456491" MODIFIED="1401195312628" TEXT="RSelect theorem: for every input array of length n, the average running time of RSelect is O(n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401196252080" ID="ID_555811362" MODIFIED="1401196554137" TEXT="note: RSelect uses &lt;= cn operations outside the recursive call [partitioning]"/>
+<node CREATED="1401196554704" ID="ID_748039869" MODIFIED="1401196605192" TEXT="notation: RSelect is in phase j if current array size between n*(3/4)^(j+1) and n*(3/4)^j"/>
+<node CREATED="1401196607239" ID="ID_960940674" MODIFIED="1401196623585" TEXT="X_j = number of recursive calls during phase j"/>
+<node CREATED="1401196625069" ID="ID_378787815" MODIFIED="1401196765408" TEXT="(*) running time &lt;= &#x2211; X_j * c * n (3/4)^j">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401196963572" ID="ID_628709137" MODIFIED="1401196992031" TEXT="note: if RSelect chooses pivot giving a 25-75% split (or better) then current phase ends">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1401197010028" ID="ID_10073965" MODIFIED="1401197094021" TEXT="probability of 25-75 split or better is 50% (1/2) - we can use reduction to coin flipping">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401197217175" FOLDED="true" ID="ID_1318366889" MODIFIED="1401197803493" TEXT="coin flipping analysis">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401197225789" ID="ID_574389544" MODIFIED="1401197361709" TEXT="N - number of coin flips until we get heads (good pivot)"/>
+<node CREATED="1401197363083" ID="ID_459048340" MODIFIED="1401197466543" TEXT="E[N] = 1+E[N]1/2 - 1 coin flip can cause with 1/2 probability second flip (with same probability)"/>
+<node CREATED="1401197594778" ID="ID_1808387970" MODIFIED="1401197626103" TEXT="N=2 on avarage">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1401197697109" ID="ID_1393224572" MODIFIED="1401197874442" TEXT="(*) &lt;= E[cn*&#x2211;(X_j * (3/4)^j)] - expectation over random pivot"/>
+<node CREATED="1401197815935" ID="ID_124735805" MODIFIED="1401198089004" TEXT="(*) &lt;= cn*&#x2211;(3/4)^j * E[X_j]) = 2cn&#x2211;(3/4)^j = 8cn">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1401198165902" FOLDED="true" ID="ID_912989807" MODIFIED="1401362186166" POSITION="right" TEXT="7. Graphs and the contraction algorithm">
+<node CREATED="1401198195658" ID="ID_409023303" MODIFIED="1401281792351" TEXT="1. vertices/nodes [V] 2. edges [E]">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401281779293" ID="ID_793555577" MODIFIED="1401281790423" TEXT="undirected and directed graphs">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401281853996" ID="ID_1763832373" MODIFIED="1401281861359" TEXT="directed edges ~ arcs">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401282196030" FOLDED="true" ID="ID_645632461" MODIFIED="1401282476761" TEXT="a cut of a graph (V,E) is a partition of V into two non-empty sets A and B">
+<icon BUILTIN="idea"/>
+<node CREATED="1401282363435" ID="ID_152363906" MODIFIED="1401282393400" TEXT="edges with both end-points in A"/>
+<node CREATED="1401282370599" ID="ID_1972503059" MODIFIED="1401282398289" TEXT="edges with both end-points in B"/>
+<node CREATED="1401282426411" ID="ID_365164947" MODIFIED="1401282455311" TEXT="edges with tail in A and head in B"/>
+<node CREATED="1401282440135" ID="ID_1668858176" MODIFIED="1401282450105" TEXT="edges with tail in B and head in A"/>
+</node>
+<node CREATED="1401282477449" FOLDED="true" ID="ID_1529538943" MODIFIED="1401282866624" TEXT="the crossing edges of a cut (A,B) are those witch...">
+<node CREATED="1401282498810" ID="ID_1825272367" MODIFIED="1401282666283" TEXT="1. one endpoint in each of (A,B) [undirecter]"/>
+<node CREATED="1401282666870" ID="ID_1173614811" MODIFIED="1401282693617" TEXT="2. tail in A and head in B [directed]"/>
+<node CREATED="1401282695372" ID="ID_1747069795" MODIFIED="1401282723703" TEXT="3. assume that B-&gt;A edges are ignored">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1401282869659" ID="ID_1895057866" MODIFIED="1401282894983" TEXT="graph with n vertices have at most 2^n - 2 cuts">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401282918177" ID="ID_1985447798" MODIFIED="1401283049978" TEXT="goal: compute min cut - cut with fewest number of crossing edges (parallel edges allowed)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401283051147" FOLDED="true" ID="ID_240596924" MODIFIED="1401360846981" TEXT="graph representation">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401283470424" ID="ID_1168753181" MODIFIED="1401283738591" TEXT="undirected graph can have at least (n-1) and at most n(n-1)/2 edges">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401283877044" ID="ID_1635328609" MODIFIED="1401283883615" TEXT="sparse and dense graphs">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401283997354" ID="ID_1401036958" MODIFIED="1401284003561" TEXT="n - number of vertices"/>
+<node CREATED="1401284003846" ID="ID_1564449938" MODIFIED="1401284009454" TEXT="m - number of edges"/>
+<node CREATED="1401284010938" ID="ID_1946877760" MODIFIED="1401284093951" TEXT="in most applications, m is &#x2126;(n) and O(n^2)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401284115053" ID="ID_1661135026" MODIFIED="1401284131359" TEXT="in a &quot;sparse graph&quot; m is O(n) or close to it">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1401284132088" ID="ID_1149449683" MODIFIED="1401284165343" TEXT="in &quot;dense graph&quot; m is O(n^2) of close ti it">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1401284219702" FOLDED="true" ID="ID_649560060" MODIFIED="1401356935260" TEXT="adjacency matrix">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401284227495" ID="ID_1872204596" MODIFIED="1401284470615" TEXT="represents graph by n*n matrix A, where A_ij = 1 if and only if G has an i-j edge">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401284471212" ID="ID_672246163" MODIFIED="1401284500165" TEXT="variant: A_ij = number of i-j edges (parallel edges)"/>
+<node CREATED="1401284500541" ID="ID_661614755" MODIFIED="1401284519825" TEXT="variant: A_ij = weight of i-j edge (if any)"/>
+<node CREATED="1401284521600" ID="ID_1829957348" MODIFIED="1401284543583" TEXT="variant: A_ij = +1 if i-&gt;j and -1 if i&lt;-j"/>
+<node CREATED="1401284597684" ID="ID_1737256205" MODIFIED="1401284638950" TEXT="space for adjacency matrix ~ &#x4e8;(n^2)"/>
+</node>
+<node CREATED="1401284761935" FOLDED="true" ID="ID_492348591" MODIFIED="1401356937356" TEXT="adjacency lists">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401284768716" ID="ID_197482267" MODIFIED="1401285003473" TEXT="1. array or list of vertices"/>
+<node CREATED="1401284783179" ID="ID_278561325" MODIFIED="1401285006625" TEXT="2. array or list of edges"/>
+<node CREATED="1401284787730" ID="ID_1487582311" MODIFIED="1401285009722" TEXT="3. each edge points to its endpoints"/>
+<node CREATED="1401284802225" ID="ID_1360797415" MODIFIED="1401285012647" TEXT="4. each vertex points to edges incident on it [one-to-one correspondence to (3)]"/>
+<node CREATED="1401284843049" ID="ID_1464865994" MODIFIED="1401285051570" TEXT="space for adjacency lists ~ &#x4e8;(n+m) or &#x4e8;(max{n,m})"/>
+</node>
+<node CREATED="1401285120753" ID="ID_1173484529" MODIFIED="1401285142151" TEXT="optimal representation depends on graph density and operations needed">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1401285620743" FOLDED="true" ID="ID_168434846" MODIFIED="1401361065808" TEXT="random contraction algorithm">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1401285629100" ID="ID_134526202" MODIFIED="1401285659808" TEXT="idea: use random sampling">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401285789136" ID="ID_1020931756" MODIFIED="1401285803077" TEXT="while there are more than 2 vertices:"/>
+<node CREATED="1401285803735" ID="ID_877399160" MODIFIED="1401285823009" TEXT="1. pick a remaining edge (u,v) uniformly at random"/>
+<node CREATED="1401285830874" ID="ID_94072028" MODIFIED="1401285852360" TEXT="2. merge (contract) u and v into a single vertex"/>
+<node CREATED="1401285853017" ID="ID_391808990" MODIFIED="1401285857766" TEXT="3. remove self-loops"/>
+<node CREATED="1401285865119" ID="ID_1603276427" MODIFIED="1401357840960" TEXT="4. return cut represented by final 2 vertices">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401353196915" ID="ID_976653008" MODIFIED="1401353203323" TEXT="n-2 iterations">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401353204596" ID="ID_1423479247" MODIFIED="1401353500437" TEXT="success probability depends on random choise of the edge">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401353502443" ID="ID_292422111" MODIFIED="1401353732131" TEXT="G=(V,E) - fixed graph with n vertices and m edges">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401353686140" ID="ID_210460380" MODIFIED="1401353732131" TEXT="fixed minimum cut (A,B), k - number of edges crossing (A,B) (F - all this edges)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401353799199" ID="ID_1735803021" MODIFIED="1401353896489" TEXT="wrong situation: one of the edges from F is chosen while contraction (we`ll have another cut, different from (A,B))">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401353947315" ID="ID_1042717176" MODIFIED="1401354736435" TEXT="only edges inside A or inside B should be contracted to get min cut (A,B)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401354784122" ID="ID_1495628792" MODIFIED="1401354826171" TEXT="Pr[output is (A,B)] = Pr[never contracts an edge of F]">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1401354927219" ID="ID_1163577083" MODIFIED="1401354944080" TEXT="S_i = event that an edge of F contracted in iteration i"/>
+<node CREATED="1401354944505" ID="ID_135367556" MODIFIED="1401355032555" TEXT="so we need to compute Pr[!S_1 ^ !S_2 ^ ... ^ !S_n-2]">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401355112498" ID="ID_1335624354" MODIFIED="1401357927530" TEXT="for first iteration probability is Pr[S_1]=k/m">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401355251438" ID="ID_1715828511" MODIFIED="1401356675094" TEXT="key observation: degree (number of incident edges) of each vertex is at least k">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401356821249" ID="ID_26663875" MODIFIED="1401356837347" TEXT="reason: each vertex v defines a cut ({v}, V-{v})"/>
+<node CREATED="1401356917543" ID="ID_682965175" MODIFIED="1401357025271" TEXT="&#x2211;degree(v)=2m =&gt; m&gt;=kn/2">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1401357206819" ID="ID_812603455" MODIFIED="1401357251364" TEXT="so Pr[S_1]&lt;= 2/n">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401357406047" ID="ID_1281678983" MODIFIED="1401357441180" TEXT="Pr[!S_1 ^ !S_2] = Pr[!S_2 | !S_1] * Pr[!S_1]">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1401357613635" ID="ID_1234273726" MODIFIED="1401358022513" TEXT="all degrees in contracted graph has to be at least k">
+<font NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401357723390" ID="ID_823822311" MODIFIED="1401358027032" TEXT="number of remaining edges on 2nd iteration &gt;= (1/2)*k(n-1)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401358067775" ID="ID_1712083" MODIFIED="1401358583659" TEXT="Pr[!S_2|!S_1] &lt;= 1 - (2/(n-1))">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401358127104" ID="ID_305999730" MODIFIED="1401358585928" TEXT="Pr[!S_1] &lt;= 1 - (2/n)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401358261370" ID="ID_1617307598" MODIFIED="1401358265506" TEXT="..."/>
+<node CREATED="1401358505049" ID="ID_457778042" MODIFIED="1401358761347" TEXT="Pr[!S_1 ^ !S_2 ^...^ !S_n-2] &lt;= (n-2)/n * (n-3)/(n-1) * ... * 2/4 * 1/3 = 2 / (n*(n-1)) &gt;= 1/n^2">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1401358868095" ID="ID_578580007" MODIFIED="1401360213427" TEXT="algorithm sucks! success on &gt;= 1-1/(n^2)">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1401359070477" ID="ID_1277688032" MODIFIED="1401360242787" TEXT="solution: run the basic algorithm a large number N times, remember the smallest cut found">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1401359247709" ID="ID_1614473716" MODIFIED="1401359284339" TEXT="T_i = event that the cut (A,B) is found on the i`th try (different T_i are independent)"/>
+<node CREATED="1401359289216" ID="ID_1120760952" MODIFIED="1401360298580" TEXT="Pr[all N trials fail] = Pr[!T_1 ^...^T_N] = &#x220f;Pr[!T_i] &lt;= (1-1/(n^2))^N">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401360337323" ID="ID_560948321" MODIFIED="1401360354738" TEXT="for real numbers x =&gt; 1+x &lt;= e^x"/>
+<node CREATED="1401360442835" ID="ID_370124474" MODIFIED="1401360648740" TEXT="if we take N=n^2 then Pr[all fail]&lt;=(1/e)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401360623420" ID="ID_785970351" MODIFIED="1401360645908" TEXT="if we take N=lnn * n^2 then &lt;= 1/n">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1401360806585" ID="ID_655366615" MODIFIED="1401361061508" TEXT="running time ~ polynomial in n and m but slow (&#x2126;(m*n^2))">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401360871740" ID="ID_730151436" MODIFIED="1401361063724" TEXT="can be better with some optimizations (O(n^2))">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401361088526" FOLDED="true" ID="ID_1699996535" MODIFIED="1401362185045" TEXT="counting minimum cuts">
+<node CREATED="1401360983316" ID="ID_1757036791" MODIFIED="1401361108404" TEXT="note: graph can have multiple min cuts (tree with n vertices has (n-1) minimum cuts)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401361233979" ID="ID_1397946418" MODIFIED="1401361239189" TEXT="how many">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1401361096899" ID="ID_1589178760" MODIFIED="1401361175521" TEXT="&gt;= n-1"/>
+<node CREATED="1401361166660" ID="ID_717023725" MODIFIED="1401361172693" TEXT="&lt;= 2^n"/>
+<node CREATED="1401361177097" ID="ID_435473808" MODIFIED="1401361278593" TEXT="answer: n choose 2 ~ (n 2) = n(n-1)/2 [can be bigger in trees]"/>
+<node CREATED="1401361318029" ID="ID_1539080775" MODIFIED="1401361455781" TEXT="proof: consider the n-cycle, each pair of the n edges defines a distinct minimum cut (2 crossing edges) =&gt; (n 2) min cuts"/>
+<node CREATED="1401361726218" ID="ID_1278347168" MODIFIED="1401361873903" TEXT="proof: let (Ai,Bi) be the min cuts of a graph with n vertices, so Pr[output=(Ai,Bi)]=Pr[Si]&gt;= 1 / (n 2) for all i"/>
+<node CREATED="1401361875143" ID="ID_1721515687" MODIFIED="1401362099501" TEXT="Si are disjoint events (only one can happen) =&gt; their probabilities sum to at most 1: t/(n 2) &lt;= 1">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401362100445" ID="ID_1579452158" MODIFIED="1401362153698" TEXT="t&lt;= (n 2) (cycles has the largest number of cuts)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
 </node>
 </map>
