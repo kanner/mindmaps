@@ -412,7 +412,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1400750649627" FOLDED="true" ID="ID_1119469855" MODIFIED="1401695316393" POSITION="right" TEXT="5. Quick sort">
+<node CREATED="1400750649627" FOLDED="true" ID="ID_1119469855" MODIFIED="1401799544437" POSITION="right" TEXT="5. Quick sort">
 <node CREATED="1400750654825" ID="ID_13215519" MODIFIED="1400751728076" TEXT="assume: no duplicates"/>
 <node CREATED="1400751734931" ID="ID_551385538" MODIFIED="1400751780460" TEXT="key idea: partition array around a pivot element">
 <icon BUILTIN="idea"/>
@@ -499,6 +499,90 @@
 <node CREATED="1401695201777" ID="ID_1007683643" MODIFIED="1401695275901" TEXT="2. pivot winds up in correct position and we have left- and right-partitions with length &lt;n... they can be sorted correctly cause induction hypothesis"/>
 <node CREATED="1401695276165" ID="ID_188406172" MODIFIED="1401695286986" TEXT="in result - all array is sorted">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1401795022130" FOLDED="true" ID="ID_375655096" MODIFIED="1401799542653" TEXT="analysis">
+<icon BUILTIN="idea"/>
+<node CREATED="1401795030154" ID="ID_1899314717" MODIFIED="1401795163118" TEXT="fix input array A of length n"/>
+<node CREATED="1401795179757" ID="ID_1059034741" MODIFIED="1401795202089" TEXT="&#x2126; (all possible pivot sequences)"/>
+<node CREATED="1401795275701" ID="ID_1484682243" MODIFIED="1401795367531" TEXT="for &#x3c3;(sigma)&#x20ac;&#x2126;: C(&#x3c3;)=number of comparisons between two input elements made by QuickSort (given random choices &#x3c3;)"/>
+<node CREATED="1401795388927" ID="ID_1935291172" MODIFIED="1401795947292" TEXT="lemma: running time of QuickSort dominated by comparisons [there exist constant c: for each &#x3c3;&#x20ac;&#x2126; RT(&#x3c3;)&lt;=c*C(&#x3c3;)]">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401795792153" ID="ID_438009274" MODIFIED="1401795818332" TEXT="remaining goal: E[C]=O(n*log n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401795922561" ID="ID_27138996" MODIFIED="1401795941942" TEXT="can`t apply Master Method (random, unbalanced subproblems)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401795843978" FOLDED="true" ID="ID_1911162610" MODIFIED="1401796915931" TEXT="we can use decomposition principle">
+<icon BUILTIN="idea"/>
+<node CREATED="1401796824678" ID="ID_1362195376" MODIFIED="1401796844112" TEXT="1. identify random variable Y that you really care about"/>
+<node CREATED="1401796844345" ID="ID_343757698" MODIFIED="1401796870787" TEXT="2. express Y as sum of indicator random variables (simpler then Y)"/>
+<node CREATED="1401796874937" ID="ID_954926391" MODIFIED="1401796905251" TEXT="3. apply linearity of expectation: E[Y]=&#x2211;Pr[X_i=1]"/>
+</node>
+<node CREATED="1401795990843" FOLDED="true" ID="ID_78998454" MODIFIED="1401796556501" TEXT="building blocks">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401796023861" ID="ID_872643897" MODIFIED="1401796038646" TEXT="z_i = i`th smallest element of A"/>
+<node CREATED="1401796128580" ID="ID_974892144" MODIFIED="1401796241099" TEXT="for &#x3c3;&#x20ac;&#x2126; and indexes i&lt;j let X_ij(&#x3c3;) - number of times z_i and z_j get compared in QuickSort with pivot sequence &#x3c3;">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401796342854" ID="ID_1595644521" MODIFIED="1401796360507" TEXT="two fixed elements can be compared only 0 or 1 times">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401796511090" ID="ID_749979201" MODIFIED="1401796536492" TEXT="each X_ij is an &quot;indicator&quot; random variable">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1401796557219" FOLDED="true" ID="ID_320571823" MODIFIED="1401798725045" TEXT="decomposition approach [*]">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401796566282" ID="ID_1189156569" MODIFIED="1401796625792" TEXT="C(&#x3c3;)=&#x2211;&#x2211;X_ij(&#x3c3;) for every &#x3c3;">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401796647191" ID="ID_1309222461" MODIFIED="1401796806299" TEXT="by linerity of expectation: E[C]=&#x2211;&#x2211;E[X_ij]">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401796690354" ID="ID_699627353" MODIFIED="1401796703211" TEXT="X_ij - are simpler then C">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401796712244" ID="ID_1836091874" MODIFIED="1401796743168" TEXT="E[X_ij]=0*Pr[X_ij=0] + 1*Pr[X_ij=1] = Pr[X_ij=1]"/>
+<node CREATED="1401796743655" ID="ID_1205918312" MODIFIED="1401796776563" TEXT="(*) E[C]=&#x2211;&#x2211;Pr[zi,zj get compared]">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1401797147242" FOLDED="true" ID="ID_581995948" MODIFIED="1401798640260" TEXT="key claim [**]">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401797151037" ID="ID_318320586" MODIFIED="1401797180739" TEXT="for all i&lt;j: Pr[z_i and z_j get compared]= 2/(j-i+1)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1401797181360" ID="ID_1319807358" MODIFIED="1401797846899" TEXT="fix z_i and z_j (i&lt;j)"/>
+<node CREATED="1401797858654" ID="ID_1551288678" MODIFIED="1401797882089" TEXT="consider z_i, z_i+1,..., z_j-1, z_j"/>
+<node CREATED="1401797903242" ID="ID_1384750695" MODIFIED="1401798083510" TEXT="inductively: as long as none of these elements are chosen as a pivot, all are passed to the same recursive call">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401798191327" ID="ID_1453599468" MODIFIED="1401798309209" TEXT="1. if z_i or z_j gets chosen first (as a pivot), then z_i and z_j get compared"/>
+<node CREATED="1401798309462" ID="ID_1981453711" MODIFIED="1401798407864" TEXT="2. if z_i+1 or z_i+2 or ... or z_j-1 gets chosen, then z_i and z_j will never be compared"/>
+<node CREATED="1401798458401" ID="ID_76289640" MODIFIED="1401798587576" TEXT="since pivot always chosen uniformly at random, then Pr[z_i and z_j get compared] = 2/(j-i+1)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1401798715168" FOLDED="true" ID="ID_1229657292" MODIFIED="1401799483804" TEXT="(***) E[C]=2*&#x2211;&#x2211;1/(j-i+1), i=1...n-1, j=i+1...n">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1401798790238" ID="ID_109237302" MODIFIED="1401798952292" TEXT="lets fix i and consider the inner sum"/>
+<node CREATED="1401798978385" ID="ID_667367985" MODIFIED="1401798995533" TEXT="&#x2211;1/(j-i+1), j=i+1...n"/>
+<node CREATED="1401798998482" ID="ID_1752864568" MODIFIED="1401799037572" TEXT="= 1/2+1/3+1/4+..."/>
+<node CREATED="1401799059609" ID="ID_220833362" MODIFIED="1401799179944" TEXT="E[C]&lt;= 2 * n * &#x2211;(1/k), k=2...n"/>
+<node CREATED="1401799193917" ID="ID_1883821436" MODIFIED="1401799204907" TEXT="&#x2211;(1/k)&lt;= ln n">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1401799323838" ID="ID_1303337483" MODIFIED="1401799446470" TEXT="&#x2211;(1/k) &lt;= &#x222b; (1/x)dx = ln x (1 n) = ln n - ln 1 = ln n">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1401799471664" ID="ID_1887171767" MODIFIED="1401799492507" TEXT="E[C]&lt;= 2n * ln n">
+<icon BUILTIN="idea"/>
 </node>
 </node>
 </node>
