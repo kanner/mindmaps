@@ -412,7 +412,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1400750649627" FOLDED="true" ID="ID_1119469855" MODIFIED="1400849578545" POSITION="right" TEXT="5. Quick sort">
+<node CREATED="1400750649627" FOLDED="true" ID="ID_1119469855" MODIFIED="1401695316393" POSITION="right" TEXT="5. Quick sort">
 <node CREATED="1400750654825" ID="ID_13215519" MODIFIED="1400751728076" TEXT="assume: no duplicates"/>
 <node CREATED="1400751734931" ID="ID_551385538" MODIFIED="1400751780460" TEXT="key idea: partition array around a pivot element">
 <icon BUILTIN="idea"/>
@@ -481,6 +481,127 @@
 </node>
 <node CREATED="1400838584648" ID="ID_930969691" MODIFIED="1400838616125" TEXT="note: no assumptions on the data">
 <icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1401694942126" FOLDED="true" ID="ID_1525014222" MODIFIED="1401695314777" TEXT="correctness of quick sort">
+<icon BUILTIN="idea"/>
+<node CREATED="1401694949825" FOLDED="true" ID="ID_1141072682" MODIFIED="1401695153281" TEXT="induction method">
+<icon BUILTIN="info"/>
+<node CREATED="1401694973956" ID="ID_1195889514" MODIFIED="1401695000394" TEXT="P(n) - assertion parametrized by positive integer n"/>
+<node CREATED="1401695001143" ID="ID_104171255" MODIFIED="1401695024117" TEXT="to prove P(n) for all n&gt;=1 we need to go through:"/>
+<node CREATED="1401695024313" ID="ID_1540930900" MODIFIED="1401695038549" TEXT="1. base case (n=1) - prove P(1)"/>
+<node CREATED="1401695038891" ID="ID_352548702" MODIFIED="1401695132093" TEXT="2. inductive step: for every n&gt;=2 prove that if P(k) correct for k&lt;n [induction hypothesis] then P(n) correct"/>
+</node>
+<node CREATED="1401695154072" ID="ID_1385083929" MODIFIED="1401695188216" TEXT="need to prove: quick sort correctly sort every array of n elements (no matter how we choose pivot)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401695191587" ID="ID_1768461072" MODIFIED="1401695200667" TEXT="1. P(1) holds, already sorted"/>
+<node CREATED="1401695201777" ID="ID_1007683643" MODIFIED="1401695275901" TEXT="2. pivot winds up in correct position and we have left- and right-partitions with length &lt;n... they can be sorted correctly cause induction hypothesis"/>
+<node CREATED="1401695276165" ID="ID_188406172" MODIFIED="1401695286986" TEXT="in result - all array is sorted">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1401695685608" FOLDED="true" ID="ID_586523892" MODIFIED="1401794687692" POSITION="right" TEXT="5`. Probability review">
+<node CREATED="1401792852578" FOLDED="true" ID="ID_757890751" MODIFIED="1401794196827" TEXT="sample spaces">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401695696646" ID="ID_1546891869" MODIFIED="1401788464638" TEXT="sample space &#x2126; - all possible outcomes (in algorithms usually finite set)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401708627380" ID="ID_299092144" MODIFIED="1401709365235" TEXT="each outcome i&#x20ac;&#x2126; has a probability p(i)&gt;=0">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401709410220" ID="ID_494870190" MODIFIED="1401709419612" TEXT="&#x2211;p(i)=1">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401709467305" ID="ID_239641312" MODIFIED="1401709688782" TEXT="example: rolling 2 dice - &#x2126;={(1,1),(2,1),...,(5,6),(6,6)} [36 ordered pairs, p(i)=1/36]"/>
+<node CREATED="1401787336140" ID="ID_943610159" MODIFIED="1401787443057" TEXT="example: choosing a random pivot in outer QuickSort call - &#x2126;={1,2,...,n} [pivot p(i)=1/n]"/>
+</node>
+<node CREATED="1401792880280" FOLDED="true" ID="ID_1833723954" MODIFIED="1401792958470" TEXT="events">
+<font NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401787466577" ID="ID_1561808011" MODIFIED="1401788466008" TEXT="event is a subset of &#x2126;">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401787489096" ID="ID_90305749" MODIFIED="1401787535049" TEXT="probability of an event S is &#x2211;p(i) of it`s elements">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1401792902295" FOLDED="true" ID="ID_228302544" MODIFIED="1401792962300" TEXT="random variables">
+<font NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401788497740" ID="ID_1974176280" MODIFIED="1401788568361" TEXT="a random variable X is a real-valued function X:&#x2126;-&gt;IR">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401788572423" ID="ID_934368688" MODIFIED="1401788587468" TEXT="example: sum of the two dice"/>
+<node CREATED="1401788611001" ID="ID_1765326835" MODIFIED="1401788627819" TEXT="example: size of subarray passed to 1st recursive call"/>
+</node>
+<node CREATED="1401792916419" FOLDED="true" ID="ID_1761769442" MODIFIED="1401792946322" TEXT="expectation">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401788669506" ID="ID_451322914" MODIFIED="1401788813130" TEXT="let X:&#x2126;-&gt;IR random variable, then expectation E[X] = average value of X = &#x2211;X(i)*p(i)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401789228839" ID="ID_1389245298" MODIFIED="1401789260270" TEXT="example: E[dice sum]=7"/>
+<node CREATED="1401789260656" ID="ID_574190934" MODIFIED="1401789583312" TEXT="example: E[size of subarray]=n/2"/>
+</node>
+<node CREATED="1401792925801" FOLDED="true" ID="ID_515772411" MODIFIED="1401792946875" TEXT="linearity of expectation">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401789578091" ID="ID_616755736" MODIFIED="1401789762281" TEXT="linearity of expectation [LIN EXP]: let X_1,...,X_n be random variables defined on &#x2126;, then expectation E[&#x2211;X_i]=&#x2211;E[X_i]">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1401789763689" ID="ID_1773631031" MODIFIED="1401789791682" TEXT="holds even when X_j are not independent">
+<icon BUILTIN="idea"/>
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1401789938680" ID="ID_1076339712" MODIFIED="1401789953407" TEXT="example: sum of each dice expectation"/>
+<node CREATED="1401789990875" ID="ID_1362845737" MODIFIED="1401790625669" TEXT="proof: reveal expectation by definition and replace &#x2211;-operations">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1401792947697" FOLDED="true" ID="ID_1770568063" MODIFIED="1401793588579" TEXT="conditional probability">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401792955822" ID="ID_371602216" MODIFIED="1401793071534" TEXT="let X,Y - subsets of &#x2126;, events then Pr[X|Y]=Pr[X^Y]/Pr[Y] (&quot;X given Y&quot;)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401793072609" ID="ID_66677892" MODIFIED="1401793358694" TEXT="example: X - at least one dice is 1, Y - sum of two dice = 7, then Pr[X,Y]=1/3"/>
+</node>
+<node CREATED="1401793361463" FOLDED="true" ID="ID_120408938" MODIFIED="1401793662115" TEXT="independence of events">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401793376181" ID="ID_752276166" MODIFIED="1401793564483" TEXT="let X,Y - events then they are independent if and only if Pr[X^Y]=Pr[X]*Pr[Y]">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401793446149" ID="ID_110662142" MODIFIED="1401793586880" TEXT="above holds &lt;=&gt; Pr[X|Y]=Pr[X] &lt;=&gt; Pr[Y|X]=Pr[Y]">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1401793663183" FOLDED="true" ID="ID_947684130" MODIFIED="1401794683331" TEXT="independence of random variables">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401793674642" ID="ID_1394397972" MODIFIED="1401793778977" TEXT="random variables A,B (both defined on &#x2126;) are independent &lt;=&gt; the events Pr[A=a], Pr[B=b] are independent for all a and b">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401793780034" ID="ID_677570774" MODIFIED="1401793823311" TEXT="&lt;=&gt; Pr[A=a and B=b] = Pr[A=a] * Pr[B=b]">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401793917096" ID="ID_1156529766" MODIFIED="1401793936986" TEXT="if A,B are independent, then E[A*B]=E[A]*E[B]">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401794165830" FOLDED="true" ID="ID_1577461224" MODIFIED="1401794670803" TEXT="example">
+<node CREATED="1401794169210" ID="ID_430670010" MODIFIED="1401794208208" TEXT="let X_1,X_2 &#x20ac; {0,1} - random"/>
+<node CREATED="1401794193830" ID="ID_652934793" MODIFIED="1401794221644" TEXT="X_3=X_1 xor X_2"/>
+<node CREATED="1401794223887" ID="ID_271306239" MODIFIED="1401794289726" TEXT="formally: &#x2126;={000, 101, 011, 110}"/>
+<node CREATED="1401794349647" ID="ID_1130106839" MODIFIED="1401794357663" TEXT="X_1 and X_3 are independent">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401794448919" ID="ID_1126610005" MODIFIED="1401794462311" TEXT="X_1*X_3 and X_2 are not independent">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
 </node>
 </node>
 </node>
