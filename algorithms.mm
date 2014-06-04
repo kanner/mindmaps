@@ -689,11 +689,11 @@
 </node>
 </node>
 </node>
-<node CREATED="1401182384378" FOLDED="true" ID="ID_1079121985" MODIFIED="1401198163774" POSITION="right" TEXT="6. Linear-time selection">
+<node CREATED="1401182384378" FOLDED="true" ID="ID_1079121985" MODIFIED="1401866031745" POSITION="right" TEXT="6. Linear-time selection">
 <node CREATED="1401182510035" ID="ID_1885219473" MODIFIED="1401182658301" TEXT="the goal: number i=1,...,n - i`th order statistic (i`th smallest element)">
 <icon BUILTIN="idea"/>
 </node>
-<node CREATED="1401182697573" ID="ID_920950923" MODIFIED="1401182752384" TEXT="example: median ((n+1)/2 for odd n and n/2 for )"/>
+<node CREATED="1401182697573" ID="ID_920950923" MODIFIED="1401866029240" TEXT="example: median ((n+1)/2 for odd n and n/2 for even number of elements)"/>
 <node CREATED="1401191049358" ID="ID_417003629" MODIFIED="1401191061059" TEXT="idea: pivot = &quot;median of medians&quot;">
 <icon BUILTIN="idea"/>
 </node>
@@ -744,6 +744,127 @@
 <node CREATED="1401197815935" ID="ID_124735805" MODIFIED="1401198089004" TEXT="(*) &lt;= cn*&#x2211;(3/4)^j * E[X_j]) = 2cn&#x2211;(3/4)^j = 8cn">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1401800012254" FOLDED="true" ID="ID_1400715326" MODIFIED="1401868597438" POSITION="right" TEXT="6`. Deterministic selection">
+<node CREATED="1401800028374" ID="ID_1872760344" MODIFIED="1401860967550" TEXT="&quot;best&quot; pivot = the median">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401860968207" ID="ID_70440860" MODIFIED="1401861031125" TEXT="goal: find pivot guaranteed to be pretty good"/>
+<node CREATED="1401861031672" ID="ID_622225498" MODIFIED="1401861047934" TEXT="key idea: use &quot;median of medians&quot;">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401861146132" FOLDED="true" ID="ID_1879807930" MODIFIED="1401863609867" TEXT="deterministic ChoosePivot(A, n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401861195042" ID="ID_22330824" MODIFIED="1401862918708" TEXT="1. logically break A into n/5 groups of size 5 each, sort each group (e.g. MergeSort)"/>
+<node CREATED="1401861245216" ID="ID_689794411" MODIFIED="1401862972455" TEXT="2. copy n/5 medians into new array C"/>
+<node CREATED="1401861296072" ID="ID_685199256" MODIFIED="1401862975779" TEXT="3. recursively compute median of C (DSelect(C,n/5,n/10)) - return this as pivot"/>
+</node>
+<node CREATED="1401861453808" ID="ID_225112589" MODIFIED="1401861472787" TEXT="other steps - from RSelect algorithm">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401861526249" ID="ID_915698215" MODIFIED="1401861625542" TEXT="there`re 2 recursive calls in DSelect">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401861782356" FOLDED="true" ID="ID_1158268100" MODIFIED="1401862410906" TEXT="DSelectTheorem">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1401861809056" ID="ID_154502830" MODIFIED="1401862164454" TEXT="for every input array of length n, DSelect runs in O(n) time">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1401861866584" ID="ID_33925526" MODIFIED="1401861908171" TEXT="not as good as RSelect in practice (worse const ants, not-in-place - needs more storage)"/>
+<node CREATED="1401861960776" ID="ID_298574291" MODIFIED="1401861981066" TEXT="1973 - Blum-Floyd-Pratt-Rivest-Tarjan"/>
+</node>
+<node CREATED="1401862167061" FOLDED="true" ID="ID_59548434" MODIFIED="1401868595176" TEXT="analysis">
+<node CREATED="1401862175679" ID="ID_876046386" MODIFIED="1401862985444" TEXT="step 1 running time = &#x4e8;(n)"/>
+<node CREATED="1401862640952" ID="ID_881608916" MODIFIED="1401862735172" TEXT="note: sorting array with 5 elements takes &lt;= 120 operations">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401862737932" ID="ID_1767407606" MODIFIED="1401862832706" TEXT="6m(log_2 m + 1) = 6 * 5 (log_2 m + 1) &lt;= 120 =&gt; 120*n/5 = O(n)"/>
+<node CREATED="1401863385771" ID="ID_42836633" MODIFIED="1401863414838" TEXT="let T(n) - maximum running time of DSelect on input array of length n"/>
+<node CREATED="1401863419117" ID="ID_944379983" MODIFIED="1401863600414" TEXT="there is a constant c&gt;=1 such that:">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401863498199" ID="ID_1096725676" MODIFIED="1401863597845" TEXT="1. T(1)=1">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401863501930" ID="ID_684675150" MODIFIED="1401863594739" TEXT="2. T(n) &lt;= cn + T(n/5) + T(?), T(?) - is one of the last recursive calls - we don`t know size of input array">
+<icon BUILTIN="closed"/>
+</node>
+<node CREATED="1401863605301" FOLDED="true" ID="ID_1689741382" MODIFIED="1401866045454" TEXT="key lemma: 2nd recursive call guaranteed to be on an array of size &lt;= n*7/10 (roughly)">
+<icon BUILTIN="idea"/>
+<node CREATED="1401863921059" ID="ID_713189713" MODIFIED="1401863932473" TEXT="let k=n/5 - number of groups"/>
+<node CREATED="1401863932692" ID="ID_842284571" MODIFIED="1401863959587" TEXT="let x_i = i`th smallest of the k middle elements"/>
+<node CREATED="1401863960319" ID="ID_1496098165" MODIFIED="1401863980552" TEXT="pivot = x_k/2">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401863988489" ID="ID_925302996" MODIFIED="1401864025602" TEXT="goal: &gt;=30% of input array smaller than x_k/2"/>
+<node CREATED="1401864025842" ID="ID_1373308386" MODIFIED="1401864040779" TEXT="goal: &gt;=30% is bigger"/>
+<node CREATED="1401864956133" ID="ID_543996768" MODIFIED="1401865862879" TEXT="imagine the grid: columns = groups of elements, increasing to top"/>
+<node CREATED="1401864985780" ID="ID_257808437" MODIFIED="1401865006905" TEXT="in grid - sort the medians">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401865322423" ID="ID_1372696384" MODIFIED="1401865523771" TEXT="x_k/2 is bigger then k/2-1 other medians and 2 * k/2 other elements that are below in grid">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401865525515" ID="ID_971028656" MODIFIED="1401865542774" TEXT="=&gt; bigget than at least 30% of A">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401865584808" ID="ID_1018396151" MODIFIED="1401865632157" TEXT="similarly =&gt; smaller than at least 30% of A">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1401867461263" ID="ID_555937192" MODIFIED="1401867680020" TEXT="T(n)&lt;= cn + T(n/5) + T(n*7/10)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401867682270" ID="ID_565852972" MODIFIED="1401867707355" TEXT="we can`t use master method cause we have different-sized subproblems">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401867760525" ID="ID_1938417357" MODIFIED="1401867806146" TEXT="hope: there is some constant a (independent of n) such that T(n)&lt;=an for each n&gt;=1">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401867807835" FOLDED="true" ID="ID_393822644" MODIFIED="1401868472921" TEXT="check: by induction">
+<icon BUILTIN="info"/>
+<node CREATED="1401867816751" ID="ID_1727495853" MODIFIED="1401867941962" TEXT="claim: let a=10c, then T(n)&lt;=an for all n&gt;=1"/>
+<node CREATED="1401867834768" ID="ID_922874404" MODIFIED="1401868064269" TEXT="T(1)=1 &lt;= a*1 since a&gt;=1"/>
+<node CREATED="1401868162679" ID="ID_1874258796" MODIFIED="1401868185805" TEXT="inductive hypothesis: T(k)&lt;=ak for all k&lt;n"/>
+<node CREATED="1401868218744" ID="ID_1343153849" MODIFIED="1401868374702" TEXT="T(n) &lt;= cn + T(n/5) + T(n*7/10) &lt;= cn + a(n/5) + a(n*7/10) = n(c+a*9/10)"/>
+<node CREATED="1401868417819" ID="ID_1559248039" MODIFIED="1401868441627" TEXT="by choise of a T(n)&lt;=an">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1401868473547" ID="ID_1125114369" MODIFIED="1401868477294" TEXT="O(n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1401868557330" FOLDED="true" ID="ID_1168649902" MODIFIED="1401870414810" POSITION="right" TEXT="6``. Comparison-based sorting">
+<node CREATED="1401868570006" ID="ID_1246700195" MODIFIED="1401868759481" TEXT="theorem: every &quot;comparison-based&quot; sorting algorithm has worst-case running time &#x2126;(n*log n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401868736911" ID="ID_888942237" MODIFIED="1401868757767" TEXT="assume deterministic, but lower bound extends to randomized">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401868761205" ID="ID_243035289" MODIFIED="1401868823978" TEXT="comparison-based sort: accesses input array elements only via comparisons">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401869190272" ID="ID_1504096909" MODIFIED="1401869217266" TEXT="examples: merge sort and quick sort, heap sort"/>
+<node CREATED="1401869222245" ID="ID_1358318259" MODIFIED="1401869541301" TEXT="non-examples: bucket sort (good for data from distributions), counting sort (good for small integers), radix sort"/>
+<node CREATED="1401869590544" ID="ID_1789373295" MODIFIED="1401869842040" TEXT="proof idea: suppose algorithm always makes &lt;= k comparisons to correctly sort n! different inputs =&gt; &lt;=2^k distinct executions">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401869844732" FOLDED="true" ID="ID_1701549333" MODIFIED="1401870367801" TEXT="by pigeonhole principle">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401869962427" ID="ID_1612142352" MODIFIED="1401869980256" TEXT="pigeons: n! different inputs"/>
+<node CREATED="1401869999502" ID="ID_1597984023" MODIFIED="1401870007982" TEXT="holes: execution methods"/>
+<node CREATED="1401870038711" ID="ID_1449136916" MODIFIED="1401870108678" TEXT="if 2^k &lt; n! then two distinct inputs will be executed identically">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1401870167986" ID="ID_11954810" MODIFIED="1401870305580" TEXT="since method is correct =&gt; 2^k &gt;= n! ... &gt;= (n 2)^(n/2)"/>
+<node CREATED="1401870307299" ID="ID_111437934" MODIFIED="1401870350216" TEXT="k &gt;= n/2 * log_2 n/2 = &#x2126;(n*log n)">
+<icon BUILTIN="info"/>
 </node>
 </node>
 <node CREATED="1401198165902" FOLDED="true" ID="ID_912989807" MODIFIED="1401362186166" POSITION="right" TEXT="7. Graphs and the contraction algorithm">
