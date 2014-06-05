@@ -1057,5 +1057,269 @@
 </node>
 </node>
 </node>
+<node CREATED="1401872398846" FOLDED="true" ID="ID_767530500" MODIFIED="1401960261061" POSITION="right" TEXT="8. Graph search and connectivity">
+<node CREATED="1401872419461" ID="ID_1863999818" MODIFIED="1401873691081" TEXT="goal1: find everything findable from a given start vertex"/>
+<node CREATED="1401873691298" ID="ID_1473111622" MODIFIED="1401873721525" TEXT="goal2: don`t explore anything twice (O(m+n) time)"/>
+<node CREATED="1401873726812" FOLDED="true" ID="ID_156352089" MODIFIED="1401875375956" TEXT="generic algorithm">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401873744300" ID="ID_653675174" MODIFIED="1401873750601" TEXT="given graph G, vertex s"/>
+<node CREATED="1401874754523" ID="ID_237440501" MODIFIED="1401874775192" TEXT="1. initially s explored, all other vertices - unexplored"/>
+<node CREATED="1401874775511" ID="ID_1533846955" MODIFIED="1401874787571" TEXT="while possible:"/>
+<node CREATED="1401874787784" ID="ID_667256864" MODIFIED="1401874817412" TEXT="2. choose an edge (u,v) with u explored and v unexplored (if none - halt)"/>
+<node CREATED="1401874807331" ID="ID_1078501640" MODIFIED="1401874839669" TEXT="3. mark v explored"/>
+<node CREATED="1401874903092" ID="ID_551049932" MODIFIED="1401874950884" TEXT="claim: at end of the algorithm, v is explored &lt;=&gt; G has a path from s to v (G - directed or undirected)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401875004846" ID="ID_849808630" MODIFIED="1401875077132" TEXT="proof: [=&gt;] - easy induction on number of operations, [&lt;=]  by contradiction"/>
+</node>
+<node CREATED="1401875376792" FOLDED="true" ID="ID_562272864" MODIFIED="1401899058088" TEXT="breadth-first search (BFS)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401875464251" ID="ID_636766756" MODIFIED="1401875544405" TEXT="explore nodes in &quot;layers&quot;">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401875544904" ID="ID_1537913644" MODIFIED="1401875610547" TEXT="can compute shortest paths">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401875587938" ID="ID_918383616" MODIFIED="1401875612639" TEXT="can compute connected components of an undirected graph">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401875613328" ID="ID_595421815" MODIFIED="1401875644950" TEXT="O(m+n) time using queue (FIFO)">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1401878834281" FOLDED="true" ID="ID_746889769" MODIFIED="1401898600479" TEXT="pseudo-code">
+<node CREATED="1401877715611" ID="ID_1755886017" MODIFIED="1401877738327" TEXT="1. all nodes are initially unexplored"/>
+<node CREATED="1401877738701" ID="ID_602730333" MODIFIED="1401877744840" TEXT="2. mark s as explored"/>
+<node CREATED="1401877745296" ID="ID_1623083925" MODIFIED="1401877771670" TEXT="3. let Q = queue data structure (FIFO), initiated with s"/>
+<node CREATED="1401877899611" ID="ID_330622723" MODIFIED="1401877908790" TEXT="while Q!=0"/>
+<node CREATED="1401877909020" ID="ID_1635454826" MODIFIED="1401877921573" TEXT="4. remove the first node of Q (call it v)"/>
+<node CREATED="1401877922213" ID="ID_1240168563" MODIFIED="1401877957726" TEXT="5. for each edge (v,w) if w is unexplored - mark explored and add w to the end of Q"/>
+</node>
+<node CREATED="1401878354165" ID="ID_1289030681" MODIFIED="1401878383560" TEXT="claim1: at the end of BFS, v explored &lt;=&gt; G has a path from s to v">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401878451343" ID="ID_1317168948" MODIFIED="1401878556032" TEXT="claim2: running time of main while-loop O(n_s+m_s), where n_s - number of nodes reachable from s, m_s -//- of edges">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401878771282" ID="ID_1097699948" MODIFIED="1401878811973" TEXT="shortest path: compute dist(v), the fewest number of edges on a path from s to v">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401878856662" FOLDED="true" ID="ID_1697778639" MODIFIED="1401879335728" TEXT="extra code">
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1401878860669" ID="ID_281348067" MODIFIED="1401878933773" TEXT="initialize dist(v)=0, if v=s | dist(v)=+&#x221e;, if v!=s"/>
+<node CREATED="1401878934772" ID="ID_1729445650" MODIFIED="1401879079197" TEXT="when considering edge (v.w), if w unexplored - additionally set dist(w)=dist(v)+1"/>
+</node>
+<node CREATED="1401879336988" ID="ID_675181625" MODIFIED="1401879430728" TEXT="claim: at termination, dist(v)=i &lt;=&gt; v is in i`th layer &lt;=&gt; shortest s-v path has i edges [by induction]">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401896713192" FOLDED="true" ID="ID_675919950" MODIFIED="1401897884046" TEXT="undirected connectivity">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401896722421" ID="ID_1366750762" MODIFIED="1401896782329" TEXT="connected components = the &quot;pieces&quot; of G"/>
+<node CREATED="1401896789362" ID="ID_1115926113" MODIFIED="1401896946268" TEXT="formal definition: equivalence classes of the relation u~v &lt;=&gt; there exist u-v path in G">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401896946751" ID="ID_1035082735" MODIFIED="1401896964427" TEXT="~ is an equivalence relation">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401897084785" ID="ID_241482331" MODIFIED="1401897093767" TEXT="goal: compute all connected components">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401897501285" ID="ID_1113621123" MODIFIED="1401897525323" TEXT="1. all nodes initially unexplored (assume they labelled 1 to n)"/>
+<node CREATED="1401897525883" ID="ID_636652679" MODIFIED="1401897574376" TEXT="2. for i=1 to n [ if i not yet explored =&gt; BFS(G,i) ]"/>
+<node CREATED="1401897531630" ID="ID_1799564982" MODIFIED="1401897797935" TEXT="note: finds every connected component">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401897878727" ID="ID_1705461420" MODIFIED="1401897882505" TEXT="O(m+n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1401875385672" FOLDED="true" ID="ID_203052083" MODIFIED="1401949138067" TEXT="depth-first search (DFS)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401875756828" ID="ID_1641262735" MODIFIED="1401875778655" TEXT="explore aggressively like a maze, backtrack only if necessary">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401875779110" ID="ID_1544132310" MODIFIED="1401875830554" TEXT="compute topological ordering of directed acyclic graph">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401875808612" ID="ID_1639771959" MODIFIED="1401875843734" TEXT="compute connected components in directed graphs">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401876273257" ID="ID_1270817956" MODIFIED="1401876302946" TEXT="O(m+n) time using stack (LIFO)">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1401898350106" FOLDED="true" ID="ID_1083953000" MODIFIED="1401898779467" TEXT="pseudo-code">
+<node CREATED="1401898610130" ID="ID_968117051" MODIFIED="1401898707416" TEXT="1. mask s as explored"/>
+<node CREATED="1401898717014" ID="ID_886929606" MODIFIED="1401898731408" TEXT="2. for every edge (s,v)"/>
+<node CREATED="1401898731662" ID="ID_1133940618" MODIFIED="1401898761209" TEXT="3. if v unexplored"/>
+<node CREATED="1401898761681" ID="ID_1394950776" MODIFIED="1401898773040" TEXT="4. DFS(G,v)"/>
+</node>
+<node CREATED="1401898799460" ID="ID_1930191680" MODIFIED="1401898823661" TEXT="claim1: at the end of DFS, v explored &lt;=&gt; there`s a path from s to v"/>
+<node CREATED="1401898862799" ID="ID_1302280711" MODIFIED="1401898884144" TEXT="claim2: running time is O(n_s + m_s)"/>
+<node CREATED="1401899049686" FOLDED="true" ID="ID_163524010" MODIFIED="1401949136755" TEXT="topological sort">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401899060257" ID="ID_595949626" MODIFIED="1401899310652" TEXT="topological ordering of a directed graph G is a labelling f of G`s nodes such that...">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401899313459" ID="ID_1927976959" MODIFIED="1401899368506" TEXT="1. the f(v)`s are the set {1,2,...,n}"/>
+<node CREATED="1401899384347" ID="ID_1975801536" MODIFIED="1401899455655" TEXT="2. (u.v)&#x20ac;G =&gt; f(u)&lt;f(v)"/>
+<node CREATED="1401899771229" ID="ID_21387286" MODIFIED="1401899805267" TEXT="example: sequence tasks while respecting all precedence constraints">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401899818652" ID="ID_1204726663" MODIFIED="1401899914176" TEXT="note: G has directed cycle =&gt; no topological ordering">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401899924278" ID="ID_1125856056" MODIFIED="1401899988008" TEXT="theorem: no directed cycle =&gt; can compute topological ordering in O(m+n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401900064065" ID="ID_734626682" MODIFIED="1401900094451" TEXT="note: every directed acyclic graph has a sink vertex (no arc from it)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401900703167" ID="ID_1051953603" MODIFIED="1401900763726" TEXT="reason: if not. can keep following outgoing arcs to produce a directed cycle"/>
+<node CREATED="1401900769701" FOLDED="true" ID="ID_1346701939" MODIFIED="1401901246629" TEXT="to compute topological ordering">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401900782986" ID="ID_1033823961" MODIFIED="1401900826528" TEXT="1. let v be a sink vertex of G"/>
+<node CREATED="1401900798928" ID="ID_1137783898" MODIFIED="1401900830912" TEXT="2. set f(v)=n"/>
+<node CREATED="1401900816360" ID="ID_572181252" MODIFIED="1401900836017" TEXT="3. recurse on G-{v}"/>
+<node CREATED="1401900877600" ID="ID_535846537" MODIFIED="1401900892748" TEXT="when we delete vertex - we can`t make cycles">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1401901443821" FOLDED="true" ID="ID_1996365130" MODIFIED="1401949135827" TEXT="sort algorithm">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401901459139" FOLDED="true" ID="ID_930564255" MODIFIED="1401902190064" TEXT="DFS-loop(G)">
+<node CREATED="1401901720230" ID="ID_1800717394" MODIFIED="1401901729801" TEXT="1. mark all nodes unexplored"/>
+<node CREATED="1401901730058" ID="ID_1742515271" MODIFIED="1401901745988" TEXT="2. current_label = n (to keep track of ordering)"/>
+<node CREATED="1401901746336" ID="ID_1773394470" MODIFIED="1401901761269" TEXT="3. for each vertex v&#x20ac;G"/>
+<node CREATED="1401901761495" ID="ID_1996673731" MODIFIED="1401901772458" TEXT="4. if v not yet explored"/>
+<node CREATED="1401901772678" ID="ID_44014761" MODIFIED="1401901777538" TEXT="5. DFS(G,v)"/>
+</node>
+<node CREATED="1401901704639" FOLDED="true" ID="ID_1479246821" MODIFIED="1401902189098" TEXT="DFS(G,s)">
+<node CREATED="1401901717355" ID="ID_669022494" MODIFIED="1401901832360" TEXT="1. mark s explored"/>
+<node CREATED="1401901793105" ID="ID_1732260306" MODIFIED="1401901835396" TEXT="2. for every edge (s,v)"/>
+<node CREATED="1401901805466" ID="ID_1613870295" MODIFIED="1401901838751" TEXT="3. if v not yet explored"/>
+<node CREATED="1401901824577" ID="ID_1930784724" MODIFIED="1401901841280" TEXT="4. DFS(G,v)"/>
+<node CREATED="1401901844653" ID="ID_1545254938" MODIFIED="1401901859762" TEXT="5. set f(s)=current_label">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401901862384" ID="ID_810288670" MODIFIED="1401901869151" TEXT="6. current_label--">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1401902346257" ID="ID_943857549" MODIFIED="1401902354646" TEXT="running time O(m+n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401902365027" ID="ID_1790065709" MODIFIED="1401902401672" TEXT="correctness: need to show that if (u,v) is an edge then f(u)&lt;f(v)"/>
+<node CREATED="1401902425602" ID="ID_361853012" MODIFIED="1401902534421" TEXT="case1: u visited by DFS before v =&gt; recursive call corresponding to v before that of u =&gt; f(v)&gt;f(u)"/>
+<node CREATED="1401902509041" ID="ID_152256625" MODIFIED="1401902596802" TEXT="case2: v is visited before u =&gt; no chance to discover u before v (no cycle)"/>
+</node>
+</node>
+</node>
+<node CREATED="1401952257262" FOLDED="true" ID="ID_1577391455" MODIFIED="1401960260429" TEXT="computing strong components">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401952266571" ID="ID_1656677459" MODIFIED="1401952399704" TEXT="[directed] graph is strongly connected = if we can get from any one point to any other points">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401952305514" ID="ID_898594619" MODIFIED="1401952543180" TEXT="strongly connected components (SCC) of a directed graph G are the equivalence classes of the relation u~v &lt;=&gt; there`s a path u-&gt;v and v-&gt;u in G">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401952906597" ID="ID_894258265" MODIFIED="1401952960635" TEXT="invocation of DFS can give us SCC">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401952928724" ID="ID_1770972286" MODIFIED="1401952960635" TEXT="invocation of DFS in wrong place can give us union of several SCC`s (or complete graph)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401952964163" FOLDED="true" ID="ID_432820037" MODIFIED="1401956325436" TEXT="Kosaraju`s two-pass algorithm">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401952977428" ID="ID_271771045" MODIFIED="1401953037958" TEXT="theorem: can compute in SCC`s in O(m+n) time">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1401953065051" ID="ID_271459091" MODIFIED="1401953073778" TEXT="assume: directed graph G"/>
+<node CREATED="1401953166099" ID="ID_975235472" MODIFIED="1401953236020" TEXT="1. let G_rev = G with all arcs reversed"/>
+<node CREATED="1401953223606" ID="ID_1134818048" MODIFIED="1401953231241" TEXT="2. run DFS-loop on G_rev"/>
+<node CREATED="1401953416490" ID="ID_764432737" MODIFIED="1401953437595" TEXT="let f(v)=&quot;finishing time&quot; of each vertex">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401953263818" ID="ID_323001830" MODIFIED="1401953270582" TEXT="3. run DFS-loop on G"/>
+<node CREATED="1401953470530" ID="ID_434609066" MODIFIED="1401953486219" TEXT="processing nodes in decreasing order of f(v)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401953521016" ID="ID_1373613167" MODIFIED="1401953534187" TEXT="SCC`s = nodes with the same &quot;leader&quot;">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1401953587889" FOLDED="true" ID="ID_729875291" MODIFIED="1401956322244" TEXT="pseudo-code">
+<node CREATED="1401953593380" FOLDED="true" ID="ID_24267766" MODIFIED="1401956311871" TEXT="DFS-loop(G)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401953605763" ID="ID_325457320" MODIFIED="1401953656405" TEXT="1. global variable t=0 [number of nodes processed so far]"/>
+<node CREATED="1401953657143" ID="ID_439627661" MODIFIED="1401953712399" TEXT="2. global variable s=null [current source vertex]"/>
+<node CREATED="1401953788309" ID="ID_1865012758" MODIFIED="1401953856611" TEXT="assume nodes labelled 1 to n">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401953850457" ID="ID_876310175" MODIFIED="1401953867609" TEXT="3. for i=n down to 1"/>
+<node CREATED="1401953867834" ID="ID_346519968" MODIFIED="1401953878516" TEXT="4. if i not yet explored"/>
+<node CREATED="1401953878719" ID="ID_655615779" MODIFIED="1401953889667" TEXT="5. s:=i; DFS(G,i)"/>
+</node>
+<node CREATED="1401953997904" FOLDED="true" ID="ID_261994059" MODIFIED="1401956320484" TEXT="DFS(G,i)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1401954003702" ID="ID_61025425" MODIFIED="1401954010798" TEXT="1. mark i as explored"/>
+<node CREATED="1401954011022" ID="ID_51142902" MODIFIED="1401954023858" TEXT="2. set leader(i) := node s"/>
+<node CREATED="1401954024072" ID="ID_963702311" MODIFIED="1401954056199" TEXT="3. for each arc (i,j)&#x20ac;G"/>
+<node CREATED="1401954056422" ID="ID_1241656236" MODIFIED="1401954106594" TEXT="3.1. if j not yet explored"/>
+<node CREATED="1401954066753" ID="ID_1488837206" MODIFIED="1401954110956" TEXT="3.2. DFS(G,j)"/>
+<node CREATED="1401954111311" ID="ID_735908090" MODIFIED="1401954113530" TEXT="4. t++"/>
+<node CREATED="1401954133337" ID="ID_329188527" MODIFIED="1401954140093" TEXT="5. set f(i) := t"/>
+</node>
+<node CREATED="1401955345859" ID="ID_490052240" MODIFIED="1401955358739" TEXT="in first DFS track f(i)`s">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401955264844" ID="ID_1845858258" MODIFIED="1401955364969" TEXT="next reverse to original graph and label vertices with f(i)`s">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401955320942" ID="ID_1499404207" MODIFIED="1401955337603" TEXT="in second DFS don`t track f(i)`s - track leaders">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401955520716" ID="ID_211545559" MODIFIED="1401955534513" TEXT="nodes with the same leaders = SCC">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+</node>
+<node CREATED="1401955975758" FOLDED="true" ID="ID_1326076913" MODIFIED="1401958749693" TEXT="Kosaraju`s algorithm analysis">
+<node CREATED="1401956224043" ID="ID_1573434023" MODIFIED="1401956473892" TEXT="claim: the SCC`s of a directed graph G induce an acyclic &quot;meta-graph&quot;">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401956474907" ID="ID_259631511" MODIFIED="1401956496068" TEXT="meta-nodes = SCC`s C_1,...,C_k of G"/>
+<node CREATED="1401956497210" ID="ID_1956186368" MODIFIED="1401956606738" TEXT="there exist an arc from C-&gt;&#x108; &lt;=&gt; there exist arc (i,j)&#x20ac;G with i&#x20ac;C and j&#x20ac;&#x108;"/>
+<node CREATED="1401956964409" FOLDED="true" ID="ID_1820542320" MODIFIED="1401958748509" TEXT="key lemma: consider two &quot;adjacent&quot; SCC`s in G and let f(v)-finishing times of DFS-loop in G_rev. Then max f(v&#x20ac;C_1) &lt; max f(v&#x20ac;C_2)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+<node CREATED="1401958061557" ID="ID_1390105642" MODIFIED="1401958070179" TEXT="G_rev = reverse graph"/>
+<node CREATED="1401958074208" ID="ID_1724424830" MODIFIED="1401958109013" TEXT="let v = 1st node of (C_1 U C_2) reached by 1st pass of DFS-loop on G_rev"/>
+<node CREATED="1401957881689" ID="ID_855246558" MODIFIED="1401958310196" TEXT="case1 [v&#x20ac;C_1]: all of C_1 explored before C_2 ever reached (no paths from C_1 to C_2 since meta-graph is acyclic)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1401958306585" ID="ID_1979738454" MODIFIED="1401958324735" TEXT="all f-values in C_1 less then all f-values in C_2"/>
+<node CREATED="1401958019558" ID="ID_1908082392" MODIFIED="1401958573857" TEXT="case2 [v&#x20ac;C_2]: DFS(G_rev, v) won`t finish until all of (C_1 U C_2) completely explored =&gt; f(v)&gt;f(w) for all w&#x20ac;C_1">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1401957158004" ID="ID_1567654409" MODIFIED="1401957394773" TEXT="corollary: maximum f-value of G must lie on a &quot;sink SCC&quot; (SCC with no outgoing arcs)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1401957746376" ID="ID_676903267" MODIFIED="1401957773257" TEXT="by corollary: 2nd pass of DFS-loop begins somewhere in a sing SCC C*"/>
+<node CREATED="1401957773491" ID="ID_100588695" MODIFIED="1401957789228" TEXT="=&gt; first cakk to DFS discovers C* and nothing else"/>
+<node CREATED="1401957789452" ID="ID_1892241476" MODIFIED="1401957817120" TEXT="=&gt; rest of DFS-loop like recursing on G with C* deleted [starts in a sink node of G-C*]"/>
+<node CREATED="1401957817627" ID="ID_566110645" MODIFIED="1401957859623" TEXT="=&gt; successive calls to DFS(G,i) &quot;peal off&quot; the SCC`s one by one (in reverse topological order of the &quot;meta-graph&quot; of SCC`s)"/>
+</node>
+</node>
+<node CREATED="1401959624526" ID="ID_1750670742" MODIFIED="1401960077603" TEXT="web-graph, six degrees of separation (small worlds property)">
+<icon BUILTIN="idea"/>
+</node>
+</node>
 </node>
 </map>
