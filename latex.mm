@@ -603,13 +603,145 @@
 <node CREATED="1401535957620" ID="ID_68631170" MODIFIED="1401535973464" TEXT="\begin{landscape}...\end{landscape}"/>
 </node>
 </node>
-<node CREATED="1401536357350" ID="ID_1999667694" MODIFIED="1401536392919" POSITION="right" TEXT="addcontentsline{file}{sec_unit}{entry}">
+<node CREATED="1402152131937" FOLDED="true" ID="ID_1349858251" MODIFIED="1402158213150" POSITION="right" TEXT="10. Bibliography">
+<node CREATED="1402153293393" FOLDED="true" ID="ID_932840951" MODIFIED="1402157278656" TEXT="1. standart simple bibliography">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402152147264" ID="ID_821809051" MODIFIED="1402152195520" TEXT="\usepackage{cite}"/>
+<node CREATED="1402152195728" ID="ID_925824192" MODIFIED="1402152209074" TEXT="\usepackage{csquotes}"/>
+<node CREATED="1402152209511" ID="ID_994861307" MODIFIED="1402152306923" TEXT="\renewcommand{\refname}{Table of contents} - to edit standart name">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402152268055" ID="ID_299184531" MODIFIED="1402152438611" TEXT="\begin{thebibliography}{MAX_NUM}...\end{thebibliography}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402152396277" ID="ID_137719227" MODIFIED="1402152440719" TEXT="\bibitem{SYS_NAME} NAME">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402152488202" ID="ID_314721704" MODIFIED="1402152499404" TEXT="\cite{qwerty} - to make reference in text"/>
+<node CREATED="1402152590837" ID="ID_783539528" MODIFIED="1402152622689" TEXT="\bibitem{TEXT_IN_NUMBER}{SYS_NAME} NAME"/>
+<node CREATED="1402152659148" ID="ID_1887755055" MODIFIED="1402152772624" TEXT="\tableofcontents - without bibliography">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402152719707" ID="ID_246045978" MODIFIED="1402152820825" TEXT="\addcontentsline{toc}{section}{\refname} - add section (bibliography) in table of contents"/>
+<node CREATED="1402152904066" ID="ID_510670578" MODIFIED="1402152907048" TEXT="\bibitem[Fama, 1965]{Fama} Fama E. F. The behavior of stock-market prices //Journal of business. &#x2013; 1965. &#x2013; &#x421;. 34-105.">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1402153283689" FOLDED="true" ID="ID_1554516174" MODIFIED="1402157276323" TEXT="2. biblatex">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402153348592" ID="ID_426734941" MODIFIED="1402154109990" TEXT="enable &apos;biber&apos;">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402154111174" FOLDED="true" ID="ID_1592486494" MODIFIED="1402154422954" TEXT="example of .bib file from google scholar">
+<icon BUILTIN="info"/>
+<node CREATED="1402154158336" ID="ID_1626516295" MODIFIED="1402154169829" TEXT="@article{SYS_NAME,"/>
+<node CREATED="1402154211036" ID="ID_1174404204" MODIFIED="1402154410479" TEXT="title = {TITLE},"/>
+<node CREATED="1402154159658" ID="ID_357008753" MODIFIED="1402154178338" TEXT="author = {Fama, EF},"/>
+<node CREATED="1402154194345" ID="ID_1866965178" MODIFIED="1402154210485" TEXT="journal = {JOURNAL_NAME},"/>
+<node CREATED="1402154216952" ID="ID_1670664432" MODIFIED="1402154227608" TEXT="pages = {34--105},"/>
+<node CREATED="1402154269686" ID="ID_231340778" MODIFIED="1402154275017" TEXT="year = {1965}"/>
+<node CREATED="1402154309782" ID="ID_395095283" MODIFIED="1402154319892" TEXT="publisher={PUBLISHER}"/>
+<node CREATED="1402154275350" ID="ID_162081704" MODIFIED="1402154275938" TEXT="}"/>
+</node>
+<node CREATED="1402154426633" ID="ID_1414679991" MODIFIED="1402155126872" TEXT="\usepackage[backend=biber,bibencoding=utf8,sorting=ynt,maxcitenames=2,style=authoryear]{biblatex}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402155039047" ID="ID_728583589" MODIFIED="1402155057641" TEXT="sorting nty - name, title, year"/>
+<node CREATED="1402155128095" ID="ID_1749552711" MODIFIED="1402155171035" TEXT="maxcitenames - for authors in references"/>
+<node CREATED="1402154447920" ID="ID_1741246155" MODIFIED="1402155213077" TEXT="\addbibresource{bib1.bib}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402155213519" ID="ID_140852508" MODIFIED="1402156845206" TEXT="\footcite{Fama1965} - footer note"/>
+<node CREATED="1402155215103" ID="ID_808768669" MODIFIED="1402156882531" TEXT="\textcite{Spengler2012} ~ author(year)"/>
+<node CREATED="1402155223059" ID="ID_165659383" MODIFIED="1402156682327" TEXT="\nocite{Abbink2012} - add biblio without reference"/>
+<node CREATED="1402155231772" ID="ID_738733997" MODIFIED="1402155238567" TEXT="\printbibliography">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1402155861576" FOLDED="true" ID="ID_1986816441" MODIFIED="1402157280130" TEXT="biblio-managers">
+<node CREATED="1402155887457" ID="ID_1315617052" MODIFIED="1402155897939" TEXT="Mendeley"/>
+<node CREATED="1402155898182" ID="ID_31838348" MODIFIED="1402155902109" TEXT="Zotero"/>
+<node CREATED="1402155902327" ID="ID_853599170" MODIFIED="1402155907697" TEXT="JabRef"/>
+<node CREATED="1402155926723" ID="ID_981758618" MODIFIED="1402155931413" TEXT="BibDesk"/>
+<node CREATED="1402155931644" ID="ID_113099325" MODIFIED="1402155939406" TEXT="CiteULike"/>
+</node>
+</node>
+<node CREATED="1402152140214" FOLDED="true" ID="ID_1191837843" MODIFIED="1402162196884" POSITION="right" TEXT="11. Graphics">
+<node CREATED="1402157284345" ID="ID_338359397" MODIFIED="1402157472648" TEXT="tikz and pgf [texample.net]">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402159565042" FOLDED="true" ID="ID_1541772860" MODIFIED="1402162073084" TEXT="simple tikz examples">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402157417107" ID="ID_865681055" MODIFIED="1402158082937" TEXT="\usepackage{tikz}"/>
+<node CREATED="1402158083345" ID="ID_1984239565" MODIFIED="1402158093145" TEXT="\usepackage{pgfplots}"/>
+<node CREATED="1402158093374" ID="ID_86237235" MODIFIED="1402158104432" TEXT="\usepackage{pgfplotstable}"/>
+<node CREATED="1402158261255" ID="ID_1854936826" MODIFIED="1402159188887" TEXT="\begin{tikzpicture}...\end{tikzpicture}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402158424002" ID="ID_1699946500" MODIFIED="1402158848657" TEXT="1cm - default values">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402158282319" ID="ID_980593550" MODIFIED="1402159296532" TEXT="\draw (0,0) -- (0,1); - draw a line">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402158602902" ID="ID_444904497" MODIFIED="1402158615675" TEXT="\draw (0,0) -- (0,1) -- (2,3); - draw &quot;broken&quot; line"/>
+<node CREATED="1402158775697" ID="ID_1225552190" MODIFIED="1402158868130" TEXT="\draw[help lines] (0,0) grid (2,3); - draw grid"/>
+<node CREATED="1402158921270" ID="ID_1674711704" MODIFIED="1402159290228" TEXT="\draw[green,fill=yellow]... - colored element">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402159006815" ID="ID_1374361930" MODIFIED="1402159037072" TEXT="\draw[&lt;-&gt;] (0,3.1) -- (0,0) -- (2.1,0); - draw directed lines"/>
+<node CREATED="1402159149715" ID="ID_496076356" MODIFIED="1402159294149" TEXT="\draw (1,1) circle [radius=0.5];">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402159308242" ID="ID_1221420574" MODIFIED="1402159343963" TEXT="layers could overlap (second printed above first printed)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402159393025" ID="ID_1846690015" MODIFIED="1402159495953" TEXT="\draw[domain=-1:2] plot (\x, \x*\x + 2); - draw function, depended on x [x^x+2] in specified domain">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402159518997" ID="ID_1949344594" MODIFIED="1402159559410" TEXT="\node[below] at (1,1) {\tiny &#x422;&#x435;&#x43a;&#x441;&#x442; $R=0,5$};">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402159620029" ID="ID_929247783" MODIFIED="1402159646487" TEXT="\begin{tikzpicture}[scale=2] - scale picture"/>
+<node CREATED="1402160509833" ID="ID_1815256751" MODIFIED="1402160518025" TEXT="\draw[dashed]... - dashed line"/>
+</node>
+<node CREATED="1402159831510" FOLDED="true" ID="ID_1118715035" MODIFIED="1402162062854" TEXT="tikzlibraries">
+<node CREATED="1402159970519" ID="ID_387894504" MODIFIED="1402159972489" TEXT="\usetikzlibrary{calc}"/>
+<node CREATED="1402159972968" ID="ID_1231704373" MODIFIED="1402159981134" TEXT="\usetikzlibrary{decorations.pathreplacing}"/>
+<node CREATED="1402161208653" ID="ID_1941142325" MODIFIED="1402161210154" TEXT="\usetikzlibrary{arrows}"/>
+<node CREATED="1402160566657" ID="ID_1282321060" MODIFIED="1402161212584" TEXT="\coordinate (sint) at (0,{\sint}); - coordinates">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1402160661898" FOLDED="true" ID="ID_1254083598" MODIFIED="1402162061646" TEXT="table visualization">
+<node CREATED="1402160668862" ID="ID_1096481466" MODIFIED="1402160678460" TEXT="csv file as a source">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402160681936" ID="ID_708806609" MODIFIED="1402160897146" TEXT="\begin{axis}[xlabel={NAME1 (\%)},ylabel={NAME2},clip=false,xmin=-XXX, xmax=XXX, ymin=-YYY, ymax=YYY,axis lines=center,width=16cm,height=10cm,scale=0.8]"/>
+<node CREATED="1402160844373" ID="ID_690325378" MODIFIED="1402161030621" TEXT="\addplot [only marks] table[x index=0,y index=1,col sep=comma] {data.dat}; - use data.dat columns as data (draw only nodes)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402160922828" ID="ID_400579723" MODIFIED="1402161105320" TEXT="\node[pin={[pin edge={thick}]DATA:{NAME}}] at (axis cs:29.7,-1876683214) {}; - caption for nodes from data file"/>
+<node CREATED="1402161122117" ID="ID_752517982" MODIFIED="1402161162152" TEXT="pin - small edge to caption"/>
+</node>
 </node>
 <node CREATED="1401521356808" FOLDED="true" ID="ID_1587163883" MODIFIED="1401529143142" POSITION="right" TEXT="z. Rissuan typographics">
 <node CREATED="1401521301622" ID="ID_255511817" MODIFIED="1401521305760" TEXT="\renewcommand{\ge}{\geqslant}">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
+</node>
+<node CREATED="1402152933402" ID="ID_65813557" MODIFIED="1402153047041" POSITION="right" TEXT="google scholar - GOST references on publications">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402161322499" ID="ID_1004719893" MODIFIED="1402162059215" POSITION="right" TEXT="geogebra - function drawing tool (PGF/TIKZ import)">
+<icon BUILTIN="idea"/>
 </node>
 </node>
 </map>
