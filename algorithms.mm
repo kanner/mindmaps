@@ -1321,5 +1321,272 @@
 <icon BUILTIN="idea"/>
 </node>
 </node>
+<node CREATED="1402313815662" FOLDED="true" ID="ID_1881523055" MODIFIED="1402574971192" POSITION="right" TEXT="9. Dijkstra&apos;s shortest-path algorithm">
+<node CREATED="1402313827929" FOLDED="true" ID="ID_353674953" MODIFIED="1402318546422" TEXT="input">
+<icon BUILTIN="info"/>
+<node CREATED="1402313872223" ID="ID_233725933" MODIFIED="1402313926590" TEXT="1. directed graph G=(V,E)"/>
+<node CREATED="1402313880938" ID="ID_406675167" MODIFIED="1402313884053" TEXT="m=|E|"/>
+<node CREATED="1402313884263" ID="ID_842610047" MODIFIED="1402313888437" TEXT="n=|V|"/>
+<node CREATED="1402313888642" ID="ID_884874249" MODIFIED="1402313921232" TEXT="2. each edge has nonnegative length l_e"/>
+<node CREATED="1402313908848" ID="ID_856122454" MODIFIED="1402313923346" TEXT="3. source vertex s"/>
+</node>
+<node CREATED="1402313928817" ID="ID_1842098181" MODIFIED="1402313980190" TEXT="output: for each v&#x20ac;V compute L(v):= length of a shortest s-v path in G">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402313980755" ID="ID_1084304911" MODIFIED="1402314671494" TEXT="length of path = sum of edge lengths"/>
+<node CREATED="1402314167085" FOLDED="true" ID="ID_1878062805" MODIFIED="1402314673526" TEXT="assumptions">
+<icon BUILTIN="info"/>
+<node CREATED="1402314172729" ID="ID_1771711647" MODIFIED="1402314196339" TEXT="for each vertex v the path s-&gt;v exists"/>
+<node CREATED="1402314197287" ID="ID_742109995" MODIFIED="1402314225126" TEXT="[important] l_e &gt;=0 for all edges">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1402314226949" ID="ID_1727079368" MODIFIED="1402314666246" TEXT="we can use BFS IF l_e=1 for every edge">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402314621402" ID="ID_1754186879" MODIFIED="1402314666246" TEXT="we can replace each edge by l_e units and use BFS (but it blows up graph too much)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402314711683" FOLDED="true" ID="ID_1136288573" MODIFIED="1402316454903" TEXT="pseudo-code">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402314727550" ID="ID_620629934" MODIFIED="1402315149908" TEXT="initialize X={s} - vertices processed so far"/>
+<node CREATED="1402315150123" ID="ID_539770021" MODIFIED="1402315172063" TEXT="initialize A[s]=0 - computed shortest path distances"/>
+<node CREATED="1402315172299" ID="ID_1508366605" MODIFIED="1402315204914" TEXT="[not in practice] initialize B[s]=[empty path] - computed shortest path"/>
+<node CREATED="1402315206768" ID="ID_1095829881" MODIFIED="1402315221024" TEXT="main loop:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402315221439" ID="ID_822140917" MODIFIED="1402315229578" TEXT="1. while X!=V:"/>
+<node CREATED="1402315229813" ID="ID_1515999063" MODIFIED="1402315498301" TEXT="2. among all edges (v,w)&#x20ac;E with v&#x20ac;X and w!&#x20ac;X pick the one minimizes A[v]+l_vw [Dijkstra`s greedy criterion - (v*,w*)]">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1402315418003" ID="ID_851267603" MODIFIED="1402315424344" TEXT="3. add w* to X"/>
+<node CREATED="1402315437518" ID="ID_1174919753" MODIFIED="1402315518308" TEXT="4. set A[w*]:=A[v*]+l_v*w*"/>
+<node CREATED="1402315630011" ID="ID_1347871667" MODIFIED="1402315660771" TEXT="[not in practice] 5. set B[w*]:=B[v*]U(v*,w*)"/>
+</node>
+<node CREATED="1402316455544" ID="ID_289430058" MODIFIED="1402316506914" TEXT="we can`t add large constant to edge (negative) length`s!">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402316733397" FOLDED="true" ID="ID_1407559498" MODIFIED="1402572156144" TEXT="correctness">
+<node CREATED="1402316737082" ID="ID_1182650085" MODIFIED="1402317058804" TEXT="theorem: for every directed graph with nonnegative edge lengths, Dijkstra`s algorithm correctly computes all shortest-path distances (i.e. A[v] = L(v))">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402317164539" ID="ID_1570355391" MODIFIED="1402317169782" TEXT="by induction">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402317172741" ID="ID_1703492687" MODIFIED="1402317219677" TEXT="1. base case: A[s]=L[s]=0 - trivially correct"/>
+<node CREATED="1402317212529" ID="ID_1355967180" MODIFIED="1402317297023" TEXT="2. inductive hypothesis - all previous iterations correct:"/>
+<node CREATED="1402317264609" ID="ID_675938180" MODIFIED="1402317293251" TEXT="for all v&#x20ac;X, A[v]=L[v] and B[v] is a true shortest s-v path in G"/>
+<node CREATED="1402317299864" ID="ID_1637612881" MODIFIED="1402317437770" TEXT="3. we pick an edge (v*,w*) and we add w* to X, B[w*]=B[v*]U(v*,w*)"/>
+<node CREATED="1402317351586" ID="ID_53778738" MODIFIED="1402317465614" TEXT="B[v*] is true shortest s-v* path, has length L(v*)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402317487420" ID="ID_1190789693" MODIFIED="1402317612776" TEXT="B[w*] has length L(v*)+l_v*w* (s-&gt;w* path)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402317530676" ID="ID_1567715719" MODIFIED="1402317559289" TEXT="A[w*]=A[v*]+l_v*w* = L(v*)+l_v*w*">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402317637835" ID="ID_1088006849" MODIFIED="1402317667126" TEXT="need to show: every s-&gt;w* path has length &gt;= L(v*)+l_v*w*">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402317670848" ID="ID_1676997824" MODIFIED="1402317745562" TEXT="let P = any s-&gt;w* path (s&#x20ac;X, w!&#x20ac;X) - it should cross X`s frontier"/>
+<node CREATED="1402317833522" ID="ID_616890978" MODIFIED="1402317874815" TEXT="if P have the form X[s-&gt;y]-&gt;notX[z-&gt;...w*]"/>
+<node CREATED="1402317904233" ID="ID_1299114641" MODIFIED="1402317915770" TEXT="z-&gt;w* length &gt;=0">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402317957965" ID="ID_374917805" MODIFIED="1402317976374" TEXT="y-&gt;z length = l_yz">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402317912900" ID="ID_1941329908" MODIFIED="1402317995158" TEXT="s-&gt;y &gt;= length of shortest s-&gt;y path L(y) = A[y] (inductive hypothesis)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402318017511" ID="ID_1683301900" MODIFIED="1402318276994" TEXT="total length of path P: &gt;= A[y]+l_yz">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402318277282" ID="ID_677753269" MODIFIED="1402318538940" TEXT="by Dijkstra greedy criterion A(v*)+l_v*w* &lt;= A[y]+l_yz [length of P]">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1402318726719" ID="ID_739052308" MODIFIED="1402319484165" TEXT="O(mn) in naive implementation">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402319556478" ID="ID_1596672061" MODIFIED="1402319572047" TEXT="use data structures to algorithm speed up">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402319778765" FOLDED="true" ID="ID_131106357" MODIFIED="1402573226851" TEXT="using heaps">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402319898753" ID="ID_1053586398" MODIFIED="1402319936904" TEXT="reason d`entre of heap = perform Insert, Extract-min in O(log n) time"/>
+<node CREATED="1402319784154" ID="ID_393182708" MODIFIED="1402319962823" TEXT="conceptually, a perfectly balances binary tree (height ~ log_2 n)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402319807085" ID="ID_1278770626" MODIFIED="1402319860471" TEXT="heap property: at every node, key &lt;= key children`s keys">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402319828017" ID="ID_39614975" MODIFIED="1402319860471" TEXT="extract-min by swapping up last leaf, bubbling down">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402319850307" ID="ID_1897232553" MODIFIED="1402319860471" TEXT="insert via bubbling up">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402319868377" ID="ID_1904086173" MODIFIED="1402319892855" TEXT="we`ll need ability to delete from middle of heap (bubble up or down as needed)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1402320297197" ID="ID_1034377860" MODIFIED="1402320323943" TEXT="invariant_1: elements in heap = vertices of (V-X)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402572114692" ID="ID_345892814" MODIFIED="1402572375269" TEXT="invariant_2: for v!&#x20ac;X key[v] = smallest Dijkstra greedy score of an edge (u,v)&#x20ac;E with u&#x20ac;X (or +&#x221e; if no such edge exist)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402572513732" ID="ID_909781378" MODIFIED="1402572544927" TEXT="(and we set A[w*] to key[w*])"/>
+<node CREATED="1402572427182" ID="ID_352952759" MODIFIED="1402572475241" TEXT="point: by invariants, extract_min yields correct vertex w* to add to X next">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1402572570868" FOLDED="true" ID="ID_748246999" MODIFIED="1402573446207" TEXT="maintaining invariants">
+<node CREATED="1402572590135" ID="ID_1206358060" MODIFIED="1402572707316" TEXT="when we include new vertex in X - the frontier and crossing edges changes">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402572832380" ID="ID_80383879" MODIFIED="1402572864629" TEXT="so we need to update keys in V-X">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402573130324" ID="ID_1085867182" MODIFIED="1402573409347" TEXT="when w extracted from heap (i.e. added to X) for each edge (w,v)&#x20ac;E if v&#x20ac;(V-X) (i.e. in heap) do key_update:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402573282332" ID="ID_1650226837" MODIFIED="1402573300348" TEXT="1. delete v from heap"/>
+<node CREATED="1402573305872" ID="ID_1391481159" MODIFIED="1402573363721" TEXT="2. recompute key[v]=min[key[v], A[w]+l_wv]"/>
+<node CREATED="1402573364240" ID="ID_327225698" MODIFIED="1402573370394" TEXT="3. reinsert v to heap"/>
+</node>
+<node CREATED="1402573447099" FOLDED="true" ID="ID_56413079" MODIFIED="1402574967973" TEXT="running time">
+<node CREATED="1402573461535" ID="ID_780198481" MODIFIED="1402573502365" TEXT="check: dominated by heap operations (O(log n) each)"/>
+<node CREATED="1402573502887" ID="ID_501067718" MODIFIED="1402573528310" TEXT="1. (n-1) extract_min"/>
+<node CREATED="1402573636587" ID="ID_1867383499" MODIFIED="1402573735244" TEXT="each edge (v,w) triggers at most one Delete/Insert combo (if v added to X first)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402573740812" ID="ID_449998870" MODIFIED="1402573795456" TEXT="2. number of heap operations is O(n+m) = O(m) (graph is weakly connected)"/>
+<node CREATED="1402573806636" ID="ID_1560867211" MODIFIED="1402573836395" TEXT="running time O(m log n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1402391338852" FOLDED="true" ID="ID_570106594" MODIFIED="1402398062237" POSITION="right" TEXT="10. Data structures (heaps)">
+<node CREATED="1402391359885" ID="ID_1916422460" MODIFIED="1402391806315" TEXT="lists, stacks, queues, heaps, search trees, hash tables, bloom filters, union-find structures">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402391985815" ID="ID_1750979347" MODIFIED="1402392014450" TEXT="different data structures support different set of operations =&gt; suitable for different types of tasks">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402392018333" ID="ID_1703907266" MODIFIED="1402392043842" TEXT="rule of thumb: choose the &quot;minimal&quot; data structure that supports all the operations you need"/>
+<node CREATED="1402392412358" ID="ID_1651709761" MODIFIED="1402392438118" TEXT="heap - a container for objects that have keys">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402392438907" ID="ID_1422726710" MODIFIED="1402392585530" TEXT="1. insert - add a new object to a heap">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402392450588" ID="ID_345332287" MODIFIED="1402392594702" TEXT="2. extract_min - remove an object in heap with a minimum key value [or equally extract_max, but not both]">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402392533183" ID="ID_155409019" MODIFIED="1402392554162" TEXT="running time of operations ~ O(log n), n - number of objects in heap">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402392621387" ID="ID_1123667371" MODIFIED="1402392640726" TEXT="3. heapify - n batched inserts in O(n) time">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402392641000" ID="ID_854729585" MODIFIED="1402392702940" TEXT="4. delete - O(log n) time">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402392703376" FOLDED="true" ID="ID_537314978" MODIFIED="1402393163930" TEXT="application: sorting">
+<icon BUILTIN="idea"/>
+<node CREATED="1402392961466" ID="ID_1405534226" MODIFIED="1402392985951" TEXT="canonical use of heap: fast way to do repeated minimum computations"/>
+<node CREATED="1402392986175" ID="ID_1326769728" MODIFIED="1402393020986" TEXT="example: SelectionSort ~ O(n) linear scans =&gt; O(n^2) runtime on array of length n">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402393021932" ID="ID_152632000" MODIFIED="1402393068918" TEXT="HeapSort: 1. insert all n array elements into a heap 2. extract_min to get elements in sorted order">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402393069766" ID="ID_14926133" MODIFIED="1402393085946" TEXT="running time = 2n heap operations = O(n log n) time">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402393093519" ID="ID_1058680009" MODIFIED="1402393109242" TEXT="optimal for a &quot;comparison-based&quot; sorting algorithm">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1402393154250" FOLDED="true" ID="ID_1964258624" MODIFIED="1402393403331" TEXT="application: event manager">
+<icon BUILTIN="idea"/>
+<node CREATED="1402393167827" ID="ID_679821608" MODIFIED="1402393178717" TEXT="heap ~ &quot;priority queue&quot;"/>
+<node CREATED="1402393315611" ID="ID_1622315052" MODIFIED="1402393334178" TEXT="example: simulation (e.g. for a videogame)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402393334720" ID="ID_1350131131" MODIFIED="1402393360232" TEXT="objects = event records (action/update to occur at given time in the future)"/>
+<node CREATED="1402393360487" ID="ID_1155285346" MODIFIED="1402393371151" TEXT="key = time event scheduled to occur"/>
+<node CREATED="1402393372925" ID="ID_1745051452" MODIFIED="1402393387852" TEXT="extract_min =&gt; yields the next scheduled event">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1402393403880" FOLDED="true" ID="ID_1879797212" MODIFIED="1402397036172" TEXT="application: median maintanence">
+<icon BUILTIN="idea"/>
+<node CREATED="1402393421511" ID="ID_1741135490" MODIFIED="1402393912585" TEXT="given: a sequence x1,...,xn of numbers, one-by-one"/>
+<node CREATED="1402393916200" ID="ID_1303645653" MODIFIED="1402393944484" TEXT="target: at each time step i, compute the median of {x1,...,xi}"/>
+<node CREATED="1402393951389" ID="ID_1987452038" MODIFIED="1402393964988" TEXT="constraint: use O(log i) time at each step i"/>
+<node CREATED="1402393967125" ID="ID_1873028167" MODIFIED="1402393996746" TEXT="solution: maintain heaps H_low (extract_max), H_high (extract_min)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402393997718" ID="ID_376897272" MODIFIED="1402394032722" TEXT="key idea: maintain invariant that ~i/2 smallest (largest) elements in H_low (H_high)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402394043198" ID="ID_601573840" MODIFIED="1402394059598" TEXT="check1: can maintain invariant with O(log i) work"/>
+<node CREATED="1402394059833" ID="ID_411385889" MODIFIED="1402394078912" TEXT="chech2: given invariant, can compute median in O(log i) work"/>
+<node CREATED="1402394133725" ID="ID_1067818968" MODIFIED="1402397034545" TEXT="if we have different number of elements -&gt; rearrange">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402394091922" ID="ID_489546523" MODIFIED="1402394120786" TEXT="the median is either maximum of H_low or minimum in H_high">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1402394242862" FOLDED="true" ID="ID_98855012" MODIFIED="1402394360899" TEXT="application: speeding up Dijkstra`s algorithm">
+<icon BUILTIN="idea"/>
+<node CREATED="1402394260576" ID="ID_387417937" MODIFIED="1402394274177" TEXT="naive implementation =&gt; running time O(nm)"/>
+<node CREATED="1402394274392" ID="ID_78216846" MODIFIED="1402394290268" TEXT="with heaps =&gt; running time O(m log n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1402394378240" FOLDED="true" ID="ID_900361145" MODIFIED="1402398060508" TEXT="implementation details">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402394385630" ID="ID_384399086" MODIFIED="1402394586202" TEXT="conceptually: think of a heap as a tree [rooted, binary, as complete as possible - left-to-right children]">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402396344765" ID="ID_668561708" MODIFIED="1402396384365" TEXT="heap property: at every node x, key[x]&lt;= all keys of x`s children">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402396463056" ID="ID_1943819570" MODIFIED="1402396491196" TEXT="consequence: object at root must have minimum key value">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402396491873" ID="ID_522499211" MODIFIED="1402396540427" TEXT="array implementation (level-ordering): [4 4 8 9 4 12 9 11 13]">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402396541915" ID="ID_878984372" MODIFIED="1402396642919" TEXT="parent(i) = i/2 (i even) or &#x2514; i/2 &#x2518; (round down, i odd)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402396651797" ID="ID_349953464" MODIFIED="1402396659934" TEXT="children(i) = 2i, 2i+1"/>
+<node CREATED="1402396904738" FOLDED="true" ID="ID_1117203037" MODIFIED="1402397509555" TEXT="insert">
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1402396913964" ID="ID_813591547" MODIFIED="1402397002870" TEXT="1. try to stick k-key at the end of last level (first free position)"/>
+<node CREATED="1402397047894" ID="ID_1709540526" MODIFIED="1402397322563" TEXT="2. if insertion violates the heap property - bubble-up k until heap property is restored"/>
+<node CREATED="1402397388418" ID="ID_1653627384" MODIFIED="1402397410420" TEXT="check1: bubbling-up process must stop with heap property restored"/>
+<node CREATED="1402397444275" ID="ID_1103519267" MODIFIED="1402397482313" TEXT="check2: runtime ~ O(log n), cause there`s (log_2 n)-levels"/>
+</node>
+<node CREATED="1402397510243" FOLDED="true" ID="ID_1839247148" MODIFIED="1402398059564" TEXT="extract_min">
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1402397517088" ID="ID_761785798" MODIFIED="1402397554575" TEXT="1. delete root"/>
+<node CREATED="1402397554861" ID="ID_872591037" MODIFIED="1402397609389" TEXT="2. move last leaf to be new root"/>
+<node CREATED="1402397848735" ID="ID_741820029" MODIFIED="1402397973647" TEXT="3. iteratively bubble-down until heap property has been restored (always swap with smaller child)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402397975465" ID="ID_244754749" MODIFIED="1402397992480" TEXT="check1: only bubble-down once per level, halt with a heap"/>
+<node CREATED="1402397992695" ID="ID_1447141485" MODIFIED="1402398002130" TEXT="check2: running time O(log n)"/>
+</node>
+</node>
+</node>
 </node>
 </map>
