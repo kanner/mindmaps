@@ -732,15 +732,239 @@
 <node CREATED="1402161122117" ID="ID_752517982" MODIFIED="1402161162152" TEXT="pin - small edge to caption"/>
 </node>
 </node>
-<node CREATED="1401521356808" FOLDED="true" ID="ID_1587163883" MODIFIED="1401529143142" POSITION="right" TEXT="z. Rissuan typographics">
-<node CREATED="1401521301622" ID="ID_255511817" MODIFIED="1401521305760" TEXT="\renewcommand{\ge}{\geqslant}">
+<node CREATED="1402769425886" FOLDED="true" ID="ID_1368316962" MODIFIED="1402776282982" POSITION="right" TEXT="12. Presentations">
+<node CREATED="1402776165846" FOLDED="true" ID="ID_604737328" MODIFIED="1402776214054" TEXT="beamer class">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402769448045" ID="ID_1095940702" MODIFIED="1402769537084" TEXT="\documentclass[t]{beamer}">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
+<node CREATED="1402769751897" ID="ID_369997428" MODIFIED="1402773090060" TEXT="%\documentclass[aspectratio=169]{beamer} - 16/9 screen">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402769678399" ID="ID_180836236" MODIFIED="1402769707137" TEXT="[t], [c] or [b] - vertical alignment (top, center, bottom)"/>
+<node CREATED="1402769534681" ID="ID_1108915117" MODIFIED="1402769579503" TEXT="\subtitle"/>
+<node CREATED="1402769579732" ID="ID_1958571993" MODIFIED="1402769587327" TEXT="\institute"/>
+</node>
+<node CREATED="1402776184498" FOLDED="true" ID="ID_107794164" MODIFIED="1402776273164" TEXT="frames">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402769604693" ID="ID_1474981610" MODIFIED="1402769609045" TEXT="\frame - slide">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402770665304" ID="ID_1439316757" MODIFIED="1402772401543" TEXT="\frametitle(\insertsection}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402772111892" ID="ID_123977723" MODIFIED="1402772130791" TEXT="\framesubtitle{\insertsubsection}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402773567804" ID="ID_1722834511" MODIFIED="1402773843302" TEXT="\begin{frame}[shrink=7] - maximum 7% shrinkage">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1402776194231" FOLDED="true" ID="ID_485252536" MODIFIED="1402776210710" TEXT="title">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402770557953" ID="ID_122109267" MODIFIED="1402770568571" TEXT="\titlepage | \maketitle">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402770721806" ID="ID_688854180" MODIFIED="1402771491269" TEXT="\tableofcontents [pausesections, pausesubsections,sections=(&lt;2-3&gt;)] - do pauses on sections, subsections on separated slides">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402769734939" ID="ID_1707819034" MODIFIED="1402771166108" TEXT="%\documentclass[handout]{beamer} - slides with materials (no pauses)">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1402771908219" FOLDED="true" ID="ID_996561292" MODIFIED="1402772175731" TEXT="themes">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402771758568" ID="ID_509679577" MODIFIED="1402771927213" TEXT="\usetheme{Berkeley}">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402770898811" ID="ID_1981481962" MODIFIED="1402771927213" TEXT="\usetheme{Bergen}">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402771785701" ID="ID_1183919469" MODIFIED="1402771927213" TEXT="\usetheme{Szeged}">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402771885421" ID="ID_214935228" MODIFIED="1402771927212" TEXT="\usecolortheme{beaver}">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402771888037" ID="ID_494311462" MODIFIED="1402771927212" TEXT="\useinnertheme{circles}">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402771905157" ID="ID_941473038" MODIFIED="1402771927212" TEXT="\useinnertheme{rectangles}">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1402772236538" ID="ID_187389192" MODIFIED="1402772247188" TEXT="\alert{colored text}">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402776221403" FOLDED="true" ID="ID_1070101454" MODIFIED="1402776246573" TEXT="pause and clicks">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402772305857" ID="ID_1170153278" MODIFIED="1402772333548" TEXT="\pause - to pause presentation till next &apos;click&apos;">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402772501464" ID="ID_1762078336" MODIFIED="1402772601641" TEXT="\uncover&lt;4-&gt;{string} - string that appears after 4 &apos;clicks&apos; in it`s space">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402772523844" ID="ID_967716085" MODIFIED="1402772606311" TEXT="\only&lt;5-&gt;{string} - string that has no reserved space before 5 &apos;clicks&apos;">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402772662361" ID="ID_132352230" MODIFIED="1402772707393" TEXT="\begin{enumerate}\item&lt;1-5&gt;... - enumeration item lives from 1 to 5 frame &apos;clicks&apos;">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402772733663" ID="ID_133006193" MODIFIED="1402772734580" TEXT="\insertlogo"/>
+<node CREATED="1402772734879" ID="ID_1939594439" MODIFIED="1402772791433" TEXT="\alt&lt;4&gt;{this is 4th slide}{not 4th slide}">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402772803477" ID="ID_1555513519" MODIFIED="1402772839997" TEXT="\temporal&lt;3-4&gt;{}{}{} - different text before, at and after 3-4 slides"/>
+<node CREATED="1402772940062" ID="ID_1447420077" MODIFIED="1402772957440" TEXT="\textbf&lt;2&gt;{text} - bold font on 2nd frame &apos;click&apos;">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402772978355" ID="ID_23783207" MODIFIED="1402772985950" TEXT="\color&lt;3-4&gt;[RGB]{255,0,0}text">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1402776248360" FOLDED="true" ID="ID_609228785" MODIFIED="1402776262123" TEXT="blocks">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402773314868" ID="ID_1354320311" MODIFIED="1402773851232" TEXT="\begin{block}{block_text}text\end{block}">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402773353130" ID="ID_1963377505" MODIFIED="1402773382205" TEXT="\hyperlink{lab}{\beamerbutton{text}}"/>
+<node CREATED="1402773521154" ID="ID_1373753861" MODIFIED="1402773542950" TEXT="$\displaystyle...$ - to enable standalone formula style">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1402776275295" FOLDED="true" ID="ID_516133613" MODIFIED="1402776281370" TEXT="lectures">
+<node CREATED="1402773825478" ID="ID_1673349485" MODIFIED="1402773837879" TEXT="\lecture{Lecture 1}{lec1}">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402773805476" ID="ID_1011029986" MODIFIED="1402773840801" TEXT="\includeonlylecture{lec1} - include only lec1 in text">
+<icon BUILTIN="info"/>
+</node>
+</node>
+</node>
+<node CREATED="1402774085243" FOLDED="true" ID="ID_1569662522" MODIFIED="1402812215190" POSITION="right" TEXT="13. Russian in Latex">
+<node CREATED="1402774093708" ID="ID_299388232" MODIFIED="1402774464007" TEXT="\usepackage[english,russian]{babel} - the last language is default">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402776075812" FOLDED="true" ID="ID_31462877" MODIFIED="1402776088795" TEXT="abstract">
+<node CREATED="1402774464864" ID="ID_412841965" MODIFIED="1402774524495" TEXT="\abstractname - text Abstract in translation"/>
+<node CREATED="1402774718321" ID="ID_165527053" MODIFIED="1402774726674" TEXT="\renewcommand{\abstractname}{new text}"/>
+<node CREATED="1402774638620" ID="ID_1435961145" MODIFIED="1402774663048" TEXT="\renewcommand{\theenumi}{\Asbuk{enumi}} - russian letters in enumerate items"/>
+</node>
+<node CREATED="1402776089267" FOLDED="true" ID="ID_664752986" MODIFIED="1402776100575" TEXT="dashes">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402774672286" ID="ID_1766469935" MODIFIED="1402774682506" TEXT="N dash --">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402774679515" ID="ID_1720686468" MODIFIED="1402774682044" TEXT="M dash ---">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402774835669" ID="ID_1568503341" MODIFIED="1402774849569" TEXT="&quot;--- correct dash">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402774939403" ID="ID_198392758" MODIFIED="1402774949790" TEXT="&quot;--* correct first-person text">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1402774785594" ID="ID_467123084" MODIFIED="1402774789443" TEXT="&lt;&lt;text&gt;&gt;"/>
+<node CREATED="1402774789722" ID="ID_1588039604" MODIFIED="1402774803638" TEXT=",,text``"/>
+<node CREATED="1402776046807" FOLDED="true" ID="ID_839216533" MODIFIED="1402776144029" TEXT="spaces">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402775168109" ID="ID_375310399" MODIFIED="1402775222778" TEXT="15~\% - space on same line (not on different lines)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402775398064" ID="ID_1462133152" MODIFIED="1402775543034" TEXT="1. 10~&#x43a;&#x412;&#x442;, 15~\%"/>
+<node CREATED="1402775445320" ID="ID_1310506662" MODIFIED="1402775547924" TEXT="2. $\tg 20^\circ$, &#x43d;&#x43e;: 20~${}^\circ$&#x421;"/>
+<node CREATED="1402775329709" ID="ID_1570082844" MODIFIED="1402775338716" TEXT="\S - paragraph">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402775384889" ID="ID_26136434" MODIFIED="1402775551544" TEXT="3. &#x2116;~5, \S~8"/>
+<node CREATED="1402775366925" ID="ID_1224602581" MODIFIED="1402775558994" TEXT="4. &#x442;.\:&#x435;., &#x438;~&#x442;.\:&#x434;., &#x438;~&#x442;.\:&#x43f;. - small spaces">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402775537746" ID="ID_1094186650" MODIFIED="1402775556226" TEXT="5. &#x432;~&#x43f;&#x440;&#x435;&#x434;&#x43b;&#x43e;&#x436;&#x435;&#x43d;&#x438;&#x44f;&#x445;"/>
+</node>
+<node CREATED="1402775644692" FOLDED="true" ID="ID_184783636" MODIFIED="1402775749832" TEXT="typographics">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402775651823" ID="ID_1144165284" MODIFIED="1402775651823" TEXT="\renewcommand{\epsilon}{\ensuremath{\varepsilon}}"/>
+<node CREATED="1402775661401" ID="ID_1908962482" MODIFIED="1402775661401" TEXT="\renewcommand{\phi}{\ensuremath{\varphi}}"/>
+<node CREATED="1402775669141" ID="ID_1656848346" MODIFIED="1402775669141" TEXT="\renewcommand{\kappa}{\ensuremath{\varkappa}}"/>
+<node CREATED="1402775673541" ID="ID_43052878" MODIFIED="1402775673541" TEXT="\renewcommand{\le}{\ensuremath{\leqslant}}"/>
+<node CREATED="1402775678686" ID="ID_1334257817" MODIFIED="1402775678686" TEXT="\renewcommand{\leq}{\ensuremath{\leqslant}}"/>
+<node CREATED="1402775682773" ID="ID_852656363" MODIFIED="1402775682773" TEXT="\renewcommand{\ge}{\ensuremath{\geqslant}}"/>
+<node CREATED="1402775688958" ID="ID_116711972" MODIFIED="1402775688958" TEXT="\renewcommand{\geq}{\ensuremath{\geqslant}}"/>
+<node CREATED="1402775694625" ID="ID_531760660" MODIFIED="1402775694625" TEXT="\renewcommand{\emptyset}{\varnothing}"/>
+</node>
+<node CREATED="1402811208619" FOLDED="true" ID="ID_462217193" MODIFIED="1402812211997" TEXT="font">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1402811631653" ID="ID_384374659" MODIFIED="1402811633596" TEXT="%!TEX TS-program = xelatex">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402811739609" ID="ID_108429734" MODIFIED="1402811760761" TEXT="\usepackage{fontspec} - allow using TrueType / OpenType"/>
+<node CREATED="1402811777482" ID="ID_1954320721" MODIFIED="1402811780624" TEXT="\defaultfontfeatures{Ligatures={TeX},Renderer=Basic}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402811791190" ID="ID_1366077128" MODIFIED="1402811802598" TEXT="\setmainfont[Ligatures={TeX,Historic}]{Times New Roman}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402811799994" ID="ID_1099126210" MODIFIED="1402811816381" TEXT="\setsansfont{Comic Sans MS}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402811816678" ID="ID_1112684604" MODIFIED="1402811830445" TEXT="\setmonofont{Courier New}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402811290042" ID="ID_1521724851" MODIFIED="1402811327877" TEXT="\textsf{text} - text without serif"/>
+<node CREATED="1402811214192" ID="ID_69238732" MODIFIED="1402811333936" TEXT="\texttt{} - monowidth"/>
+<node CREATED="1402811347881" ID="ID_574907642" MODIFIED="1402811353749" TEXT="\fontspec{Arial}{text}"/>
+<node CREATED="1402811354187" ID="ID_1082201527" MODIFIED="1402811588632" TEXT="\fontspec{Arial Narrow}{text}"/>
+</node>
+<node CREATED="1402776108419" FOLDED="true" ID="ID_1988820268" MODIFIED="1402776140409" TEXT="others">
+<node CREATED="1402774977381" ID="ID_1411832792" MODIFIED="1402775004847" TEXT="$\tg x$ - analogue to tan"/>
+<node CREATED="1402775011277" ID="ID_963057400" MODIFIED="1402775018682" TEXT="\today - in localization">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402774908484" ID="ID_203921879" MODIFIED="1402775986944" TEXT="\usepackage{indentfirst} - correct &quot;red&quot; string">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402774909330" ID="ID_1264375433" MODIFIED="1402776001484" TEXT="\frenchspacing - correct spacing"/>
+</node>
+</node>
+<node CREATED="1402812218200" FOLDED="true" ID="ID_1826524576" MODIFIED="1402812792242" POSITION="right" TEXT="14. Big documents">
+<node CREATED="1402812232932" ID="ID_1096824913" MODIFIED="1402812302759" TEXT="\input{preamble}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402812303282" ID="ID_1872428376" MODIFIED="1402812404535" TEXT="\include{chapters/ch1}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1402812442683" ID="ID_1949606829" MODIFIED="1402812466766" TEXT="in each chapter file - &apos;% !TEX root = ../main.tex&apos;">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1402812629682" ID="ID_1591371850" MODIFIED="1402812638668" TEXT="include - starts new page">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402812639636" ID="ID_28624229" MODIFIED="1402812647997" TEXT="input don`t start new page">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402812691944" ID="ID_1020027981" MODIFIED="1402812702699" TEXT="\includeonly{chapters/ch2,chapters/ch3}">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1402776310443" FOLDED="true" ID="ID_496921544" MODIFIED="1402812230203" POSITION="right" TEXT="15. others">
+<node CREATED="1402773748014" ID="ID_502400678" MODIFIED="1402773754191" TEXT="\textsl{}"/>
+<node CREATED="1402773754710" ID="ID_1532554770" MODIFIED="1402773765190" TEXT="\hfill{}"/>
+<node CREATED="1402773896017" ID="ID_1601311949" MODIFIED="1402773965946" TEXT="\verbtext"/>
+<node CREATED="1402775115123" ID="ID_311672021" MODIFIED="1402775128649" TEXT="\% - %-symbol"/>
 </node>
 <node CREATED="1402152933402" ID="ID_65813557" MODIFIED="1402153047041" POSITION="right" TEXT="google scholar - GOST references on publications">
 <icon BUILTIN="idea"/>
 </node>
 <node CREATED="1402161322499" ID="ID_1004719893" MODIFIED="1402162059215" POSITION="right" TEXT="geogebra - function drawing tool (PGF/TIKZ import)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1402771652173" ID="ID_527444797" MODIFIED="1402774101605" POSITION="right" TEXT="beamer theme matrix">
 <icon BUILTIN="idea"/>
 </node>
 </node>
