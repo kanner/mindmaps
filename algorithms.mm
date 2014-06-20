@@ -1588,5 +1588,692 @@
 </node>
 </node>
 </node>
+<node CREATED="1402998105064" FOLDED="true" ID="ID_1063011509" MODIFIED="1403097505429" POSITION="right" TEXT="11. Data structures (balanced binary search trees)">
+<node CREATED="1402998129619" ID="ID_933285722" MODIFIED="1403004931084" TEXT="like dynamic version of a sorted array">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403005343620" FOLDED="true" ID="ID_1519014802" MODIFIED="1403005731909" TEXT="operations with sorted arrays">
+<icon BUILTIN="info"/>
+<node CREATED="1403004931946" ID="ID_145010194" MODIFIED="1403005254310" TEXT="Search ~ O(log n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403005187287" ID="ID_42348537" MODIFIED="1403005254311" TEXT="Select (given order statistic) ~ O(1)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403005202781" ID="ID_132415708" MODIFIED="1403005254311" TEXT="Min/Max ~ O(1)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403005209726" ID="ID_221911815" MODIFIED="1403005254311" TEXT="Predecessor/Successor (given a pointer to key) ~ O(1)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403005238133" ID="ID_710318928" MODIFIED="1403005337334" TEXT="Rank (# of keys less or equal to given key) ~ O(log n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403005371310" ID="ID_1892273693" MODIFIED="1403005381820" TEXT="Output_in_sorted_order ~ O(n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403005469986" ID="ID_1490407042" MODIFIED="1403005481484" TEXT="Insertion/Deletion ~ O(n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1403005337667" ID="ID_1813905631" MODIFIED="1403005605803" TEXT="balanced search trees - like sorted array + fast (O(log n)) inserts and deletes">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403005343620" FOLDED="true" ID="ID_1735978102" MODIFIED="1403013551303" TEXT="operations with binary search trees">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+<node CREATED="1403004931946" ID="ID_551674535" MODIFIED="1403005762636" TEXT="Search ~ O(log n)">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403005187287" ID="ID_583402095" MODIFIED="1403005774870" TEXT="Select ~ O(log n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403005202781" ID="ID_645919525" MODIFIED="1403005777771" TEXT="Min/Max ~ O(log n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403005209726" ID="ID_576650938" MODIFIED="1403005785436" TEXT="Predecessor/Successor ~ O(log n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403005238133" ID="ID_368105675" MODIFIED="1403005794221" TEXT="Rank ~ O(log n)">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403005371310" ID="ID_1318231835" MODIFIED="1403005798710" TEXT="Output_in_sorted_order ~ O(n)">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403005799326" ID="ID_1394331541" MODIFIED="1403005818396" TEXT="Insert/Delete ~ O(log n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1403005883937" ID="ID_1873547886" MODIFIED="1403005905196" TEXT="if you need to insert/delete frequently - use binary search trees">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403006047487" ID="ID_1899482498" MODIFIED="1403008721150" TEXT="Insert/Delete/Min/Max also supported in heaps (faster?)">
+<font NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1403006073825" ID="ID_658778741" MODIFIED="1403008719872" TEXT="Sort/Insert/Delete also supported in hash tables (faster?)">
+<font NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1403006505221" FOLDED="true" ID="ID_44764574" MODIFIED="1403008718541" TEXT="structure of binary search trees">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403006509288" ID="ID_365411805" MODIFIED="1403006523376" TEXT="1. exactly one node per key"/>
+<node CREATED="1403006523631" ID="ID_715642120" MODIFIED="1403006651182" TEXT="2. each node has:"/>
+<node CREATED="1403006636187" ID="ID_530501596" MODIFIED="1403006666852" TEXT="- left child pointer (may be null)"/>
+<node CREATED="1403006645904" ID="ID_1987455113" MODIFIED="1403006669840" TEXT="- right child pointer (may be null)"/>
+<node CREATED="1403006653156" ID="ID_1166862309" MODIFIED="1403006672695" TEXT="- and parent pointer (null only for root)"/>
+<node CREATED="1403007556013" ID="ID_1247719074" MODIFIED="1403007707000" TEXT="search tree property: at every node - nodes from left subtree are less (less or equal) and nodes from right subtree are bigger">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1403007863502" ID="ID_1019193710" MODIFIED="1403007991425" TEXT="there`s many possible trees for a set of keys (height/depth ~ [log_2 n, n])">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403008103097" FOLDED="true" ID="ID_413425088" MODIFIED="1403009055413" TEXT="searching">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403008108860" ID="ID_1317018203" MODIFIED="1403008123228" TEXT="1. start at the root"/>
+<node CREATED="1403008123746" ID="ID_1393538557" MODIFIED="1403008167580" TEXT="2. traverse left(if k&lt;key) / right(if k&gt;key) child pointers as needed"/>
+<node CREATED="1403008229667" ID="ID_1042106184" MODIFIED="1403008242834" TEXT="3. return node with key k or NULL, as appropriate"/>
+</node>
+<node CREATED="1403008270519" FOLDED="true" ID="ID_956632833" MODIFIED="1403009057461" TEXT="insert">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403008276977" ID="ID_15815163" MODIFIED="1403008392969" TEXT="1. search key k (unsuccessfully if no duplicates)"/>
+<node CREATED="1403008343866" ID="ID_702626735" MODIFIED="1403008359002" TEXT="2. rewire final NULL pointer to point to new node with key k"/>
+<node CREATED="1403008396372" ID="ID_1504671362" MODIFIED="1403008433725" TEXT="for duplicates - should continue search (if success) to the left (where elements &lt;= key)">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1403008518263" ID="ID_890499606" MODIFIED="1403008559181" TEXT="worst-case running time for Search/Insert = &#x4e8;(height)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403008725858" FOLDED="true" ID="ID_1195667948" MODIFIED="1403009145021" TEXT="min/max">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403008789830" ID="ID_1855989702" MODIFIED="1403008997453" TEXT="search for -&#x221e; or +&#x221e;">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403009090559" ID="ID_532214907" MODIFIED="1403009095905" TEXT="return last key found"/>
+</node>
+<node CREATED="1403009145686" FOLDED="true" ID="ID_1363059968" MODIFIED="1403009780558" TEXT="predecessor">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403009149535" ID="ID_1910999075" MODIFIED="1403009321104" TEXT="easy case: if k`s left subtree nonempty, return max key in left subtree"/>
+<node CREATED="1403009322424" ID="ID_279060626" MODIFIED="1403009502429" TEXT="otherwise: follow parent pointers until you get key &lt; k">
+<font NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403009628906" ID="ID_1968064933" MODIFIED="1403009680613" TEXT="otherwise case terminates on first &quot;left-turn&quot;">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1403008518263" ID="ID_392261869" MODIFIED="1403009820964" TEXT="worst-case running time for Min/Max/Pred/Succ = &#x4e8;(height)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403009952260" FOLDED="true" ID="ID_426893928" MODIFIED="1403013511663" TEXT="in-order traversal">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403010007531" ID="ID_1680670939" MODIFIED="1403010025289" TEXT="let r=root of search tree with subtrees T_l and T_r"/>
+<node CREATED="1403010072188" ID="ID_1790583688" MODIFIED="1403010096299" TEXT="1. recurse on T_l, print key`s of T_l in increasing order"/>
+<node CREATED="1403010126320" ID="ID_315663363" MODIFIED="1403010134410" TEXT="2. print r`s key"/>
+<node CREATED="1403010134694" ID="ID_706430913" MODIFIED="1403010150575" TEXT="3. recurse on T_r, print key`s of T_r in increasing order"/>
+<node CREATED="1403010298478" ID="ID_1164548283" MODIFIED="1403010303437" TEXT="O(n)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1403010368343" FOLDED="true" ID="ID_1129289154" MODIFIED="1403014391759" TEXT="deletion">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403012813039" ID="ID_1086259634" MODIFIED="1403012859586" TEXT="1, search for key k"/>
+<node CREATED="1403012866088" ID="ID_1990750602" MODIFIED="1403012903314" TEXT="2. case1 (k has no children): just delete node"/>
+<node CREATED="1403012906045" ID="ID_871470869" MODIFIED="1403012979455" TEXT="3. case2 (k has one child): just &quot;splice out&quot; k`s node (unique child assumes position previously held by k)"/>
+<node CREATED="1403012973449" ID="ID_218206709" MODIFIED="1403013053302" TEXT="4. case3 (k has two children):"/>
+<node CREATED="1403013129948" ID="ID_47176277" MODIFIED="1403013260003" TEXT="4.1. compute k`s predecessor l (traverse k`s not-NULL left child pointer then right child pointers until no longer possible)"/>
+<node CREATED="1403013230411" ID="ID_619078377" MODIFIED="1403013291546" TEXT="4.2. swap k and l">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403013291887" ID="ID_1943011161" MODIFIED="1403013405758" TEXT="note: in its new position, k has no right child">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403013418997" ID="ID_1798834125" MODIFIED="1403013452711" TEXT="4.3. delete k or &quot;splice out&quot; it`s left-child (if exists)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403013500392" ID="ID_1346067644" MODIFIED="1403013528185" TEXT="&#x4e8;(height)">
+<font NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1403013553227" FOLDED="true" ID="ID_7122334" MODIFIED="1403014813608" TEXT="select and rank">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403013600782" ID="ID_1338593229" MODIFIED="1403013625614" TEXT="idea: store a little bit of extra info at each tree node about the tree itself (not about data)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403013646130" ID="ID_1585890377" MODIFIED="1403013795651" TEXT="example augmentation: size(x) = # of tree nodes in subtree rooted at x">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403013769972" ID="ID_1017444529" MODIFIED="1403013797510" TEXT="note: if x has children y and z, then size(y)+size(z)+1=size(x)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403013876076" ID="ID_933418014" MODIFIED="1403013896982" TEXT="note: easy to keep sizes up-to-date during an Insertion and Deletion">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403013962647" ID="ID_896434158" MODIFIED="1403013970429" TEXT="select:"/>
+<node CREATED="1403013970692" ID="ID_1483462718" MODIFIED="1403013982923" TEXT="1. start at root x with children y and z"/>
+<node CREATED="1403014270551" ID="ID_34266331" MODIFIED="1403014287796" TEXT="2. let a=size(y) [a=0 if x has no left child]"/>
+<node CREATED="1403014288050" ID="ID_1187034389" MODIFIED="1403014307452" TEXT="3. if a=i-1 return x`s key (simple case)"/>
+<node CREATED="1403014300367" ID="ID_1559475412" MODIFIED="1403014339346" TEXT="4. if a&gt;=i recursively compute i`th order statistic of search tree rooted at y"/>
+<node CREATED="1403014339852" ID="ID_167313130" MODIFIED="1403014381116" TEXT="5. if a&lt;i-1 recursively compute (i-a-1)`th order statistic of search tree rooted at z"/>
+<node CREATED="1403014382758" ID="ID_1092491284" MODIFIED="1403014394372" TEXT="&#x4e8;(height)"/>
+</node>
+<node CREATED="1403014816002" FOLDED="true" ID="ID_995363403" MODIFIED="1403096468755" TEXT="balanced search trees">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1403014826229" ID="ID_14349947" MODIFIED="1403014855222" TEXT="example: red-black trees, AVL trees, splay trees, B trees">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403015222603" FOLDED="true" ID="ID_416737010" MODIFIED="1403096468259" TEXT="red-black invariants">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403015232775" ID="ID_1050703742" MODIFIED="1403015246943" TEXT="1. each node marked with red or black"/>
+<node CREATED="1403015247206" ID="ID_243265630" MODIFIED="1403015251399" TEXT="2. root is black"/>
+<node CREATED="1403015251612" ID="ID_1191772882" MODIFIED="1403015303123" TEXT="3. no 2 reds in a row (red node =&gt; only black children)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403015265994" ID="ID_1878590059" MODIFIED="1403015303759" TEXT="4. every root-NULL path (like unsuccessful search) has same number of black nodes">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1403015429012" ID="ID_968016771" MODIFIED="1403015443630" TEXT="claim: a chain of length 3 cannot be a red-black tree">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403016003104" FOLDED="true" ID="ID_1034483690" MODIFIED="1403094423819" TEXT="claim: every red-black tree with n nodes has height &lt;= 2 log_2(n+1)">
+<icon BUILTIN="info"/>
+<node CREATED="1403016139128" ID="ID_146996419" MODIFIED="1403093890751" TEXT="observation: if every root-NULL path has &gt;= k nodes, then tree includes (at the top) a perfectly balanced search tree of depth k [by contradiction]">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403093855125" ID="ID_1583257708" MODIFIED="1403093877275" TEXT="=&gt; size n of the tree must be at least 2^k - 1">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403093942837" ID="ID_280697000" MODIFIED="1403094000638" TEXT="=&gt; k &lt;= log_2 (n+1)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403094024404" ID="ID_1474005570" MODIFIED="1403094087166" TEXT="in best case they`re all black in red-black tree">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403094076160" ID="ID_280114636" MODIFIED="1403094122018" TEXT="in a red black tree with n nodes there`s a root-NULL path with at most log_2 (n+1) black nodes">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403094201452" ID="ID_838233637" MODIFIED="1403094237994" TEXT="by 4th invariant: every root-NULL path has &lt;= log_2 (n+1) black nodes">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403094238702" ID="ID_1153168136" MODIFIED="1403094421194" TEXT="by 3rd invariant: every root-NULL path has &lt;= 2 log_2 (n+1) total nodes (worst case black-red-black-red-...)">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+</node>
+<node CREATED="1403094526582" FOLDED="true" ID="ID_1295930586" MODIFIED="1403095379324" TEXT="rotations">
+<node CREATED="1403094529236" ID="ID_97944177" MODIFIED="1403094570066" TEXT="key primitive, common to all balanced search trees implementations">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403094572328" ID="ID_350086262" MODIFIED="1403094653307" TEXT="idea: locally rebalance subtrees at a node in O(1) time">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403094764639" ID="ID_1508558987" MODIFIED="1403094778850" TEXT="left rotation of a parent x and right child y">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403094824281" ID="ID_1457425328" MODIFIED="1403094872476" TEXT="y should be the parent, x should be the child (left child, x&lt;y)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403094845990" ID="ID_1562029885" MODIFIED="1403094916507" TEXT="y inherits x`s parent">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403095030905" ID="ID_670522818" MODIFIED="1403095071731" TEXT="y`s left child -&gt; x`s right child (all other children stay in place)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1403094781859" ID="ID_966068857" MODIFIED="1403095105467" TEXT="right rotation - inverse operation">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403095173061" ID="ID_1689461116" MODIFIED="1403095209324" TEXT="1. preserve search tree properties"/>
+<node CREATED="1403095209557" ID="ID_496015932" MODIFIED="1403095211965" TEXT="2. O(1)"/>
+</node>
+<node CREATED="1403095381281" FOLDED="true" ID="ID_373776674" MODIFIED="1403097502908" TEXT="implementation of insertion">
+<node CREATED="1403095390534" ID="ID_166204776" MODIFIED="1403095532804" TEXT="idea: proceed as in a normal binary search tree, then recolor or perform rotations until invariants are restored">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403095534326" ID="ID_884255636" MODIFIED="1403095628628" TEXT="1. insert x as usual (makes x a leaf)"/>
+<node CREATED="1403095682304" ID="ID_1661464349" MODIFIED="1403095714187" TEXT="here we choose lesser of two evils (red or black color of x)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403095710488" ID="ID_1336803206" MODIFIED="1403095803433" TEXT="2. try coloring x red"/>
+<node CREATED="1403095803708" ID="ID_1362600138" MODIFIED="1403095811440" TEXT="3. if x`s parent y is black - done"/>
+<node CREATED="1403095812137" ID="ID_1385654260" MODIFIED="1403095926213" TEXT="4. else y is red (y can`t be root) =&gt; y has a black parent w">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403096006583" ID="ID_1826949014" MODIFIED="1403096028604" TEXT="5.1. case1: the other child of w (z) is also red"/>
+<node CREATED="1403096080955" ID="ID_999006353" MODIFIED="1403096118548" TEXT="=&gt; recolor y,z black and w red (don`t brake 4th invariant)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403096281109" ID="ID_1741474185" MODIFIED="1403096357091" TEXT="=&gt; either restore invariant 3 or propagates the &quot;double red&quot; upward (can only happen O(log n) times)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403096414652" ID="ID_783202691" MODIFIED="1403096460083" TEXT="if we must recolor root red =&gt; recolor it black (cause every path starts in root - it`ll not break 4th invariant)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403097089320" ID="ID_459116508" MODIFIED="1403097133138" TEXT="5.2. case2: the other child of w (z) is NULL or is a black node"/>
+<node CREATED="1403097185892" ID="ID_671001851" MODIFIED="1403097400169" TEXT="can eliminate double-red in O(1) time via 2-3 rotations + recoloring (exercise)">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+</node>
+<node CREATED="1403097506483" FOLDED="true" ID="ID_784330904" MODIFIED="1403169913896" POSITION="right" TEXT="12. Hash tables">
+<node CREATED="1403097959289" ID="ID_481199805" MODIFIED="1403097986915" TEXT="purpose: maintain a (possibly evolving) set of stuff">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403098075573" ID="ID_788151631" MODIFIED="1403098085219" TEXT="hash table ~ a &quot;dictionary&quot;">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403097989802" ID="ID_133402338" MODIFIED="1403098041205" TEXT="insert: add new record using a &quot;key&quot;"/>
+<node CREATED="1403097996802" ID="ID_637219958" MODIFIED="1403098044364" TEXT="delete: delete existing record using a &quot;key&quot;"/>
+<node CREATED="1403098005445" ID="ID_1441938272" MODIFIED="1403098046686" TEXT="lookup: check for a particular record using a &quot;key&quot;"/>
+<node CREATED="1403098049074" ID="ID_149814567" MODIFIED="1403098124320" TEXT="amazing guarantee: O(1) time:">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403098100126" ID="ID_319807163" MODIFIED="1403098136124" TEXT="1. for properly implemented hash tables"/>
+<node CREATED="1403098191676" ID="ID_1454321922" MODIFIED="1403098198148" TEXT="2. for non-pathological data"/>
+<node CREATED="1403098270122" FOLDED="true" ID="ID_391697005" MODIFIED="1403098955804" TEXT="example: de-duplication">
+<icon BUILTIN="info"/>
+<node CREATED="1403098392902" ID="ID_1824790929" MODIFIED="1403098426954" TEXT="given: a &quot;stream&quot; of objects (linear scan through a huge file, objects arriving in real time)"/>
+<node CREATED="1403098428044" ID="ID_1755620144" MODIFIED="1403098454452" TEXT="goal: remove duplicates / keep track of unique objects"/>
+<node CREATED="1403098456440" ID="ID_1192995260" MODIFIED="1403098516211" TEXT="solution: lookup x in hash table H, if not found - insert x into H">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1403098956426" FOLDED="true" ID="ID_943516427" MODIFIED="1403099532508" TEXT="example: 2-sum problem">
+<icon BUILTIN="info"/>
+<node CREATED="1403098971524" ID="ID_1552224563" MODIFIED="1403099027453" TEXT="input: unsorted array A of n integers. Target sum t"/>
+<node CREATED="1403098992833" ID="ID_1111560805" MODIFIED="1403099025577" TEXT="goal: determine whether or not there are two numbers x,y in A with x+y=t"/>
+<node CREATED="1403099030514" ID="ID_1842249458" MODIFIED="1403099054683" TEXT="naive solution: O(n^2) time via exhaustive search">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403099055263" ID="ID_765104902" MODIFIED="1403099106731" TEXT="better solution: 1. sort A (O(n log n)) 2. for each x in A look for t-x in A via binary search (O(n log n))">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403099096417" ID="ID_120727058" MODIFIED="1403099152285" TEXT="amazing solution: 1. insert elements of A into hash table H (O(n)) 2. for each x in A lookup t-x in H (O(n))">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1403099533322" FOLDED="true" ID="ID_1719106287" MODIFIED="1403099652764" TEXT="more applications">
+<icon BUILTIN="info"/>
+<node CREATED="1403099541377" ID="ID_1090667797" MODIFIED="1403099645687" TEXT="1. historical application: symbol tables in compilers"/>
+<node CREATED="1403099556760" ID="ID_559396183" MODIFIED="1403099648234" TEXT="2. blocking network traffic"/>
+<node CREATED="1403099563060" ID="ID_1630953435" MODIFIED="1403099651169" TEXT="3. search algorithms (e.g. game tree exploration):"/>
+<node CREATED="1403099589706" ID="ID_1054240982" MODIFIED="1403099636283" TEXT="use hash table to avoid exploring any configuration (e.g. arrangement of chess pieces) more than once">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403099638805" ID="ID_1247953347" MODIFIED="1403099643009" TEXT="4. etc"/>
+</node>
+<node CREATED="1403099809307" FOLDED="true" ID="ID_421272938" MODIFIED="1403167957559" TEXT="implementation">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403099817852" ID="ID_1832617656" MODIFIED="1403100158388" TEXT="setup: universe U (e.g. all IP addresses, all names, all chess board configurations, etc) - generally, REALLY BIG">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403100159632" ID="ID_618829942" MODIFIED="1403100209052" TEXT="goal: want to maintain evolving set S&#x20ac;U - generally, reasonable size">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403100210462" FOLDED="true" ID="ID_1046776870" MODIFIED="1403102080740" TEXT="naive solutions">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403100215308" ID="ID_1802074085" MODIFIED="1403100415919" TEXT="1. array-based solution indexed by U (O(1) operations, space proportional to U - &#x4e8;(|U|))"/>
+<node CREATED="1403100310868" ID="ID_1914754436" MODIFIED="1403100408706" TEXT="2. list-based solution (&#x4e8;(|S|) space, but &#x4e8;(|S|) lookup)"/>
+</node>
+<node CREATED="1403100470686" FOLDED="true" ID="ID_1519253117" MODIFIED="1403162365174" TEXT="solution">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403100475734" ID="ID_1157473733" MODIFIED="1403100553175" TEXT="1. pick n - number of &quot;buckets&quot; with n~|S| (n~2*|S|)"/>
+<node CREATED="1403100736181" ID="ID_1877303588" MODIFIED="1403100748044" TEXT="assume |S| doesn`t vary too much">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403100623845" ID="ID_1706838584" MODIFIED="1403100703651" TEXT="if S is dynamically changing (many changes) - we can shring or expand hash table (twice the size of S)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403100806923" ID="ID_1132640743" MODIFIED="1403100824483" TEXT="2. choose a hash function h:U-&gt;[0,1,2,...,n-1]"/>
+<node CREATED="1403100909260" ID="ID_635449511" MODIFIED="1403100927690" TEXT="3. use array A of length n, store x in A[h(x)]"/>
+</node>
+<node CREATED="1403101266516" FOLDED="true" ID="ID_897285825" MODIFIED="1403101736196" TEXT="collisions? - birthday paradox">
+<icon BUILTIN="idea"/>
+<icon BUILTIN="idea"/>
+<icon BUILTIN="idea"/>
+<node CREATED="1403101281969" ID="ID_1266051428" MODIFIED="1403101301243" TEXT="given: n people with random birthdays"/>
+<node CREATED="1403101301475" ID="ID_1394418347" MODIFIED="1403101338630" TEXT="how large does n need to be before there is at least 50% chance that two people have the same birthday?"/>
+<node CREATED="1403101340608" ID="ID_457552629" MODIFIED="1403101341835" TEXT="23">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1403101726505" FOLDED="true" ID="ID_136121392" MODIFIED="1403162369510" TEXT="resolving collisions">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403101733041" ID="ID_993661556" MODIFIED="1403101824012" TEXT="collision: distinct x,y&#x20ac;U such that h(x)=h(y)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403101873904" FOLDED="true" ID="ID_972025141" MODIFIED="1403102866980" TEXT="solution#1: [separate] chaining">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403102028090" ID="ID_93887603" MODIFIED="1403102036628" TEXT="keep linked list in each bucket"/>
+<node CREATED="1403102036873" ID="ID_110999393" MODIFIED="1403102068500" TEXT="given a key/object x, perform Insert/Delete/Lookup in the list in A[h(x)] (linked list)"/>
+<node CREATED="1403102525481" ID="ID_806228713" MODIFIED="1403102539804" TEXT="use it if want to have simplier deletion">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1403102008220" FOLDED="true" ID="ID_181959086" MODIFIED="1403102523724" TEXT="solution#2: open-addressing (only one object per bucket)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403102280703" ID="ID_1497116419" MODIFIED="1403102521193" TEXT="hash function now specifies probe sequence h1(x), h2(x),... (keep trying until find open slot)"/>
+<node CREATED="1403102314312" ID="ID_1555516946" MODIFIED="1403102387628" TEXT="example: linear probing (look consecutively), double hashing (use 2 hashing functions)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403102493050" ID="ID_1666034265" MODIFIED="1403102522692" TEXT="use it if don`t want to use extra space">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+</node>
+<node CREATED="1403162482453" FOLDED="true" ID="ID_1057854880" MODIFIED="1403164769794" TEXT="good hash functions?">
+<node CREATED="1403162489003" ID="ID_1403916519" MODIFIED="1403162548717" TEXT="note: in hash table with chaining Insert is &#x4e8;(1) (insert at front of list in A[h(x)])">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403162552428" ID="ID_284986991" MODIFIED="1403162665080" TEXT="note: &#x4e8;(list(length)) for insert/delete - from m/n to m for m objects in same bucket">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403162671318" ID="ID_742719975" MODIFIED="1403162768200" TEXT="performance depends on the choise of hash function (with open addressing too)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403162851719" ID="ID_481575320" MODIFIED="1403163015764" TEXT="property1: should lead to good performance =&gt; i.e., should &quot;spread data out&quot; (gold standart = completely random hashing)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1403162989492" ID="ID_1184734084" MODIFIED="1403163016457" TEXT="property2: should be easy to store / very fast to evaluate">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1403163178143" FOLDED="true" ID="ID_9792506" MODIFIED="1403163524094" TEXT="bad example: keys = 10-digit phone numbers. n=10^3">
+<node CREATED="1403163417145" ID="ID_1908037723" MODIFIED="1403163440346" TEXT="terrible hash function: h(x) = 1st 3 digits of x (i.e. area code)"/>
+<node CREATED="1403163441769" ID="ID_583427483" MODIFIED="1403163515120" TEXT="mediocre hash function: h(x) = last 3 digits"/>
+</node>
+<node CREATED="1403163524706" FOLDED="true" ID="ID_1933307691" MODIFIED="1403163826150" TEXT="bad example: keys = memory locations (multiple`s of a power of 2)">
+<node CREATED="1403163787032" ID="ID_876826295" MODIFIED="1403163803311" TEXT="bad hash function: h(x) = x mod 1000"/>
+<node CREATED="1403163812756" ID="ID_295288309" MODIFIED="1403163825165" TEXT="all odd buckets guaranteed to be empty">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1403163945351" FOLDED="true" ID="ID_1899584211" MODIFIED="1403164713502" TEXT="quick-and-dirty hash functions">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403163957315" ID="ID_305334210" MODIFIED="1403164024094" TEXT="objects U -[formulating hash code]-&gt; integers -[applying compression]-&gt; buckets [0,1,...,n-1]">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403163979147" ID="ID_1414344841" MODIFIED="1403164115869" TEXT="there`re different kind of objects (if strings - subroutine to convert strings to integers)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403164248613" ID="ID_750333583" MODIFIED="1403164301445" TEXT="compression could be like the &apos;mod n&apos;-function (should be correct chosen n!)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403164643044" ID="ID_1418476663" MODIFIED="1403164710039" TEXT="1. choose n to be prime (within constant factor of number of objects in table)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403164686812" ID="ID_782397919" MODIFIED="1403164710039" TEXT="2. not too close to a power of 2">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403164699656" ID="ID_535500375" MODIFIED="1403164710039" TEXT="3. not too close to a power of 10">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1403167914625" FOLDED="true" ID="ID_58326715" MODIFIED="1403168510519" TEXT="the load of a hash table">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403167921426" ID="ID_1321588961" MODIFIED="1403168089686" TEXT="definition: load factor of a hash table is &#x3b1; := (# of objects in hash table) / (# of buckets of hash table)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403168144263" ID="ID_1892962016" MODIFIED="1403168156534" TEXT="load factors &gt; 1 - only for chaining">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403168214722" ID="ID_983103416" MODIFIED="1403168348782" TEXT="note1: &#x3b1;=O(1) is neccessary condition for operations to run in constant time">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403168334886" ID="ID_1525693221" MODIFIED="1403168348783" TEXT="note2: with open addressing, need &#x3b1;&lt;&lt;1">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1403168380096" ID="ID_1933728334" MODIFIED="1403168500754" TEXT="upshot1: for goot hash table performance - need to control the load">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403168511871" ID="ID_1373456408" MODIFIED="1403168541461" TEXT="upshot2: -//- need a good hash function">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403168653427" ID="ID_1774729019" MODIFIED="1403168721054" TEXT="idea: use super-clever hash function guaranteed to spread every data set out evently">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403168682887" FOLDED="true" ID="ID_1136483349" MODIFIED="1403169638967" TEXT="problem: DOES NOT EXIST (for every hash function there`s a pathological data set)">
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1403168843245" ID="ID_1863533348" MODIFIED="1403168863244" TEXT="fix a hash function h:U-&gt;{0,1,2,...,n-1}"/>
+<node CREATED="1403168900192" ID="ID_1066102545" MODIFIED="1403168911270" TEXT="assume |U|&gt;&gt;n">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403168863487" ID="ID_470029648" MODIFIED="1403169146666" TEXT="=&gt; Pigeon Principle, there is a bucket i such that at least |U|/n elements of U hash to i under h">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403169147002" ID="ID_981592628" MODIFIED="1403169167350" TEXT="=&gt; if data set drawn only from these, everything collides">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1403169639690" ID="ID_1753610399" MODIFIED="1403169691590" TEXT="solution1: use a cryptographic hash function (e.g., SHA-2) - infeasible to reverse engineer a pathological data set">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403169692183" ID="ID_1854896588" MODIFIED="1403169751157" TEXT="solution2: design a family of hash funtions and use randomization (comparable to QuickSort guarantee)">
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1403169897844" FOLDED="true" ID="ID_104871011" MODIFIED="1403242344131" POSITION="right" TEXT="13. Universal hashing">
+<node CREATED="1403169905883" ID="ID_832471105" MODIFIED="1403174590218" TEXT="let H be a set of hash functions from U to {0,1,2,...,n-1}"/>
+<node CREATED="1403174590727" ID="ID_1736437800" MODIFIED="1403174846593" TEXT="definition: H is universal if and only if: for all x,y &#x20ac; U (x!=y) Pr[x,y collide: h(x)=h(y)] &lt;= 1/n, where h&#x20ac;H, n = # of buckets">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403174739579" ID="ID_1382721399" MODIFIED="1403174768975" TEXT="i.e. collision probability as small as with &quot;gold standart&quot; of perfectly random hashing"/>
+<node CREATED="1403175224711" FOLDED="true" ID="ID_809292257" MODIFIED="1403175575856" TEXT="example: each h&#x20ac;H:U-&gt;{0,1,2,...,n}. For every bucket i and key k, 1/n-fraction of hash functions map k to i. Is H universal?">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403175518148" ID="ID_808700519" MODIFIED="1403175540187" TEXT="yes: take H = all functions from U to {0,1,2,...,n-1}"/>
+<node CREATED="1403175540684" ID="ID_1036670968" MODIFIED="1403175556343" TEXT="no: take H = the set of n different constant functions"/>
+</node>
+<node CREATED="1403175924293" FOLDED="true" ID="ID_1055261333" MODIFIED="1403177785657" TEXT="example: hashing IP addresses">
+<icon BUILTIN="idea"/>
+<node CREATED="1403175936141" ID="ID_1481723976" MODIFIED="1403175967777" TEXT="let U = IP addresses of the form (x1,x2,x3,x4) with each xi&#x20ac;{0,1,2,...,255}"/>
+<node CREATED="1403175969188" ID="ID_570052072" MODIFIED="1403176010804" TEXT="let n = a prime (e.q. small multiple of # of objects in hash table)"/>
+<node CREATED="1403176013161" ID="ID_1563759458" MODIFIED="1403176297368" TEXT="construction: define one hash function h_a per 4-tuple a=(a_1,a_2,a_3,a_4) with each a_i&#x20ac;{0,1,2,...,n-1}">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403176319718" ID="ID_1686628051" MODIFIED="1403176328304" TEXT="n^4 such functions">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403176297981" ID="ID_1382738656" MODIFIED="1403176376336" TEXT="define: h_a: IP addresses -&gt; buckets by h_a(x_1,x_2,x_3,x_4) = (a_1x_1 + a_2x_2 + a_3x_3 + a_4x_4) mod n">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403176421804" ID="ID_1003314232" MODIFIED="1403176441928" TEXT="constant time to evaluate, constant space to store this functions">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403176488738" ID="ID_728481025" MODIFIED="1403176509721" TEXT="H = {h_a | a_1,a_2,a_3,a_4&#x20ac;{0,1,2,...,n-1}}">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403176520472" FOLDED="true" ID="ID_148379274" MODIFIED="1403177774529" TEXT="theorem: this family is universal">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1403176794586" ID="ID_1186843277" MODIFIED="1403176820235" TEXT="consider distinct IP addresses (x1,x2,x3,x4), (y1,y2,y3,y4)"/>
+<node CREATED="1403176823243" ID="ID_1034245451" MODIFIED="1403176837628" TEXT="assume: x4!=y4"/>
+<node CREATED="1403176837873" ID="ID_804937497" MODIFIED="1403176887800" TEXT="collision &lt;=&gt; (a1x1+a2x2+a3x3+a4x4) mod n = (a1y1+a2y2+a3y3+a4y4) mod n">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403176888991" ID="ID_126099442" MODIFIED="1403176941115" TEXT="&lt;=&gt; a4(x4-y4) mod n = &#x2211; ai(yi-xi) mod n (i=1,..3)"/>
+<node CREATED="1403176952738" ID="ID_411476621" MODIFIED="1403177033559" TEXT="principle of deferred decisions: condition on random choises of a1,a2,a3 (a4 still random)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403177570567" ID="ID_653069531" MODIFIED="1403177691983" TEXT="key claim: &apos;a4(x4-y4) mod n&apos; - equally likely to be any of {0,1,2,...,n-1} [proof by examples]">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403177614472" ID="ID_568463387" MODIFIED="1403177653393" TEXT="reason: x4!=y4 (x4-y4!=0 mod n), n is prime, a4 - uniform at random">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403177654266" ID="ID_1845032194" MODIFIED="1403177673152" TEXT="addendum: make sure n bigger then the maximum value of an ai">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1403177711999" ID="ID_335400256" MODIFIED="1403177750216" TEXT="left-side - random, right side - fixed number =&gt; Pr[h_a(x)=h_a(y)]=1/n">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+</node>
+<node CREATED="1403179580596" FOLDED="true" ID="ID_796654169" MODIFIED="1403181216978" TEXT="chaining constant-time guarantee">
+<node CREATED="1403179592276" ID="ID_1222874439" MODIFIED="1403179634218" TEXT="scenario: hash table implemented with chaining, hash function h chosen uniformly at random from universal family H"/>
+<node CREATED="1403179634493" ID="ID_976265767" MODIFIED="1403180052593" TEXT="theorem [Carter-Wegman, 1979]: all operations run in O(1) (for every data set S)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1403179662493" ID="ID_1249732830" MODIFIED="1403179681988" TEXT="caveat1: in expectation over random choice of h"/>
+<node CREATED="1403179683036" ID="ID_708001133" MODIFIED="1403179721056" TEXT="caveat2: assumes |S|=O(n), i.e. load &#x3b1;=|S|/n=O(1)"/>
+<node CREATED="1403179721822" ID="ID_1738952044" MODIFIED="1403179743939" TEXT="caveat3: assumes takes O(1) time to evaluate h"/>
+<node CREATED="1403179800628" ID="ID_417960686" MODIFIED="1403179826976" TEXT="will analyze an unsuccessful lookup (other operations only faster)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403180056218" ID="ID_612380927" MODIFIED="1403180111439" TEXT="let S = data set with |S|=O(n), consider lookup for x!&#x20ac;S"/>
+<node CREATED="1403180113321" ID="ID_1137844524" MODIFIED="1403180157416" TEXT="running time: O(1)+O(list length in A[h(x)]) - compute h(x) and traverse the list">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403180159168" ID="ID_800064056" MODIFIED="1403180188312" TEXT="list length in A[h(x)] = L, a random variable depends on choice of h">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403180230670" ID="ID_603087686" MODIFIED="1403180265573" TEXT="we reduced problem to determining the expected value of L">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403180322736" ID="ID_485976022" MODIFIED="1403180410146" TEXT="=&gt; general decomposition principle (express as small indicator random variables)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403180754409" ID="ID_1560739131" MODIFIED="1403180806425" TEXT="for y&#x20ac;S (x!=y), define z_y=1 (if h(y)=h(x)) and z_y=0 (otherwise)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403180808467" ID="ID_1812941128" MODIFIED="1403180836201" TEXT="note: L=&#x2211;z_y, y&#x20ac;S">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403180837030" ID="ID_1226860708" MODIFIED="1403181125185" TEXT="expectation E[L]=&#x2211;E[z_y]=&#x2211;Pr[h(y)=h(x)]&lt;=&#x2211;1/n (H universal)=m/n=load &#x3b1;=O(1)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1403181217650" FOLDED="true" ID="ID_1981723475" MODIFIED="1403242342829" TEXT="open addressing expectation">
+<node CREATED="1403181232266" ID="ID_1550435639" MODIFIED="1403181444833" TEXT="heuristic assumption (quick-dirty idealized analysis only): all n! probe sequences equally likely">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403181624444" ID="ID_264416772" MODIFIED="1403181660315" TEXT="observation: under heuristic assumption, expected Insertion time is ~ 1/(1-&#x3b1;), where &#x3b1;=load">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403181826966" ID="ID_1897801613" MODIFIED="1403181847244" TEXT="proof: a random probe finds an empty slot with probability 1-&#x3b1;"/>
+<node CREATED="1403181847762" ID="ID_732982378" MODIFIED="1403181893673" TEXT="insertion time ~ the number of N of coin flips to get &quot;heads&quot;, where Pr[&quot;heads&quot;]=1-&#x3b1; (overestimates but close to reality)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403181995979" ID="ID_159101048" MODIFIED="1403182142866" TEXT="E[N]=1+&#x3b1;E[N] - one flip + &#x3b1; probability to flip again"/>
+<node CREATED="1403182144666" ID="ID_1526386907" MODIFIED="1403182167770" TEXT="E[N]=1/(1-&#x3b1;)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403182265223" ID="ID_1008042036" MODIFIED="1403182275914" TEXT="~ correct for double hashing"/>
+<node CREATED="1403182361636" ID="ID_845029476" MODIFIED="1403182377745" TEXT="for linear probing ~ completely false">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403241957761" ID="ID_912160348" MODIFIED="1403241992577" TEXT="assume instead for linear probing: initial probe uniformly random, independent for different keys">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403241995347" ID="ID_1736980439" MODIFIED="1403242158801" TEXT="theorem [Knuth, 1962]: under the above assumption, expected Insertion time is ~ 1/[(1-&#x3b1;)^2], where &#x3b1;=load">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1403242345739" FOLDED="true" ID="ID_222611277" MODIFIED="1403247194251" POSITION="right" TEXT="14. Bloom filters">
+<node CREATED="1403242352058" ID="ID_1170312355" MODIFIED="1403242567257" TEXT="known as hash set, full blown hash table, hash map">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403242956457" ID="ID_1526007627" MODIFIED="1403242967345" TEXT="fast insertion and lookups">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403243494937" ID="ID_613615550" MODIFIED="1403243637266" TEXT="pros: more space efficient">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403243544898" ID="ID_1807339833" MODIFIED="1403243637266" TEXT="cons1: can`t store an associated data (only value in fact)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403243563765" ID="ID_1604765924" MODIFIED="1403243637266" TEXT="cons2: no deletion support (hard to implement)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403243580526" ID="ID_287977457" MODIFIED="1403243637265" TEXT="cons3: small false positive probability (item`ve been inserted though it hasn`t been)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403243888192" FOLDED="true" ID="ID_1825537604" MODIFIED="1403244200202" TEXT="applications">
+<node CREATED="1403243891632" ID="ID_1855037921" MODIFIED="1403243899758" TEXT="original: early spellcheckers"/>
+<node CREATED="1403243900062" ID="ID_1297515576" MODIFIED="1403243908510" TEXT="canonical: list of forbidden passwords"/>
+<node CREATED="1403243944318" ID="ID_1360758179" MODIFIED="1403244081089" TEXT="modern: network routers (blocked ip-addresses, statistics, cache)"/>
+</node>
+<node CREATED="1403244200867" ID="ID_1296706877" MODIFIED="1403244422675" TEXT="ingredients1: array of n bits (assume 8 bits, n/|S| - bits per object in data set S)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403244550462" ID="ID_929995977" MODIFIED="1403244573444" TEXT="ingredients2: k hash functions h1,...,hk (k - small constant)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403244669377" ID="ID_685680948" MODIFIED="1403244698691" TEXT="insert(x): for i=1,2,...,k set A[hi(x)]=1 (whether or not bit already set to 1)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403244765632" ID="ID_1825552179" MODIFIED="1403244792150" TEXT="lookup(x): return TRUE &lt;=&gt; A[hi(x)]=1 for every i=1,2,...,k">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403244888230" ID="ID_765186514" MODIFIED="1403244914034" TEXT="note: no false negative (if x was inserted, lookup(x) guaranteed to succeed)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403244992055" ID="ID_460936034" MODIFIED="1403245036496" TEXT="note: false positive if all k hi(x)`s already set to 1 by other insertions">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403245262723" FOLDED="true" ID="ID_16261517" MODIFIED="1403247190067" TEXT="heuristic analysis">
+<node CREATED="1403245272564" ID="ID_1038980954" MODIFIED="1403245302786" TEXT="intuition: should be a trade-off between space and error (false positive) probability">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403245305056" ID="ID_928199433" MODIFIED="1403245412088" TEXT="assume[n`justified]: all hi(x)`s uniformly random and independent (across different i`s and x`s)">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403245416255" ID="ID_480002508" MODIFIED="1403245429650" TEXT="setup: n bits, insert data set S into bloom filter">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403245430921" ID="ID_1642365114" MODIFIED="1403245950522" TEXT="note: for each bit of A, the probability it`s been set to 1 (under assumption) is 1-(1-1/n)^(k|S|)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403245767698" ID="ID_1700535378" MODIFIED="1403245792250" TEXT="probability that some bit is zero = (1-1/n)^(k|S|)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403246132231" ID="ID_1665801965" MODIFIED="1403246309661" TEXT="1-(1-1/n)^(k|S|) &lt;= 1-e^(-k|S|/n) (x=-1/n and e^x&gt;=1+x)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1403246235582" ID="ID_1088378300" MODIFIED="1403246280807" TEXT="[since 1/n~0] 1-(1-1/n)^(k|S|) ~= 1-e^(-k|S|/n)">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1403246338585" ID="ID_384663079" MODIFIED="1403246362817" TEXT="= 1-e^(-k/b), where b is a number of bits per object">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1403246559062" ID="ID_802260609" MODIFIED="1403246710130" TEXT="so: under assumption, for x!&#x20ac;S, false positive probability is &lt;= [1-e^(-k/b)]^k [error rate &#x3b5;], where b = number of bits per object">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1403246835394" ID="ID_1869926490" MODIFIED="1403246869119" TEXT="how to set k? for fixed b, &#x3b5; is minimized by setting k~(ln 2)*b">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1403246879863" ID="ID_325173625" MODIFIED="1403247033506" TEXT="plugging back in: &#x3b5;~= (1/2)^(ln2*b) or b~= 1.44 log_2 (1/&#x3b5;)">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1403247166298" ID="ID_1244633362" MODIFIED="1403247188490" TEXT="example: with b=8, k=5 or 6 - error probability only ~ 2%">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+</node>
 </node>
 </map>
