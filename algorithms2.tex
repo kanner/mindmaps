@@ -737,7 +737,7 @@ Running time of fast implementation:
 \\
 
 \begin{definition} call points $p|q$ \underline{separated} if they`re assigned to different clusters\end{definition}
-\begin{definition} the \underline{spacing} of a $k$-clustering is $\min_{p,q-separated} d(p, q)$ [the bigger, the better]\end{definition}
+\begin{definition} the \underline{spacing} of a $k$-clustering is $\min\limits_{p,q-separated} d(p, q)$ [the bigger, the better]\end{definition}
 
 \textbf{[Problem statement]:} given a distance measure d and k, compute the k-clustering with maximum spacing
 \\
@@ -1045,4 +1045,476 @@ $\Rightarrow \widehat{T}$ also optimal
 
 	\begin{example}manage (meta-)symbols using two queues\end{example}
 \end{itemize}
+
+
+
+
+
+\newpage
+\section{Dynamic programming}
+
+
+
+\subsection{Weighted independent sets in path graphs}
+\textbf{[Input]:} a path graph $G = (V, E)$ with nonnegative weights on vertices
+\\
+
+\textbf{[Desired output]:} subset of nonadjacent vertices - an \underline{independent set} - of maximum total weight
+\\
+
+\textbf{Greedy algorithm}: iteratively choose the max-weight vertex not adjacent to any previously chosen vertex
+\\
+
+\textbf{Divide and Conquer algorithm}: recursively compute the max-weight IS of the 1st hals, for 2nd hald, then combine the solutions
+
+\begin{figure}[ht!]
+\begin{subfigure}[b]{\textwidth}
+\begin{center}
+	\begin{tikzpicture}[scale=0.4]
+		\SetVertexNoLabel
+	\begin{scope}[VertexStyle/.append style = {label=$1$}]
+		\Vertex[x=4 ,y=0]{A}
+	\end{scope}
+	\begin{scope}[VertexStyle/.append style = {label=$4$}]
+		\Vertex[x=8 ,y=0]{B}
+	\end{scope}
+	\begin{scope}[VertexStyle/.append style = {label=$5$}]
+		\Vertex[x=12 ,y=0]{C}
+	\end{scope}
+	\begin{scope}[VertexStyle/.append style = {label=$4$}]
+		\Vertex[x=16 ,y=0]{D}
+	\end{scope}
+	%	\tikzset{EdgeStyle/.append style = {bend left}}
+		\Edge(A)(B)
+		\Edge(B)(C)
+		\Edge(C)(D)
+	\end{tikzpicture}
+\end{center}
+\end{subfigure}
+\begin{subfigure}[b]{0.5\textwidth}
+	Greedy
+	\begin{tikzpicture}[scale=0.25]
+		\SetVertexNoLabel
+	\begin{scope}[VertexStyle/.append style = {label=$1$, color=violet}]
+		\Vertex[x=4 ,y=0]{A}
+	\end{scope}
+	\begin{scope}[VertexStyle/.append style = {label=$4$}]
+		\Vertex[x=8 ,y=0]{B}
+	\end{scope}
+	\begin{scope}[VertexStyle/.append style = {label=$5$, color=violet}]
+		\Vertex[x=12 ,y=0]{C}
+	\end{scope}
+	\begin{scope}[VertexStyle/.append style = {label=$4$}]
+		\Vertex[x=16 ,y=0]{D}
+	\end{scope}
+	%	\tikzset{EdgeStyle/.append style = {bend left}}
+		\Edge(A)(B)
+		\Edge(B)(C)
+		\Edge(C)(D)
+	\end{tikzpicture}
+\end{subfigure}
+\begin{subfigure}[b]{0.5\textwidth}
+	Optimal solution
+	\begin{tikzpicture}[scale=0.25]
+		\SetVertexNoLabel
+	\begin{scope}[VertexStyle/.append style = {label=$1$}]
+		\Vertex[x=4 ,y=0]{A}
+	\end{scope}
+	\begin{scope}[VertexStyle/.append style = {label=$4$, color=violet}]
+		\Vertex[x=8 ,y=0]{B}
+	\end{scope}
+	\begin{scope}[VertexStyle/.append style = {label=$5$}]
+		\Vertex[x=12 ,y=0]{C}
+	\end{scope}
+	\begin{scope}[VertexStyle/.append style = {label=$4$, color=violet}]
+		\Vertex[x=16 ,y=0]{D}
+	\end{scope}
+	%	\tikzset{EdgeStyle/.append style = {bend left}}
+		\Edge(A)(B)
+		\Edge(B)(C)
+		\Edge(C)(D)
+	\end{tikzpicture}
+\end{subfigure}
+\begin{subfigure}[b]{\textwidth}
+	Divide and conquer [conflict]
+	\begin{tikzpicture}[scale=0.25]
+		\SetVertexNoLabel
+	\begin{scope}[VertexStyle/.append style = {label=$1$}]
+		\Vertex[x=4 ,y=0]{A}
+	\end{scope}
+	\begin{scope}[VertexStyle/.append style = {label=$4$, color=violet}]
+		\Vertex[x=8 ,y=0]{B}
+	\end{scope}
+	\begin{scope}[VertexStyle/.append style = {label=$5$, color=violet}]
+		\Vertex[x=12 ,y=0]{C}
+	\end{scope}
+	\begin{scope}[VertexStyle/.append style = {label=$4$}]
+		\Vertex[x=16 ,y=0]{D}
+	\end{scope}
+	%	\tikzset{EdgeStyle/.append style = {bend left}}
+		\Edge(A)(B)
+		\Edge(B)(C)
+		\Edge(C)(D)
+		\draw[dashed] (10,2) -- (10,0);
+	\end{tikzpicture}
+\end{subfigure}
+\end{figure}
+
+
+
+\subsection{WIS: optimal substructure}
+\textbf{[Critical step]:} reason about structure of an optimal solution (in terms of optimal solution of smaller subproblem)
+\\
+
+Motivation - experiment narrows down the set of candidates for the optimal solution (can search through the small set using brute-force-search)
+\\
+
+Let $S \subseteq V$ be a max-weight independent set (IS). Let $v_n =$ last vertex of path.
+\begin{case}
+Suppose $v_n \notin S$. Let $G^` = G$ with $v_n$ deleted.
+
+Note: S also an IS of $G^`$
+
+Note: S must be a max-weight IS of $G^`$ - if $S^*$ was better, it would also be better than $S$ in $G$ [contradiction]
+\end{case}
+\begin{case}
+Suppose $v_n \in S$
+
+note: previous vertex $v_{n-1} \notin S$ [by IS definition]. Let $G^" = G$ with $v_{n-1}, v_n$ deleted
+
+note: $S - \{v_n\}$ is an IS of $G^"$
+
+note: must in fact be a max-weitght IS of $G^"$ -- if $S^*$ is better than S in $G^"$, then $S^* \cup \{v_n\}$ is better than $S$ in $G$ [contradiction] 
+\end{case}
+
+\begin{corollary}\underline{if we knew} whether or not $v_n$ was in the max-weight IS, could recursively compute the max-weight IS of $G^`$ or $G^"$ [$G^" +$ $v_n$ weight] and be done\end{corollary}
+\textbf{[Crazy idea]:} try both possibilities and return the better solution
+
+
+
+\subsection{WIS: linear-time algorithm}
+\begin{enumerate}
+	\item recursively compute $s_1 =$ max-wt IS of $G^`$
+	\item recursively compute $s_2 =$ max-wt IS of $G^"$
+	\item return $s_1$ or $s_2 \cup \{v_n\}$, whichever is better
+\end{enumerate}
+\begin{example} Proof correctness formally by induction\end{example}
+
+\textbf{[Bad news]:} exponential time (like a brute-force)\
+
+But, \underline{only $\Theta(n)$ distinct subproblems} ever get solved by this algorithm
+\\
+
+To eliminate redundancy - the first time you solve a subproblem, cache its solution in a global table for $O(1)$-time lookup later ["memoization"]
+\\
+
+\textbf{[Even better]:} reformulate as a bottom-up iterative algorithm. Let $G_i =$ 1st $i$ vertices of $G$
+\begin{enumerate}
+	\item populate array A left to right with $A[i] =$ value of max-wt IS of $G_i$
+	\item $A[0] = 0$, $A[1] = w_1$
+	\item main loop: for $i = 2, 3, \dots, n: A[i] = max\{A[i-1], A[i-2]+w_i\}$ (case1 and case2)
+\end{enumerate}
+
+\textbf{Running time $O(n)$}
+
+Correctness: same as recursive version
+
+
+
+\subsection{WIS: reconstruction algorithm}
+\textbf{[Note]:} algorithm computes the \underline{value} of a max-wt IS, not such an IS itself
+\\
+
+\textbf{[Quick not ideal hack]:} store optimal IS of each $G_i$ in the array, in addition to its value
+\\
+
+\textbf{[Better]:} trace back through filled-in array to reconstruct optimal solution
+\\
+
+Key point: we know that a vertex $v_i$ belongs to a max-wt IS of $G_i \iff$ $w_i +$ max-wt IS of $G_{i-2} \geq$ max-wt IS of $G_{i-1}$ [follows from correction of out algorithm]
+\\
+
+Let $A =$ filled-in array
+\begin{itemize}
+	\item let $S = \varnothing$
+	\item while $i \geq 1$ [scan through array from right to left]
+	\begin{itemize}
+		\item if $A[i-1] \geq (A[i-2]+w_i)$ [i.e. Case1 wins]
+		\begin{itemize}
+			\item decrease $i$ by $1$
+		\end{itemize}
+		\item else [i.e. Case2 wins]
+		\begin{itemize}
+			\item add $v_i$ to $S$, decrease $i$ by $2$
+		\end{itemize}
+	\end{itemize}
+	\item return S
+\end{itemize}
+
+\begin{claim} [by induction + our case analysis] formal outputs is a max-wt IS of G\end{claim}
+
+\textbf{Running time $O(n)$}
+
+
+
+\subsection{Principles of Dynamic Programming}
+\begin{enumerate}
+	\item identify a \underline{small} number of subproblems
+
+	[e.g., compute max-weight IS of $G_i$ for $i = 0, 1, 2, \dots, n$]
+	\item can quickly+correctly solve "larger" subproblems given the solutions to "smaller subproblems"
+
+	[usually via a recurrence such as $A[i] = \max\{A[i-1], A[i-2]+w_i\}$]
+
+	\item after solving all subproblems, can quickly compute the final solution
+
+	[usually, it`s just the answer to the "biggest" subproblem]
+\end{enumerate}
+
+
+
+\subsection{Knapsack problem}
+\textbf{[Input]:} $n$ items, each has a value $v_i$ (nonnegative), size $w_i$ (nonnegative and integral). Given the capacity $W$ (nonnegative integer)
+\\
+
+\textbf{[Output]:} a subset $S \subseteq \{1, 2, \dots, n\}$ that maximizes $\sum\limits_{i \in S} v_i$ subject to $\sum\limits_{i \in S} w_i \leq W$
+\\
+
+\textbf{[Step1]:} formulate recurrence [optimal solution as function of solutions to "smaller" subproblems] based on structure of an optimal solution.
+\\
+
+Let $S =$ a max-value solution to an instance of Knapsack
+
+\begin{case}
+Suppose item $n \notin S$
+
+$\Rightarrow S$ must be optimal with the first $(n-1)$ items (same capacity $W$)
+
+[if $S^*$ were better than $S$ with respect to 1st $(n-1)$ items, then this equally true with respect to all $n$ items - contradiction]
+\end{case}
+
+\begin{case}
+Suppose item $n \in S$, then $S-\{n\}$ is an optimal solution w.r.t the 1st $(n-1)$ items and capacity $W - w_n$
+
+\begin{proof} if $S^*$ has higher value than $S-\{n\} +$ total size $\leq W - w_n$, then $S^* \cup\{n\}$ has size $\leq W$ and value more than S [contradiction]\end{proof}
+\end{case}
+
+\begin{definition}let $V_{i,x} =$ value of the best solution on that:
+\begin{enumerate}
+	\item uses only the first $i$ items
+	\item has total size $\leq x$
+\end{enumerate}
+\end{definition}
+
+for $i \in \{1, 2, \dots, n\}$ and any $x$, $V_{i,x} = \max \{V_{(i-1),x}, v_i + V_{(i-1), x-w_i}\}$ - \underline{reccurence for knapsack problem}
+\\
+
+\underline{edge case} if $w_i > x$, must have $V_{i,x} = V_{(i-1),x}$
+\\
+
+\textbf{[Step2]:} identify the subproblems
+\begin{itemize}
+	\item all possible prefixes of items $\{1, 2, \dots, i\}$
+	\item all possible (integral) residual capacities $x \in \{0, 1, 2, \dots, W\}$
+\end{itemize}
+
+\textbf{[Step3]:} use reccurence from Step1 to systematically solve all subproblems
+\begin{itemize}
+	\item Let $A = 2$-D array
+	\item initialize $A[0, x] = 0$ for $x = 0, 1, 2, \dots, W$
+	\item for $i = 1, 2, 3, \dots, n$:
+	\begin{itemize}
+		\item for $x = 0, 1, 2, \dots, W$:
+		\begin{itemize}
+			\item $A[i, x] := \max \{A[i-1, x], A[i-1, x-w_i] + v_i\}$
+
+			[ignore 2nd case if $w_i > x$]
+		\end{itemize}
+	\end{itemize}
+	\item return $A[n, W]$
+\end{itemize}
+
+\textbf{Running time $\Theta(nW)$}
+\\
+
+Correctness: straightforward induction [use Step1 argument to justify inductive step]
+\\
+
+\begin{example}reconstruction algorithm\end{example}
+
+
+
+\subsection{Sequence alignment problem}
+\textbf{[Goal]:} compute \underline{Needleman-Wunsch score} $=$ similarity measure between strings
+
+\begin{example} \textbf{AGGGCT} and AGGCA, insert gap and get \textbf{AGG-CA}. Total penalty $= \alpha_{gap} + \alpha_{AT mismatch}$\end{example}
+
+\textbf{[Input]:} strings $X = x_1 \dots x_m, Y = y1 \dots y_n$ over some alphabet $\Sigma$ (like $\{A, C, G, T\}$), penalties $\alpha_{gap} \geq 0$ (inserting a gap) and $\alpha_{ab}$ (matching $a|b$, $0$ if $a=b$)
+\\
+
+\textbf{[Feasible solutions]:} alignment -- i.e., insert gaps to equalize lengths of the strings
+\\
+
+\textbf{[Goal]:} compute alignment that minimize total penalty (sum of individual penalties)
+\\
+
+\textbf{[Key step]:} identify subproblems. As usual, will look at structure of an optimal solution for clues [i.e. develop a recurrence, then reverse engineer the subproblems]
+\\
+
+\textbf{[Structure of optimal solution]:} consider an optimal solution alignment of $X, Y$ and its final position. There could be only 3 relevant posibilities for the content of the final position ($x_m$ and $y_n$, $x_m$ and gap, gap and $y_n$. There`s no "gap and gap" posibility because it would not be the optimal solution)\\
+\begin{center}
+------ $X +$ gaps -----\textbf{-}\\
+------ $Y +$ gaps -----\textbf{-}\\
+\end{center}
+
+Let $X^` = X - x_m$, $Y^` = Y - y_n$ (induced alignment)
+
+\begin{case}
+if $x_m$ and $y_n$ match, then induced alignment of $X^` | Y^`$ is optimal
+
+\begin{proof}
+(By contradiction)
+
+Suppose induced alignment of $X^`, Y^`$ has penalty P while some other one has penalty $P^* < P$
+
+$\Rightarrow$ appending $x_m | y_n$ to the end, get an alignment of $X$ and $Y$ with penalty $P^* + \alpha_{x_m,y_n} < P + \alpha_{x_m,y_n}$ (penalty of original alignment)
+
+$\Rightarrow$ contradicts optimality of original alignment of $X | Y$
+\end{proof}
+
+\textbf{relevant subproblems} have the form $(X_i, Y_j)$, where $X_i$ - 1st $i$ letters of X, $Y_j$ - 1st $j$ letters of Y (since only peel off letters from the right ends of the strings)
+
+\textbf{notation}: $P_{ij} =$ penalty of optimal alignment of $X_i | Y_j$
+
+$P_{ij} = \alpha_{x_i y_j} + P_{(i-1), (j-1)}$
+\end{case}
+
+\begin{case}
+if $x_m$ and gap match, then induced alignment of $X^` | Y$ is optimal
+\begin{proof}
+just the same as in Case1
+\end{proof}
+
+$P_{ij} = \alpha_{gap} + P_{(i-1), j}$
+\end{case}
+
+\begin{case}
+if gap and $y_n$ match, then induced alignment of $X | Y^`$ is optimal
+\begin{proof}
+just the same as in Case1
+\end{proof}
+$P_{ij} = \alpha_{gap} + P_{i, (j-1)}$
+\end{case}
+
+\textbf{[Correctness]:} optimal solution is one of these $3$ candidates, and recurrence selects the best of these.
+\\
+
+$P_{i,0} = P_{0,i} = i \alpha_{gap}$
+\\
+
+\begin{itemize}
+	\item Let $A = 2$-D array
+	\item initialize $A[i, 0] = A[0, i] = \alpha_{gap}, \forall i \geq 0$
+	\item for $i = 1, 2, 3, \dots, m$:
+	\begin{itemize}
+		\item for $j = 1, 2, 3, \dots, n$:
+		\begin{itemize}
+			\item $A[i, j] = \min \{A[i-1, j-1] + \alpha_{x_iy_j}, A[i-1, j] + \alpha_{gap}, A[i, j-1] + \alpha_{gap}\}$
+		\end{itemize}
+	\end{itemize}
+	\item return $A[m, n]$
+\end{itemize}
+
+\textbf{Running time $O(mn)$} ($O(1)$ work for each of $\theta(mn)$ subproblems)
+\\
+
+Correctness: [i.e., $A[i,j] = P_{ij}, \forall i,j \geq 0$] follows from induction + correctness of recurrence
+\\
+
+\textbf{reconstruction}: trace back through filled-in table $A$, starting at $A[m,n]$ \dots
+
+\textbf{Running time is only $O(m+n)$}
+
+
+
+\subsection{Optimal binary search trees problem}
+\textbf{[Input]:} frequencies $p_1, p_2, \dots, p_n$ for items $1, 2, \dots, n$ [assume items is sorted order, $1 < 2 < \dots < n$]
+\\
+
+\textbf{[Goal]:} compute a valid search tree that minimizes the \underline{weighted (average) search time} $C(T) = \sum\limits_{items_i} p_i$ [search time for $i$ in $T$] (depth of $i$ in $T + 1$)
+
+\begin{example} if $T$ is a red-black tree, then $C(T) = O(\log n)$ [assuming $\sum p_i = 1$]\\\end{example}
+
+\textbf{Similarities with Huffman Codes}:
+\begin{itemize}
+	\item output is a binary tree
+	\item goal is (essentially) to minimize average depth with respect to given probabilities
+\end{itemize}
+
+\textbf{Differences with Huffman Codes}:
+\begin{itemize}
+	\item with Huffman codes, constraint was prefix-freeness [i.e., symbols only at leaves]
+	\item here, constraint is the \underline{search tree property} [seems harder to deal with]
+\end{itemize}
+
+\textbf{Greedy doesn`t work here!} There`s no correct greedy algorithm for that problem. Ideas:
+\begin{itemize}
+	\item bottom-up [populate lowest level with least frequently accessed keys]
+	\item top-down [put most frequently accessed item at root, recurse]
+\end{itemize}
+
+\textbf{Issue}: with the top-down approach, the choise of root has hard-to-predict repercussions further down the tree [stymes both greedy and naive divide+conquer approaches]
+
+\begin{lemma} [optimal structure lemma] Let $T$ be an optimal BST for keys $\{1, 2, \dots, n\}$ with frequences $p1, \dots, p_n$. Suppose $T$ has root $r$ and two subtrees: left $T_1$ and right $T_2$. Then $T_1$ is optimal for elements $\{1, 2, \dots, r-1\}$ and $T_2$ is optimal for elements $\{r+1, \dots, n\}$\end{lemma}
+
+\begin{proof}Suppose for contradiction that $T_1$ is not optimal for $\{1, 2, \dots, r-1\}$ [case with $T_2$ is similar], with $C(T_1^*) < C(T_1)$\\
+
+Obtain $T^*$ from $T$ by "cutting and pasting" $T_1^*$ in for $T_1$.
+\\
+
+Note: to complete contradiction and proof, only need to show that $C(T^*) < C(T)$
+\\
+
+$C(T) = \sum\limits_{i=1}^{n} p_i *$ [search time for $i$ in $T$]\\
+$= p_r * 1 + \sum\limits_{i=1}^{r-1} p_i *$ [search time for $i$ in $T$] $+ \sum\limits_{i=r+1}^{n} p_i *$ [search time for $i$ in $T$]\\
+$= p_r * 1 + \sum\limits_{i=1}^{r-1} p_i *$ [search time for $i$ in $T_1 + 1$] $+ \sum\limits_{i=r+1}^{n} p_i *$ [search time for $i$ in $T_2 + 1$]\\
+$= \sum\limits_{i=1}^{n} p_i + \sum\limits_{i=1}^{r-1} p_i *$ [search time for $i$ in $T_1$] $+ \sum\limits_{i=r+1}^{n} p_i *$ [search time for $i$ in $T_2$]\\
+$=$ constant (independent of T) $+ C(T_1) + C(T_2)$\\
+
+$C(T^*) =$ constant (independent of T) $+ C(T_1^*) + C(T_2)$\\
+
+$C(T_1^*) < C(T_1)$ implies $C(T^*) < C(T)$ - contradiction with T optimality
+\end{proof}
+
+\textbf{[Note]:} items in a subproblem are either a prefix ($T_1$) \underline{or} a suffix ($T_2$) of the original problem
+\\
+
+\textbf{[Note]:} we need to compute optimal BST`s for all contiguous intervals $S = \{i, i+1, \dots, j-1, j\}$ for every $i \leq j$
+\\
+
+\textbf{[Notation]:} for $1 \leq i \leq j \leq n$, let $C_{ij} =$ weighted search cost of an optimal BST for the items $\{i, i+1, \dots, j-1, j\}$ with posibilities $p_i, p_{i+1}, \dots, p_j$
+\\
+
+\textbf{[Recurrence]:} for every $1 \leq i \leq j \leq n$ \[C_{ij} = \min\limits_{r=i}^{j} \sum\limits_{k=i}^{j} p_k + C_{i(r-1)} + C_{(r+1)j}\]
+[$C_{xy} = 0$ if $x > y$]
+\\
+
+Correctness: optimal substructure narrows candidates down to $(j - i + 1)$ possibilities, recurrence picks the best by brute-force.
+
+\begin{itemize}
+	\item solve smallest subproblems (with fewest number $(j-i+1)$ of items) first
+	\item Let $A = 2$-D array
+	\item for $s = 0$ to $(n-1)$: [s represents $(j-i)$]
+	\begin{itemize}
+		\item for $i = 1$ to $n$: [$(i+s)$ plays role $j$]
+		\begin{itemize}
+			\item $A[i, i+s] = \min\limits_{r=i}^{i+s} \{\sum\limits_{k=i}^{i+s} p_k + A[i,(r-1)] + A[(r+1),i+s]\}$
+		\end{itemize}
+	\end{itemize}
+	\item return $A[1, n]$
+\end{itemize}
+
+\textbf{Running time:} $\Theta(n^2)$ subproblems, $\Theta(j-1)$ time to compute $A[i,j]$. \underline{$\Theta(n^3)$ overall}.
+
+\textbf{Fun fact:} [Knuth `71, Yao `80] optimized version of this DP algorithm correctly fills up entire table in only $\Theta(n^2)$ time [$\Theta(1)$ on average per subproblem]. Idea: piggy back on work done in previous subproblems to avoid trying all possible roots.
 \end{document}
