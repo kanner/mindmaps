@@ -1517,4 +1517,368 @@ Correctness: optimal substructure narrows candidates down to $(j - i + 1)$ possi
 \textbf{Running time:} $\Theta(n^2)$ subproblems, $\Theta(j-1)$ time to compute $A[i,j]$. \underline{$\Theta(n^3)$ overall}.
 
 \textbf{Fun fact:} [Knuth `71, Yao `80] optimized version of this DP algorithm correctly fills up entire table in only $\Theta(n^2)$ time [$\Theta(1)$ on average per subproblem]. Idea: piggy back on work done in previous subproblems to avoid trying all possible roots.
+
+
+
+\subsection{The Bellman-Ford algorithm}
+Single-source shortest path problem:
+
+\textbf{[Input]:} directed graph $G = (V, E)$, edge lengths $c_e$ for each $e \in E$, source vertex $s \in V$ [can assume -- no parallel edges]
+\\
+
+\textbf{[Goal]:} for every destination $v \in V$, compute the length [sum of edge costs] of a shortest $s-v$ path
+\\
+
+Dijkstra`s algorithm good news:
+\begin{itemize}
+	\item $O(m \log n)$ running time using heaps
+\end{itemize}
+
+Dijkstra`s algorithm bad news:
+\begin{enumerate}
+	\item not always correct with negative edge lengths
+	\item not very distributed (relevant for Internet routing)
+\end{enumerate}
+
+\textbf{[Solution]:} the Bellman-Ford algorithm
+\\
+
+How to define shortest path when $G$ has a negative cycle (with sum of edges $< 0$)?
+\begin{method}compute the shortest $s-v$ path, with cycles allowed [problem -- undefined, $-\infty$ with keep traversing negative cycle]\end{method}
+\begin{method}compute shortest cycle-free $s-v$ path [problem -- $NP$-hard, no polynomial algorithm, unless $P = NP$]\end{method}
+\begin{method}(for now) assume input graph \underline{has no negative cycles} [later -- will show how to quickly check this condition]\end{method}
+
+\textbf{[Note]:} if the input graph $G$ has no negative cycles -- then for every $v$, there is a shortest $s-v$ path with $\leq (n-1)$ edges ($n$ - number of vertices)
+\\
+
+Intuition: exploit sequential nature of paths. Subpath of a shortest path should itself be shortest.
+\\
+
+\begin{example} not clear how to define "smaller" | "larger" subproblems\end{example}
+
+\textbf{[Key idea]:} artifically restrict the number of edges in a path.
+
+\begin{center}
+subproblem size $\iff$ number of permitted edges
+\end{center}
+
+\begin{lemma}[Optimal substructure lemma]
+Let $G = (V, E)$ be a directed graph with edge lengths $c_e$ and source vertex $s$. [G might or might not have a negative cycle]
+
+For every $v \in V$, $i \in \{1, 2, 3, \dots\}$ (edge budget), let $P =$ shortest $s-v$ path \underline{with at most $i$ edges}
+\begin{case}
+if $P \leq (i-1)$ edges, it is a shortest $s-v$ path with $\leq (i-1)$ edges
+\end{case}
+\begin{case}
+if $P$ has $i$ edges with last hop $(w, v)$, then $P^`$ is a shortest $s-v$ path with $\leq (i-1)$ edges.
+\end{case}
+\end{lemma}
+\begin{proof}
+\begin{enumerate}
+	\item by (obvious) contradiction
+	\item if $Q$ (from $s$ to $v$, $\leq (i-1)$ edges) is shorter than $P^`$,
+
+	then $Q + (w, v)$ ($\leq i$ edges) is shorter than $P^` + (w, v) = P$
+
+	$\Rightarrow$ contradiction with optimality of $P$
+\end{enumerate}
+\end{proof}
+
+There are $1 + in-degree(r)$ candidates for an optimal solution to a subproblem involving the destination $v$
+\\
+
+\begin{definition} Let $L_{i,v} =$ minimum length of a $s-v$ path with $\leq i$ edges (with cycles allowed, $+\infty$ if no $s-v$ paths with $\leq i$ edges)\end{definition}
+
+\textbf{[Recurrence]:} for every $v \in V$, $i \in \{1, 2, 3, \dots\}$
+\begin{center}
+$L_{i,v} = \min \{L_{(i-1),v}, \min\limits_{(w,v) \in E} \{L_{(i-1),w} + c_{wv}\}\}$ (case 1 and case 2)
+\end{center}
+
+Correctness: brute-force search from the only ($1 + in-degree(v)$) candidates (by the optimal substructure lemma)
+\\
+
+Assume input graph $G$ \underline{has no negative cycles}
+
+$\Rightarrow$ shortest paths do not have cycles [removing a cycle only decreases length]
+
+$\Rightarrow$ have $\leq (n-1)$ edges
+\\
+
+\textbf{[Point]:} if $G$ has no negative cycle, only need to solve subproblems ($L_{iv}$) up to $i = (n-1)$
+\\
+
+\textbf{The Bellman-Ford algorithm} [the order of the for loop matters!]
+\begin{itemize}
+	\item Let $A = 2$-D array (indexed by $i$ and $v$)
+	\item initialize $A[0, s] = 0$, $A[0, v] = +\infty$ for all $v \neq s$
+	\item for $i = 1, 2, 3, \dots, n-1$:
+	\begin{itemize}
+		\item for each $v \in V$:
+		\begin{itemize}
+			\item $A[i, v] = \min \{A[i-1, v], \min\limits_{(w,v) \in E} \{A[i-1, w] + c_{wv}\}\}$
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+If G has no negative cycle, then algorithm is correct (with final answer $= A[n-1, v]`s$)
+\\
+
+\textbf{Running time:} \underline{$O(mn)$ overall}. Total work is $O (n \sum\limits_{v \in V} in-degree(v))$
+\\
+
+\underline{Stopping earlier?} Suppose for some $j < n-1$, $A[j, v] = A[j-1, v]$ for all vertices $v$. $\Rightarrow$ for all $v$, all future $A[i, v]$`s will be the same.
+
+$\Rightarrow$ can safely halt ($A[n-1, v]$`s - correct shortest path distances)
+
+
+
+\subsection{The Bellman-Ford algorithm: detecting negative cycles}
+\begin{claim} $G$ has no negative-cost cycle (that is reachable from s) $\iff$ in the (extended) Bellman-Ford algorithm, $A[n-1, v] = A[n, v]$ for all $v \in V$\end{claim}
+\begin{proof}
+\begin{description}
+	\item{$\Rightarrow$} already proved in correctness of Bellman-Ford
+	\item{$\Leftarrow$} Assume $A[n-1, v] = A[n, v]$ for all $v \in V$ (assume also these are finite, $< +\infty$)
+
+	Let $d(v)$ denote the common value of $A[n-1, v]$ and $A[n, v]$
+
+	\begin{center}
+	$A[n, v] = \min \{A[n-1, v], \min\limits_{(w,v) \in E} \{ A[n-1, w] + c_{wv} \}\}$
+
+	$d(v) = \min \{A[n-1, v], \min\limits_{(w,v) \in E} \{ d(w) + c_{wv} \}\}$
+
+	$d(v) \leq d(w) + c_{wv} \Rightarrow d(v) - d(w) \leq c_{wv}$ for all edges $(w, v) \in E$
+	\end{center}
+
+	now consider an arbitrary cycle $C$
+
+	\begin{center}
+		$\sum\limits_{(w,v) \in C} c_{wv} \geq \sum\limits_{(w,v) \in C} (d(w) - d(v)) = 0$ [multicancellation]
+	\end{center}
+\end{description}
+\end{proof}
+
+Consequence: can check for a negative cycle just by running Bellman-Ford for one extra iteration (running time still $O(mn)$)
+
+
+
+\subsection{The Bellman-Ford algorithm: space optimization}
+The basic Bellman-Ford algorithm require $\Theta(n^2)$ space, $\Theta(1)$ for each of $n^2$ subproblems
+\\
+
+\textbf{Note:} only need the $A[i-1, v]$`s to compute the $A[i, v]$`s $\Rightarrow$ only need $O(n)$ to remember the current and last rounds of subproblems (only $O(1)$ per destination)
+
+\begin{example}Find analogous optimizations for our previous dynamic programming algorithms.\end{example}
+
+\textbf{Concern:} without a filled-in table, how do we reconstruct the actual shortest paths?
+\\
+
+\textbf{Idea:} compute a second table $B$, where $B[i, v] =$ 2nd-to-last vertex on a shortest $s-v$ path with $\leq i$ edges (or NULL if no such paths exist) [\textbf{"predecessor pointers"}]
+\\
+
+Reconstruction: assume the input graph $G$ has no negative cycles and we correctly compute the $B[i, v]$`s. Then tracing back predecessor pointers (the $B[n-1,v]$`s) from $v$ to $s$ yields a shortest $s-v$ path [correctness from optimal substructure of shortest paths]
+
+\begin{itemize}
+	\item base case - $B[0, v] =$ NULL for all $v \in V$
+	\item general case, $i > 0$ - $B[i, v] = B[i-1, v]$ \underline{or} $B[i, v] =$ the vertex $w$ achieving the minimum (the new last hop)
+\end{itemize}
+
+\textbf{Correctness:} computation of $A[i, v]$ is brute-force-search through the $(1 + in-degree(v))$ possible optimal solutions, $B[i, v]$ is just caching the last hop of the winner.
+\\
+
+\underline{To reconstruct a negative cost cycle} [details omitted] use depth-first search to check for a cycle of predecessor pointers after each round (must be a negative cost cycle)
+
+
+
+\subsection{The Bellman-Ford algorithm: internet routing}
+Note: the Bellman-Ford algorithm is intuitively "distributed"
+\\
+
+\textbf{Towards a routing protocol}:
+\begin{enumerate}
+	\item switch from source-driven to destination-driven [just reverse all directions in the Bellman-Ford algorithm]
+
+	every vertex $v$ stores shortest-path distance from $v$ to destination $t$ and the first hop of a shortest path [for \underline{all} relevant destinations $t$]
+
+	"distance vector protocols"
+	\item can`t assume all $A[i, v]$`s get computed before all $A[i-1, v]$`s (asynchronously)
+
+	fix: switch from "pull-based" to "push-based": as soon as $A[i, v] < A[i-1, v]$, $v$ notifies all of its neighbors
+
+	fact: algorithm guaranteed to converge eventually (assuming no negative cycles), reason - updates strictly decrease sum of shortest-path estimates
+
+	RIP, RIP2 Internet routing protocols - very close to this algorithm (RFC 1058)
+	\item convergence guaranteed only for static networks (not true in practice)
+
+	\underline{Counting to Infinity}
+
+	$\Rightarrow$ "path vector protocol", each $v$ maintains \underline{entire shortest path} to $t$, not just the next hop
+
+	More space required, but more robust to failures. Permits more sophisticated route selection (if you care about intermediate stops)
+
+	"Border Gateway Protocol" - BGP
+\end{enumerate}
+
+
+
+\subsection{All-pairs shortest paths: Floyd-Warshall algorithm}
+\textbf{Input:} directed graph $G = (V, E)$ with edge costs $c_e$ for each $e \in E$ [no distinguished source vertex]
+\\
+
+\textbf{Goal:} \underline{either}
+\begin{enumerate}
+	\item compute the length of a shortest $u-v$ path for \underline{all} pairs of vertices $u, v \in V$
+
+	\underline{or}
+
+	\item correctly report that $G$ contains a negative cycle
+\end{enumerate}
+
+\textbf{Running time}:
+\begin{itemize}
+	\item (nonnegative edge costs) $n *$ Dijkstra $= O(nm \log n)$
+	\begin{itemize}
+		\item $O(n^2 \log n)$ if $m = \Theta(n)$ - sparse graph
+		\item $O(n^3 \log n)$ if $m = \Theta(n^2)$ - dense graph [at now there`s now better algorithm known]
+	\end{itemize}
+	\item (general edge costs) $n *$ Bellman-Ford $= O(n^2 m)$
+	\begin{itemize}
+		\item $O(n^3)$ for sparse graph
+		\item $O(n^4)$ for dense graph
+	\end{itemize}
+\end{itemize}
+
+\underline{Floyd-Warshall algorithm}: $O(n^3)$ algorithm for APSP, works even with graphs with negative edge lengths
+\\
+
+\textbf{special case}: transitive closure of a binary relation (all-pairs reachability)
+\\
+
+\textbf{open question}: solve APSP significantly faster then $O(n^3)$ in dense graphs
+\\
+
+\textbf{Key idea}: order vertices $V = \{1, 2, \dots, n\}$ arbitrarily, let $V^{(k)} = \{1, 2, \dots, k\}$
+
+\begin{lemma}[optimal substructure lemma] Suppose $G$ has no negative cycle. Fix source $i \in V$, destination $j \in V$ and $k \in \{1, 2, \dots, k\}$. Let $P =$ shortest (cycle-free) $i-j$ path with \underline{all internal nodes in $V^{(k)}$} then
+\begin{case}if $k$ not internal to $P$, then $P$ is a shortest (cycle-free) $i-j$ path with all internal vertices in $V^{k-1}$\end{case}
+\begin{case}if $k$ is internal to $P$ then:
+\begin{itemize}
+	\item $P_1$ -- shortest (cycle-free) $i-k$ path with all internal nodes in $V^{(k-1)}$ and
+	\item $P_2$ -- shortest (cycle-free) $k-j$ path with all internal nodes in $V^{(k-1)}$
+\end{itemize}
+\end{case}
+\end{lemma}
+\begin{example}proof similar to Bellman-Ford optimal substructure lemma\end{example}
+
+\underline{Floyd-Warshall algorithm}:
+\begin{itemize}
+	\item Let $A = 3$-D array (indexed by $i, j, k$)
+	\item base case -- for all $i, j \in V$: $A[i, j, 0] =$
+	\begin{itemize}
+		\item $0$ if $i = j$
+		\item $c_{ij}$ if $(i, j) \in E$
+		\item $+\infty$ if $i \neq j$ and $(i, j) \notin E$
+	\end{itemize}
+	\item for $k = 1$ to $n$ [$k$ first -- sensible]
+	\begin{itemize}
+		\item for $i = 1$ to $n$
+		\begin{itemize}
+			\item for $j = 1$ to $n$
+			\begin{itemize}
+				\item $A[i, j, k] = \min [A[i, j, k-1], A[i, k, k-1]+A[k, j, k-1]]$
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+Correctness: from optimal substructure lemma + induction as usual
+
+Running time: $O(1)$ per subproblem, $O(n^3)$ overall
+\\
+
+\textbf{If input graph has a negative cycle}: will have $A[i, i, n] < 0$ for at least one $i \in V$ at the end of algorithm
+\\
+
+\textbf{Shortest path reconstruction}: in addition to $A$, have Floyd-Warshall compute $B[i, j] =$ max label of an internal node on a shortest $i-j$ path for all $i, j \in V$ [reset $B[i, j]=k$ if second case of recurrence used to compute $A[i, j, k]$]
+
+$\Rightarrow$ can use $B[i, j]$`s to recursively reconstruct shortest paths
+
+
+
+\subsection{All-pairs shortest paths: Johnson`s algorithm}
+Johnson`s algorithm reduces APSP to:
+\begin{itemize}
+	\item $1$ invocation of Bellman-Ford ($O(mn)$)
+	\item $n$ invocations of Dijkstra ($O(nm \log n)$)
+\end{itemize}
+
+Running time: $O(mn) + O(mn \log n) = O(mn \log n)$ - just as good as Dijkstra with nonnegative edge lengths!
+\\
+
+\textbf{Setup}: $G = (V, E)$ is a directed graph with general edge lengths $c_e$. Fix a real number $p_v$ for each vertex $v \in V$.
+
+\begin{definition}for every edge $e = (u, v)$ of $G$, $c_e^` := c_e + p_u - p_v$\end{definition}
+
+\textbf{Note}: If the $s-t$ path $P$ has length $L$ with the original edge lengths $\{c_e\}$, then $P$`s length with the new edge lengths $\{c_e^`\}$ is \underline{$L + p_s - p_t$}
+\\
+
+Summary: reweighting using vertex weights $\{p_v\}$ adds the same amount (namely, $(p_s - p_t)$) to every $s-t$ path
+\\
+
+\textbf{Consequence}: reweighting always leaves the shortest path unchanged
+\begin{itemize}
+	\item $G$ has some negative edge lengths (requires Bellman-Ford)
+	\item after reweighting by some $\{p_v\}$, all edge lengths become nonnegative (enables use of Dijkstra`s algorithm)
+\end{itemize}
+
+Such weights \underline{always exist} and can be computed using the Bellman-Ford algorithm
+\\
+
+In general case: there could be vertices in $G$, that \underline{can be unreachable} from some other vertices -- so where to start Bellman-Ford algorithm?
+\\
+
+We can add new vertex $s$ and edges with length $0$ to each $v \in V$. Adding $s$ does not add any new $u-v$ paths for any $u, v \in G$ (and $s$ cannot be a member of any cycle)
+\\
+
+\underline{Key insight} define vertex weight $p_v :=$ length of a shortest $s-v$ path (where $s$ is our new artificial vertex)
+\\
+
+For each edge $e = (u, v)$ define $c_e^` = c_e + p_u - p_v$
+\\
+
+\textbf{Note}: after reweighting all edge lengths are nonnegative $\Rightarrow$ can compute all (reweighted) shortest paths via $n$ Dijkstra computations [no need for Bellman-Ford]!
+\\
+
+\underline{Johnson`s algorithm}:
+\begin{enumerate}
+	\item Form $G^`$ by adding a new vertex $s$ and a new edge $(s, v)$ with length $0$ for each $v \in G$
+	\item Run Bellman-Ford on $G^`$ with source vertex $s$ (if algorithm detects a negative-cost cycle in $G^`$, halt and report of this cycle \underline{in $G$})
+	\item For each $v \in G$, define $p_v =$ length of a shortest $s-v$ path in $G^`$, for each edge $e = (u, v) \in G$ define $c_e^` = c_e + p_u - p_v$
+	\item For each vertex $u \in G$:
+	\begin{itemize}
+		\item Run Dijkstra`s algorithm in $G$, with edge lengths $\{c_e^`\}$, with source vertex $u$, to compute the shortest-path distances $d^`(u, v)$ for each $v \in G$
+	\end{itemize}
+	\item for each pair $u, v \in G$, return the shortest-path distance $d(u, v) := d^`(u, v) - p_u + p_v$
+\end{enumerate}
+
+Running time: $O(n)$ [step 1] $+ O(mn)$ [step 2] $+ O(m)$ [step 3] $+ O(nm \log n)$ [step 4] $+ O(n^2)$ [step 5] $= O(mn \log n)$ [much better then Floyd-Warshall for sparse graphs!]
+\\
+
+Correctness: assuming $c^`_e \geq 0$ for all edges $e$, correctness follows from note that reweighting doesn`t change the shortest $u-v$ path, it just adds $(p_u - p_v)$ to its length
+
+\begin{claim} for every edge $e = (u, v)$ of $G$, the reweighted length $c^`_e = c_e + p_u - p_v$ is nonnegative\end{claim}
+\begin{proof}
+fix an edge $(u, v)$. By construction:
+\begin{itemize}
+	\item $p_u =$ length of a shortest $s-u$ path in $G^`$
+	\item $p_v =$ length of a shortest $s-v$ path in $G^`$
+\end{itemize}
+
+Let $P =$ a shortest $s-u$ path in $G^`$ with length $p_u$ (exists by construction of $G^`$)
+
+$\Rightarrow P + (u, v) =$ an $s-v$ path with length $p_u + c_{uv}$
+
+$\Rightarrow$ shortest $s-v$ path only shorter, so $p_v \leq p_u + c_{uv}$
+
+$\Rightarrow c^`_{uv} = c_{uv} + p_u - p_v \geq 0$
+\end{proof}
 \end{document}
