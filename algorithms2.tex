@@ -1,6 +1,7 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage{amsthm}
 \usepackage{amssymb}
+\usepackage{amsmath}
 \usepackage{indentfirst}
 \usepackage{hyperref}
 \hypersetup{
@@ -47,6 +48,8 @@
 \theoremstyle{remark}
 \newtheorem*{nonum}{Solution}
 \newtheorem*{example}{Example}
+
+\usepackage{ulem}
 
 \begin{document}
 
@@ -1881,4 +1884,342 @@ $\Rightarrow$ shortest $s-v$ path only shorter, so $p_v \leq p_u + c_{uv}$
 
 $\Rightarrow c^`_{uv} = c_{uv} + p_u - p_v \geq 0$
 \end{proof}
+
+
+
+
+\newpage
+\section{NP-complete problems}
+
+
+
+\subsection{Polynomial-time solvable problems}
+Sad fact: many important problems seem impossible to solve efficiently
+
+\begin{definition}
+a problem is \underline{polynomial-time solvable} if there is an algorithm that correctly solves it in $O(n^k)$ time, for some constant $k$ [where $n =$ input length $=$ number of keystrokes needed to describe input]
+\end{definition}
+
+We will focuse on deterministic algorithms, but to first order doesn`t matter
+
+\begin{definition}
+$P =$ the set of poly-time solvable problems
+\end{definition}
+
+\begin{example}
+Everything we`ve seen belongs to $P$, except two NP-complete problems:
+\begin{itemize}
+	\item cycle-free shortest paths in graphs with negative cycles
+	\item Knapsack problem (running time $\Theta(nW)$, but input length is proportional to $\log W$)
+\end{itemize}
+\end{example}
+
+Interpretation: rough litmus test for "computational tractability"
+\\
+
+\textbf{Traveling Salesman Problem (TSP)}:
+
+\textbf{[Input]:} complete undirected graph with nonnegative edge costs
+\\
+
+\textbf{[Output]:} a min-cost tour [i.e., a cycle that visits every vertex exactly once]
+\\
+
+\underline{Conjecture [Edmonds, 1965]} there is no polynomial-time algorithm for TSP [equivalent to $P \neq NP$]
+\\
+
+
+
+\subsection{P-problems: reduction and completeness}
+Really good idea: amass evidence of intractability via \underline{relative difficulty} - TSP "as hard as" lots of other problems
+
+\begin{definition}
+[Informal] problem $\pi_1$, \textbf{reduces} to problem $\pi_2$ if: given a polynomial-time subroutine for $\pi_2$, can use it to solve $\pi_1$ in polynomial time
+\end{definition}
+
+Suppose $\pi_1$ reduces to $\pi_2$
+
+\textbf{Contrapositive}: if $\pi_1$ is not in $P$, then \underline{neither is} $\pi_2$
+\\
+
+$\pi_2$ is at least as hard as $\pi_1$
+
+\begin{definition}
+Let $C =$ a set of problems. The problem $\pi$ is \textbf{$C$-complete} if: $\pi \in C$ and \underline{everything in $C$ reduces to $\pi$}
+\end{definition}
+
+$\pi$ is the hardest problem in all of $C$
+\\
+
+\textbf{[Idea 1]}: show TSP is $C$-complete for a REALLY BIG set $C$ ($C =$ ALL problems?)
+\\
+
+\textbf{Halting Problem}: given a program and an input for it, will it eventually halt?
+\\
+
+\underline{Fact [Turing, 1936]} \textbf{no algorithm}, however slow, solves the Halting problem
+\\
+
+\textbf{[Idea 2]}: show TSP is $C$-complete for set $C =$ all brute-force-solvable problems (since TCP is definetely solvable in finite time via brute-force search $<$ Halting problem)
+
+
+
+\subsection{NP-completeness}
+\begin{definition}
+a problem is in \textbf{NP} if:
+\begin{enumerate}
+	\item solutions always have length polynomial in the input size
+	\item purported solutions can be verified in polynomial time
+\end{enumerate}
+\end{definition}
+
+\begin{example} is there a TSP tour with length $\leq 1000$? \end{example}
+\begin{example}constraint satisfaction problems (e.g., 3SAT) \end{example}
+
+\textbf{[Note]:} every problem in NP can be solved by brute-force search in exponential time [just check every candidate solution]
+\\
+
+\underline{Fact}: vast majority of natural computational problems are in NP [$\approx$ can recognize a solution]
+\\
+
+\underline{By definition of completeness}: a polynomial-time algorithm for one NP-complete problem solves \underline{every} problem in NP efficiently [i.e., implies that $P = NP$]
+\\
+
+\underline{Upshot}: $NP$-completeness is \textbf{strong} evidence of intractability!
+\\
+
+\textbf{Amazing Fact 1} [Cook `71, Levin `73] $NP$-complete problems exist
+\\
+
+\textbf{Amazing Fact 1} [started by Karp `72] $1000$s of natural and important problems are $NP$-complete (including TSP)
+\\
+
+\underline{Essential tool in the programmer`s toolbox}: the following recipe for proving that a problem $\pi$ is $NP$-complete
+\begin{enumerate}
+	\item find a known $NP$-complete problem $\pi^`$ (see e.g. Garey-Johnson Computers and Intractability)
+	\item prove that $\pi^`$ reduces to $\pi$
+\end{enumerate}
+
+$\Rightarrow$ implies that $\pi$ at least as hard as $\pi^`$
+
+$\Rightarrow$ $\pi$ is $NP$-complete as well (assuming $\pi$ is an $NP$ problem)
+
+
+
+\subsection{P vs NP}
+\underline{Question}: Is $P$ (polynomial-time solvable) equals $NP$ (can verify correctness of a solution in polynomial time)?
+\\
+
+\textbf{Widely conjectured}: $P \neq NP$ [though see G{\"o}del `56]
+
+\textbf{But}: has \underline{not been proved} [worth \$1 million from Clay Institute]
+
+Reasons to believe:
+\begin{enumerate}
+	\item (psychological) if $P=NP$, someone would have proved it by now
+	\item (philosophical) if $P=NP$, then finding a proof always as easy as verifying one
+	\item (mathematical) ??
+\end{enumerate}
+
+What does "NP" stand for? \sout{"not polynomial"} "non-deterministic polynomial" [modern, mathematically equivalent definition via efficient verification of purported solutions]
+\\
+
+\underline{Historical reference}: Knuth "A Terminological Proposal", 1974 - PET
+\begin{enumerate}
+	\item "possibly exponential time"
+	\item "provable exponential time"
+	\item "previously exponential time"
+\end{enumerate}
+
+
+
+\subsection{NP-complete problems: algorithmic approaches}
+\underline{Question}: So, your problem is $NP$-complete - now what?
+\\
+
+$NP$-completeness not a death sentence $\Rightarrow$ but, need appropriate expectations/strategies:
+\begin{enumerate}
+	\item focus on computationally tractable special cases
+	\begin{itemize}
+		\item WIS in path graphs and trees, bounded treewidth - $NP$-complete in general graphs
+		\item Knapsack with polynomial size capacity (e.g. $W = O(n)$)
+		\item 2-SAT ($P$) instead of 3-SAT ($NP$)
+		\item vertex cover when OPT is small
+	\end{itemize}
+	\item heuristics - fast algorithms that are not always correct
+	\begin{itemize}
+		\item greedy and dynamic programming-based heuristics for Knapsack
+	\end{itemize}
+	\item solve in exponential time but faster than brute-force search
+	\begin{itemize}
+		\item Knapsack ($O(nW)$ instead of $2^n$)
+		\item TSP ($\approx 2^n$ instead of $\approx n!$)
+		\item VertexCover ($\approx 2^{OPT}n$ instead of $n^{OPT}$)
+	\end{itemize}
+\end{enumerate}
+
+
+
+\subsection{NP-complete problems: vertex cover problem}
+\textbf{[Input]:} an undirected graph $G=(V, E)$
+\\
+
+\textbf{[Goal]:} compute a minimum-cardinality \textbf{vertex cover} -- a subset $S \subseteq V$ that contains at least one endpoint of each edge of $G$
+\\
+
+Facts about minumum size of a vertex cover:
+\begin{itemize}
+	\item For star graph with $n$ vertices $= 1$
+	\item For clique graph with $n$ vertices $= n-1$
+	\item in general vertex cover is an $NP$-complete problem
+\end{itemize}
+
+\underline{Using NP-complete strategies}:
+\begin{enumerate}
+	\item identify computationally tracktable special cases
+	\begin{itemize}
+		\item trees [application of dynamic programming - just try it!]
+		\item bipartite graphs [application of the maximum flow problem]
+		\item when the optimal solution is "small" [$\approx \log n$ or less]
+	\end{itemize}
+	\item heuristics (e.g., via suitable greedy algorithm)
+	\item exponential time but better than brute-force search
+\end{enumerate}
+
+\underline{Suppose}: given a positive integer $k$ as input, we want to check whether or not there is a vertex cover with size $\leq k$ [think of $k$ as "small"]
+
+Could try all possibilities, would take $\approx \left(\begin{aligned}n\\k\end{aligned}\right) = \Theta(n^k)$ time
+
+\begin{lemma}
+[Substructure lemma] Consider graph $G$, edge $(u,v) \in G$, integer $k \geq 1$.
+Let $G_u = G$ with $u$ and its incident edges deleted (similarly, $G_v$)
+
+Then G has a vertex cover of size k $\iff G_u$ or $G_v$ (or both) has a vertex cover of size (k-1)
+\end{lemma}
+\begin{proof}
+\begin{description}
+	\item{($\Leftarrow$)} Suppose $G_u$ (say) has a vertex cover $S$ of size $(k-1)$
+
+	Write $E = E_n \cup F_n$ (edges inside $G_u$ and edges, incident to $u$)
+
+	Since S has an end point of each edge of $E_u$, $S \cup \{u\}$ is a vertex cover (of size $k$) of $G$
+	\item{($\Rightarrow$)} Let $S =$ a vertex cover of $G$ of size $k$.
+	Since $(u,v)$ an edge of $G$, at least one $u, v$ (say $u$) is in $S$.
+
+	Since no edges of $E_u$ incident on $u$, $S - \{u\}$ must be a vertex cover (of size $(k-1)$) of $G_u$
+\end{description}
+\end{proof}
+
+\underline{Search algorithm} [given integer $k$, ignore base cases]:
+\begin{enumerate}
+	\item Pick an arbitrary edge $(u, v) \in E$
+	\item Recursively search for a vertex cover $S$ of size $(k-1)$ in $G_u$
+	
+	If found, return $S \cup \{u\}$
+	\item Recursively search for a vertex cover $S$ of size $(k-1)$ in $G_v$
+	
+	If found, return $S \cup \{v\}$
+	\item FAIL [$G$ has no vertex cover with size $k$]
+\end{enumerate}
+
+Correctness: straightforward induction, using the substructure lemma to justify the inductive step.
+\\
+
+\textbf{Running time}: Total number of recursive calls is $O(2^k)$ [branching factor $\leq 2$, recursion depth $\leq k$ -- by induction on $k$]
+
+also $O(m)$ work per recursive call (not counting work done by recursive subcalls)
+\\
+
+$\Rightarrow$ \underline{running time $= O(2^k m)$}, way better than $\Theta(n^k)$!
+
+[polynomial-time as long as $k = O(\log n)$]
+
+[remains feasible even when $k \approx 20$]
+
+
+
+\subsection{NP-complete problems: TSP}
+\textbf{[Input]:} complete undirected graph with nonnegative edge costs
+\\
+
+\textbf{[Output]:} a minimum-cost tour [i.e., a cycle that visits every vertex exactly once]
+\\
+
+Brute-force search takes $\approx n!$ time [tractable only for $n \approx 12,13$]
+
+Dynamic programming: will obtain $O(n^2 2^n)$ running time [tractable for $n$ close to $30$]
+\\
+
+\underline{Idea}: copy the format of the Bellman-Ford algorithm
+\\
+
+Proposed subproblems: for every edge budget $i \in \{0, 1, \dots, n\}$, destination $j \in \{1, 2, \dots, n\}$, let $L_{ij} =$ length of a shortest path from $1$ to $j$ that uses at most $i$ edges
+
+\underline{Solving all subproblems doesn`t solve original problem}
+\\
+
+Proposed subproblems: for every edge budget $i \in \{0, 1, \dots, n\}$, destination $j \in \{1, 2, \dots, n\}$, let $L_{ij} =$ length of shortest path from $1$ to $j$ that uses \underline{exactly} $i$ edges
+
+\underline{Solving these subproblems doesn`t solve original problem}
+\\
+
+Proposed subproblems: for every edge budget $i \in \{1, 2, \dots, n\}$, destination $j \in \{1, 2, \dots, n\}$, let $L_{ij} =$ length of a shortest path from $1$ to $j$ with \underline{exactly $i$ edges and no repeated vertices}
+
+\underline{Can`t efficiently compute solutions} to bigger subproblems from smaller ones
+\\
+
+\textbf{Hope}: use the following recurrence:
+
+\[
+L_{ij} = \min\limits_{k \neq 1,j} \{ L_{i-1,k} + C_{kj} \}
+\]
+
+$L_{i-1,k}$ -- shortest path from $1$ to $k$, $(i-1)$ edges, no repeated vertices
+
+$C_{kj}$ -- cost of final hop
+
+\textbf{Problem}: what if $j$ already appears on the shortest $1 \rightarrow k$ path with $(i-1)$ edges and no repeated vertices? $\Rightarrow$ concatenating $(k_{ij})$ yields a second visit to $j$ (not allowed)
+\\
+
+\underline{Upshot}: to enforce constraint that each vertex visited exactly once, need to remember the \underline{identities} of vertices visited in subproblem. (but not the order in which they`re visited)
+
+\textbf{Subproblems}: for every destination $j \in \{1, 2, \dots, n\}$, every \underline{subset} $S \subseteq \{1, 2, \dots, n\}$ that contains $1$ and $j$, let $L_{S,j} =$ minimum length of a path from $1$ to $j$ that visits precisely the vertices of $S$ [exactly once each]
+
+\begin{lemma}
+[Optimal substructure lemma] Let $P$ be a shortest path from $1$ to $j$ that visits the vertices $S$ [assume $|S| \geq 2$, exactly once each]. If last hop of $P$ is $(k_{ij})$, then $P^`$ is a shortest path from $1$ to $k$ that visits every vertex of $S - \{j\}$ exactly once
+\end{lemma}
+
+\begin{example} proof $=$ straightforward "cut+paste"\end{example}
+
+\textbf{Corresponding recurrence}:
+
+\[
+L_{S,j} = \min\limits_{k \in S, k \neq j} \{ L_{S-\{j\},k} + C_{kj} \}
+\]
+
+["size" of subproblem $= |S|$]
+\\
+
+\textbf{Dynamic programming algorithm}:
+\begin{itemize}
+	\item Let $A = 2$-D array, indexed by subsets $S \subseteq \{1, 2, \dots, n\}$ that contain $1$ and destinations $j \in \{1, 2, \dots, n\}$
+	\item Base case: $A[S,1] = \{0$ if $S=\{1\}$, $+\infty$ otherwise$\}$ [in second case -- no way to avoid visiting vertex $1$ twice]
+	\item for $m = 2, 3, 4, \dots, n$: [m -- subproblem size]
+	\begin{itemize}
+		\item for each set $S \subseteq \{1, 2, \dots, n\}$ of size $m$ that contains $1$:
+		\begin{itemize}
+			\item for each $j \in S, j \neq 1$:
+			\begin{itemize}
+				\item $A[S,j] = \min\limits_{k \in S, k \neq j} \{ A[S-\{j\}, k] + C_{kj}\}$ [same as recurrence]
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+	\item Return $\min\limits_{j = 2}^{n} \{ A[\{1, 2, \dots, n\}, j] + C_{j1} \}$
+
+	$A[\{1, 2, \dots, n\}, j]$ -- min cost from $1$ to $j$, visiting everybody once
+
+	$C_{j1}$ -- cost of final hop of tour
+\end{itemize}
+
+\textbf{Running time}: $O(n 2^n) O (n)$ (number of subproblems $*$ work per subproblem) $= \underline{O(n^2 2^n)}$
 \end{document}
