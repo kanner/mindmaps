@@ -720,6 +720,26 @@ Running time of fast implementation:
 
 
 
+\subsection{MST: State of art and Open questions}
+\textbf{Question}: can we do better than $O(m \log n)$ (running tyme for Prims or Kruskal algorithms)?
+
+\underline{Answer: yes!}
+\begin{itemize}
+	\item randomized algorithm with $O(m)$ running time [Karger-Klein-Tarjan JACM 1995]
+	\item deterministic algorithm with $O(m \alpha(n))$ running time [Chazelle JACM 2000], $\alpha(n) =$ "inverse Ackermann function" - in particular, grows much slower than $\log^* n :=$ number of times you can apply $\log$ to $n$ until result drops below $1$ (inverse of "tower function" $2^{2^{...^{2}}}$)
+\end{itemize}
+
+\underline{Open questions}:
+\begin{enumerate}
+	\item \textbf{Weirdest of all}: [Pettie/Ramachandran JACM 2002] optimal deterministic MST algorithm, but precise asymptotic running time is \underline{unknown}! (somewhere between $\Theta(m)$ and $\Theta(m \alpha(n))$)
+	\item simple randomized $O(m)$-time algorithm for MST (sufficient: do this just for the "MST-verification" problem)
+	\item is there a deterministic $O(m)$-time algorithm?
+\end{enumerate}
+
+Further reading - [Eisner, 1997]
+
+
+
 \subsection{MST: Application to clustering}
 \textbf{Informal goal}: given $n$ "points" [web pages, images, genome fragments, etc] classify into "coherent groups"
 \\
