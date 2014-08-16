@@ -2242,4 +2242,531 @@ L_{S,j} = \min\limits_{k \in S, k \neq j} \{ L_{S-\{j\},k} + C_{kj} \}
 \end{itemize}
 
 \textbf{Running time}: $O(n 2^n) O (n)$ (number of subproblems $*$ work per subproblem) $= \underline{O(n^2 2^n)}$
+
+
+
+\subsection{NP-complete problems: heuristics and approximation algorithms for Knapsack}
+Heuristic approach ideally should provide a performance guarantee (i.e. "almost correct") for all (or at least many) instances
+\\
+
+\underline{Greedy heuristics} for Knapsack problem:
+\begin{description}
+	\item[(Step1)] sort and reindex items so that $\frac{v_1}{w_1} \geq \frac{v_2}{w_2} \geq \dots \geq \frac{v_n}{w_n}$.
+	\item[(Step2)] pack items in this order until one doesn`t fit, then halt
+\end{description}
+
+\begin{example}$v_1 = 2, w_1 = 1, v_2 = 4, w_2 = 3, v_3 = 3, w_3 = 3, W = 5$
+
+$\Rightarrow$ greedy gives $\{1, 2\}$ -- also optimal solution
+\end{example}
+
+\begin{example}$v_1 = 2, w_1 = 1, v_2 = 1000, w_2 = 1000, W = 1000$
+
+$\Rightarrow$ greedy gives $\{1\}$ (value $2$) -- not optimal
+
+Optimal solution gives $\{2\}$ (value $1000$)
+\end{example}
+
+Greedy solution can be arbitrarily bad relative to an optimal solution, some fix to this problem:
+\begin{description}
+	\item[(Step3)] return either the Step-2 solution, or the maximum valuable item, which ever is better
+\end{description}
+
+\textbf{Thought experiment}: what if we were allowed to fill fully the Knapsack using a suitable "fraction" (like $70~\%$) of item $(k+1)$? [the value of which is "pro-rated"]. This is \underline{"greedy fractional solution"}
+
+Value of greedy fraction solution $\geq$ value of optimal solution for every instance, and can be strict.
+
+\begin{claim}
+greedy fractional solution at least as good as every non-fractional feasible solution
+\end{claim}
+
+\begin{proof}
+\begin{enumerate}
+	\item Let $S =$ an arbitrary feasible solution
+	\item Suppose $l$ units of Knapsack filled by $S$ with items not packed by the greedy fractional solution
+	\item Must be at least $l$ units of Knapsack filled by greedy fractional solution not packed by $S$
+	\item by greedy criterion, items in (3) have larger bang-per-buck $\frac{v_i}{w_i}$ than those, in (2) [i.e. more valuable use of space]
+	\item total value of greedy fractional solution at least that of S
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+value of the 3-Step greedy solution is always $\geq 50~\%*$ value of an optimal solution [i.e., a "$\frac{1}{2}-$approximation algorithm", also runs in $O(n \log n)$ time]
+\end{theorem}
+
+\begin{proof}
+In Step2, suppose our greedy algorithm picks the $1$st $k$ items (sorted by $\frac{v_i}{w_i}$)
+\\
+
+Value of 3-Step greedy algorithm $\geq$ total value of 1st $k$ items
+
+Value of 3-Step greedy algorithm $\geq$ value of $(k+1)$-th item (Step3)
+
+$\Rightarrow 2 * $ (value of 3-Step greedy) $\geq$ total value of 1st $(k+1)$ items
+
+$2 * $ (value of 3-Step greedy) $\geq$ total value of greedy fractional solution
+
+$2 * $ (value of 3-Step greedy) $\geq$ optimal Knapsack solution
+\end{proof}
+
+\begin{example}$W = 1000, v_1 = 502, w_1 = 501, v_2 = v_3 = 500, w_2 = w_3 = 500$
+
+$\Rightarrow$ 3-Step greedy solution has value $502$ (optimal $1000$)
+\end{example}
+
+Suppose every item $i$ has size $w_i \leq 10~\% *$ Knapsack capacity $W$
+
+\underline{Consequence}: if greedy algorithm fails to pack all items in Step2, then the Knapsack is $\geq 90~\%$ full!
+
+$\Rightarrow$ value of 2-Step greedy algorithm $\geq 90~\% *$ value of greedy fractional solution
+
+$\Rightarrow$ value of 2-Step greedy algorithm $\geq 90~\% *$ value of an optimal solution
+
+\underline{In general}: if $\max\limits_{i} w_i \leq \delta W$, then 2-Step greedy value is $\geq (1-\delta)*$ optimal
+
+
+
+\subsection{NP-complete problems: dynamic programming heuristics for Knapsack}
+\textbf{Goal}: for a user-specified parameter $\epsilon > 0$ [e.g., $\epsilon = 0.01$] guarantee a $(1-\epsilon)$-approximation
+
+\textbf{Catch}: running time will increase as $\epsilon$ decreases [i.e., algorithm exports a running time vs. accuracy trade-off] -- \underline{best-case scenario for NP-complete problems}
+\\
+
+\underline{High-level idea}: exactly solve a slightly incorrect, but easier, Knapsack instance.
+
+So we have two dynamic programming algorithms:
+\begin{itemize}
+	\item If the $w_i$`s and $W$ are integers, can solve the Knapsack problem via dynamic programming in $O(nW)$ time
+	\item (alternative) if $v_i$`s are integers, can solve Knapsack via dynamic programming in $O(n^2 v_{max})$ time, where $v_{max} = \max\limits_{i} v_i$
+\end{itemize}
+
+\textbf{Algorithm2 subproblems}: for $i = 0, 1, 2, \dots, n$ and $x = 0, 1, 2, \dots, nv_{max}$ define $S_{i,x} =$ minimum total size needed to achieve value $\geq x$ while using only the first $i$ items (or $+\infty$ if impossible)
+
+\textbf{Algorithm2 recurrence}: $(i \geq 1)$
+\[
+S_{i,x} = \min \{ S_{(i-1),x} | w_i + S_{(i-1), (x-v_i)} \}
+\]
+\begin{center}$S_{(i-1), (x-v_i)} = 0$ if $v_i \geq x$\end{center}
+
+\textbf{Algorithm2 pseudo-code}:
+\begin{itemize}
+	\item Let $A = 2$-D array [indexed by $i = 0, 1, 2, \dots, n$ and $x = 0, 1, 2, \dots, nv_{max}$]
+	\item Base case: $A[0, x] = 0$ if $x = 0$ or $+\infty$ otherwise
+	\item for $i = 1, 2, 3, \dots, n$:
+	\begin{itemize}
+		\item for $x = 0, 1, 2, \dots, nv_{max}$:
+		\begin{itemize}
+			\item $A[i, x] := \min \{A[i-1, x], w_i + A[i-1, x-v_i]\}$
+
+			$A[i-1, x-v_i] = 0$ if $v_i \geq x$
+		\end{itemize}
+	\end{itemize}
+	\item return the largest $x$ such that $A[n,x] \leq W$ [$O(nv_{max})$ work]
+\end{itemize}
+
+\textbf{Algorithm2 Running time $O(n^2 v_{max})$}
+\\
+
+\underline{So}, if all $v_i$`s are small integers (polynomial in $n$), then we already know a polynomial-time algorithm! \underline{Plan} -- throw at lower-order bits of the $v_i$`s!
+\\
+
+\textbf{A Dynamic programming heuristic}:
+\begin{description}
+	\item[Step1] Round each $v_i$ down to the nearest multiple of $m$ (\underline{larger $m$} $\Rightarrow$ throw out more info, \underline{less accuracy}, $m$ depends on $\epsilon$ -- exact value will be determined later).
+
+	Divide the results by $m$ to get $\widehat{v_i}$`s (integers) -- i.e. $\widehat{v_i} = \lfloor \frac{v_i}{m} \rfloor$
+	\item[Step2] Use dynamic programming to solve the Knapsack instance with values $\widehat{v_1}, \dots, \widehat{v_n}$, sizes $w_1, \dots, w_n$ and capacity $W$.
+\end{description}
+
+\underline{Note}: computes a feasible solution the original Knapsack instance
+\\
+
+\underline{Plan to analysis}:
+\begin{enumerate}
+	\item figure out how big we can take $m$, subject to achieving a $1-\epsilon$-approximation
+	\item plug in this value of $m$ to determine running time
+\end{enumerate}
+
+\[
+m\widehat{v_i} \in [v_i - m, v_i]
+\]
+
+Thus:
+\begin{enumerate}
+	\item $v_i \geq m\widehat{v_i}$
+	\item $m\widehat{v_i} \geq v_i - m$
+	\item if $S^* =$ optimal solution to the original problem (with the original $v_i$`s) and $S =$ our heuristic`s solution, then $\sum\limits_{i \in S} \widehat{v_i} \geq \sum\limits_{i \in S^*} \widehat{v_i}$ [since $S$ is optimal for the $\widehat{v_i}$`s]
+\end{enumerate}
+
+\[
+\sum\limits_{i \in S} v_i \geq^{(1)} m \sum\limits_{i \in S} \widehat{v_i} \geq^{(3)} m \sum\limits_{i \in S^*} \widehat{v_i} \geq^{(2)} \sum\limits_{i \in S^*} (v_i - m)
+\]
+
+Thus, because $S^*$ contains at most $n$ items -- $\sum\limits_{i \in S} v_i \geq (\sum\limits_{i \in S^*} v_i) - mn$
+
+Choose $m$ small enough that $mn < \epsilon \sum\limits_{i \in S^*} v_i$ ($\sum$ is unknown to the algorithm, but definitely $\geq v_{max}$)
+
+So $\sum\limits_{i \in S} v_i \geq (1 - \epsilon) \sum\limits_{i \in S^*} v_i$
+\\
+
+Sufficient to set $m$ so that \underline{$mn = \epsilon v_{max}$}, i.e. heuristic uses the value $m = \frac{\epsilon v_{max}}{n}$ (sufficient for solution $\geq (1 - \epsilon)$ value of optimal solution)
+\\
+
+Running time $O(n^2 \widehat{v_{max}})$
+\\
+
+\underline{Note}: for every item $i$, $\widehat{v_i} \leq \frac{v_i}{m} \leq \frac{v_{max}}{m} = v_{max} \frac{n}{\epsilon v_{max}} = \frac {n}{\epsilon}$
+
+\textbf{Running time $O(\frac{n^3}{\epsilon})$}
+
+
+
+\subsection{NP-complete problems: local search in Maximum cut problem}
+\textbf{[Input]:} an undirected graph $G = (V, E)$
+\\
+
+\textbf{[Goal]:} a cut $(A, B)$ - a partition of $V$ into two non-empty sets, that maximizes the number of crossing edges
+\\
+
+\underline{Sad fact} NP-complete
+
+Computational tractable special case: bipartite graphs (i.e., where there is a cut such that all edges are crossing)
+
+\begin{example}solve in linear time via breadth-first search\end{example}
+
+\begin{definition}
+For a cut $(A, B)$ and a vertex $v$ define
+\begin{itemize}
+	\item $c_v(A, B) =$ number of edges incident on $v$ that cross $(A, B)$
+	\item $d_v(A, B) =$ number of edges incident on $v$ that don`t cross $(A, B)$
+\end{itemize}
+\end{definition}
+
+\textbf{Local search algorithm}:
+\begin{enumerate}
+	\item Let $(A, B)$ be an arbitrary cut of $G$
+	\item while there is a vertex $v$ with $d_v(A, B) > c_v(A, B)$ -- move $v$ to other side of the cut [key point: increases number of crossing edges by $d_v(A, B) - c_v(A, B) > 0$]
+	\item return final cut $(A, B)$
+\end{enumerate}
+
+\underline{Note}: terminates within $\left(\begin{aligned}n\\2\end{aligned}\right)$ iterations, hence in polynomial time
+
+\textbf{Cautionary Point}: expected number of crossing edges of a random cut is already $\frac{1}{2} |E|$
+
+\begin{proof}
+consider a random cut $(A, B)$. For edge $e \in E$ define $X_e = \left\{\begin{aligned}1 \text{, if } e \text{ crosses } (A, B)\\0 \text{ otherwise}\end{aligned}\right.$
+
+We gave $E[X_e] = Pr[X_e = 1] = 1/2$
+
+So $E[$number of crossing edges$] = E[\sum\limits_{e} X_e] = \sum\limits_{e} E[X_e] = \frac{|E|}{2}$
+\end{proof}
+
+\begin{theorem}
+This local search algorithm always outputs a cut in which the number of crossing edges is at least $50~\%$ of the maximum possible (even $\geq 50~\%$ of $|E|$)
+\end{theorem}
+
+\begin{proof}
+Let $(A, B)$ be a locally optimal cut.
+
+Then, for every vertex $v: d_v(A, B) \leq c_v(A, B)$
+
+Summing over all $v \in V$: $\sum\limits_{v \in V} d_v(A, B) \leq \sum\limits_{v \in V} c_v(A, B)$
+
+first -- counts each non-crossing edge twice, second -- counts each crossing edge twice
+
+So: $2 *$ [number of non-crossing edges] $\leq 2 *$ [number of crossing edges]
+
+$\Rightarrow 2|E| \leq 4 *$[number of crossing edges]
+
+$\Rightarrow$ number of crossing edges $\geq \frac{1}{2}|E|$
+\end{proof}
+
+\textbf{Generalization}: each edge $e \in E$ has a nonnegative weight $w_e$, want to maximize total weight of crossing edges.
+\\
+
+Notes:
+\begin{enumerate}
+	\item local search still well defined
+	\item performance guarantee of $50~\%$ still holds for locally optimal cuts (also for a random cut)
+	\item no longer guaranteed to converge in polynomial time (non-trivial)
+\end{enumerate}
+
+
+
+\subsection{NP-complete problems: principles of local search}
+\begin{definition}
+Let $X =$ set of candidate solutions to a problem (cuts of a graph, TSP tours, CSP variable assignments)
+
+Neighborhood -- for each $x \in X$ specify which $y \in X$ are its "neighbors" (neighboring cuts differ by moving one vertex, neighboring variable assignment differ in the value of a single variable, neighboring TSP tours differ by 2 edges)
+\end{definition}
+
+\textbf{Generic local search algorithm}:
+\begin{enumerate}
+	\item Let $x =$ some initial solution
+	\item while the current solution $x$ has a superior neighboring solution $y$ -- set $x := y$
+	\item return the final (locally optimal) solution x
+\end{enumerate}
+
+\textbf{[Question 1]:} how to pick initial solution $x$?
+
+or use a random solution and run many independent trials of local search, return the best locally optimal solution found
+
+or use your best heuristics (i.e. use local search as a postprocessing step to make your solution even better)
+\\
+
+\textbf{[Question 2]:} if there are superior neighboring $y$, which to choose?
+
+or choose $y$ at random
+
+or biggest improvement
+
+or more complex heuristics
+\\
+
+\textbf{[Question 3]:} how to define neighborhoods?
+
+note: bigger neighborhoods $\Rightarrow$ slower to verify local optimality $\Rightarrow$ but fewer (bad) local optima
+
+find "sweet spot" between solution quality and efficient searchability
+\\
+
+\textbf{[Question 4]:} is local search guaranteed to terminate (eventually)?
+
+if $X$ is finite and every local step improves some objective function, then yes
+\\
+
+\textbf{[Question 5]:} Is local search guaranteed to converge quickly?
+
+usually not (though it often does in practice: search "smoothed analysis")
+\\
+
+\textbf{[Question 6]:} are locally optimal solutions generally good approximations to globally optimal ones?
+
+no [to mitigate - run randomized local search many times, remember the best locally optimal solution found]
+
+
+
+\subsection{NP-complete problems: 2SAT problem}
+\textbf{[Input]:}
+\begin{enumerate}
+	\item $n$ Boolean variables $x_1, x_2, \dots, x_n$ (can be set to TRUE of FALSE)
+	\item $m$ clauses of $2$ literals each ("literal" $= x_i$ or $^\neg x_i$)
+\end{enumerate}
+
+\begin{example} $(x_1 \vee x_2) \wedge (^\neg x_1 \vee x_3) \wedge (x_3 \vee x_4) \wedge (^\neg x_2 \vee ^\neg x_4)$\end{example}
+
+\textbf{[Output]:} "yes" if there is an assignment that simultaneously satisfies every clause, "no" otherwise
+
+\begin{example}"yes", via (e.g.) $x_1 = x_3 =$ TRUE and $x_2 = x_4 =$ FALSE\\\end{example}
+
+2-SAT can be solved in polynomial time:
+\begin{itemize}
+	\item reduction to computing strongly connected components (non-trivial)
+	\item "backtracking" works in polynomial time (non-trivial)
+	\item randomized local search (see next)\\
+\end{itemize}
+
+3-SAT is canonical NP-complete:
+\begin{itemize}
+	\item brute-force search $\approx 2^n$ time
+	\item can get time $\approx (\frac{4}{3})^n$ via randomized local search [Sch{\"o}ning 2002]\\
+\end{itemize}
+
+\textbf{Papadimitriou's 2-SAT Algorithm}:
+\begin{itemize}
+	\item Repeat $\log_2 n$ times:
+	\begin{itemize}
+		\item choose random initial assignment
+		\item repeat $2n^2$ times:
+		\begin{itemize}
+			\item if current assignment satisfies all clauses, halt and report this
+			\item else, pick arbitrary unsatisfied clause and flip the value of one of its variables [choose between the two uniformly at random]
+		\end{itemize}
+	\end{itemize}
+	\item Report "unsatisfied"\\
+\end{itemize}
+
+Some points:
+\begin{enumerate}
+	\item runs in polynomial time
+	\item always correct on unsatisfiable instances
+	\item \textbf{Key question} -- if there`s a satisfying assignment, will the algorithm find one (with probability close to 1)?\\
+\end{enumerate}
+
+\textbf{Random walks} -- Key to analyzing Papadimitriou's algorithm: random walks on the nonnegative integers
+
+\underline{Setup}: initially (at time $0$) at position $0$. At each time step, your position goes up or down by $1$, with $50/50$ probability [except if at position $0$, in which case you move to position $1$ with $100~\%$ probability]
+
+For an integer $n \geq 0$ let $T_n =$ number of steps until random walk reaches position $n$. Then $E[T_n] = n^2$
+\begin{proof}
+Let $Z_i =$ number of random walks steps to get to $n$ from $i$, $Z_0 = T_n$
+
+Edge cases: $E[Z_n] = 0, E[Z_0] = 1 + E[Z_1]$\\
+
+For $i \in \{1, 2, 3, \dots, n-1\}$:
+\[
+E[Z_i] = Pr[\text{go left}]*E[Z_i | \text{go left}] + Pr[\text{go rigth}]*E[Z_i | \text{go right}] = 1 + \frac{1}{2}E[Z_{i+1}] + \frac{1}{2}E[Z_{i-1}]
+\]
+
+\[
+E[Z_i] - E[Z_{i+1}] = E[Z_{i-1}] - E[Z_i] + 2
+\]
+
+\[E[Z_0] - E[Z_1] = 1\]
+\[+ E[Z_1] - E[Z_2] = 3\]
+\[\dots \text{[$\frac{n}{2}$ pairs of numbers, each sums to $2n$]}\]
+\[+ E[Z_{n-1}] - E[Z_n] = 2n - 1\]
+\[ E[Z_0] = E[T_n] = n^2\]
+\end{proof}
+
+\begin{corollary} $Pr[T_n > 2n^2] \leq \frac{1}{2}$ [special case of Markov`s inequality]\end{corollary}
+
+\begin{proof}
+Let $p$ denote $Pr[T_n > 2n^2]$
+
+We have $n^2 = E[T_n] = \sum\limits_{k = 0}^{2n^2} k Pr[T_n = k] + \sum\limits_{k = 2n^2 + 1}^{+\infty} k Pr[T_n = k]$, where 1st sum $\geq 0$, second sum $\geq 2n^2$
+
+So $n^2 \geq 2n^2 Pr[T_n > 2n^2] = 2n^2 p \Rightarrow p \leq \frac{1}{2}$
+\end{proof}
+
+\begin{theorem}
+For a satisfiable 2-SAT instance wuth $n$ variables, Papadimitriou`s algorithm produces a satisfying assignment with probability $\geq 1 - \frac{1}{n}$
+\end{theorem}
+
+\begin{proof}
+First focus on a single iteration of the outer for loop. Fix an arbitrary satisfying assignment $a^*$.
+
+Let $a_t =$ algorithm`s assignment after inner iterations $t = 0, 1, 2, \dots, 2n^2$ [a random variable]
+
+Let $X_t =$ number of variables on which $a_t$ and $a^*$ agree, $X_t \in \{0, 1, 2, \dots, n\}$
+
+Note: if $X_t = n$, algorithm halts with satisfying assignment $a^*$
+
+\underline{Key point}: Suppose $a_t$ not a satisfying assignment and algorithm picks unsatisfied clause with variables $x_i, x_j$
+
+Note: since $a^*$ is satisfying, it makes a different assignment then $x_i$ or $x_j$ (or both)
+
+\textbf{Consequence of algorithm`s random variable flip}:
+\begin{enumerate}
+	\item if $a^*$ and $a_t$ differ on \underline{both} $x_i, x_j$, then $X_{t+1} = X_t + 1$ (100~\% probability)
+	\item if $a^*$ and $a_t$ differ on exactly one of $x_i, x_j$, then $\left\{\begin{aligned}X_t + 1 \text{ (50~\% probability)}\\X_t - 1 \text{ (50~\% probability)}\end{aligned}\right.$
+\end{enumerate}
+
+Random variables $X_0, X_1, \dots, X_{2n^2}$ behave just like a random walk of the nonnegative integers \underline{except that}:
+\begin{itemize}
+	\item sometimes move right with $100~\%$ probability instead of $50~\%$
+	\item might have $X_0 > 0$ instead of $X_0 = 0$
+	\item might stop early, before $X_t = n$
+\end{itemize}
+
+\underline{Consequence}: probability that a single iteration of the outer for loop finds a satisfying assignment is $\geq Pr[T_n \leq 2n^2] \geq \frac{1}{2}$
+
+Thus, $Pr[\text{algorithm fails}] \leq Pr[\text{all } \log_2 n \text{ independent trials fail}] \leq (\frac{1}{2})^{\log_2 n} = \frac{1}{n}$
+\end{proof}
+
+
+
+
+
+\newpage
+\section{The wider world of algorithms}
+
+
+
+\subsection{Stable matching}
+Consider two nodes sets $U$ and $V$ ("men" and "women"). Each node has a ranked order of the nodes on the other side (different for different nodes)
+
+For simplicity: assume $|U| = |V| = n$
+
+\begin{example}hospitals vs residents, colleges vs applicants\end{example}
+
+\begin{definition}Stable matching -- a perfect matching (i.e., matches each node of $U$ to a distinct node of $V$) such that:
+
+if $u \in U$ and $v \in V$ are \underline{not} matched, then either $u$ likes its mate $v^`$ better then $v$, or $v$ likes its mate $u^`$ better than $u$
+\end{definition}
+
+\textbf{Gale-Shapley proposal algorithm}:
+\begin{itemize}
+	\item while there is an unattached man $u$:
+	\begin{itemize}
+		\item $u$ proposes to the top woman $v$ on his preference list who hasn`t rejected him yet
+		\item each woman entertains only the best proposal received so far
+	\end{itemize}
+\end{itemize}
+
+[invariant: current engagements -- a matching]
+
+\begin{theorem}[Gale-Shapley] terminates with a stable matching after $\leq n^2$ iterations (in particular, a stable matching always exists!)\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+	\item each man makes $\leq n$ proposals $\Rightarrow \leq n^2$ iterations
+	\item terminates with a perfect matching. Why?
+	
+	If not, some man rejected by all women $\Rightarrow$ all $n$ women engaged at conclusion of algorithm
+	
+	$\Rightarrow$ all $n$ men engaged at end, as well [contradiction]
+	\item terminates with a stable matching. Why? consider some $u, v$ not matched to each other.
+	
+	\begin{description}
+		\item[(Case1)] $u$ never proposed to $v$, $\Rightarrow u$ matched to someone he prefers to $v$
+		\item[(Case2)] $u$ proposed to $v$, $\Rightarrow v$ got a better offer, ends up matched to someone she preferes to $u$
+	\end{description}
+\end{enumerate}
+\end{proof}
+
+
+
+\subsection{Bipartite matching}
+Input: bipartite graph $G = (U, V, E)$ [each $e \in E$ has one endpoint in each of $U, V$]
+
+Goal: computing a matching $M \subseteq E$ [i.e., pairwise disjoint edges] of maximum size
+
+Fact: there is a straightforward reduction from this problem to the maximum flow problem.
+
+
+
+\subsection{Maximum flow problem}
+Input: directed graph $G = (V, E)$, source vertex $s$, sink vertex $t$. Each edge $e$ has capacity $u_e$
+
+Goal: compute the $s-t$ "flow" that sends as much flow as possible
+
+Fact: solvable in polynomial time (e.g., via non-trivial greedy algorithms based on "augmenting paths")
+
+
+
+\subsection{Selfish flow}
+\begin{itemize}
+	\item flow network
+	\item 1 unit of "selfish" traffic
+	\item each edge has a delay function [travel time as function of edge load]
+\end{itemize}
+
+Steady stage: with a $50/50$ split, commute time = $1.5$ hours
+
+\textbf{Braess`s Paradox} [`68]: after adding a teleporter from $v$ to $w$, commute time of selfish traffic degrades to $2$ hours!
+
+
+
+\subsection{Linear programming}
+The general problem: optimize a linear function over the intersection of halfspaces $\Rightarrow$ generalizes maximum flow plus tons of other problems
+
+Fact: can solve linear programs efficiently (in theory and practice) $\Rightarrow$ very powerful "black-box" subroutine
+
+Extensions: convex programming (polynomial-time-solvable under mild conditions), integer programming (NP hard in general)
+
+
+
+\subsection{Other topics and models}
+\begin{itemize}
+	\item deeper study of data structures, graph algorithms, approximation algorithms, etc
+	\item geometric algorithms
+	\begin{itemize}
+		\item low-dimensional (e.g. convex hull)
+		\item high-dimensional (e.g., nearest neighbors in information retrieval)
+	\end{itemize}
+	\item algorithms that run forever (usually in real time, e.g. -- caching, routing)
+	\item bounded memory ("streaming algorithms", e.g. -- maintain statistics at a network router)
+	\item exploiting parallelism (e.g. via Map-Reduce/Hadoop)
+\end{itemize}
 \end{document}
