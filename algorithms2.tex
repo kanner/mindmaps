@@ -1088,7 +1088,7 @@ $\Rightarrow \widehat{T}$ also optimal
 \textbf{Greedy algorithm}: iteratively choose the max-weight vertex not adjacent to any previously chosen vertex
 \\
 
-\textbf{Divide and Conquer algorithm}: recursively compute the max-weight IS of the 1st hals, for 2nd hald, then combine the solutions
+\textbf{Divide and Conquer algorithm}: recursively compute the max-weight IS of the 1st half, for 2nd half, then combine the solutions
 
 \begin{figure}[ht!]
 \begin{subfigure}[b]{\textwidth}
@@ -1221,7 +1221,7 @@ note: must in fact be a max-weitght IS of $G^"$ -- if $S^*$ is better than S in 
 	\item recursively compute $s_2 =$ max-wt IS of $G^"$
 	\item return $s_1$ or $s_2 \cup \{v_n\}$, whichever is better
 \end{enumerate}
-\begin{example} Proof correctness formally by induction\end{example}
+\begin{problem} Proof correctness formally by induction\end{problem}
 
 \textbf{[Bad news]:} exponential time (like a brute-force)\
 
@@ -1363,7 +1363,7 @@ for $i \in \{1, 2, \dots, n\}$ and any $x$, $V_{i,x} = \max \{V_{(i-1),x}, v_i +
 Correctness: straightforward induction [use Step1 argument to justify inductive step]
 \\
 
-\begin{example}reconstruction algorithm\end{example}
+\begin{problem}reconstruction algorithm\end{problem}
 
 
 
@@ -1690,7 +1690,7 @@ The basic Bellman-Ford algorithm require $\Theta(n^2)$ space, $\Theta(1)$ for ea
 
 \textbf{Note:} only need the $A[i-1, v]$`s to compute the $A[i, v]$`s $\Rightarrow$ only need $O(n)$ to remember the current and last rounds of subproblems (only $O(1)$ per destination)
 
-\begin{example}Find analogous optimizations for our previous dynamic programming algorithms.\end{example}
+\begin{problem}Find analogous optimizations for our previous dynamic programming algorithms.\end{problem}
 
 \textbf{Concern:} without a filled-in table, how do we reconstruct the actual shortest paths?
 \\
@@ -1790,7 +1790,7 @@ Note: the Bellman-Ford algorithm is intuitively "distributed"
 \end{itemize}
 \end{case}
 \end{lemma}
-\begin{example}proof similar to Bellman-Ford optimal substructure lemma\end{example}
+\begin{problem}proof similar to Bellman-Ford optimal substructure lemma\end{problem}
 
 \underline{Floyd-Warshall algorithm}:
 \begin{itemize}
@@ -2209,7 +2209,7 @@ $C_{kj}$ -- cost of final hop
 [Optimal substructure lemma] Let $P$ be a shortest path from $1$ to $j$ that visits the vertices $S$ [assume $|S| \geq 2$, exactly once each]. If last hop of $P$ is $(k_{ij})$, then $P^`$ is a shortest path from $1$ to $k$ that visits every vertex of $S - \{j\}$ exactly once
 \end{lemma}
 
-\begin{example} proof $=$ straightforward "cut+paste"\end{example}
+\begin{problem} proof $=$ straightforward "cut+paste"\end{problem}
 
 \textbf{Corresponding recurrence}:
 
@@ -2432,7 +2432,7 @@ Running time $O(n^2 \widehat{v_{max}})$
 
 Computational tractable special case: bipartite graphs (i.e., where there is a cut such that all edges are crossing)
 
-\begin{example}solve in linear time via breadth-first search\end{example}
+\begin{problem}solve in linear time via breadth-first search\end{problem}
 
 \begin{definition}
 For a cut $(A, B)$ and a vertex $v$ define
