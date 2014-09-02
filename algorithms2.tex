@@ -22,6 +22,14 @@
 			labelstyle	=	{sloped,text=black}]
 \usepackage{graphicx,subcaption}
 
+\makeatletter
+\tikzset{my loop/.style =  {to path={
+  \pgfextra{\let\tikztotarget=\tikztostart}
+  [looseness=8,min distance=5mm]
+  \tikz@to@curve@path},font=\sffamily\small
+  }}
+\makeatletter
+
 %\newcounter{counter_methods}[subsection]
 
 \theoremstyle{plain}
@@ -2769,4 +2777,642 @@ Extensions: convex programming (polynomial-time-solvable under mild conditions),
 	\item bounded memory ("streaming algorithms", e.g. -- maintain statistics at a network router)
 	\item exploiting parallelism (e.g. via Map-Reduce/Hadoop)
 \end{itemize}
+
+
+
+
+
+\newpage
+\section{Data structures and algorithm design}
+
+
+
+\subsection{Union-find data structures}
+
+
+\subsubsection{Lazy Unions}
+\underline{Raison d`entre}: maintain a partition of a set $X$
+
+\begin{description}
+	\item{(FIND)} given $x \in X$, return name of $x$`s group
+	\item{(UNION)} given $x | y$, merge groups containing them\\
+\end{description}
+
+\textbf{Previous solution} (for Kruskal`s MST algorithm):
+\begin{itemize}
+	\item each $x \in X$ points directly to the "leader" of its group
+	\item $O(1)$ FIND [just return $x$`s leader]
+	\item $O(n \log n)$ total work for $n$ UNIONs [when 2 groups merge, smaller group inherits leader of larger one]
+\end{itemize}
+
+\textbf{Lazy union} idea: update only \underline{one} pointer each merge!
+
+Old and new solution:
+
+\begin{tikzpicture}[scale=0.9]
+  \tikzset{vertex/.style = {shape=circle,draw,minimum size=1.5em}}
+  \tikzset{edge/.style = {->,> = latex'}}
+  % vertices
+  \node[vertex] (a) at  (1.5,2) {1};
+  \node[vertex] (b) at  (0,0) {2};
+  \node[vertex] (c) at  (3,0) {3};
+  \node[vertex] (d) at  (4,1) {+};
+  \node[vertex] (e) at  (6.5,2) {4};
+  \node[vertex] (f) at  (8,0) {6};
+  \node[vertex] (g) at  (5,0) {5};
+  \node[vertex] (h) at  (9,1) {=};
+
+  \node[vertex] (i) at  (13,2) {4};
+  \node[vertex] (j) at  (14.5,0) {5};
+  \node[vertex] (k) at  (16,0) {6};
+  \node[vertex] (l) at  (10,0) {1};
+  \node[vertex] (m) at  (11.5,0) {2};
+  \node[vertex] (n) at  (13,0) {3};
+  % edges
+  \draw[edge] (b) to (a);
+  \draw[edge] (c) to (a);
+  \draw[edge] (f) to (e);
+  \draw[edge] (g) to (e);
+  \draw[edge] (j) to (i);
+  \draw[edge] (k) to (i);
+  \draw[edge] (l) to (i);
+  \draw[edge] (m) to (i);
+  \draw[edge] (n) to (i);
+  % cycle edge
+  \path (a) edge[my loop] node[above] {} (a);
+  \path (e) edge[my loop] node[above] {} (e);
+  \path (i) edge[my loop] node[above] {} (i);
+\end{tikzpicture}
+
+\begin{tikzpicture}[scale=0.9]
+  \tikzset{vertex/.style = {shape=circle,draw,minimum size=1.5em}}
+  \tikzset{edge/.style = {->,> = latex'}}
+  % vertices
+  \node[vertex] (a) at  (1.5,2) {1};
+  \node[vertex] (b) at  (0,0) {2};
+  \node[vertex] (c) at  (3,0) {3};
+  \node[vertex] (d) at  (4,1) {+};
+  \node[vertex] (e) at  (6.5,2) {4};
+  \node[vertex] (f) at  (8,0) {6};
+  \node[vertex] (g) at  (5,0) {5};
+  \node[vertex] (h) at  (9,1) {=};
+
+  \node[vertex] (i) at  (13,2) {4};
+  \node[vertex] (j) at  (14.5,0) {5};
+  \node[vertex] (k) at  (16,0) {6};
+  \node[vertex] (l) at  (11.5,0) {\color{red} 1};
+  \node[vertex] (m) at  (10,-2) {\color{red} 2};
+  \node[vertex] (n) at  (13,-2) {\color{red} 3};
+  % edges
+  \draw[edge] (b) to (a);
+  \draw[edge] (c) to (a);
+  \draw[edge] (f) to (e);
+  \draw[edge] (g) to (e);
+  \draw[edge] (j) to (i);
+  \draw[edge] (k) to (i);
+  \draw[edge] (l) to (i);
+  \draw[edge] (m) to (l);
+  \draw[edge] (n) to (l);
+  % cycle edge
+  \path (a) edge[my loop] node[above] {} (a);
+  \path (e) edge[my loop] node[above] {} (e);
+  \path (i) edge[my loop] node[above] {} (i);
+\end{tikzpicture}
+
+In array representation:
+
+\begin{tikzpicture}
+	\draw (0,3) -- (6,3);
+    \draw (0,2) -- (6,2);
+    \draw (0,2) -- (0,3);
+    \draw (1,2) -- (1,3);
+    \draw (2,2) -- (2,3);
+    \draw (3,2) -- (3,3);
+    \draw (4,2) -- (4,3);
+    \draw (5,2) -- (5,3);
+    \draw (6,2) -- (6,3);
+	\node at (0.5,2.5) {\small 1};
+	\node at (0.5,1.5) {\small 1};
+    \node at (1.5,2.5) {\small 1};
+	\node at (1.5,1.5) {\small 2};
+    \node at (2.5,2.5) {\small 1};
+	\node at (2.5,1.5) {\small 3};
+    \node at (3.5,2.5) {\small 4};
+	\node at (3.5,1.5) {\small 4};
+    \node at (4.5,2.5) {\small 4};
+	\node at (4.5,1.5) {\small 5};
+    \node at (5.5,2.5) {\small 4};
+	\node at (5.5,1.5) {\small 6};
+
+    \node at (7,2) {\small =};
+
+    \draw (8,5) -- (14,5);
+    \draw (8,4) -- (14,4);
+    \draw (8,4) -- (8,5);
+    \draw (9,4) -- (9,5);
+    \draw (10,4) -- (10,5);
+    \draw (11,4) -- (11,5);
+    \draw (12,4) -- (12,5);
+    \draw (13,4) -- (13,5);
+    \draw (14,4) -- (14,5);
+	\node at (8.5,4.5) {\small \color{red} 4};
+	\node at (8.5,3.5) {\small 1};
+    \node at (9.5,4.5) {\small \color{red} 4};
+	\node at (9.5,3.5) {\small 2};
+    \node at (10.5,4.5) {\small \color{red} 4};
+	\node at (10.5,3.5) {\small 3};
+    \node at (11.5,4.5) {\small 4};
+	\node at (11.5,3.5) {\small 4};
+    \node at (12.5,4.5) {\small 4};
+	\node at (12.5,3.5) {\small 5};
+    \node at (13.5,4.5) {\small 4};
+	\node at (13.5,3.5) {\small 6};
+
+    \draw (8,1) -- (14,1);
+    \draw (8,0) -- (14,0);
+    \draw (8,0) -- (8,1);
+    \draw (9,0) -- (9,1);
+    \draw (10,0) -- (10,1);
+    \draw (11,0) -- (11,1);
+    \draw (12,0) -- (12,1);
+    \draw (13,0) -- (13,1);
+    \draw (14,0) -- (14,1);
+	\node at (8.5,0.5) {\small \color{red} 4};
+	\node at (8.5,-0.5) {\small 1};
+    \node at (9.5,0.5) {\small 1};
+	\node at (9.5,-0.5) {\small 2};
+    \node at (10.5,0.5) {\small 1};
+	\node at (10.5,-0.5) {\small 3};
+    \node at (11.5,0.5) {\small 4};
+	\node at (11.5,-0.5) {\small 4};
+    \node at (12.5,0.5) {\small 4};
+	\node at (12.5,-0.5) {\small 5};
+    \node at (13.5,0.5) {\small 4};
+	\node at (13.5,-0.5) {\small 6};
+\end{tikzpicture}
+
+\underline{Merge in general}: when two groups merge in a UNION, make one group`s leader (i.e., root of the tree) a child of the other one.
+\\
+
+\textbf{Pro`s}: UNION reduces to $2$ FINDS [$r_1 = FIND(x), r_2 = FIND(y)$] and $O(1)$ extra work [link $r_1$ and $r_2$ together]
+\\
+
+\textbf{Con`s}: to recover leader of an object, need to follow a \underline{path} of parent pointers [not just one!]
+
+$\Rightarrow$ not clear if FIND still takes $O(1)$ time
+\\
+
+\textbf{Implementation}:
+\begin{itemize}
+	\item each object $x \in X$ has a \underline{parent} field
+	\item \textbf{invariant}: parent pointers induce a collection of directed trees on $X$ [$x$ is a root $\iff$ $parent[x] = x$]
+	\item \textbf{initially}: for all $x$, $parent[x] := x$
+	\item \textbf{FIND(x)}: traverse parent pointers from $x$ until you hit the root
+	\item \textbf{UNION(x,y)}: $s_1 = FIND(x)$, $s_2 = FIND(y)$; reset parent of one of $s1, s2$ to be the other
+\end{itemize}
+
+\underline{Note}: worst-case running time of the FIND and UNION are both $O(n)$! (scraggly tree, for example)
+
+
+\subsubsection{Union by rank}
+\underline{Idea}: for each $x \in X$, maintain field $rank[x]$
+
+\textbf{Invariant} (for now): for all $x \in X$, $rank[x] =$ maximum number of hops from some leaf \underline{to} $x$ [initially, $rank[x] = 0$ for all $x \in X$]
+
+\underline{in general}: $rank[x] = 1 +$ (max rank of $x$`s children)
+
+\begin{tikzpicture}[scale=0.9]
+  \tikzset{vertex/.style = {shape=circle,draw,minimum size=1.5em}}
+  \tikzset{edge/.style = {->,> = latex'}}
+  % vertices
+  \node[vertex] (a) at  (1.5,2) {1};
+  \node[vertex] (b) at  (0,0) {0};
+  \node[vertex] (c) at  (1.5,0) {0};
+  \node[vertex] (d) at  (3,0) {0};
+
+  \node[vertex] (e) at  (8,2) {2};
+  \node[vertex] (f) at  (6.5,0) {1};
+  \node[vertex] (g) at  (9.5,0) {0};
+  \node[vertex] (h) at  (5,-2) {0};
+  \node[vertex] (i) at  (8,-2) {0};
+  % edges
+  \draw[edge] (b) to (a);
+  \draw[edge] (c) to (a);
+  \draw[edge] (d) to (a);
+
+  \draw[edge] (f) to (e);
+  \draw[edge] (g) to (e);
+  \draw[edge] (h) to (f);
+  \draw[edge] (i) to (f);
+  % cycle edge
+  \path (a) edge[my loop] node[above] {} (a);
+  \path (e) edge[my loop] node[above] {} (e);
+\end{tikzpicture}
+
+\underline{To avoid scraggly trees ("Union by Rank" given $x | y$)}:
+\begin{itemize}
+	\item $s_1 = FIND(x)$, $s_2 = FIND(y)$
+	\item if $rank[s_1] > rank[s_2]$ then set $parent[s_2]$ to $s_1$, else set $parent[s_1] = s_2$
+	\item \underline{todo}: update ranks to restore invariant
+\end{itemize}
+
+\textbf{Note}: after $UNION(x, y)$ ranks of $s_1 | s_2$ don`t change unless their ranks were equal [in equal case $s_2$`s rank goes up by $1$]
+
+\begin{tikzpicture}[scale=0.9]
+  \tikzset{vertex/.style = {shape=circle,draw,minimum size=1.5em}}
+  \tikzset{edge/.style = {->,> = latex'}}
+  % vertices
+  \node[vertex] (a) at  (1.5,2) {1};
+  \node[vertex] (b) at  (0,0) {0};
+  \node[vertex] (c) at  (3,0) {0};
+  \node[vertex] (d) at  (4,1) {+};
+  \node[vertex] (e) at  (6.5,2) {1};
+  \node[vertex] (f) at  (8,0) {0};
+  \node[vertex] (g) at  (5,0) {0};
+  \node[vertex] (h) at  (9,1) {=};
+  
+  \node[vertex] (i) at  (13,2) {2};
+  \node[vertex] (j) at  (14.5,0) {0};
+  \node[vertex] (k) at  (16,0) {0};
+  \node[vertex] (l) at  (11.5,0) {1};
+  \node[vertex] (m) at  (10,-2) {0};
+  \node[vertex] (n) at  (13,-2) {0};
+  % edges
+  \draw[edge] (b) to (a);
+  \draw[edge] (c) to (a);
+  \draw[edge] (f) to (e);
+  \draw[edge] (g) to (e);
+  \draw[edge] (j) to (i);
+  \draw[edge] (k) to (i);
+  \draw[edge] (l) to (i);
+  \draw[edge] (m) to (l);
+  \draw[edge] (n) to (l);
+  % cycle edge
+  \path (a) edge[my loop] node[above] {} (a);
+  \path (e) edge[my loop] node[above] {} (e);
+  \path (i) edge[my loop] node[above] {} (i);
+\end{tikzpicture}
+
+\textbf{Upshot}: for lazy unions in UNION make old root with smaller rank child of the root with the larger rank [choose new root arbitrarily in case of tie, and add $1$ to its rank]
+\\
+
+\textbf{Immediate from Invariant/Rank maintenance}:
+\begin{enumerate}
+	\item for all objects $x$, $rank[x]$ only goes up over time
+	\item only ranks of roots can go up [once $x$ a non-root, $rank[x]$ frozen forevermore]
+	\item ranks strictly increase along a path to the root
+\end{enumerate}
+
+\begin{claim}if $x, y$ have the same rank $r$, then their subtrees (objects from which can reach $x, y$) are disjoint\end{claim}
+\begin{proof}
+Will show contrapositive. Suppose subtrees of $x, y$ have object $z$ in common.
+
+$\Rightarrow \exists$ paths $z \rightarrow x$ and $z \rightarrow y$
+
+$\Rightarrow$ one of $x, y$ is an ancestor of the other
+
+$\Rightarrow$ the ancestor has strictly larger rank [by property 3]
+\end{proof}
+
+\begin{claim}the subtree of a rank-$r$ object has size $\geq 2^r$\end{claim}
+\begin{proof}
+By induction on the number of Union operations:
+\begin{description}
+	\item{(Base case)} initially all ranks $= 0$, all subtrees sizes $= 1$
+	\item{(Inductive step)} nothing to prove unless the rank of some object changes (subtree sizes only go up)
+	\item{(Interesting case)} $Union(x, y)$ with $s_1 = FIND(x)$, $s_2 = FIND(y)$ and $rank[s_1] = rank[s_2] = r$
+
+	$\Rightarrow s_2$`s new rank $= r + 1$
+
+	$\Rightarrow s_2$`s new subtree size $= s_2$`s old subtree size $+ s_1$`s old subtree size
+
+	since each of old subtree sizes at least $2^r$ by the inductive hypothesis $\Rightarrow s_2$`s new subtree size $\geq 2^{r+1}$
+\end{description}
+\end{proof}
+
+\begin{lemma}[Rank lemma]Consider an arbitrary sequence of UNION [+ FIND] operations. For every $r \in \{0, 1, 2, \dots\}$, there are at most $\frac{n}{2^r}$ objects with rank $r$\end{lemma}
+\begin{proof}two above claims imply the Rank lemma\end{proof}
+
+\begin{corollary}max rank always $\leq \log_{2} n$\end{corollary}
+
+\begin{corollary}worst-case running time of FIND, UNION with Union by rank is $O(\log n)$\end{corollary}
+
+
+\subsubsection{Path compression}
+\textbf{Idea}: why bother traversing a leaf-root path multiple times?
+
+\underline{Path compression}: after $FIND(x)$, install shortcuts (i.e., rewire parent pointers) to $x$`s root all along the $x \rightarrow root$ path
+
+\begin{tikzpicture}[scale=0.9]
+  \tikzset{vertex/.style = {shape=circle,draw,minimum size=1.5em}}
+  \tikzset{edge/.style = {->,> = latex'}}
+  % vertices
+  \node[vertex] (a) at  (3,2) {7};
+  \node[vertex] (b) at  (4.5,0) {5};
+  \node[vertex] (c) at  (3,-2) {2};
+  \node[vertex] (d) at  (6,-2) {3};
+  \node[vertex] (e) at  (1.5,0) {6};
+  \node[vertex] (f) at  (0,-2) {4};
+  \node[vertex] (g) at  (-1.5,-4) {1};
+  \node[vertex] (h) at (7, 0) {$\rightarrow$};
+  \node[vertex] (i) at  (11,2) {7};
+  \node[vertex] (j) at  (12.5,0) {5};
+  \node[vertex] (k) at  (11,-2) {2};
+  \node[vertex] (l) at  (14,-2) {3};
+  \node[vertex] (m) at  (11.5,0) {6};
+  \node[vertex] (n) at  (9.5,0) {1};
+  \node[vertex] (o) at  (10.5,0) {4};
+  % edges
+  \draw[edge] (b) to (a);
+  \draw[edge] (e) to (a);
+  \draw[edge] (c) to (b);
+  \draw[edge] (d) to (b);
+  \draw[edge] (f) to (e);
+  \draw[edge] (g) to (f);
+  \draw[edge] (j) to (i);
+  \draw[edge] (m) to (i);
+  \draw[edge] (k) to (j);
+  \draw[edge] (l) to (j);
+  \draw[edge] (n) to (i);
+  \draw[edge] (o) to (i);
+  % cycle edge
+  \path (a) edge[my loop] node[above] {} (a);
+  \path (i) edge[my loop] node[above] {} (i);
+\end{tikzpicture}
+
+In array representation:
+
+\begin{tikzpicture}
+	\draw (0,3) -- (7,3);
+    \draw (0,2) -- (7,2);
+    \draw (0,2) -- (0,3);
+    \draw (1,2) -- (1,3);
+    \draw (2,2) -- (2,3);
+    \draw (3,2) -- (3,3);
+    \draw (4,2) -- (4,3);
+    \draw (5,2) -- (5,3);
+    \draw (6,2) -- (6,3);
+	\draw (7,2) -- (7,3);
+	\node at (0.5,2.5) {\small 4};
+	\node at (0.5,1.5) {\small 1};
+    \node at (1.5,2.5) {\small 5};
+	\node at (1.5,1.5) {\small 2};
+    \node at (2.5,2.5) {\small 5};
+	\node at (2.5,1.5) {\small 3};
+    \node at (3.5,2.5) {\small 6};
+	\node at (3.5,1.5) {\small 4};
+    \node at (4.5,2.5) {\small 7};
+	\node at (4.5,1.5) {\small 5};
+    \node at (5.5,2.5) {\small 7};
+	\node at (5.5,1.5) {\small 6};
+	\node at (6.5,2.5) {\small 7};
+	\node at (6.5,1.5) {\small 7};
+
+    \node at (8,2) {\small $\rightarrow$};
+
+    \draw (9,3) -- (16,3);
+    \draw (9,2) -- (16,2);
+    \draw (9,2) -- (9,3);
+    \draw (10,2) -- (10,3);
+    \draw (11,2) -- (11,3);
+    \draw (12,2) -- (12,3);
+    \draw (13,2) -- (13,3);
+    \draw (14,2) -- (14,3);
+    \draw (15,2) -- (15,3);
+	\draw (16,2) -- (16,3);
+	\node at (9.5,2.5) {\small \color{red} 7};
+	\node at (9.5,1.5) {\small 1};
+    \node at (10.5,2.5) {\small 5};
+	\node at (10.5,1.5) {\small 2};
+    \node at (11.5,2.5) {\small 5};
+	\node at (11.5,1.5) {\small 3};
+    \node at (12.5,2.5) {\small \color{red} 7};
+	\node at (12.5,1.5) {\small 4};
+    \node at (13.5,2.5) {\small 7};
+	\node at (13.5,1.5) {\small 5};
+    \node at (14.5,2.5) {\small 7};
+	\node at (14.5,1.5) {\small 6};
+	\node at (15.5,2.5) {\small 7};
+	\node at (15.5,1.5) {\small 7};
+\end{tikzpicture}
+
+\textbf{Pro`s}: constant factor overhead to FIND (from "multitasking")
+\\
+
+\textbf{Con`s}: speeds up subsequent FINDs (but how much?)
+\\
+
+\underline{Important}: maintain all rank fields EXACTLY as without path compression
+\begin{itemize}
+	\item ranks initially all $0$
+	\item in UNION, new root $=$ old root with bigger rank
+	\item when merging two nodes of common rank $r$, reset new root`s rank to $(r+1)$
+\end{itemize}
+
+\begin{tikzpicture}[scale=0.9]
+  \tikzset{vertex/.style = {shape=circle,draw,minimum size=1.5em}}
+  \tikzset{edge/.style = {->,> = latex'}}
+  % vertices
+  \node[vertex] (a) at  (3,2) {3};
+  \node[vertex] (b) at  (4.5,0) {1};
+  \node[vertex] (c) at  (3,-2) {0};
+  \node[vertex] (d) at  (6,-2) {0};
+  \node[vertex] (e) at  (1.5,0) {2};
+  \node[vertex] (f) at  (0,-2) {1};
+  \node[vertex] (g) at  (-1.5,-4) {0};
+  \node[vertex] (h) at (7, 0) {$\rightarrow$};
+  \node[vertex] (i) at  (11,2) {3};
+  \node[vertex] (j) at  (12.5,0) {1};
+  \node[vertex] (k) at  (11,-2) {0};
+  \node[vertex] (l) at  (14,-2) {0};
+  \node[vertex] (m) at  (11.5,0) {2};
+  \node[vertex] (n) at  (9.5,0) {0};
+  \node[vertex] (o) at  (10.5,0) {1};
+  % edges
+  \draw[edge] (b) to (a);
+  \draw[edge] (e) to (a);
+  \draw[edge] (c) to (b);
+  \draw[edge] (d) to (b);
+  \draw[edge] (f) to (e);
+  \draw[edge] (g) to (f);
+  \draw[edge] (j) to (i);
+  \draw[edge] (m) to (i);
+  \draw[edge] (k) to (j);
+  \draw[edge] (l) to (j);
+  \draw[edge] (n) to (i);
+  \draw[edge] (o) to (i);
+  % cycle edge
+  \path (a) edge[my loop] node[above] {} (a);
+  \path (i) edge[my loop] node[above] {} (i);
+\end{tikzpicture}
+
+\textbf{Bad news}: now $rank[x]$ is only an upper bound on the maximum number of hops on a path from a leaf to $x$ (which could be much less)
+\\
+
+\textbf{Good news}: Rank lemma still holds ($\leq \frac{n}{2^r}$ objects with rank $r$) and still always have $rank[parent(x)] > rank[x]$ for all non-roots $x$
+
+\begin{theorem}[Hopcroft-Ullman, 73] with Union by Rank and path compression, $m$ Union+Find operations take $O(m \log^* n)$ time, where $\log^* n =$ number of times you need to apply $\log$ to $n$ before the result is $\leq 1$ [will focus on interesting case where $m = \Omega(n)$]\end{theorem}
+
+\textbf{Note}: $\log^* (2^{65536}) = 5$. In general $\log^* (2^{2^{2^{\dots^{2}}}})$ = t (i.e., $\log^*$ of $t$ times tower function)
+\\
+
+\textbf{Intuition}: installing shortcuts should significantly speed up subsequent FINDs + UNIONs
+
+\underline{Question}: How to track this progress and quantify the benefit?
+\\
+
+\textbf{Idea}: consider a non-root object $x$, recall $rank[x]$ -- frozen forevermore. \underline{Progress measure}: $rank[parent(x)] - rank[x]$
+
+\textbf{Path compression increases this progress measure}: if $x$ has old parent $p$, new parent $p` \neq p$, then $rank[p`] > rank[p]$
+
+\begin{proof}
+Setup:
+\begin{itemize}
+	\item rank blocks: $\{0\}$, $\{1\}$, $\{2, 3, 4\}$, $\{5, \dots, 2^4\}$, $\{17, 18, \dots, 2^{16}\}$, $\{65537, \dots, 2^{265536}\}$, \dots, $\{\dots, n\}$
+	\item there are $O(\log^* n)$ different rank blocks
+	\item semantics: traversal $x \rightarrow parent(x)$ is "fast progress" $\iff$ $rank[parent(x)]$ in larger block than $rank[x]$
+\end{itemize}
+
+\begin{definition}
+At a given point in time, call object $x$ \underline{good} if:
+\begin{enumerate}
+	\item $x$ of $x$`s parent is a root OR
+	\item $rank[parent(x)]$ in larger block than $rank[x]$
+\end{enumerate}
+$x$ is \underline{bad} otherwise.
+\end{definition}
+
+\textbf{Point}: every FIND visits only $O(\log^* n)$ good nodes [2 + number of rank blocks $= O(\log^* n)$]
+
+\underline{Upshot}: total work done during $m$ operations $= O(m \log^* n) +$ total number of visits to bad nodes [need to bound globally by separate argument]
+\\
+
+Consider a rank block $\{k+1, k+2, \dots, 2^k\}$. When a bad node $x$ is visited, its parent is changed to one with strictly larger rank $\Rightarrow$ can only happen $2^k$ times before $x$ becomes good (forevermore)
+
+For each object $x$ with final rank in this block, number of visits to $x$ while $x$ is bad is $\leq 2^k$
+
+By rank lemma: total number of objects $x$ with final rank in this rank block is $\sum\limits_{i = k+1}^{2^k} \frac{n}{2^i} \leq \frac{n}{2^k}$
+
+Since there are only $O(\log^* n)$ rank blocks and there is $\leq n$ visits to bad objects in this rank block -- there are $\leq n$ visits to bad nodes for each of $O(\log^* n)$ rank blocks
+
+\textbf{Total work} $= O((m+n) \log^* n)$
+\end{proof}
+
+
+\subsubsection{Tarjan`s bound and Ackermann function}
+
+\begin{definition}
+Will define Ackermann function $A_k(r)$ for all integers $k \geq 0$ and $r \geq 1$ recursively [there are many different definitions, all more or less equivalent]
+\begin{description}
+	\item{(Base case)} $A_0(r) = r + 1$ for all $r \geq 1$
+	\item{(In general)} for $k, r \geq 1$: $A_k(r) =$ apply $A_{k-1}$ $r$ times to $r = (A_{k-1} \dots A_{k-1})(r)$ [$r$ fold composition]
+\end{description}
+\end{definition}
+
+\begin{example}
+$A_1(r) = (A_0 \dots A_0)(r) = 2r$
+\end{example}
+
+\begin{example}
+$A_2(r) = (A_1 \dots A_1)(r) = r2^r$
+\end{example}
+
+\begin{example}
+$A_3(2) = A_2(A_2(2)) = A_2(8) = 8 * 2^8 = 2^{11} = 2048$
+
+In general: $A_3(r) = (A_2 \dots A_2)(r) \geq$ a tower of $r$ $2$`s [$2^{2^{\dots^{2}}}$]
+\end{example}
+
+\begin{example}
+$A_4(2) = A_3(A_3(2)) = A_3(2048) \geq 2^{2^{\dots^{2}}}$ [tower of height 2048]
+
+In general: $A_4(r) = (A_3 \dots A_3)(r) \approx$ iterate tower function [aka "nowser" function]
+\end{example}
+
+\begin{definition}For every $n \geq 4$, the inverse Ackermann function $\alpha(n) =$ minimum value of $k$, such that $A_k(2) \geq n$\end{definition}
+
+\begin{example}
+\begin{itemize}
+	\item $\alpha(n) = 1$ for $n = 4$ [since $A_1(2)=4$]
+	\item $\alpha(n) = 2$ for $n = 5, 6, 7, 8$ [since $A_2(2)=8$]
+	\item $\alpha(n) = 3$ for $n = 9, \dots, 2048$ [since $A_3(2)=2048$]
+	\item $\alpha(n) = 4$ for $n$ up to roughly a tower of $2$`s of height 2048
+	\item $\alpha(n) = 5$ for $n$ up to ???
+\end{itemize}
+
+\begin{itemize}
+	\item $\log^* n = 1$ for $n = 2$
+	\item $\log^* n = 2$ for $n = 3, 4$
+	\item $\log^* n = 3$ for $n = 5, \dots, 16$
+	\item $\log^* n = 4$ for $n = 17, \dots, 65536$
+	\item $\log^* n = 5$ for $n = 65537, \dots, 2^{65536}$
+	\item $\dots$
+	\item $\log^* n = 2048$ for $n$ up to roughly a tower of $2$`s of height 2048
+\end{itemize}
+\end{example}
+
+\begin{theorem}[Tarjan, `75] With Union by Rank and path compression, $m$ UNION + FIND operations take $O(m \alpha(n))$ time, where $\alpha(n)$ is the inverse Ackermann function\end{theorem}
+
+\underline{Acknoledgment}: Kozen, "Design and Analysis of Algorithms"
+\\
+
+Building blocks of Hopcroft-Ullman analysis:
+\begin{description}
+	\item{(Block1)} Rank lemma (at most $\frac{n}{2^r}$ objects of rank $r$)
+	\item{(Block2)} path compression $\Rightarrow$ if $x$`s parent pointer updated from $p$ to $p`$, then $rank[p`] \geq rank[p] + 1$
+	\item{(New idea)} stronger version of building block 2. In most cases, rank of new parent \underline{much} bigger than rank of old parent (not just by $1$)
+\end{description}
+
+\begin{definition}
+Consider a non-root object $x$ (so $rank[x]$ fixed forevermore), define $\delta(x) =$ max value of $k$ such that $rank[parent(x)] \geq A_k(rank[x])$ [note: $\delta(x)$ only goes up over time]
+\end{definition}
+
+\begin{example}
+\begin{itemize}
+	\item $\delta(x) \geq 0$ always
+	\item $\delta(x) \geq 1 \iff rank[parent(x)] \geq 2 * rank[x]$
+	\item $\delta(x) \geq 2 \iff rank[parent(x)] \geq rank[x] * 2^{rank[x]}$
+	\item for all objects $x$ with $rank[x] \geq 2$, then $\delta(x) \leq \alpha(n)$ [since $A_{\alpha(n)}(2) \geq n$]
+\end{itemize}
+\end{example}
+
+\begin{definition}
+An object $x$ is \underline{bad} if all of the following hold:
+\begin{enumerate}
+	\item $x$ is not a root
+	\item $parent(x)$ is not a root
+	\item $rank[x] \geq 2$
+	\item $x$ has an ancestor $y$ with $\delta(y) = \delta(x)$
+\end{enumerate}
+
+$x$ is \underline{good} otherwise
+\end{definition}
+
+\textbf{Maximum number of good objects} on an object-root path is \underline{$\Theta(\alpha
+(n))$}, since $\leq 1$ root $+ 1$ child of root $+ 1$ object with rank $0 + 1$ object with rank $1 + 1$ object with $\delta(x) = k$ for each $k = 0, 1, \dots, \alpha(n)$
+
+\begin{proof}[Tarjan`s bound proof]
+\textbf{Upshot}: total work of $m$ operations $= O(m \alpha(n)) +$ total number of visits to bad objects
+\\
+
+\underline{Main argument}: suppose a FIND operation visits a bad object $x$ [$\delta(x) = k$, $rank[x] \geq 2$]. Since path compression: $x$`s new parent will be $p`$ or even higher:
+
+\[
+rank[x\text{`s new parent}] \geq^{\text{[ranks only go up]}} rank[p`] \geq^{\text{[$\delta(x) = k$]}} A_k(rank[y]) \geq^{\text{[$\dots$go up]}} A_k(rank[p])
+\]
+
+Path compression (at least) applies the $A_k$ function to $rank(x$`s parent$)$
+
+\underline{Consequence}: if $r = rank[x]$ ($\geq 2$), then after $r$ such pointer updates we have:
+
+\[
+rank(x\text{`s parent}) \geq (A_k \dots A_k)(r) = A_{k+1}(r)
+\]
+
+Thus: while $x$ is bad, every $r$ visits increases $\delta(x) \Rightarrow \leq r \alpha(n)$ visits to $x$ while it`s bad
+
+Recall: total work of $m$ operations is $O(m \alpha(n)) +$ total number of visits to bad objects $\geq \sum\limits_{\text{objects x}} rank[x]*\alpha(n) = \alpha(n) \sum\limits_{r \geq 0} r ($number of objects with rank $r) = n \alpha(n) \sum\limits_{r \geq 0} \frac{r}{2^r} = O(n \alpha(n))$
+\end{proof}
+
+Conjecture about "there`s no linear-time method and the algorithm considered here is optimal to whithin a constant factor" [Tarjan, "Efficiency of a Good But not Linear Set Union Algorithm", Journal of the ACM, 1975] proved by [Fredman/Saks, `89]!
 \end{document}
